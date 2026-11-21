@@ -118,11 +118,11 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
     </div>
   </div>
 
-  <table class="sr-table">
+  <div class="sr-only"><table>
     <caption>Типичный сценарий движения денег по пакетам</caption>
     <thead><tr><th>Пакет</th><th>Месяц</th><th>Событие</th></tr></thead>
     <tbody>
       {lanes.flatMap((l) => [...l.events.map((e) => ({ at: e.at, t: e.tip.replace('|', ': ') })), ...l.bands.map((b) => ({ at: b.from, t: `${b.tip.replace('|', ': ')} (до ${b.to} мес.)` }))].sort((a, b) => a.at - b.at).map((e) => <tr><td>{PACKAGES[l.k].name}</td><td>{e.at}</td><td>{e.t}</td></tr>))}
     </tbody>
-  </table>
+  </table></div>
 </figure>

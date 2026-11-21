@@ -62,7 +62,7 @@
   .lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--color-ink-2); }
   .on-dark .lead { color: #c3ccd8; }
 
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; white-space: nowrap; cursor: pointer; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; text-align: center; line-height: 1.2; cursor: pointer; }
   .btn:active { transform: translateY(1px); }
   .btn-primary { background: var(--color-navy); color: #fff; }
   .btn-primary:hover { background: var(--color-navy-3); }
@@ -87,12 +87,12 @@
   .viz-tip { position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); background: var(--color-navy); color: #fff; font-size: 13px; line-height: 1.35; padding: 8px 10px; border-radius: 10px; white-space: nowrap; box-shadow: var(--shadow-lift); }
   .viz-tip b { font-size: 15px; font-weight: 800; }
   .legend-key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; }
-  .sr-table { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .img-fallback { background: linear-gradient(135deg, var(--color-sand), #e2dccf); }
 
   /* Текст статей и описаний */
-  .prose-si { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); }
+  .prose-si { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); overflow-wrap: break-word; }
+  .prose-si a { overflow-wrap: anywhere; }
   .prose-si > * + * { margin-top: 1em; }
   .prose-si h2 { font-size: 26px; line-height: 1.25; font-weight: 750; color: var(--color-ink); margin-top: 1.8em; }
   .prose-si h3 { font-size: 21px; line-height: 1.3; font-weight: 700; color: var(--color-ink); margin-top: 1.5em; }
