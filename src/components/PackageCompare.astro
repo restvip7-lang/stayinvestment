@@ -1,0 +1,67 @@
+---
+/**
+ * Сравнение трёх пакетов. Числа — из каталога (packageStats), качественные строки — по условиям пакетов.
+ * На узких экранах таблица прокручивается горизонтально, первая колонка закреплена.
+ */
+import { PACKAGES, PACKAGE_ORDER, packageStats, fmtRange, eurShort, pkgColor, type PackageKey } from '../lib/catalog';
+
+const s = Object.fromEntries(PACKAGE_ORDER.map((k) => [k, packageStats(k)])) as Record<PackageKey, ReturnType<typeof packageStats>>;
+const entry = (k: PackageKey) => (s[k].entry ? `от ${eurShort(s[k].entry!.min)}` : '—');
+
+const rows: { label: string; hint?: string; cells: Record<PackageKey, string> }[] = [
+  { label: 'Цель', cells: { rental: 'Регулярный арендный доход', startovye: 'Рост капитала к сдаче дома', partnerskye: 'Доход от девелоперского проекта' } },
+  { label: 'Вход', hint: 'Минимальная сумма по объектам каталога', cells: { rental: entry('rental'), startovye: entry('startovye'), partnerskye: entry('partnerskye') } },
+  {
+    label: 'Доходность',
+    hint: 'По условиям объектов в каталоге. Прогноз, не гарантия',
+    cells: {
+      rental: `${fmtRange(s.rental.rentYield, '%')} годовых`,
+      startovye: `≈ 15–20% за цикл${s.startovye.discount ? ` · скидка ${fmtRange(s.startovye.discount, '%')}` : ''}`,
+      partnerskye: `ROI ${fmtRange(s.partnerskye.roi, '%')} за цикл`,
+    },
+  },
+  {
+    label: 'Горизонт',
+    cells: {
+      rental: `гарантия аренды ${fmtRange(s.rental.guaranteeYears)} лет, дальше — без ограничений`,
+      startovye: 'до сдачи дома, обычно 12–24 мес.',
+      partnerskye: `${fmtRange(s.partnerskye.paybackMonths)} мес.`,
+    },
+  },
+  { label: 'Как приходит доход', cells: { rental: 'Ежегодные выплаты от управляющей компании', startovye: 'Разовый — при перепродаже (или аренда)', partnerskye: 'Разовый — распределение прибыли по итогам продаж' } },
+  { label: 'Рассрочка', cells: { rental: `без процентов: первый взнос от ${s.rental.firstPayment?.min ?? '—'}%, срок до ${s.rental.installmentMonths?.max ?? '—'} мес.`, startovye: `без процентов: первый взнос от ${s.startovye.firstPayment?.min ?? '—'}%, срок до ${s.startovye.installmentMonths?.max ?? '—'} мес.`, partnerskye: 'нет — вход единой суммой' } },
+  { label: 'Ликвидность', hint: 'Насколько быстро можно выйти из вложения', cells: { rental: 'Высокая: готовая квартира, можно продать', startovye: 'Средняя: до сдачи — переуступка договора, после — обычная продажа', partnerskye: 'Низкая: выход по итогам цикла проекта' } },
+  { label: 'Чем владеете', cells: { rental: 'Квартира с ТАПУ на ваше имя', startovye: 'Квартира в строящемся доме, ТАПУ после сдачи', partnerskye: 'Доля в проекте по инвестиционному договору' } },
+  { label: 'Обеспечение', cells: { rental: 'Право собственности (ТАПУ)', startovye: 'Договор купли-продажи, ТАПУ после сдачи', partnerskye: 'Нотариус, вексель, ипотека или ТАПУ на квартиры' } },
+  { label: 'Профиль риска', cells: { rental: 'Консервативный', startovye: 'Умеренный', partnerskye: 'Выше среднего' } },
+];
+---
+<div class="card overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[760px] border-collapse text-left text-[14.5px]">
+      <caption class="sr-only">Сравнение инвестиционных пакетов Stay Investment</caption>
+      <thead>
+        <tr class="border-b border-line">
+          <th scope="col" class="sticky left-0 z-10 w-[20%] bg-surface px-5 py-5 text-[12.5px] font-bold uppercase tracking-[.12em] text-muted">Параметр</th>
+          {PACKAGE_ORDER.map((k) => (
+            <th scope="col" class="px-5 py-5 align-bottom">
+              <span class="flex items-center gap-2"><span class="legend-key" style={`background:${pkgColor(k)}`}></span><a href={`/investment-directory/${k}/`} class="text-[17px] font-extrabold hover:text-accent-2">«{PACKAGES[k].name}»</a></span>
+              <span class="mt-1 block text-[13px] font-medium text-muted">{s[k].count} объектов в каталоге</span>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr class="border-b border-line last:border-0 even:bg-[#faf8f4]">
+            <th scope="row" class="sticky left-0 z-10 bg-inherit px-5 py-4 align-top font-bold">
+              <span class="block">{r.label}</span>
+              {r.hint && <span class="mt-0.5 block text-[12px] font-medium leading-snug text-muted">{r.hint}</span>}
+            </th>
+            {PACKAGE_ORDER.map((k) => <td class="px-5 py-4 align-top leading-snug text-ink-2">{r.cells[k]}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

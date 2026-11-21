@@ -1,0 +1,175 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Icon from '../../components/Icon.astro';
+import CashflowTimeline from '../../components/CashflowTimeline.astro';
+import LeadSection from '../../components/LeadSection.astro';
+
+const nav = [
+  { id: 'metodika', label: 'Как мы считаем доходность' },
+  { id: 'cashflow', label: 'Движение денег по пакетам' },
+  { id: 'raskhody', label: 'Что не входит в доходность' },
+  { id: 'riski', label: 'Риски и как мы их снижаем' },
+  { id: 'glossary', label: 'Глоссарий' },
+];
+
+const formulas = [
+  {
+    pkg: '«Рантье»',
+    name: 'Арендная доходность',
+    formula: 'Гарантированный арендный доход за год ÷ Стоимость объекта × 100%',
+    example: 'Квартира за 110 000 €, гарантированный доход 5 500 € в год → 5% годовых. За 2 года гарантии — 11 000 €, или 10% от вложений.',
+  },
+  {
+    pkg: '«Стартовый»',
+    name: 'Доход от перепродажи',
+    formula: '(Цена продажи − Цена покупки) ÷ Цена покупки × 100%',
+    example: 'Лот за 110 000 € на старте строительства, продажа после сдачи дома за 127 000 € → +15,5%. Ориентир по рынку — 15–20% за цикл.',
+  },
+  {
+    pkg: '«Партнерский»',
+    name: 'ROI за цикл проекта',
+    formula: 'Прибыль инвестора ÷ Сумма входа × 100%',
+    example: 'Вход 1 225 000 €, прибыль по итогам продаж 563 500 € → ROI 46% за 30 месяцев.',
+  },
+];
+
+const costs = [
+  { title: 'Налог на регистрацию права (ТАПУ)', text: 'Разовый, при покупке: 4% от стоимости, указанной в ТАПУ. Обычно распределяется между покупателем и продавцом по договорённости.' },
+  { title: 'Сделка', text: 'Переводчик и нотариус, оценка недвижимости (там, где она обязательна), открытие счёта, страховка от землетрясения (DASK).' },
+  { title: 'Содержание', text: 'Ежемесячный взнос на обслуживание комплекса (aidat) и ежегодный налог на имущество — от 0,1 до 0,6% кадастровой стоимости.' },
+  { title: 'Налоги на доход', text: 'Налог на доход от аренды в Турции, а при продаже раньше чем через 5 лет владения — налог на прирост стоимости. Учитывайте и налоги страны вашего резидентства.' },
+];
+
+const risks = [
+  { icon: 'building', risk: 'Строительный', what: 'Задержка сроков или изменение проекта.', how: 'Работаем с проектами группы Stay Property и проверенными застройщиками. Сроки и ответственность — в договоре; ход стройки — онлайн-камера и ежемесячные фотоотчёты в кабинете инвестора.' },
+  { icon: 'chart', risk: 'Рыночный', what: 'Цены растут медленнее прогноза или снижаются.', how: 'Отбираем локации с устойчивым спросом, показываем несколько сценариев выхода (продажа, аренда, удержание) и помогаем распределить вложения между пакетами.' },
+  { icon: 'key', risk: 'Арендный', what: 'Простой квартиры, нет арендаторов.', how: 'В «Рантье» арендный доход на 2–5 лет гарантирует застройщик. После гарантии объект можно передать в управление Stay Property.' },
+  { icon: 'coins', risk: 'Валютный', what: 'Колебания курса турецкой лиры.', how: 'Цены объектов и суммы по договорам указаны в евро. Валюту выплат дохода уточняйте в договоре до подписания.' },
+  { icon: 'layers', risk: 'Ликвидность', what: 'Нельзя быстро вернуть деньги.', how: 'Ликвидность разная: готовую квартиру можно продать, долю в партнёрском проекте — только по итогам цикла. Мы показываем горизонт заранее — см. сравнение пакетов.' },
+  { icon: 'doc', risk: 'Юридический', what: 'Проблемы с правом собственности, разрешениями, изменения законов.', how: 'Проверяем ТАПУ, разрешения на строительство и обременения (due diligence), договор можно заверить у нотариуса. Следим за изменениями законодательства — публикуем их в новостях.' },
+  { icon: 'shield', risk: 'Риск контрагента', what: 'Компания не исполняет обязательства.', how: 'Обеспечение по договору: гарантийный вексель (senet), ипотека (ipotek) или ТАПУ на квартиры проекта на сумму вложений.' },
+];
+
+const glossary = [
+  ['ТАПУ (tapu)', 'Свидетельство о праве собственности на недвижимость в Турции. Выдаётся Земельным кадастром (Tapu ve Kadastro).'],
+  ['Искан (iskan)', 'Разрешение на ввод дома в эксплуатацию и заселение. После него оформляется ТАПУ на квартиру в новостройке.'],
+  ['Сенет (senet)', 'Гарантийный вексель — безусловное письменное обязательство выплатить сумму к определённой дате.'],
+  ['Ипотек (ipotek)', 'Обременение недвижимости в пользу кредитора или инвестора: объект нельзя продать, пока обязательство не исполнено.'],
+  ['Эскроу-счёт', 'Банковский счёт, на котором деньги покупателей хранятся до выполнения условий сделки — например, до сдачи дома.'],
+  ['Арендная доходность', 'Годовой арендный доход в процентах от стоимости объекта.'],
+  ['ROI', 'Return on Investment — отношение прибыли к вложенной сумме за весь срок инвестиции.'],
+  ['Годовой эквивалент', 'Доходность за цикл, пересчитанная на один год по формуле сложного процента — чтобы сравнивать вложения разной длительности.'],
+  ['Окупаемость', 'Срок, за который вложения возвращаются вместе с прибылью; в партнёрских проектах — длительность цикла.'],
+  ['Рассрочка застройщика', 'Оплата квартиры частями без процентов до сдачи дома: первый взнос + платежи по графику.'],
+  ['Переуступка', 'Продажа прав по договору на квартиру до сдачи дома, обычно — по согласованию с застройщиком.'],
+  ['Due diligence', 'Комплексная проверка объекта и продавца до сделки: документы, права, обременения, разрешения.'],
+  ['Айдат (aidat)', 'Ежемесячный взнос на обслуживание жилого комплекса: охрана, уборка, бассейн, управление.'],
+  ['DASK', 'Обязательное страхование недвижимости от землетрясений в Турции.'],
+];
+
+const pct = (x: number) => x.toLocaleString('ru-RU', { maximumFractionDigits: 1 });
+const ann = (roi: number, months: number) => (Math.pow(1 + roi / 100, 12 / months) - 1) * 100;
+---
+<Base
+  title="Методика расчёта доходности и риски инвестиций в недвижимость Турции"
+  description="Как Stay Investment считает арендную доходность, доход от перепродажи и ROI; какие расходы и налоги не входят в доходность; какие риски есть у инвестиций в недвижимость Турции и как мы их снижаем."
+  crumbs={[{ label: 'Инвесторам' }, { label: 'Методика и риски' }]}
+>
+  <PageHead eyebrow="Инвесторам" title="Методика расчёта и риски" lead="Открыто показываем, как считаем доходность, что в неё не входит и какие риски есть у каждого пакета. Чтобы вы сравнивали предложения по одной логике — и с нашими, и с чужими.">
+    <nav class="mt-8 flex flex-wrap gap-2" aria-label="Разделы страницы">
+      {nav.map((n) => <a href={`#${n.id}`} class="btn btn-ghost btn-sm">{n.label}</a>)}
+    </nav>
+  </PageHead>
+
+  <section id="metodika" class="container-x scroll-mt-24 pb-16">
+    <h2 class="h-section">Как мы считаем доходность</h2>
+    <p class="lead mt-4 max-w-3xl">У каждого пакета — своя модель дохода, поэтому и показатели разные. Все цифры на сайте — до налогов и расходов на содержание.</p>
+    <div class="mt-8 grid gap-5 lg:grid-cols-3">
+      {formulas.map((f) => (
+        <article class="card flex flex-col p-7">
+          <p class="text-[13px] font-bold uppercase tracking-[.12em] text-accent-2">{f.pkg}</p>
+          <h3 class="mt-2 text-xl font-extrabold">{f.name}</h3>
+          <p class="mt-4 rounded-xl bg-page px-4 py-3 font-mono text-[13.5px] leading-relaxed text-ink">{f.formula}</p>
+          <p class="mt-4 text-[14.5px] leading-relaxed text-ink-2"><span class="font-bold text-ink">Пример. </span>{f.example}</p>
+        </article>
+      ))}
+    </div>
+    <div class="mt-5 grid gap-6 rounded-[24px] border border-line-2 p-7 md:grid-cols-[1fr_1.2fr] md:items-center">
+      <div>
+        <h3 class="text-xl font-extrabold">Годовой эквивалент: сравнение вложений разной длины</h3>
+        <p class="mt-2 text-[15px] leading-relaxed text-ink-2">ROI 46% за 30 месяцев и 5% годовых нельзя сравнивать напрямую. Мы пересчитываем доход за цикл в годовой по формуле сложного процента:</p>
+        <p class="mt-3 rounded-xl bg-page px-4 py-3 font-mono text-[13.5px]">(1 + ROI) ^ (12 ÷ месяцев) − 1</p>
+      </div>
+      <table class="w-full text-left text-[14.5px] tabular">
+        <caption class="sr-only">Примеры пересчёта доходности за цикл в годовую</caption>
+        <thead><tr class="border-b border-line text-[12.5px] text-muted"><th class="py-2 font-semibold">Доходность за цикл</th><th class="py-2 font-semibold">Срок</th><th class="py-2 text-right font-semibold">В год</th></tr></thead>
+        <tbody>
+          {[[15, 24], [20, 24], [36, 30], [46, 30], [60, 30]].map(([r, m]) => (
+            <tr class="border-b border-line last:border-0"><td class="py-2.5 font-bold">{r}%</td><td class="py-2.5 text-ink-2">{m} мес.</td><td class="py-2.5 text-right font-extrabold text-sea">≈ {pct(ann(r, m))}%</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="cashflow" class="container-x scroll-mt-24 pb-16">
+    <CashflowTimeline />
+  </section>
+
+  <section id="raskhody" class="scroll-mt-24 bg-sand/60 py-16 md:py-20">
+    <div class="container-x">
+      <h2 class="h-section">Что не входит в доходность</h2>
+      <p class="lead mt-4 max-w-3xl">Чтобы оценить чистый результат, учтите расходы на сделку, содержание и налоги. Мы рассчитаем их под ваш объект и страну налогового резидентства.</p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {costs.map((c) => (
+          <div class="card p-6">
+            <h3 class="font-extrabold">{c.title}</h3>
+            <p class="mt-2 text-[14.5px] leading-relaxed text-ink-2">{c.text}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-5 text-[13px] text-muted">Ставки налогов и сборов приведены для ориентира и меняются; актуальные значения уточняйте у юриста или налогового консультанта.</p>
+    </div>
+  </section>
+
+  <section id="riski" class="container-x scroll-mt-24 py-16 md:py-24">
+    <h2 class="h-section">Риски и как мы их снижаем</h2>
+    <p class="lead mt-4 max-w-3xl">Инвестиций без риска не бывает. Ниже — основные риски вложений в недвижимость Турции и то, что мы делаем, чтобы их снизить.</p>
+    <div class="card mt-8 overflow-hidden">
+      <table class="w-full text-left text-[15px]">
+        <caption class="sr-only">Риски инвестиций и меры по их снижению</caption>
+        <thead class="hidden border-b border-line text-[12.5px] uppercase tracking-[.12em] text-muted md:table-header-group">
+          <tr><th class="w-[22%] px-6 py-4 font-bold">Риск</th><th class="w-[28%] px-6 py-4 font-bold">Что может произойти</th><th class="px-6 py-4 font-bold">Как снижаем</th></tr>
+        </thead>
+        <tbody>
+          {risks.map((r) => (
+            <tr class="block border-b border-line p-5 last:border-0 md:table-row md:p-0">
+              <th scope="row" class="block font-extrabold md:table-cell md:px-6 md:py-5 md:align-top">
+                <span class="flex items-center gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sea-soft text-sea"><Icon name={r.icon} size={18} /></span>{r.risk}</span>
+              </th>
+              <td class="mt-3 block text-ink-2 md:mt-0 md:table-cell md:px-6 md:py-5 md:align-top">{r.what}</td>
+              <td class="mt-2 block leading-relaxed text-ink md:mt-0 md:table-cell md:px-6 md:py-5 md:align-top">{r.how}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="glossary" class="scroll-mt-24 bg-sand/60 py-16 md:py-24">
+    <div class="container-x">
+      <h2 class="h-section">Глоссарий</h2>
+      <dl class="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
+        {glossary.map(([t, d]) => (
+          <div class="border-t border-line-2 pt-4">
+            <dt class="font-extrabold">{t}</dt>
+            <dd class="mt-1 text-[15px] leading-relaxed text-ink-2">{d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <LeadSection source="methodology" title="Посчитаем доходность под ваш сценарий" text="Учтём налоги вашей страны, расходы на сделку и содержание, валюту выплат — и покажем чистую доходность по 2–3 подходящим объектам." />
+</Base>

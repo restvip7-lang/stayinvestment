@@ -62,6 +62,9 @@ export const PACKAGES: Record<PackageKey, PackageInfo> = {
   },
 };
 
+/** Цвет пакета на графиках (CSS-переменная из global.css). */
+export const pkgColor = (k: PackageKey) => `var(--color-pkg-${k})`;
+
 export const PACKAGE_ORDER: PackageKey[] = ['rental', 'startovye', 'partnerskye'];
 
 const files = import.meta.glob<InvestObject>('../content/objects/*.json', { eager: true, import: 'default' });
@@ -136,3 +139,34 @@ export function formatMetric(m: Metric) {
 export const euro = (n: number | null) => (n == null ? '—' : `${nf.format(n)} €`);
 
 export const CITIES = [...new Set(OBJECTS.map((o) => placeOf(o).city).filter(Boolean))];
+
+/* ---------- Сводка по пакету (для сравнения и инфографики) ---------- */
+
+export interface Range { min: number; max: number }
+const range = (xs: (number | null)[]): Range | null => {
+  const v = xs.filter((x): x is number => x != null && Number.isFinite(x));
+  return v.length ? { min: Math.min(...v), max: Math.max(...v) } : null;
+};
+const val = (o: InvestObject, re: RegExp) => o.metrics.find((m) => re.test(m.label))?.value ?? null;
+
+export function packageStats(k: PackageKey) {
+  const items = byPackage(k);
+  return {
+    count: items.length,
+    entry: range(items.map(entryPrice)),
+    /** Рантье: % годовых от аренды */
+    rentYield: range(items.map((o) => val(o, /^Доходность$/))),
+    guaranteeYears: range(items.map((o) => val(o, /гарантии аренды/))),
+    firstPayment: range(items.map((o) => val(o, /^1й платеж$/))),
+    installmentMonths: range(items.map((o) => val(o, /рассрочки/))),
+    /** Стартовый: скидка от рынка */
+    discount: range(items.map((o) => val(o, /^Скидка$/))),
+    /** Партнерский */
+    roi: range(items.map((o) => val(o, /^ROI$/))),
+    paybackMonths: range(items.map((o) => val(o, /Окупаемость/))),
+    share: range(items.map((o) => val(o, /доля/i))),
+  };
+}
+
+export const fmtRange = (r: Range | null, unit = '') => (!r ? '—' : r.min === r.max ? `${nf.format(r.min)}${unit}` : `${nf.format(r.min)}–${nf.format(r.max)}${unit}`);
+export const eurShort = (n: number) => (n >= 1_000_000 ? `${(n / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 2 })} млн €` : `${Math.round(n / 1000).toLocaleString('ru-RU')} тыс. €`);

@@ -4,6 +4,7 @@ import PageHead from '../../components/PageHead.astro';
 import Catalog from '../../components/Catalog.astro';
 import LeadSection from '../../components/LeadSection.astro';
 import Icon from '../../components/Icon.astro';
+import PackageCompare from '../../components/PackageCompare.astro';
 import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, objectUrl, entryPrice } from '../../lib/catalog';
 
 const ld = {
@@ -32,6 +33,11 @@ const ld = {
   </PageHead>
   <section class="container-x pb-8">
     <Catalog objects={OBJECTS} />
+  </section>
+  <section class="container-x pt-16">
+    <h2 class="h-section">Сравнение пакетов</h2>
+    <p class="lead mt-4 max-w-3xl">Ключевые параметры по объектам каталога. Как считаем доходность и какие есть риски — на странице <a href="/metodika-i-riski/" class="text-sea underline underline-offset-4">«Методика и риски»</a>.</p>
+    <div class="mt-8"><PackageCompare /></div>
   </section>
   <LeadSection source="catalog" title="Не нашли подходящий объект?" text="Расскажите о бюджете и цели — подберём объекты вне каталога, в том числе коммерческую недвижимость и участки под застройку." />
 </Base>

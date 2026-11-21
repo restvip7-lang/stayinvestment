@@ -1,0 +1,128 @@
+---
+/**
+ * «Как движутся деньги» — типичный сценарий по каждому пакету на шкале 0–48 месяцев.
+ * Сроки и ставки — медианы по объектам каталога. Ваши платежи — серые стрелки вниз,
+ * доход — стрелки вверх цвета пакета, этапы — подписанные полосы. Подсказки — [data-tip] (VizTooltip.astro).
+ */
+import { PACKAGES, PACKAGE_ORDER, byPackage, pkgColor, type PackageKey } from '../lib/catalog';
+
+const MAX = 48;
+const median = (xs: (number | null | undefined)[]) => {
+  const v = xs.filter((x): x is number => typeof x === 'number').sort((a, b) => a - b);
+  return v.length ? v[Math.floor((v.length - 1) / 2)] : null;
+};
+const m = (k: PackageKey, re: RegExp) => median(byPackage(k).map((o) => o.metrics.find((x) => re.test(x.label))?.value));
+
+const r = { first: m('rental', /^1й платеж$/) ?? 20, inst: m('rental', /рассрочки/) ?? 12, years: m('rental', /гарантии аренды/) ?? 3, yld: m('rental', /^Доходность$/) ?? 5 };
+const s = { first: m('startovye', /^1й платеж$/) ?? 20, inst: m('startovye', /рассрочки/) ?? 12 };
+const sSale = Math.max(s.inst + 6, 24);
+const p = { payback: m('partnerskye', /Окупаемость/) ?? 30, roi: m('partnerskye', /^ROI$/) ?? 40 };
+const pBuild = Math.round(p.payback * 0.6);
+
+type Ev = { at: number; kind: 'out' | 'in'; label: string; tip: string };
+type Band = { from: number; to: number; kind: 'pay' | 'stage'; label: string; tip: string };
+const rentIncome = Array.from({ length: r.years }, (_, i) => r.inst + 12 * (i + 1)).filter((t) => t <= MAX);
+
+const lanes: { k: PackageKey; summary: string; bands: Band[]; events: Ev[] }[] = [
+  {
+    k: 'rental',
+    summary: `Взнос ${r.first}%, рассрочка ${r.inst} мес., затем ${r.yld}% годовых ${r.years} года по гарантии`,
+    bands: [
+      { from: 0, to: r.inst, kind: 'pay', label: `Рассрочка ${r.inst} мес.`, tip: `Рассрочка|Остаток ${100 - r.first}% стоимости без процентов, ${r.inst} мес.` },
+      { from: r.inst, to: Math.min(MAX, r.inst + 12 * r.years), kind: 'stage', label: `Гарантия аренды ${r.years} года`, tip: `Гарантия аренды|${r.yld}% годовых от застройщика, ${r.years} года после полной оплаты и передачи ключей` },
+    ],
+    events: [
+      { at: 0, kind: 'out', label: `Взнос ${r.first}%`, tip: `Первый взнос|${r.first}% стоимости при подписании договора` },
+      ...rentIncome.map((t, i) => ({ at: t, kind: 'in' as const, label: `+${r.yld}%`, tip: `+${r.yld}% стоимости|Арендный доход за ${i + 1}-й год гарантии` })),
+    ],
+  },
+  {
+    k: 'startovye',
+    summary: `Взнос ${s.first}%, рассрочка ${s.inst} мес., продажа после сдачи дома: ≈ +15–20%`,
+    bands: [
+      { from: 0, to: s.inst, kind: 'pay', label: `Рассрочка ${s.inst} мес.`, tip: `Рассрочка|Остаток ${100 - s.first}% без процентов, ${s.inst} мес.` },
+      { from: s.inst, to: sSale, kind: 'stage', label: 'Сдача дома', tip: 'Завершение строительства|Ввод дома в эксплуатацию (искан) и оформление ТАПУ' },
+    ],
+    events: [
+      { at: 0, kind: 'out', label: `Взнос ${s.first}%`, tip: `Первый взнос|${s.first}% стоимости лота` },
+      { at: sSale, kind: 'in', label: '+15–20%', tip: '+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома' },
+    ],
+  },
+  {
+    k: 'partnerskye',
+    summary: `Вход единой суммой, цикл ${p.payback} мес., распределение прибыли: ROI ≈ ${p.roi}%`,
+    bands: [
+      { from: 0, to: pBuild, kind: 'stage', label: 'Строительство', tip: 'Строительство|Камера, фотоотчёты и прайсы — в кабинете инвестора' },
+      { from: pBuild, to: p.payback, kind: 'stage', label: 'Продажи', tip: 'Продажи квартир|Начинаются ещё на этапе стройки, завершаются после сдачи' },
+    ],
+    events: [
+      { at: 0, kind: 'out', label: 'Вход 100%', tip: 'Вход в проект|Сумма доли вносится единовременно' },
+      { at: p.payback, kind: 'in', label: `+${p.roi}%`, tip: `ROI ${p.roi}% за цикл|Медиана по проектам каталога; распределение прибыли по итогам продаж` },
+    ],
+  },
+];
+const pos = (mo: number) => (Math.min(mo, MAX) / MAX) * 100;
+const anchor = (mo: number) => (mo <= 2 ? 'translateX(0)' : mo >= MAX - 2 ? 'translateX(-100%)' : 'translateX(-50%)');
+const circleAlign = (mo: number) => (mo <= 2 ? 'ml-0' : mo >= MAX - 2 ? 'ml-auto' : 'mx-auto');
+/** Подпись внутри полосы — только если полоса заведомо шире текста даже на телефоне; иначе подпись в подсказке. */
+const fits = (b: Band) => (b.to - b.from) / MAX >= Math.max(0.22, b.label.length * 0.016);
+const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
+---
+<figure class="card p-5 sm:p-8">
+  <figcaption class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="text-xl font-extrabold">Как движутся деньги: типичный сценарий</p>
+      <p class="mt-1 max-w-2xl text-[14px] text-ink-2">Сроки и ставки — медианы по объектам каталога. График платежей и выплат по конкретному объекту фиксируется в договоре.</p>
+    </div>
+    <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-ink-2">
+      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full" style="background:var(--color-flow-out)"><svg width="8" height="8" aria-hidden="true"><path d="M4 .5v6M1.5 4.5 4 7l2.5-2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>Ваши платежи</li>
+      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full bg-ink"><svg width="8" height="8" aria-hidden="true"><path d="M4 7.5v-6M1.5 3.5 4 1l2.5 2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>Доход (цвет пакета)</li>
+      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-[#e3e7ee]"></span>Рассрочка</li>
+      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-sand"></span>Этап</li>
+    </ul>
+  </figcaption>
+
+  <div class="mt-8 grid gap-7">
+    {lanes.map((l) => (
+      <div class="grid gap-3 md:grid-cols-[210px_1fr] md:items-start md:gap-6">
+        <div>
+          <p class="flex items-center gap-2 font-extrabold"><span class="legend-key" style={`background:${pkgColor(l.k)}`}></span>«{PACKAGES[l.k].name}»</p>
+          <p class="mt-1 text-[13px] leading-snug text-muted">{l.summary}</p>
+        </div>
+        <div class="relative h-[84px]" role="img" aria-label={`«${PACKAGES[l.k].name}»: ${l.summary}`}>
+          <div class="absolute inset-x-0 top-[12px] h-px bg-line"></div>
+          {l.bands.map((b) => (
+            <span
+              class:list={['absolute top-[32px] flex h-[22px] items-center overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[11.5px] font-semibold text-ink outline-none focus-visible:ring-2 focus-visible:ring-accent', b.kind === 'pay' ? 'bg-[#e3e7ee]' : 'bg-sand']}
+              style={`left:${pos(b.from)}%;width:calc(${pos(b.to) - pos(b.from)}% - 2px)`}
+              tabindex="0" data-tip={b.tip}
+              aria-label={b.tip.replace('|', ': ')}
+            >{fits(b) ? b.label : ''}</span>
+          ))}
+          {l.events.map((e) => (
+            <span class="absolute top-0 outline-none" style={`left:${pos(e.at)}%;transform:${anchor(e.at)}`} tabindex="0" data-tip={e.tip}>
+              <span class:list={[circleAlign(e.at), 'grid h-[24px] w-[24px] place-items-center rounded-full ring-2 ring-surface']} style={`background:${e.kind === 'out' ? 'var(--color-flow-out)' : pkgColor(l.k)}`}>
+                <svg width="12" height="12" aria-hidden="true">{e.kind === 'out' ? <path d="M6 1.5v8M3 6.5l3 3 3-3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" /> : <path d="M6 10.5v-8M3 5.5l3-3 3 3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" />}</svg>
+              </span>
+              <span class="mt-[38px] block whitespace-nowrap text-[12px] font-bold text-ink">{e.label}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+    <div class="grid md:grid-cols-[210px_1fr] md:gap-6" aria-hidden="true">
+      <span class="hidden text-right text-[11.5px] text-muted md:block">месяцы</span>
+      <div class="relative h-5 border-t border-line text-[11.5px] text-muted tabular">
+        {ticks.map((t) => <span class="absolute top-1.5" style={`left:${pos(t)}%;transform:${anchor(t)}`}>{t}</span>)}
+      </div>
+    </div>
+  </div>
+
+  <table class="sr-table">
+    <caption>Типичный сценарий движения денег по пакетам</caption>
+    <thead><tr><th>Пакет</th><th>Месяц</th><th>Событие</th></tr></thead>
+    <tbody>
+      {lanes.flatMap((l) => [...l.events.map((e) => ({ at: e.at, t: e.tip.replace('|', ': ') })), ...l.bands.map((b) => ({ at: b.from, t: `${b.tip.replace('|', ': ')} (до ${b.to} мес.)` }))].sort((a, b) => a.at - b.at).map((e) => <tr><td>{PACKAGES[l.k].name}</td><td>{e.at}</td><td>{e.t}</td></tr>))}
+    </tbody>
+  </table>
+</figure>

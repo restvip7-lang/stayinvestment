@@ -25,6 +25,7 @@ export const NAV: NavItem[] = [
     label: 'Инвесторам',
     href: '/kontrol-investitsij/',
     children: [
+      { label: 'Методика и риски', href: '/metodika-i-riski/', note: 'Как считаем доходность, риски, глоссарий' },
       { label: 'Контроль инвестиций', href: '/kontrol-investitsij/', note: 'Кабинет инвестора и отчётность' },
       { label: 'Гарантии и обеспечение', href: '/garantii-i-obespechenie/', note: 'Нотариус, вексель, ипотека, ТАПУ' },
       { label: 'Как открыть компанию в Турции', href: '/open_a_company_in_turkey/', note: 'Пошаговая инструкция' },

@@ -3,7 +3,7 @@ import { OBJECTS, PACKAGE_ORDER, objectUrl } from '../lib/catalog';
 import { getNews } from '../lib/news';
 import { SITE } from '../lib/site';
 
-const STATIC = ['/', '/o-kompanii/', '/kontrol-investitsij/', '/garantii-i-obespechenie/', '/open_a_company_in_turkey/', '/investment-directory/', '/investment-directory/biznes-investitsii/', '/news/', '/contacts/'];
+const STATIC = ['/', '/o-kompanii/', '/metodika-i-riski/', '/kontrol-investitsij/', '/garantii-i-obespechenie/', '/open_a_company_in_turkey/', '/investment-directory/', '/investment-directory/biznes-investitsii/', '/news/', '/contacts/'];
 
 export const GET: APIRoute = async () => {
   const news = await getNews();

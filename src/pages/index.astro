@@ -5,6 +5,8 @@ import Img from '../components/Img.astro';
 import ObjectCard from '../components/ObjectCard.astro';
 import NewsCard from '../components/NewsCard.astro';
 import Faq from '../components/Faq.astro';
+import PackageCompare from '../components/PackageCompare.astro';
+import CashflowTimeline from '../components/CashflowTimeline.astro';
 import LeadSection from '../components/LeadSection.astro';
 import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl } from '../lib/catalog';
 import { getNews } from '../lib/news';
@@ -142,6 +144,22 @@ const faq = [
       <span><span class="font-extrabold">«Инвестиции в бизнес»</span> <span class="text-ink-2">— офисы, торговые помещения и курортные отели с разной доходностью</span></span>
       <span class="inline-flex items-center gap-2 font-bold">Подробнее <Icon name="arrow" size={18} /></span>
     </a>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="container-x pb-16 md:pb-24">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Сравнение</p>
+        <h2 class="h-section mt-3">Пакеты в цифрах</h2>
+        <p class="lead mt-4">Вход, доходность, горизонт и ликвидность — по объектам из каталога. Помогает выбрать стратегию или собрать портфель из нескольких.</p>
+      </div>
+      <a href="/metodika-i-riski/" class="btn btn-ghost">Методика и риски <Icon name="arrow" size={18} /></a>
+    </div>
+    <div class="mt-10 grid gap-6">
+      <PackageCompare />
+      <CashflowTimeline />
+    </div>
   </section>
 
   <!-- FEATURED -->

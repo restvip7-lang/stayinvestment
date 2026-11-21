@@ -5,7 +5,7 @@
  *  - Стартовый: диапазон дохода от перепродажи после сдачи (15–20%, из текста старого сайта);
  *  - Партнерский: ROI проекта за срок окупаемости.
  */
-import { type InvestObject, entryPrice } from '../lib/catalog';
+import { type InvestObject, entryPrice, pkgColor } from '../lib/catalog';
 interface Props { o: InvestObject }
 const { o } = Astro.props;
 const m = (re: RegExp) => o.metrics.find((x) => re.test(x.label))?.value ?? null;
@@ -32,11 +32,16 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
     <span class="flex items-baseline justify-between gap-4 text-[14px] font-semibold text-muted">Сумма инвестиций <output class="text-xl font-extrabold text-ink tabular" data-amount-out></output></span>
     <input type="range" min={min} max={max} step={step} value={price} class="mt-3 w-full accent-[#b8894d]" data-amount aria-label="Сумма инвестиций, €" />
   </label>
-  <dl class="mt-6 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
-    <div><dt class="text-[13px] text-muted" data-l1></dt><dd class="text-2xl font-extrabold text-sea tabular" data-v1></dd></div>
-    <div><dt class="text-[13px] text-muted" data-l2></dt><dd class="text-2xl font-extrabold tabular" data-v2></dd></div>
+  <div class="mt-6 flex h-[28px] gap-[2px]" aria-hidden="true">
+    <span class="flex items-center overflow-hidden whitespace-nowrap rounded-[4px] bg-navy px-2 text-[12px] font-bold text-white transition-[width] duration-200" data-bar-a>Вложения</span>
+    <span class="flex items-center justify-end overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[12px] font-bold text-white transition-[width] duration-200" style={`background:${pkgColor(o.package)}`} data-bar-b></span>
+  </div>
+  <dl class="mt-5 grid gap-4 border-t border-line pt-5 sm:grid-cols-3">
+    <div><dt class="text-[13px] text-muted" data-l1></dt><dd class="text-xl font-extrabold tabular" data-v1></dd></div>
+    <div><dt class="text-[13px] text-muted" data-l2></dt><dd class="text-xl font-extrabold tabular" data-v2></dd></div>
+    <div><dt class="text-[13px] text-muted">В пересчёте на год</dt><dd class="text-xl font-extrabold tabular" data-v3></dd></div>
   </dl>
-  <p class="mt-4 text-[12.5px] leading-snug text-muted">Расчёт ориентировочный и не является офертой. Точные условия — в инвестиционном договоре.</p>
+  <p class="mt-4 text-[12.5px] leading-snug text-muted">Расчёт ориентировочный и не является офертой: до налогов и расходов на обслуживание. Годовая доходность — сложный процент{cfg.mode === 'start' ? ' при горизонте 24 мес.' : ''}. Как считаем — <a href="/metodika-i-riski/#metodika" class="underline underline-offset-2 hover:text-ink">методика</a>.</p>
 </section>
 <script>
   const nf = new Intl.NumberFormat('ru-RU');
@@ -45,18 +50,33 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
     const cfg = JSON.parse(el.dataset.cfg!);
     const input = el.querySelector<HTMLInputElement>('[data-amount]')!;
     const set = (k: string, v: string) => (el.querySelector(`[data-${k}]`)!.textContent = v);
+    const pct = (x: number) => `${x.toLocaleString('ru-RU', { maximumFractionDigits: 1 })}%`;
+    const barA = el.querySelector<HTMLElement>('[data-bar-a]')!;
+    const barB = el.querySelector<HTMLElement>('[data-bar-b]')!;
+    const bar = (a: number, inc: number, label: string) => {
+      barA.style.width = `${(a / (a + inc)) * 100}%`;
+      barB.style.width = `${(inc / (a + inc)) * 100}%`;
+      barB.textContent = label;
+    };
     const render = () => {
       const a = Number(input.value);
       set('amount-out', eur(a));
       if (cfg.mode === 'rental') {
         set('l1', 'Доход в год'); set('v1', eur((a * cfg.rate) / 100));
         set('l2', `За ${cfg.years} г. гарантии`); set('v2', eur((a * cfg.rate * cfg.years) / 100));
+        set('v3', pct(cfg.rate));
+        bar(a, (a * cfg.rate * cfg.years) / 100, `+${cfg.rate * cfg.years}%`);
       } else if (cfg.mode === 'partner') {
         set('l1', 'Прибыль за цикл'); set('v1', eur((a * cfg.rate) / 100));
         set('l2', 'Капитал по завершении'); set('v2', eur(a * (1 + cfg.rate / 100)));
+        set('v3', `≈ ${pct((Math.pow(1 + cfg.rate / 100, 12 / cfg.months) - 1) * 100)}`);
+        bar(a, (a * cfg.rate) / 100, `+${cfg.rate}%`);
       } else {
         set('l1', 'Доход от перепродажи'); set('v1', `${eur((a * cfg.low) / 100)} – ${eur((a * cfg.high) / 100)}`);
         set('l2', 'Капитал после продажи'); set('v2', `до ${eur(a * (1 + cfg.high / 100))}`);
+        const ann = (r: number) => (Math.pow(1 + r / 100, 12 / 24) - 1) * 100;
+        set('v3', `≈ ${pct(ann(cfg.low))}–${pct(ann(cfg.high))}`);
+        bar(a, (a * cfg.low) / 100, `+${cfg.low}–${cfg.high}%`);
       }
     };
     input.addEventListener('input', render);

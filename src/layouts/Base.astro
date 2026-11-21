@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LeadForm from '../components/LeadForm.astro';
 import Icon from '../components/Icon.astro';
+import VizTooltip from '../components/VizTooltip.astro';
 import { SITE } from '../lib/site';
 
 interface Crumb { label: string; href?: string }
@@ -82,6 +83,7 @@ const ld: Record<string, unknown>[] = [
     )}
     <main id="main"><slot /></main>
     <Footer />
+    <VizTooltip />
 
     <a href={SITE.whatsapp} target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lift transition-transform hover:scale-105" aria-label="Написать в WhatsApp">
       <Icon name="whatsapp" size={28} stroke={1.6} />

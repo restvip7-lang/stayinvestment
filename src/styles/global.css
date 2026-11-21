@@ -5,7 +5,7 @@
   Дизайн-токены Stay Investment (свой стиль, не копия stayinvestment/stayproperty):
   тёмно-синий «банковский» + бронзовый акцент + тёплый песочный фон. Шрифт — Manrope (кириллица, variable).
 */
-@theme {
+@theme static {
   --color-ink: #0c1a2b;
   --color-ink-2: #3d4a5c;
   --color-muted: #7d8798;
@@ -23,6 +23,13 @@
   --color-sea: #0e5e6f;
   --color-sea-soft: #e2f0f1;
   --color-ok: #2f7d5b;
+
+  /* Цвета пакетов на графиках. Проверены валидатором dataviz (светлая тема, фон #fff):
+     яркость, насыщенность, различимость при дальтонизме (ΔE ≥ 12.7) и контраст ≥ 3:1. */
+  --color-pkg-rental: #2c64b0;
+  --color-pkg-startovye: #1e9e8e;
+  --color-pkg-partnerskye: #b9772a;
+  --color-flow-out: #8a93a3;
 
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
 
@@ -75,6 +82,12 @@
   textarea.field { height: 112px; padding-top: 14px; resize: vertical; }
   .on-dark .field { background: #ffffff0f; border-color: #ffffff26; color: #fff; }
   .on-dark .field::placeholder { color: #9aa6b6; }
+
+  /* Инфографика */
+  .viz-tip { position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); background: var(--color-navy); color: #fff; font-size: 13px; line-height: 1.35; padding: 8px 10px; border-radius: 10px; white-space: nowrap; box-shadow: var(--shadow-lift); }
+  .viz-tip b { font-size: 15px; font-weight: 800; }
+  .legend-key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; }
+  .sr-table { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .img-fallback { background: linear-gradient(135deg, var(--color-sand), #e2dccf); }
 

@@ -43,6 +43,18 @@ const num = (s) => {
   return Number.isFinite(n) ? n : null;
 };
 
+/** Опечатки старого сайта, найденные проверкой hunspell (docs/content-audit.md). */
+const TYPOS = [
+  [/у бассена/g, 'у бассейна'],
+  [/курсируетобщественный/g, 'курсирует общественный'],
+  [/шоппинг/g, 'шопинг'],
+  [/бизнес-зони/g, 'бизнес-зоны'],
+  [/развитой части Алань —/g, 'развитой части Аланьи —'],
+  [/5-ти звездочн/g, 'пятизвёздочн'],
+  [/([а-яё])([.,;:])([А-ЯЁ])/g, '$1$2 $3'], // пропущенный пробел после знака препинания
+];
+const fixTypos = (s) => TYPOS.reduce((acc, [re, to]) => acc.replace(re, to), s);
+
 /** Чистый HTML: только смысловые теги, без стилей и классов. */
 function cleanHtml(html) {
   const ALLOWED = new Set(['p', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'b', 'em', 'i', 'a', 'br', 'table', 'thead', 'tbody', 'tr', 'td', 'th', 'blockquote', 'img']);
@@ -110,8 +122,8 @@ function parseObject(html, path) {
     seaDistance: chars['Расстояние до моря'] ? num(chars['Расстояние до моря'].replace(/[^\d.,]/g, '')) : null,
     year: chars['Год'] ? num(chars['Год']) : null,
     metrics,
-    infrastructure,
-    descriptionHtml,
+    infrastructure: infrastructure.map(fixTypos),
+    descriptionHtml: fixTypos(descriptionHtml),
     images,
     video,
   };
