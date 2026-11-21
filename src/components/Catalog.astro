@@ -36,7 +36,10 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
       </select>
     </div>
   </div>
-  <p class="mt-5 text-[14px] text-muted" data-count aria-live="polite">Найдено объектов: {objects.length}</p>
+  <div class="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[14px] text-muted">
+    <p data-count aria-live="polite">Найдено объектов: {objects.length}</p>
+    <p>Цены и условия — на дату публикации. Наличие и актуальные условия уточняйте у консультанта.</p>
+  </div>
   <div class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-grid>
     {objects.map((o, i) => <ObjectCard o={o} priority={i < 3} />)}
   </div>

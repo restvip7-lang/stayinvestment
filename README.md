@@ -22,7 +22,7 @@ npm run check      # проверка типов
 | Новости (свежие) | Админка Stay Property: `GET https://admin.stayproperty.com/api/content/news?language=ru` | Сами: кэш 10 мин, CDN — 10 мин + stale-while-revalidate. Мгновенно — `POST /api/revalidate/` с `Authorization: Bearer $REVALIDATE_SECRET` |
 | Новости (архив, 26 шт.) | Старый сайт → `src/content/legacy-news/*.json` | `npm run import-legacy` |
 | Снимок новостей на случай сбоя API | `src/content/fixtures/content-news.json` | `npm run fixtures` |
-| Объекты каталога (48 шт.) | Старый сайт → `src/content/objects/*.json` | `npm run import-legacy` |
+| Объекты каталога (48 шт.) | **Временное наполнение** со старого сайта → `src/content/objects/*.json`. Для инвестиций будут отдельные объекты (не из admin.stayproperty.com) — тогда меняется только `src/lib/catalog.ts` | `npm run import-legacy` |
 | Тексты страниц | `src/pages/**`, `src/content/package-texts.ts`, `src/content/pages/*.html` | вручную |
 | Контакты, меню, команда, цифры | `src/lib/site.ts` | вручную |
 
