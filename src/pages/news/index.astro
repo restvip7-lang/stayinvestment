@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import LeadSection from '../../components/LeadSection.astro';
+import { getNews } from '../../lib/news';
+
+const PER_PAGE = 12;
+const all = await getNews();
+const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
+const page = Math.min(pages, Math.max(1, Number(Astro.url.searchParams.get('page')) || 1));
+const items = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+const [first, ...rest] = items;
+const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
+---
+<Base
+  title={page > 1 ? `Новости рынка недвижимости Турции — страница ${page}` : 'Новости рынка недвижимости Турции'}
+  description="Новости рынка недвижимости Турции: цены и продажи, законы для иностранцев, ВНЖ и гражданство, налоги, аналитика и советы инвесторам от экспертов Stay Investment."
+  crumbs={[{ label: 'Новости' }]}
+>
+  <PageHead eyebrow="Новости" title="Рынок недвижимости Турции" lead="Будьте в курсе событий рынка: цены и статистика продаж, изменения в законах для иностранцев, налоги, ВНЖ — и разборы для инвесторов от экспертов Stay Investment." />
+  <section class="container-x pb-10">
+    {first && page === 1 ? (
+      <>
+        <div class="grid gap-10 lg:grid-cols-2"><NewsCard n={first} large />{rest[0] && <NewsCard n={rest[0]} large />}</div>
+        <div class="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{rest.slice(1).map((n) => <NewsCard n={n} />)}</div>
+      </>
+    ) : (
+      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{items.map((n) => <NewsCard n={n} />)}</div>
+    )}
+    {pages > 1 && (
+      <nav class="mt-16 flex flex-wrap items-center justify-center gap-2" aria-label="Страницы">
+        {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
+          <a href={href(p)} aria-current={p === page ? 'page' : undefined} class:list={['grid h-11 min-w-11 place-items-center rounded-full px-3 font-bold tabular', p === page ? 'bg-navy text-white' : 'border border-line-2 hover:border-ink']}>{p}</a>
+        ))}
+      </nav>
+    )}
+  </section>
+  <LeadSection source="news" />
+</Base>

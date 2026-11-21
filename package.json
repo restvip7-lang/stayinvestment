@@ -1,0 +1,27 @@
+{
+  "name": "stayinvestment",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "fixtures": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/fetch-fixtures.mjs",
+    "import-legacy": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/import-legacy.mjs"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.22",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@vercel/functions": "^3.11.3",
+    "astro": "^7.4.13",
+    "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^22.20.5",
+    "typescript": "^6.0.3"
+  }
+}

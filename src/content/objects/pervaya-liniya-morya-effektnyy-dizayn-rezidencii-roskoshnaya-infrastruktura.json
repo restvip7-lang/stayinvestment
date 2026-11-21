@@ -1,0 +1,96 @@
+{
+  "id": "RP015",
+  "package": "rental",
+  "slug": "pervaya-liniya-morya-effektnyy-dizayn-rezidencii-roskoshnaya-infrastruktura",
+  "legacyPath": "/investment-directory/rental/pervaya-liniya-morya-effektnyy-dizayn-rezidencii-roskoshnaya-infrastruktura/",
+  "title": "Первая линия моря, эффектный дизайн резиденции, роскошная инфраструктура",
+  "location": "Алания Кестель",
+  "type": "Дуплекс Апартаменты",
+  "layouts": [
+    "4+1",
+    "2+1",
+    "1+1"
+  ],
+  "seaDistance": 30,
+  "year": 2025,
+  "metrics": [
+    {
+      "label": "Доходность",
+      "value": 7,
+      "unit": "%"
+    },
+    {
+      "label": "Минимальная доходность от аренды в год",
+      "value": 23800,
+      "unit": "€"
+    },
+    {
+      "label": "1й платеж",
+      "value": 30,
+      "unit": "%"
+    },
+    {
+      "label": "Срок рассрочки",
+      "value": 12,
+      "unit": "мес."
+    },
+    {
+      "label": "Срок гарантии аренды",
+      "value": 3,
+      "unit": "года"
+    },
+    {
+      "label": "Минимальный вход",
+      "value": 2,
+      "unit": "шт."
+    },
+    {
+      "label": "Начальная стоимость",
+      "value": 340000,
+      "unit": "€"
+    }
+  ],
+  "infrastructure": [
+    "Беседка для отдыха",
+    "Бильярд",
+    "Детский бассейн",
+    "Зеленый сад - зеленая зона",
+    "Зона отдыха - барбекю",
+    "Игровая комната",
+    "Кинотеатр",
+    "Крытый бассейн",
+    "Массажный кабинет",
+    "Настольный теннис",
+    "Открытая парковка",
+    "Открытый бассейн",
+    "Римская парная",
+    "Турецкий хаммам",
+    "Финская сауна",
+    "Фитнес центр",
+    "Электрогенератор"
+  ],
+  "descriptionHtml": "<p>Внешне напоминающий роскошный турецкий отель или дворец, этот комплекс занимает участок на первой линии моря. Новая недвижимость класса люкс на самом берегу — наиболее рентабельная инвестиция в жилой фонд популярного курорта.</p><p>Комплекс от именитого застройщика, известного в премиум сегменте недвижимости качеством и высоким уровнем проектов. Яркий дизайн с парящими балконами и выраженными горизонтальными линиями.</p><p>Резиденция находится на пересечении районов Кестель и Махмутлар, где круглый год работают сотни ресторанов, крупные супермаркеты, сфера услуг. </p><p>В жилом комплексе представлены следующие планировки: 1+1 - 24 единицы, 2+1 - 36 единиц, 2+1 дуплексы - 4 единицы, 4+1 дуплексы - 10 единиц. Большие квадратуры. Апартаменты: 1+1 57 – 62 м2 (в среднем по Аланье — 45 м2); 2+1 104 – 113 м2, дуплексы 2+1 117 м2; дуплексы 4+1 202 – 236 м2 </p><p>Первая линия максимально востребована, а предложения современной недвижимости у самого моря навсегда лимитированы дефицитом участков под застройку. Круглогодичный высокий спрос на аренду для отдыха, наличие внутреннего бассейна.</p>",
+  "images": [
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ee8/ee8ed123d760c7df36db012e017b3fd8/0d3e722e9a73a3404b2d52787f960af4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/fe2/fe2625657bfec05d0789811566d8ade6/84ff52dc596c556b4368cc5fc3c7925c",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/69e/69e7fb393eb1e1eaf0d51181cf42adbf/3172283e44163e4935639d7866cbfd5a",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/f95/f955eb76b37336bfdd41c95d9c625ad0/9a55d3f4237ebdab0e62a214ec82bf4f",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/8c4/8c4b1d8ae039c1ecc39cf8e9771bffcb/a28b3a8c82bd0a69f0fe43bb61cf8ed4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/0d8/0d88f18c8f677bb2a74767a1b5070d37/1f20f7d919e0385cd6f96a027a55b924",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/588/588e2c80a116d16c200c31fe2c66896d/9c3f6582cc13acb0c2a432f80a3b293c",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/edc/edcefd5f895ff0aa8c318f4ffe4dd11b/8901d8d4f1f2c41a0f379c4322dc8294",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/570/5707b4d80fe883635ada518f9c79c2ea/f6d0601ef46359df1b62ead764687a84",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/51f/51f85c9feee7bbafa46712584a4aaafb/4882eb62b09e314677677bab8a7b97e2",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/39a/39a67e0ab1f8c52deec8bd02d145004e/eda7a8c715fae273044a7839c83a5718",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/34b/34ba6054ae0668b7c95b73f156b0142f/0e56e447a1216199d9a8b322f658ebc4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ee5/ee5a4ab1842e2646837705cbc77e2174/149d69ad212eed0e1b8c8254a5d1006f",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/8b3/8b3200e0a4e90f9a88cf57e4d1c0bf29/0be2cb712539ca581f3cbbd7cb371dc9",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/a8a/a8ae0f2af3c0db1518e22fd5e318c5e6/8a7218431a4f582b5d320505b1937b86",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/4c6/4c69e7fa10448f654367a943429c9596/805475c90c6628f50907d6feaed3bb2e",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/e51/e51521ce1cc9989a54b3f4345415b79d/12f14629e50316c80f63e5e73da54dd0",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/d67/d67ce12cafb06fcc7210d94204b4aa24/22ffd50e928ac144b51ca6e55486bdcb",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/46d/46d4ad0e1a79dd3d83173a630d146eef/759f3ab79953582c9868e13cf517eabe",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/691/6914de903cdfba5ebb3294187706cf29/6889414452b606c9f211dbb992dfbd93"
+  ],
+  "video": null
+}

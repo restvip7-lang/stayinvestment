@@ -1,0 +1,82 @@
+{
+  "id": "DP013",
+  "package": "startovye",
+  "slug": "prostornyy-zhiloy-kompleks-v-odnom-iz-samyh-perspektivnyh-rayonov",
+  "legacyPath": "/investment-directory/startovye/prostornyy-zhiloy-kompleks-v-odnom-iz-samyh-perspektivnyh-rayonov/",
+  "title": "Просторный жилой комплекс в одном из самых перспективных районов",
+  "location": "Алания Паяллар",
+  "type": "Дуплекс Апартаменты",
+  "layouts": [
+    "3+1",
+    "2+1",
+    "1+1"
+  ],
+  "seaDistance": 2500,
+  "year": 2025,
+  "metrics": [
+    {
+      "label": "1й платеж",
+      "value": 100,
+      "unit": "%"
+    },
+    {
+      "label": "Срок рассрочки",
+      "value": 12,
+      "unit": "мес."
+    },
+    {
+      "label": "Минимум лотов для входа",
+      "value": 5,
+      "unit": "шт."
+    },
+    {
+      "label": "Минимальная стоимость лота",
+      "value": 137750,
+      "unit": "€"
+    },
+    {
+      "label": "Скидка",
+      "value": 10,
+      "unit": "%"
+    }
+  ],
+  "infrastructure": [
+    "Видеонаблюдение 24/7",
+    "Детская площадка",
+    "Детский бассейн",
+    "Зеленый сад - зеленая зона",
+    "Игровая комната",
+    "Кафе/ресторан",
+    "Кинотеатр",
+    "Крытый бассейн",
+    "Открытая парковка",
+    "Открытый бассейн",
+    "Римская парная",
+    "Турецкий хаммам",
+    "Финская сауна",
+    "Фитнес центр",
+    "Электрогенератор"
+  ],
+  "descriptionHtml": "<p>Перспективный район Паяллар с активным развитием важной социальной инфраструктуры, новой современной набережной. Просторный двор комплекса и много зеленых зон на территории. Недалеко хвойный лес, открываются красивые виды из окон.</p><p>Земельный участок 6800 м², 2 блока на 94 квартиры.</p><p>Планировки: 1+1 - 94 единицы, 2+1 - 14 единиц, дуплексы 2+1 - 14 ед. и 3+1 - 2 ед., дуплексы 2+1 с садом и частными бассейнами - 4 единицы.</p><p>Расстояния: 2,5 км до моря и пляжа, предусмотрен трансфер; 2,5 км до центра Паяллара; 12 км до центра Аланьи.</p><p>Комфортный комплекс в динамично развивающемся и перспективном районе с отличным пляжем. В Паялларе представлены крупные инфраструктурные проекты муниципалитета, здесь будет новая современная Аланья. Недавно открытая набережная служит магнитом для развития туризма и повышает арендный потенциал недвижимости. Также район привлекательный для постоянного проживания, находится в 15-20 минутах езды от центра.</p>",
+  "images": [
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/b47/b4753a49a9973d6f4986bd7ae2ca1469/7cd8e83ef85862897dac65f22caad675",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ce6/ce61dc997e636838b2209b63c7342e53/9eabf92262bff04997be083e79058572",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/a07/a07978114bd877b3d2bc1646db6be427/83b480e49b6bfb23b7d944e052199f4c",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/343/3433372356ef6ab797d8afbe7c0cc6d9/9c9db41cae9bde14dc4942dd9d06f97c",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/2eb/2eb4a97eea0997e3d58e5ac21ccb80a1/20988702abf5a89a4a75267744222568",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/6c4/6c403c1c05066d630e0cb5de0d9c8593/1179a139c43cc5c8a093123296a949f1",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/0f9/0f995266a8d80018f3919956f3b5ff81/2d28c0b294987deaa4e2670223c77da4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/a18/a18a7ac84aebc72d7c10670b850330a2/cc8a5cba18ba8cf6fb8660d7af56093d",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/b53/b53abde0398280829c62b4b4db1b7f4b/7357d12a0383b7c171c6601ee79bbcfc",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/9ed/9ed2e89ab07e2d1fad6af54f8d00e8c2/0f2609a8f6b88050a6340bc5910862a4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/922/922d8ab1acb78cf67a0bdc79285aa5d3/0cf33dadc45dc02ffd011479e8f20081",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/6d9/6d999f823925c4adace4700d9225dcf1/b6b0e993257e23bc33ce07e57ec9e7b0",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/a82/a82999426df011c83824d2e8a5e6dbdc/b39a7e44fd5dafd00884f1673ae1e470",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/610/610b36f82cea7bf3c245d2639c608599/ab189a3d6c331b1001a96760ec7c2351",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/dfd/dfdc5b09e179ecc87ea4489637bae582/509d68241f0ff3b005d430266c1e3e09",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/95e/95e81a2c9800e12baf7269c7a75e6d0e/f539df9137d639ff46caf4eeec69762e",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/0f6/0f6f39229a572314262fd876a9462420/ceac6b1a3c5f5682a6f8496453aee6f9",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ef5/ef519db31896d16737cb87b65a5305aa/a1eee8e7b2636b02be15421f2673d8c4"
+  ],
+  "video": null
+}

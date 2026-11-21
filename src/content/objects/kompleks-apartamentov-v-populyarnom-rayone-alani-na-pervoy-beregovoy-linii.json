@@ -1,0 +1,80 @@
+{
+  "id": "RP003",
+  "package": "rental",
+  "slug": "kompleks-apartamentov-v-populyarnom-rayone-alani-na-pervoy-beregovoy-linii",
+  "legacyPath": "/investment-directory/rental/kompleks-apartamentov-v-populyarnom-rayone-alani-na-pervoy-beregovoy-linii/",
+  "title": "Комплекс апартаментов в популярном районе Аланьи — на первой береговой линии",
+  "location": "Алания Махмутлар",
+  "type": "Апартаменты",
+  "layouts": [
+    "1+1"
+  ],
+  "seaDistance": 30,
+  "year": 2025,
+  "metrics": [
+    {
+      "label": "Доходность",
+      "value": 6,
+      "unit": "%"
+    },
+    {
+      "label": "Минимальная доходность от аренды в год",
+      "value": 15900,
+      "unit": "€"
+    },
+    {
+      "label": "1й платеж",
+      "value": 20,
+      "unit": "%"
+    },
+    {
+      "label": "Срок рассрочки",
+      "value": 24,
+      "unit": "мес."
+    },
+    {
+      "label": "Срок гарантии аренды",
+      "value": 3,
+      "unit": "года"
+    },
+    {
+      "label": "Минимальный вход",
+      "value": 2,
+      "unit": "шт."
+    },
+    {
+      "label": "Начальная стоимость",
+      "value": 265000,
+      "unit": "€"
+    }
+  ],
+  "infrastructure": [
+    "Видеонаблюдение 24/7",
+    "Детская площадка",
+    "Кафе/ресторан",
+    "Маркет",
+    "Открытая парковка",
+    "Открытый бассейн",
+    "Римская парная",
+    "Турецкий хаммам",
+    "Финская сауна",
+    "Фитнес центр",
+    "Электрогенератор"
+  ],
+  "descriptionHtml": "<p><strong>Первая береговая линия</strong> и самый востребованный район Аланьи, количество таких вариантов на рынке ограничено.</p><p>Комплекс включает 2 жилых блока, всего 64 квартиры. Строится на земельном участке площадью 1.930 м2. В проекте представлены различные планировки: квартиры 1+1 с собственным садом - 9 единиц, одноуровневые апартаменты 1+1 - 45 единиц, пентхаусы 2+1 - 10 единиц.</p><p>В инфраструктуру комплекса будет входить открытый бассейн, джакузи, спа-центр, турецкая баня, сауна, парная, джакузи, комната отдыха, массажные комнаты, фитнес-центр, кафе, детская игровая площадка и игровая комната, открытый паркинг, 7/24 охрана, консьерж, камеры безопасности, электрогенератор.</p>",
+  "images": [
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/416/416cc991fcaea363165bae0415ce3bee/ffe96ee5fdcfdb8f5baf3e15a9384cc6",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/d5b/d5bec5a31f90552f682064785547e698/49fdb733eac3ec1ab202def4dfbf19a7",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/8f1/8f163ddefec82fc8594cd25d4b75efeb/3dceea250fa8c14673c40743adb70c0d",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/cfe/cfef54b9d4bcb2c98f1b83398c66f19c/e5d06d689f9292d9759ff0143a8942b4",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/780/78048a163197f534611bb1b866bd211d/dee484372f35c8c8d823b41027cfd1b0",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/e98/e98bbf491d4cea0adbfaeb937f5b8924/64150fec5caa796d345a5496893b96b5",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ae9/ae9bf057f8ef88886b948f013305b309/14cb4c81d302994df383652b6fe0d5ce",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/ac7/ac733d253b5c47dbbdeaa5beebffd636/d5d637029b98de0f1ec38bfe4ad89c90",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/7c2/7c279ff96d41ffa479309045aac37717/c55cff52caadb5e58b0180ed9267045c",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/963/9637735719347b2aca0dee89e30eda0d/59c766e205a009ec70eaa2f9892839de",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/bc4/bc4e3b9b9f10199320e4e034ccb3ead9/b9adfcc4648df1d4dc64cf1285691065",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/a14/a14cf992fc79e6353b0086a564fb284e/6ab576f2d985df82c7766da6d66b911e"
+  ],
+  "video": null
+}

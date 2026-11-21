@@ -1,0 +1,46 @@
+---
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+import { PACKAGES, objectUrl, entryPrice, yieldOf, placeOf, euro, type InvestObject } from '../lib/catalog';
+interface Props { o: InvestObject; priority?: boolean }
+const { o, priority = false } = Astro.props;
+const y = yieldOf(o);
+const place = placeOf(o);
+const price = entryPrice(o);
+const firstPay = o.metrics.find((m) => m.label === '1й платеж')?.value;
+const term = o.metrics.find((m) => /рассрочки|Окупаемость/.test(m.label));
+const guarantee = o.metrics.find((m) => m.label === 'Срок гарантии аренды');
+---
+<article class="card group relative flex flex-col overflow-hidden transition-shadow hover:shadow-lift" data-object data-package={o.package} data-city={place.city} data-price={price ?? ''} data-yield={y?.value ?? ''}>
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <Img src={o.images[0]} alt={o.title} class="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" width={640} height={480} priority={priority} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" />
+    <div class="absolute left-3 top-3 flex flex-wrap gap-1.5">
+      <span class="chip bg-white/95 text-ink">{PACKAGES[o.package].name}</span>
+      {o.year && <span class="chip bg-navy/80 text-white">{o.year}</span>}
+    </div>
+    <span class="chip absolute bottom-3 right-3 bg-white/95 text-muted tabular">ID {o.id}</span>
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="flex items-center gap-1.5 text-[13.5px] font-semibold text-muted"><Icon name="pin" size={15} />{[place.city, place.district].filter(Boolean).join(', ')}{o.seaDistance ? ` · ${o.seaDistance >= 1000 ? `${(o.seaDistance / 1000).toLocaleString('ru-RU')} км` : `${o.seaDistance} м`} до моря` : ''}</p>
+    <h3 class="mt-2 text-[18px] font-bold leading-snug">
+      <a href={objectUrl(o)} class="after:absolute after:inset-0">{o.title}</a>
+    </h3>
+    <div class="mt-auto pt-5">
+    <dl class="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-line pt-4 text-[13px]">
+      <div>
+        <dt class="text-muted">{o.package === 'partnerskye' ? 'Сумма входа' : 'Стоимость, от'}</dt>
+        <dd class="text-[17px] font-extrabold tabular">{euro(price)}</dd>
+      </div>
+      {y && (
+        <div>
+          <dt class="text-muted">{y.label}</dt>
+          <dd class="text-[17px] font-extrabold tabular text-sea">{y.value}%</dd>
+        </div>
+      )}
+      {firstPay != null && <div><dt class="text-muted">Первый взнос</dt><dd class="font-bold tabular">{firstPay}%</dd></div>}
+      {guarantee ? <div><dt class="text-muted">Гарантия аренды</dt><dd class="font-bold tabular">{guarantee.value} {guarantee.unit}</dd></div>
+        : term && <div><dt class="text-muted">{/Окупаемость/.test(term.label) ? 'Окупаемость' : 'Рассрочка'}</dt><dd class="font-bold tabular">{term.value} мес.</dd></div>}
+    </dl>
+    </div>
+  </div>
+</article>

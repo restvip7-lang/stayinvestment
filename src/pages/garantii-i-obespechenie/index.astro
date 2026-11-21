@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import LeadSection from '../../components/LeadSection.astro';
+
+const notary = [
+  'проверяет законность документов;',
+  'разъясняет сторонам юридические последствия договора;',
+  'проверяет дееспособность сторон и их действительные намерения;',
+  'проверяет, нет ли арестов и обременений на недвижимость;',
+  'удостоверяет, что стороны подписывают договор добровольно.',
+];
+const tools = [
+  { icon: 'doc', title: 'Гарантийный вексель (senet)', text: 'Безусловное письменное обязательство Stay Investment выплатить инвестору сумму, равную вложениям и гарантированной прибыли. Это ценная бумага: её можно предъявить к взысканию после наступления срока.' },
+  { icon: 'building', title: 'Ипотека (ipotek)', text: 'Компания может оформить обременение в пользу инвестора на квартиры в строящемся проекте — в количестве, эквивалентном сумме инвестиций.' },
+  { icon: 'key', title: 'ТАПУ на объекты', text: 'В рамках договора компания может выдать ТАПУ — свидетельство о праве собственности — на квартиры в проекте на сумму, эквивалентную вложениям.' },
+];
+const faq = [
+  { q: 'Обязательно ли заверять договор у нотариуса?', a: 'Нет, это опция. Но нотариальное заверение даёт больше правовой защиты, а дубликат договора всегда можно получить у нотариуса.' },
+  { q: 'Какое обеспечение выбрать?', a: 'Зависит от пакета и суммы. Вексель удобен для небольших сумм, ипотека и ТАПУ — для крупных вложений в партнёрские проекты. Консультант поможет подобрать вариант.' },
+];
+---
+<Base title="Гарантии и обеспечение инвестиций — нотариус, вексель, ипотека, ТАПУ" description="Как Stay Investment защищает вложения в недвижимость Турции: нотариальное заверение договора, гарантийный вексель (senet), ипотека (ipotek) и ТАПУ на объекты в проекте." crumbs={[{ label: 'Инвесторам' }, { label: 'Гарантии и обеспечение' }]}>
+  <PageHead eyebrow="Инвесторам" title="Гарантии и обеспечение инвестиций" lead="Любые инвестиции связаны с рисками. Надёжный девелопер с собственными проектами — хорошая основа для портфеля, а юридические инструменты защищают ваши вложения и их возврат." />
+  <section class="container-x pb-16">
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+      <div class="card p-7 md:p-9">
+        <span class="grid h-12 w-12 place-items-center rounded-2xl bg-accent-soft text-accent-2"><Icon name="shield" size={24} /></span>
+        <h2 class="mt-5 text-2xl font-extrabold">Нотариальное заверение договора</h2>
+        <p class="mt-3 text-[16px] leading-relaxed text-ink-2">Всем клиентам мы предлагаем заверить инвестиционный договор у турецкого нотариуса — это даёт сторонам дополнительную правовую защиту. Лицензированный нотариус:</p>
+        <ul class="mt-4 grid gap-2.5">
+          {notary.map((n) => <li class="flex gap-3 text-[15px]"><Icon name="check" size={18} class="mt-0.5 shrink-0 text-sea" stroke={2.2} />{n}</li>)}
+        </ul>
+        <p class="mt-5 text-[15px] leading-relaxed text-ink-2">Если кто-то из сторон потеряет свой экземпляр, нотариус выдаст дубликат с той же юридической силой.</p>
+      </div>
+      <div class="grid gap-5">
+        {tools.map((t) => (
+          <div class="card p-7">
+            <div class="flex items-center gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sea-soft text-sea"><Icon name={t.icon} size={22} /></span>
+              <h2 class="text-lg font-extrabold">{t.title}</h2>
+            </div>
+            <p class="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <p class="mt-8 max-w-3xl text-[13.5px] leading-relaxed text-muted">Конкретный набор гарантий зависит от пакета и суммы инвестиций и фиксируется в инвестиционном договоре.</p>
+  </section>
+  <Faq items={faq} />
+  <LeadSection source="guarantees" title="Нужна консультация по гарантиям?" text="Покажем образец договора и расскажем, какое обеспечение подойдёт для вашей суммы и пакета." />
+</Base>

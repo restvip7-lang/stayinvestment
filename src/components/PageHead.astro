@@ -1,0 +1,11 @@
+---
+/** Заголовок внутренней страницы. */
+interface Props { eyebrow?: string; title: string; lead?: string }
+const { eyebrow, title, lead } = Astro.props;
+---
+<header class="container-x pb-10 pt-8 md:pb-14 md:pt-12">
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1 class="mt-4 max-w-4xl text-[34px] font-extrabold leading-[1.08] sm:text-[46px] lg:text-[56px]">{title}</h1>
+  {lead && <p class="lead mt-5 max-w-3xl">{lead}</p>}
+  <slot />
+</header>

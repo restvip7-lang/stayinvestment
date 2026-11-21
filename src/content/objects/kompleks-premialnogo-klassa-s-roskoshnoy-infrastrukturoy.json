@@ -1,0 +1,95 @@
+{
+  "id": "RP002",
+  "package": "rental",
+  "slug": "kompleks-premialnogo-klassa-s-roskoshnoy-infrastrukturoy",
+  "legacyPath": "/investment-directory/rental/kompleks-premialnogo-klassa-s-roskoshnoy-infrastrukturoy/",
+  "title": "Комплекс премиального класса с роскошной инфраструктурой",
+  "location": "Алания Демирташ",
+  "type": "Апартаменты",
+  "layouts": [
+    "1+1"
+  ],
+  "seaDistance": 1400,
+  "year": 2024,
+  "metrics": [
+    {
+      "label": "Доходность",
+      "value": 5,
+      "unit": "%"
+    },
+    {
+      "label": "Минимальная доходность от аренды в год",
+      "value": 5950,
+      "unit": "€"
+    },
+    {
+      "label": "1й платеж",
+      "value": 20,
+      "unit": "%"
+    },
+    {
+      "label": "Срок рассрочки",
+      "value": 20,
+      "unit": "мес."
+    },
+    {
+      "label": "Срок гарантии аренды",
+      "value": 3,
+      "unit": "года"
+    },
+    {
+      "label": "Минимальный вход",
+      "value": 1,
+      "unit": "шт."
+    },
+    {
+      "label": "Начальная стоимость",
+      "value": 119000,
+      "unit": "€"
+    }
+  ],
+  "infrastructure": [
+    "Аквапарк",
+    "Бильярд",
+    "Видеонаблюдение 24/7",
+    "Детская площадка",
+    "Детский бассейн",
+    "Зеленый сад - зеленая зона",
+    "Зона отдыха - барбекю",
+    "Игровая комната",
+    "Кафе/ресторан",
+    "Кинотеатр",
+    "Круглосуточная охрана",
+    "Крытый бассейн",
+    "Маркет",
+    "Массажный кабинет",
+    "Настольный теннис",
+    "Открытая парковка",
+    "Открытый бассейн",
+    "Римская парная",
+    "Теннисный корт",
+    "Турецкий хаммам",
+    "Финская сауна",
+    "Фитнес центр",
+    "Электрогенератор"
+  ],
+  "descriptionHtml": "<p><strong>Проект премиального класса</strong> состоит из 4-х жилых блоков на 324 квартиры и большой территории внутреннего двора с зелеными зонами, бассейнами. В жилом комплексе представлены следующие планировки: 1+1 - 256 единиц, 2+1 - 32 единицы, 2+1 пентхаусы - 28 единиц, 3+1 пентхаусы - 8 единиц. Комплекс будет расположен на берегу горной реки.</p><p>Инфраструктура комплекса соответствует уровню отеля 5 *.</p><p>Высокий арендный потенциал.</p>",
+  "images": [
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/bd5/bd52bb5c1a6e0dae92ae3e63f36ac87e/f9b8d4af49436434e0511f4023b4abce",
+    "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/ca1/ca19d702093cd7460535f0885a510a9b/f3ccdd27d2000e3f9255a7e3e2c48800",
+    "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/304/3044fcd0ba0ace9b879b2ff548bfe06f/032b2cc936860b03048302d991c3498f",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/6fb/6fb0c469e8bd14218d68b144ede15f5a/a308be7544b23d6eab6cd6f7a1e15930",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/bbf/bbf15cd5f016313937c70f3ab610041f/058fa1cb64f7068647eebefabc9c3158",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/268/2686d0f875d8d254a0be599f11ad06f8/dd2c1571a9061755d1f5f23cf7a581a0",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/72c/72cdd60a88ccfb4e1a06fed1991d04e5/cc3230e560408a3cc448db22d3dcef36",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/9ba/9bae8666c3b0d138e291eace79ca44a9/18bed7de1522e2c396e98d46906f7e83",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/4d0/4d0e9c010a63a042787bc2c41135c1af/f0e512ec9ef1b5bca11bd16399e89da5",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/008/008006f273d3e1b911faa6863c49eb2a/2267376aef39ba26743c71b933bb3303",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/662/6622f1797a9836e3f08dc9598597a65e/d3088913c41feba08b61ed7a46460a18",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/8f9/8f993b064b3492ff0a5387fe1226f92c/1405362a74ac05b75d7600a8d1f43977",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/55c/55c70c380961620e083337338d9f1714/9c7fb155b34e3e874177da496eae117f",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/b6b/b6b1095c3c2d0fd875a3f9ed5d4451f3/f8a7c9fd8342f4f4e092b72d03dbecaf",
+    "https://cdn-ru.bitrix24.ru/b19410268/disk/1fb/1fb176e47b2702ed38a6248d414ce496/81d34ce93ea49ab27f649aac454ca1c5"
+  ],
+  "video": null
+}

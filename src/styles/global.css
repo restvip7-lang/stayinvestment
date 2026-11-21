@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+
+/*
+  Дизайн-токены Stay Investment (свой стиль, не копия stayinvestment/stayproperty):
+  тёмно-синий «банковский» + бронзовый акцент + тёплый песочный фон. Шрифт — Manrope (кириллица, variable).
+*/
+@theme {
+  --color-ink: #0c1a2b;
+  --color-ink-2: #3d4a5c;
+  --color-muted: #7d8798;
+  --color-line: #e5e1d8;
+  --color-line-2: #d6d0c4;
+  --color-page: #f6f4ef;
+  --color-sand: #efe9de;
+  --color-surface: #ffffff;
+  --color-navy: #0c1a2b;
+  --color-navy-2: #14273d;
+  --color-navy-3: #1d3550;
+  --color-accent: #b8894d;
+  --color-accent-2: #9c723b;
+  --color-accent-soft: #f3e8d6;
+  --color-sea: #0e5e6f;
+  --color-sea-soft: #e2f0f1;
+  --color-ok: #2f7d5b;
+
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+
+  --radius-card: 20px;
+  --radius-big: 28px;
+  --shadow-card: 0 1px 2px #0c1a2b0d, 0 8px 24px #0c1a2b0f;
+  --shadow-lift: 0 2px 4px #0c1a2b12, 0 18px 40px #0c1a2b1f;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { background: var(--color-page); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: var(--color-accent-soft); }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  img { max-width: 100%; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+  .container-x { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 16px; }
+  @media (min-width: 768px) { .container-x { padding-inline: 32px; } }
+
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-2); }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
+  .on-dark .eyebrow { color: #d9b67f; }
+
+  .h-section { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 750; }
+  .lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--color-ink-2); }
+  .on-dark .lead { color: #c3ccd8; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; white-space: nowrap; cursor: pointer; }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--color-navy); color: #fff; }
+  .btn-primary:hover { background: var(--color-navy-3); }
+  .btn-accent { background: var(--color-accent); color: #fff; }
+  .btn-accent:hover { background: var(--color-accent-2); }
+  .btn-ghost { border: 1.5px solid var(--color-line-2); color: var(--color-ink); background: transparent; }
+  .btn-ghost:hover { border-color: var(--color-ink); }
+  .on-dark .btn-ghost { border-color: #ffffff40; color: #fff; }
+  .on-dark .btn-ghost:hover { border-color: #fff; }
+  .btn-sm { min-height: 40px; padding: 0 16px; font-size: 14px; }
+
+  .card { background: var(--color-surface); border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700; }
+
+  .field { display: block; width: 100%; height: 52px; padding: 0 18px; border-radius: 14px; border: 1.5px solid var(--color-line); background: #fff; font-size: 16px; color: var(--color-ink); transition: border-color .2s; }
+  .field:focus { outline: none; border-color: var(--color-accent); }
+  textarea.field { height: 112px; padding-top: 14px; resize: vertical; }
+  .on-dark .field { background: #ffffff0f; border-color: #ffffff26; color: #fff; }
+  .on-dark .field::placeholder { color: #9aa6b6; }
+
+  .img-fallback { background: linear-gradient(135deg, var(--color-sand), #e2dccf); }
+
+  /* Текст статей и описаний */
+  .prose-si { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); }
+  .prose-si > * + * { margin-top: 1em; }
+  .prose-si h2 { font-size: 26px; line-height: 1.25; font-weight: 750; color: var(--color-ink); margin-top: 1.8em; }
+  .prose-si h3 { font-size: 21px; line-height: 1.3; font-weight: 700; color: var(--color-ink); margin-top: 1.5em; }
+  .prose-si h4 { font-size: 18px; font-weight: 700; color: var(--color-ink); margin-top: 1.3em; }
+  .prose-si strong { color: var(--color-ink); font-weight: 700; }
+  .prose-si a { color: var(--color-sea); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-si ul, .prose-si ol { padding-left: 1.3em; }
+  .prose-si ul { list-style: none; padding-left: 0; }
+  .prose-si ul > li { position: relative; padding-left: 26px; }
+  .prose-si ul > li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 8px; height: 8px; border-radius: 2px; background: var(--color-accent); transform: rotate(45deg); }
+  .prose-si ol { list-style: decimal; }
+  .prose-si li + li { margin-top: .45em; }
+  .prose-si img { border-radius: 16px; margin-block: 1.4em; }
+  .prose-si table { width: 100%; border-collapse: collapse; font-size: 15px; display: block; overflow-x: auto; }
+  .prose-si td, .prose-si th { border: 1px solid var(--color-line); padding: 10px 12px; text-align: left; }
+  .prose-si blockquote { border-left: 3px solid var(--color-accent); padding: 4px 0 4px 18px; color: var(--color-ink); font-weight: 600; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

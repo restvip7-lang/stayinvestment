@@ -1,0 +1,205 @@
+// Импорт контента со старого сайта stayinvestment.com (WordPress) в src/content.
+// Запуск: npm run import-legacy  (нужен доступ к stayinvestment.com)
+//  - объекты каталога → src/content/objects/<slug>.json
+//  - старые новости   → src/content/legacy-news/<slug>.json (+ обложки в public/images/news/)
+//  - карта переездов  → src/content/legacy-redirects.json
+// Пакет объекта определяется по префиксу ID (RP — Рантье, DP — Стартовый, PP — Партнерский):
+// на старом сайте часть объектов лежит не в своём разделе.
+
+import { mkdir, writeFile, rm } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+
+const SITE = 'https://stayinvestment.com';
+const ROOT = new URL('..', import.meta.url).pathname;
+const OUT_OBJ = ROOT + 'src/content/objects/';
+const OUT_NEWS = ROOT + 'src/content/legacy-news/';
+const OUT_IMG = ROOT + 'public/images/news/';
+const PACKAGE_BY_PREFIX = { RP: 'rental', DP: 'startovye', PP: 'partnerskye' };
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function get(url, binary = false) {
+  for (let i = 0; i < 3; i++) {
+    try {
+      const r = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (stayinvestment importer)' }, signal: AbortSignal.timeout(40_000) });
+      if (r.status === 404) return null;
+      if (!r.ok) throw new Error(`${r.status} ${url}`);
+      return binary ? Buffer.from(await r.arrayBuffer()) : await r.text();
+    } catch (e) {
+      if (i === 2) throw e;
+      await sleep(1000 * (i + 1));
+    }
+  }
+}
+
+const decode = (s) =>
+  s.replace(/&nbsp;|&#160;/g, ' ').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»').replace(/&mdash;|&#8212;/g, '—')
+    .replace(/&ndash;|&#8211;/g, '–').replace(/&#8217;|&rsquo;/g, '’').replace(/&#8220;|&ldquo;/g, '“').replace(/&#8221;|&rdquo;/g, '”')
+    .replace(/&hellip;|&#8230;/g, '…').replace(/&quot;/g, '"').replace(/&#039;|&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&amp;/g, '&');
+const text = (s) => decode(s.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+const num = (s) => {
+  const t = String(s).replace(/\s/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.');
+  const n = Number(t);
+  return Number.isFinite(n) ? n : null;
+};
+
+/** Чистый HTML: только смысловые теги, без стилей и классов. */
+function cleanHtml(html) {
+  const ALLOWED = new Set(['p', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'b', 'em', 'i', 'a', 'br', 'table', 'thead', 'tbody', 'tr', 'td', 'th', 'blockquote', 'img']);
+  let s = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style|form|iframe|noscript)[\s\S]*?<\/\1>/gi, '');
+  s = s.replace(/<(\/?)([a-z0-9]+)([^>]*)>/gi, (_, close, tag, attrs) => {
+    tag = tag.toLowerCase();
+    if (!ALLOWED.has(tag)) return tag === 'div' || tag === 'section' ? '\n' : '';
+    if (close) return `</${tag === 'b' ? 'strong' : tag}>`;
+    if (tag === 'a') {
+      const href = /href="([^"]+)"/i.exec(attrs)?.[1];
+      return href ? `<a href="${href.replace(SITE, '')}">` : '<a>';
+    }
+    if (tag === 'img') {
+      const src = /(?:data-src|src)="(https?:[^"]+)"/i.exec(attrs)?.[1];
+      return src ? `<img src="${src}" alt="" loading="lazy">` : '';
+    }
+    return `<${tag === 'b' ? 'strong' : tag}>`;
+  });
+  s = decode(s)
+    .replace(/<(p|li|h2|h3|h4|strong|em)>\s*<\/\1>/g, '')
+    .replace(/<a>([\s\S]*?)<\/a>/g, '$1')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n\s*\n+/g, '\n')
+    .trim();
+  return s;
+}
+
+function meta(html, prop) {
+  const re = new RegExp(`<meta[^>]+(?:property|name)="${prop}"[^>]+content="([^"]*)"`, 'i');
+  return decode(re.exec(html)?.[1] ?? '').trim() || null;
+}
+
+/* ---------- Объекты ---------- */
+function parseObject(html, path) {
+  const title = text(/<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1] ?? '').replace(/Тwins/g, 'Twins'); // кириллическая «Т» в латинском названии
+  const id = /class="id-label">\s*ID:\s*([A-Z]{2}\d+)/.exec(html)?.[1] ?? null;
+  if (!title || !id) return null;
+  const gallery = html.slice(html.indexOf('main-gallery__list'), html.indexOf('thumbs-gallery'));
+  const images = [...new Set([...gallery.matchAll(/data-src="(https?:[^"]+)"/g)].map((m) => m[1]))];
+  const chars = {};
+  const charsBlock = /<div class="main-chars">([\s\S]*?)<\/div>/.exec(html)?.[1] ?? '';
+  for (const m of charsBlock.matchAll(/<p><b>([^<]+):<\/b>([\s\S]*?)<\/p>/g)) chars[text(m[1])] = text(m[2]).replace(/,\s*$/, '');
+  const infoBlock = html.slice(html.indexOf('main-info js-timers'), html.indexOf('card-info__buttons') > 0 ? html.indexOf('card-info__buttons') : html.indexOf('Заказать инфо тур'));
+  const metrics = [...infoBlock.matchAll(/main-info__text">([\s\S]*?)<\/span>[\s\S]*?data-to="([^"]*)"[\s\S]*?main-info__val">([\s\S]*?)<\/span>/g)].map((m) => ({
+    label: text(m[1]),
+    value: num(m[2]),
+    unit: text(m[3]) || null,
+  }));
+  const desc = /<div class="description"\s*>([\s\S]*?)<\/article>/.exec(html)?.[1] ?? '';
+  const infrastructure = [...(/<div class="chars">([\s\S]*?)<\/div>/.exec(desc)?.[1] ?? '').matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => text(m[1])).filter(Boolean);
+  const descriptionHtml = cleanHtml(desc.replace(/<div class="metres">[\s\S]*?<\/div>/, '').replace(/<div class="main-block__title">[\s\S]*?<\/div>/, '').replace(/<div class="chars">[\s\S]*?<\/div>/, ''));
+  const video = /youtube\.com\/embed\/([\w-]{6,})/.exec(html)?.[1] ?? null;
+  const prefix = id.slice(0, 2);
+  const pkg = PACKAGE_BY_PREFIX[prefix] ?? path.split('/')[2];
+  const slug = path.split('/').filter(Boolean).pop();
+  return {
+    id,
+    package: pkg,
+    slug,
+    legacyPath: path,
+    title,
+    location: chars['Расположение'] ?? null,
+    type: chars['Тип'] ?? null,
+    layouts: chars['Планировка'] ? chars['Планировка'].split(/,\s*/).filter(Boolean) : [],
+    seaDistance: chars['Расстояние до моря'] ? num(chars['Расстояние до моря'].replace(/[^\d.,]/g, '')) : null,
+    year: chars['Год'] ? num(chars['Год']) : null,
+    metrics,
+    infrastructure,
+    descriptionHtml,
+    images,
+    video,
+  };
+}
+
+/* ---------- Новости ---------- */
+function parseNews(html, path) {
+  const title = text(/<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1] ?? '');
+  if (!title) return null;
+  let body = html.slice(html.indexOf('news-detail-text'));
+  body = body.slice(body.indexOf('>') + 1);
+  const cut = [body.search(/<!--\s*(BEGIN )?FORM/i), body.indexOf('<!--/LEFT BLOCK'), body.indexOf('wpcf7')].filter((x) => x > 0);
+  body = body.slice(0, Math.min(...cut));
+  return {
+    slug: path.split('/').filter(Boolean).pop(),
+    legacyPath: path,
+    title,
+    seoTitle: (/<title>([\s\S]*?)<\/title>/i.exec(html)?.[1] && text(/<title>([\s\S]*?)<\/title>/i.exec(html)[1])) || null,
+    seoDescription: meta(html, 'description'),
+    publishedAt: meta(html, 'article:published_time'),
+    updatedAt: meta(html, 'article:modified_time'),
+    image: meta(html, 'og:image'),
+    contentHtml: cleanHtml(body),
+  };
+}
+
+/* ---------- Запуск ---------- */
+const sitemap = await get(`${SITE}/sitemap.xml`);
+const posts = await get(`${SITE}/post-sitemap.xml`);
+const urls = [...new Set([...`${sitemap}${posts}`.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(SITE, '')))];
+const objectPaths = urls.filter((u) => /^\/investment-directory\/(rental|startovye|partnerskye)\/[^/]+\/$/.test(u));
+const newsPaths = urls.filter((u) => /^\/news\/[^/?]+\/$/.test(u));
+
+await rm(OUT_OBJ, { recursive: true, force: true });
+await rm(OUT_NEWS, { recursive: true, force: true });
+for (const d of [OUT_OBJ, OUT_NEWS, OUT_IMG]) await mkdir(d, { recursive: true });
+
+const redirects = {};
+const byId = new Map();
+const idByPath = {};
+let missing = 0;
+for (const p of objectPaths) {
+  const html = await get(SITE + p);
+  if (!html) { missing++; redirects[p] = `/investment-directory/${p.split('/')[2]}/`; continue; }
+  const o = parseObject(html, p);
+  if (!o) { missing++; continue; }
+  idByPath[p] = o.id;
+  // Дубли на другом языке (сербский текст в русском разделе) — пропускаем, ведём на русскую карточку.
+  if (!/[а-яё]/i.test(o.title)) { o.skip = 'not-ru'; }
+  const prev = byId.get(o.id);
+  const fits = (x) => x.legacyPath.split('/')[2] === x.package;
+  if (!o.skip && (!prev || prev.skip || (!fits(prev) && fits(o)))) byId.set(o.id, o);
+  else if (!prev) byId.set(o.id, o);
+  await sleep(150);
+}
+const objects = [...byId.values()].filter((o) => !o.skip);
+for (const o of objects) {
+  const path = `/investment-directory/${o.package}/${o.slug}/`;
+  if (path !== o.legacyPath) redirects[o.legacyPath] = path;
+  await writeFile(OUT_OBJ + `${o.slug}.json`, JSON.stringify(o, null, 2) + '\n');
+}
+// Все прочие старые пути (дубли, сербские версии в русских разделах) → карточка того же ID.
+for (const p of objectPaths) {
+  if (objects.some((o) => o.legacyPath === p) || redirects[p]) continue;
+  const same = objects.find((o) => o.id === idByPath[p]);
+  redirects[p] = same ? `/investment-directory/${same.package}/${same.slug}/` : `/investment-directory/${p.split('/')[2]}/`;
+}
+
+let newsCount = 0;
+for (const p of newsPaths) {
+  const html = await get(SITE + p);
+  if (!html) { redirects[p] = '/news/'; continue; }
+  const n = parseNews(html, p);
+  if (!n) continue;
+  if (n.image && n.image.startsWith(SITE)) {
+    const file = n.image.split('/').pop().replace(/[^\w.-]/g, '_');
+    if (!existsSync(OUT_IMG + file)) {
+      const buf = await get(n.image, true).catch(() => null);
+      if (buf) await writeFile(OUT_IMG + file, buf);
+    }
+    if (existsSync(OUT_IMG + file)) n.image = `/images/news/${file}`;
+  }
+  await writeFile(OUT_NEWS + `${n.slug}.json`, JSON.stringify(n, null, 2) + '\n');
+  newsCount++;
+  await sleep(150);
+}
+
+await writeFile(ROOT + 'src/content/legacy-redirects.json', JSON.stringify(redirects, null, 2) + '\n');
+const count = (pkg) => objects.filter((o) => o.package === pkg).length;
+console.log(`Объекты: ${objects.length} (Рантье ${count('rental')}, Стартовый ${count('startovye')}, Партнерский ${count('partnerskye')}); 404/пустые: ${missing}`);
+console.log(`Новости: ${newsCount}; редиректов: ${Object.keys(redirects).length}`);

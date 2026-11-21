@@ -1,0 +1,290 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Img from '../components/Img.astro';
+import ObjectCard from '../components/ObjectCard.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Faq from '../components/Faq.astro';
+import LeadSection from '../components/LeadSection.astro';
+import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl } from '../lib/catalog';
+import { getNews } from '../lib/news';
+import { STATS, TEAM, yearsOnMarket } from '../lib/site';
+
+const news = (await getNews()).slice(0, 3);
+
+// Цифры первого экрана — из каталога, чтобы не расходились с объектами.
+const minEntry = Math.min(...OBJECTS.map(entryPrice).filter((x): x is number => x != null));
+const maxRoi = Math.max(...byPackage('partnerskye').map((o) => yieldOf(o)?.value ?? 0));
+const rentYields = byPackage('rental').map((o) => yieldOf(o)?.value ?? 0).filter(Boolean);
+const minRent = Math.min(...rentYields);
+const maxRent = Math.max(...rentYields);
+
+const featured = PACKAGE_ORDER.flatMap((p) => byPackage(p).filter((o) => o.images.length >= 4).slice(0, 2));
+const heroObjects = [byPackage('rental')[0], byPackage('partnerskye')[0], byPackage('startovye')[0]].filter(Boolean);
+
+const whyTurkey = [
+  { icon: 'chart', title: 'Крупная экономика', text: 'Турция входит в двадцатку крупнейших экономик мира: ВВП — около $1,3 трлн по данным Всемирного банка.' },
+  { icon: 'globe', title: 'Мост между Европой и Азией', text: 'Страна контролирует Босфор и Дарданеллы, омывается четырьмя морями и служит транспортным хабом для трёх континентов.' },
+  { icon: 'layers', title: 'Доступ к большим рынкам', text: 'Таможенный союз с ЕС и соглашения о свободной торговле открывают выход на рынки с населением более 1 млрд человек.' },
+  { icon: 'handshake', title: 'Молодое население', text: 'Медианный возраст — около 33 лет: растущий спрос на жильё со стороны самих турок, а не только иностранцев.' },
+  { icon: 'wave', title: 'Туристический спрос', text: 'Анталья — главный курортный регион Турции: поток туристов поддерживает рынок краткосрочной аренды, а мягкая зима — спрос на долгосрочную.' },
+  { icon: 'key', title: 'ВНЖ и гражданство', text: 'Покупка недвижимости даёт основание для ВНЖ, а от $400 000 — право претендовать на гражданство Турции.' },
+];
+
+const advantages = [
+  { icon: 'building', title: 'Девелопер, а не посредник', text: 'Stay Property строит собственные проекты с 2018 года. До 90% квартир в наших комплексах продаются ещё на этапе строительства.' },
+  { icon: 'coins', title: 'Доходность по договору', text: 'Прогнозируемая доходность — до 30% и выше в зависимости от пакета и суммы. Условия выплат прописываются в инвестиционном договоре.' },
+  { icon: 'eye', title: 'Прозрачная отчётность', text: 'Кабинет инвестора: онлайн-камера на стройке, фотоотчёты, прайс-листы и динамика продаж в реальном времени.' },
+  { icon: 'shield', title: 'Юридическая защита', text: 'Нотариальное заверение договора, гарантийный вексель, ипотека или ТАПУ на объекты в качестве обеспечения.' },
+  { icon: 'briefcase', title: 'Низкий порог входа', text: `Готовые решения от ${euro(minEntry)} — с рассрочкой от застройщика и возможностью диверсифицировать портфель.` },
+  { icon: 'globe', title: 'Сервис под ключ', text: 'Подбор, сделка, управление арендой и перепродажа — силами одной группы компаний с офисами в 6 странах.' },
+];
+
+const steps = [
+  { title: 'Стратегия и подбор', text: 'Определяем цель — арендный доход, рост капитала или доля в проекте — и подбираем объекты под ваш бюджет и горизонт инвестирования.' },
+  { title: 'Договор и вход в проект', text: 'Подписываем инвестиционный договор, при желании — у нотариуса. Вы приобретаете объект или долю в праве собственности на имущество проекта.' },
+  { title: 'Контроль на каждом этапе', text: 'В кабинете инвестора видно ход строительства, рост стоимости и продажи квартир. Отчёты — ежемесячно, камера — круглосуточно.' },
+  { title: 'Выплата дохода', text: 'После завершения строительства раскрываются эскроу-счета, прибыль от продаж распределяется между участниками — и вы получаете свои средства.' },
+];
+
+const pkgIcon = { rental: 'key', startovye: 'chart', partnerskye: 'handshake' } as const;
+
+const faq = [
+  { q: 'С какой суммы можно начать инвестировать в недвижимость Турции?', a: `Минимальный вход в нашем каталоге сейчас — ${euro(minEntry)}. Для многих объектов доступна беспроцентная рассрочка от застройщика с первым взносом от 10–30%. Доля в партнёрских проектах начинается от нескольких сотен тысяч евро.` },
+  { q: 'Какую доходность можно получить?', a: `В пакете «Рантье» застройщик гарантирует арендный доход ${minRent}–${maxRent}% годовых на 2–5 лет. В «Стартовом» доход формируется за счёт роста цены от котлована до сдачи дома. В «Партнерском» прогнозируемый ROI за цикл проекта — от 30% до ${maxRoi}%. Все цифры фиксируются в договоре и не являются публичной офертой.` },
+  { q: 'Как я смогу контролировать вложения из другой страны?', a: 'После подписания договора вы получаете доступ в личный кабинет инвестора: условия договора и его скан, онлайн-камера на стройке, ежемесячные фотоотчёты, обновляемые прайс-листы и динамика продаж. В отдельных проектах публикуется и бухгалтерия по расходам на строительство.' },
+  { q: 'Какие гарантии защищают инвестора?', a: 'Договор можно заверить у турецкого нотариуса. В качестве обеспечения компания выписывает гарантийный вексель (senet) на сумму вложений и прибыли, может оформить ипотеку (ipotek) или выдать ТАПУ на объекты в строящемся проекте.' },
+  { q: 'Можно ли получить ВНЖ или гражданство Турции?', a: 'Владение жильём в Турции даёт основание для получения ВНЖ. При покупке недвижимости от $400 000 с обязательством не продавать её 3 года можно претендовать на гражданство. Наши юристы сопровождают оба процесса.' },
+  { q: 'Нужно ли приезжать в Турцию для сделки?', a: 'Нет. Сделку можно провести дистанционно — по нотариальной доверенности, с онлайн-показом объекта и электронным документооборотом. При желании организуем инфо-тур в Аланью.' },
+];
+---
+<Base
+  title="Инвестиции в недвижимость Турции — арендный доход, новостройки, доли в проектах"
+  description={`Stay Investment — инвестиции в недвижимость Аланьи и Стамбула от девелопера Stay Property: гарантия арендного дохода, квартиры на старте продаж ниже рынка, доли в проектах с ROI до ${maxRoi}%. Вход от ${euro(minEntry)}.`}
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="container-x grid gap-12 pb-16 pt-10 md:pt-16 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pb-24">
+      <div>
+        <p class="eyebrow">Девелопер Stay Property · {yearsOnMarket()} лет на рынке Турции</p>
+        <h1 class="mt-5 text-[40px] font-extrabold leading-[1.04] sm:text-[56px] xl:text-[68px]">Инвестиции в&nbsp;недвижимость Турции</h1>
+        <p class="lead mt-6 max-w-xl">Арендный доход с гарантией застройщика, покупка на старте продаж ниже рынка и доли в собственных проектах девелопера — в Аланье и Стамбуле, с контролем вложений онлайн.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/investment-directory/" class="btn btn-primary">Смотреть объекты <Icon name="arrow" size={18} /></a>
+          <button type="button" class="btn btn-ghost" data-lead-open data-lead-title="Подобрать стратегию" data-lead-source="hero">Подобрать стратегию</button>
+        </div>
+        <dl class="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-line pt-6">
+          <div><dt class="text-[13px] text-muted">Вход</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">от {Math.round(minEntry / 1000)} тыс. €</dd></div>
+          <div><dt class="text-[13px] text-muted">Арендный доход</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{minRent}–{maxRent}%<span class="text-base font-bold text-muted"> / год</span></dd></div>
+          <div><dt class="text-[13px] text-muted">ROI в проектах</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular text-sea sm:text-2xl">до {maxRoi}%</dd></div>
+        </dl>
+      </div>
+      <div class="relative hidden h-[560px] lg:block" aria-hidden="true">
+        {heroObjects.map((o, i) => (
+          <a href={objectUrl(o)} tabindex="-1" class:list={[
+            'card absolute block overflow-hidden transition-transform hover:-translate-y-1',
+            i === 0 && 'left-0 top-6 w-[62%] rotate-[-2deg]',
+            i === 1 && 'right-0 top-0 w-[52%] rotate-[3deg]',
+            i === 2 && 'bottom-0 left-[22%] w-[58%] rotate-[1deg]',
+          ]}>
+            <Img src={o.images[0]} alt="" class="aspect-[4/3] w-full" width={640} height={480} priority={i === 0} sizes="400px" />
+            <div class="flex items-center justify-between gap-3 px-4 py-3">
+              <span class="truncate text-[13px] font-bold">{PACKAGES[o.package].name} · {o.id}</span>
+              <span class="shrink-0 text-[13px] font-extrabold text-sea tabular">{yieldOf(o) ? `${yieldOf(o)!.value}%` : euro(entryPrice(o))}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="on-dark bg-navy text-white">
+    <div class="container-x grid grid-cols-2 gap-y-8 py-10 md:grid-cols-4 md:py-12">
+      {STATS.map((s) => (
+        <div class="border-l border-white/15 pl-5">
+          <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]">{s.value.toLocaleString('ru-RU')}{s.suffix}</p>
+          <p class="mt-1 text-[14px] text-[#c3ccd8]">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="container-x py-16 md:py-24">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Инвестиционные пакеты</p>
+        <h2 class="h-section mt-3">Три стратегии — под разные цели и бюджеты</h2>
+        <p class="lead mt-4">В портфеле — объекты с гарантированным арендным доходом и проекты с доходностью на партнёрских условиях. Можно выбрать один пакет или собрать диверсифицированный портфель.</p>
+      </div>
+      <a href="/investment-directory/" class="btn btn-ghost">Весь каталог <Icon name="arrow" size={18} /></a>
+    </div>
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {PACKAGE_ORDER.map((k) => {
+        const items = byPackage(k);
+        const from = Math.min(...items.map(entryPrice).filter((x): x is number => x != null));
+        return (
+          <a href={`/investment-directory/${k}/`} class="card group flex flex-col p-7 transition-shadow hover:shadow-lift">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-accent-soft text-accent-2"><Icon name={pkgIcon[k]} size={24} /></span>
+            <h3 class="mt-6 text-2xl font-extrabold">«{PACKAGES[k].name}»</h3>
+            <p class="mt-1 font-semibold text-sea">{PACKAGES[k].tagline}</p>
+            <p class="mt-4 text-[15px] leading-relaxed text-ink-2">{PACKAGES[k].text}</p>
+            <div class="mt-auto flex items-end justify-between gap-4 border-t border-line pt-5 mt-6">
+              <div class="text-[13px] text-muted">{items.length} объектов<br /><span class="text-[17px] font-extrabold text-ink tabular">от {euro(from)}</span></div>
+              <span class="grid h-11 w-11 place-items-center rounded-full bg-navy text-white transition-transform group-hover:translate-x-1"><Icon name="arrow" size={18} /></span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+    <a href="/investment-directory/biznes-investitsii/" class="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-line-2 px-7 py-5 transition-colors hover:border-ink">
+      <span><span class="font-extrabold">«Инвестиции в бизнес»</span> <span class="text-ink-2">— офисы, торговые помещения и курортные отели с разной доходностью</span></span>
+      <span class="inline-flex items-center gap-2 font-bold">Подробнее <Icon name="arrow" size={18} /></span>
+    </a>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="bg-sand/60 py-16 md:py-24">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Каталог</p>
+          <h2 class="h-section mt-3">Актуальные инвестиционные предложения</h2>
+          <p class="lead mt-4">Готовые решения в Аланье и Стамбуле — а для каждого клиента разрабатываем индивидуальную стратегию.</p>
+        </div>
+        <a href="/investment-directory/" class="btn btn-primary">Все {OBJECTS.length} объектов <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((o) => <ObjectCard o={o} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section class="container-x py-16 md:py-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Почему Stay Investment</p>
+      <h2 class="h-section mt-3">Инвестируете вместе с застройщиком</h2>
+    </div>
+    <div class="mt-10 grid gap-px overflow-hidden rounded-[24px] bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {advantages.map((a) => (
+        <div class="bg-surface p-7">
+          <Icon name={a.icon} size={26} class="text-accent" />
+          <h3 class="mt-5 text-lg font-extrabold">{a.title}</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink-2">{a.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="on-dark bg-navy py-16 text-white md:py-24">
+    <div class="container-x">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Как это работает</p>
+        <h2 class="h-section mt-3">Четыре шага к доходу</h2>
+      </div>
+      <ol class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li class="relative border-t border-white/15 pt-6">
+            <span class="text-[13px] font-bold tabular text-[#d9b67f]">0{i + 1}</span>
+            <h3 class="mt-3 text-xl font-extrabold">{s.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-[#c3ccd8]">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-12 grid gap-4 md:grid-cols-2">
+        <a href="/garantii-i-obespechenie/" class="group flex items-center justify-between gap-6 rounded-[20px] bg-white/[.05] p-6 ring-1 ring-white/10 hover:bg-white/[.08]">
+          <span class="flex items-center gap-4"><Icon name="shield" size={28} class="text-[#d9b67f]" /><span><span class="block text-lg font-extrabold">Гарантии и обеспечение</span><span class="text-[14px] text-[#c3ccd8]">Нотариус, вексель, ипотека, ТАПУ</span></span></span>
+          <Icon name="arrow" class="transition-transform group-hover:translate-x-1" />
+        </a>
+        <a href="/kontrol-investitsij/" class="group flex items-center justify-between gap-6 rounded-[20px] bg-white/[.05] p-6 ring-1 ring-white/10 hover:bg-white/[.08]">
+          <span class="flex items-center gap-4"><Icon name="eye" size={28} class="text-[#d9b67f]" /><span><span class="block text-lg font-extrabold">Контроль инвестиций</span><span class="text-[14px] text-[#c3ccd8]">Кабинет инвестора и отчётность</span></span></span>
+          <Icon name="arrow" class="transition-transform group-hover:translate-x-1" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TURKEY -->
+  <section class="container-x py-16 md:py-24">
+    <div class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="eyebrow">Рынок</p>
+        <h2 class="h-section mt-3">Почему недвижимость Турции</h2>
+        <p class="lead mt-4">Турецкая недвижимость — ликвидный и востребованный актив: квартиры в современных комплексах и виллы на побережье покупают инвесторы из десятков стран — ради арендного дохода, роста капитала и ВНЖ.</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        {whyTurkey.map((w) => (
+          <div class="flex gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sea-soft text-sea"><Icon name={w.icon} size={22} /></span>
+            <div>
+              <h3 class="font-extrabold">{w.title}</h3>
+              <p class="mt-1.5 text-[15px] leading-relaxed text-ink-2">{w.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY + TEAM -->
+  <section class="bg-sand/60 py-16 md:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="relative">
+        <Img src="/images/site/company.jpg" alt="Жилой комплекс Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[28px]" width={660} height={495} sizes="(min-width: 1024px) 50vw, 100vw" />
+        <div class="card absolute -bottom-6 right-4 max-w-[260px] p-5 sm:right-8">
+          <p class="text-3xl font-extrabold text-sea">до 90%</p>
+          <p class="mt-1 text-[14px] text-ink-2">квартир в наших комплексах продаётся ещё на этапе строительства</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">О компании</p>
+        <h2 class="h-section mt-3">Инвестиционное направление группы Stay Property</h2>
+        <p class="lead mt-4">Stay Property начинала в 2018 году с небольшого жилого комплекса в Авсалларе, а сегодня — один из самых динамичных девелоперов региона с офисами в Турции, Казахстане, ОАЭ и на Северном Кипре.</p>
+        <p class="mt-4 text-[16px] leading-relaxed text-ink-2">Stay Investment открывает инвесторам доступ к проектам группы — на тех же условиях, на которых их развиваем мы сами.</p>
+        <a href="/o-kompanii/" class="btn btn-ghost mt-8">Подробнее о компании <Icon name="arrow" size={18} /></a>
+      </div>
+    </div>
+    <div class="container-x mt-20">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h3 class="text-2xl font-extrabold md:text-3xl">Команда, которая ведёт ваши инвестиции</h3>
+        <p class="max-w-md text-[15px] text-ink-2">Многолетний опыт на рынке Турции и знание всех юридических тонкостей — ответим на любой вопрос.</p>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+        {TEAM.map((t) => (
+          <div class="card overflow-hidden">
+            <Img src={t.photo} alt={t.name} class="aspect-[4/3] w-full object-top" width={600} height={450} sizes="(min-width: 640px) 33vw, 100vw" />
+            <div class="flex items-center justify-between gap-3 p-5">
+              <div>
+                <p class="font-extrabold">{t.name}</p>
+                <p class="text-[14px] text-muted">{t.role}</p>
+              </div>
+              <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={`Написать ${t.name} в WhatsApp`}><Icon name="whatsapp" size={20} /></a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  {news.length > 0 && (
+    <section class="container-x py-16 md:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="eyebrow">Новости</p>
+          <h2 class="h-section mt-3">Рынок недвижимости Турции</h2>
+        </div>
+        <a href="/news/" class="btn btn-ghost">Все новости <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {news.map((n) => <NewsCard n={n} />)}
+      </div>
+    </section>
+  )}
+
+  <Faq items={faq} />
+  <LeadSection source="home" />
+</Base>

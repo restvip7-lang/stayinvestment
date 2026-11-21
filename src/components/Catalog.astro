@@ -1,0 +1,75 @@
+---
+/** Сетка объектов с фильтрами (пакет, город, бюджет, сортировка). Фильтрация — в браузере по data-атрибутам. */
+import ObjectCard from './ObjectCard.astro';
+import { PACKAGES, PACKAGE_ORDER, CITIES, placeOf, type InvestObject, type PackageKey } from '../lib/catalog';
+interface Props { objects: InvestObject[]; current?: PackageKey | null }
+const { objects, current = null } = Astro.props;
+const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
+---
+<div data-catalog>
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <nav class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:px-0" aria-label="Пакеты">
+      <a href="/investment-directory/" class:list={['btn btn-sm', current ? 'btn-ghost' : 'btn-primary']}>Все</a>
+      {PACKAGE_ORDER.map((k) => (
+        <a href={`/investment-directory/${k}/`} class:list={['btn btn-sm', current === k ? 'btn-primary' : 'btn-ghost']}>{PACKAGES[k].name}</a>
+      ))}
+    </nav>
+    <div class="grid grid-cols-2 gap-2 sm:flex">
+      {cities.length > 1 && (
+        <select class="field !h-10 !rounded-full !py-0 text-[14px] sm:w-44" data-filter="city" aria-label="Город">
+          <option value="">Все города</option>
+          {cities.map((c) => <option value={c}>{c}</option>)}
+        </select>
+      )}
+      <select class="field !h-10 !rounded-full !py-0 text-[14px] sm:w-44" data-filter="budget" aria-label="Бюджет">
+        <option value="">Любой бюджет</option>
+        <option value="100000">до 100 000 €</option>
+        <option value="150000">до 150 000 €</option>
+        <option value="250000">до 250 000 €</option>
+        <option value="1000000">до 1 000 000 €</option>
+      </select>
+      <select class="field col-span-2 !h-10 !rounded-full !py-0 text-[14px] sm:w-52" data-filter="sort" aria-label="Сортировка">
+        <option value="">Сначала новые</option>
+        <option value="price-asc">Сначала дешевле</option>
+        <option value="price-desc">Сначала дороже</option>
+        <option value="yield-desc">Выше доходность</option>
+      </select>
+    </div>
+  </div>
+  <p class="mt-5 text-[14px] text-muted" data-count aria-live="polite">Найдено объектов: {objects.length}</p>
+  <div class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-grid>
+    {objects.map((o, i) => <ObjectCard o={o} priority={i < 3} />)}
+  </div>
+  <div class="hidden rounded-[20px] border border-dashed border-line-2 p-10 text-center" data-empty>
+    <p class="text-lg font-bold">Под эти условия объектов нет</p>
+    <p class="mt-2 text-ink-2">Измените фильтр или оставьте заявку — подберём вариант вне каталога.</p>
+    <button type="button" class="btn btn-primary mt-5" data-lead-open data-lead-title="Индивидуальный подбор" data-lead-source="catalog-empty">Индивидуальный подбор</button>
+  </div>
+</div>
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-catalog]')) {
+    const grid = root.querySelector<HTMLElement>('[data-grid]')!;
+    const cards = [...grid.querySelectorAll<HTMLElement>('[data-object]')];
+    const order = new Map(cards.map((c, i) => [c, i]));
+    const get = (n: string) => root.querySelector<HTMLSelectElement>(`[data-filter="${n}"]`)?.value ?? '';
+    const apply = () => {
+      const city = get('city'), budget = Number(get('budget')) || Infinity, sort = get('sort');
+      let shown = 0;
+      for (const c of cards) {
+        const ok = (!city || c.dataset.city === city) && (Number(c.dataset.price) || 0) <= budget;
+        c.hidden = !ok;
+        if (ok) shown++;
+      }
+      const num = (c: HTMLElement, k: string) => Number(c.dataset[k]) || 0;
+      const sorted = [...cards].sort((a, b) =>
+        sort === 'price-asc' ? num(a, 'price') - num(b, 'price')
+        : sort === 'price-desc' ? num(b, 'price') - num(a, 'price')
+        : sort === 'yield-desc' ? num(b, 'yield') - num(a, 'yield')
+        : order.get(a)! - order.get(b)!);
+      grid.append(...sorted);
+      root.querySelector('[data-count]')!.textContent = `Найдено объектов: ${shown}`;
+      root.querySelector('[data-empty]')!.classList.toggle('hidden', shown > 0);
+    };
+    root.querySelectorAll('[data-filter]').forEach((s) => s.addEventListener('change', apply));
+  }
+</script>

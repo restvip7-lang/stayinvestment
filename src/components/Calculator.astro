@@ -1,0 +1,65 @@
+---
+/**
+ * Калькулятор доходности по условиям пакета:
+ *  - Рантье: гарантированный арендный доход (ставка × сумма × годы гарантии);
+ *  - Стартовый: диапазон дохода от перепродажи после сдачи (15–20%, из текста старого сайта);
+ *  - Партнерский: ROI проекта за срок окупаемости.
+ */
+import { type InvestObject, entryPrice } from '../lib/catalog';
+interface Props { o: InvestObject }
+const { o } = Astro.props;
+const m = (re: RegExp) => o.metrics.find((x) => re.test(x.label))?.value ?? null;
+const price = entryPrice(o) ?? 100000;
+const cfg =
+  o.package === 'rental'
+    ? { mode: 'rental', rate: m(/^Доходность$/) ?? 5, years: m(/гарантии аренды/) ?? 3 }
+    : o.package === 'partnerskye'
+      ? { mode: 'partner', rate: m(/^ROI$/) ?? 30, months: m(/Окупаемость/) ?? 30 }
+      : { mode: 'start', low: 15, high: 20 };
+const yearsWord = (n: number) => (n === 1 ? 'год' : n < 5 ? 'года' : 'лет');
+const min = o.package === 'partnerskye' ? Math.round(price / 2) : price;
+const max = o.package === 'partnerskye' ? price * 2 : price * 5;
+const step = o.package === 'partnerskye' ? 50000 : 5000;
+---
+<section class="card p-6 md:p-8" data-calc data-cfg={JSON.stringify(cfg)}>
+  <h2 class="text-2xl font-extrabold">Калькулятор доходности</h2>
+  <p class="mt-2 text-[15px] text-ink-2">
+    {cfg.mode === 'rental' && `Гарантированный арендный доход ${cfg.rate}% годовых на ${cfg.years} ${yearsWord(cfg.years ?? 0)}.`}
+    {cfg.mode === 'partner' && `Прогнозируемый ROI проекта ${cfg.rate}% за ${cfg.months} мес.`}
+    {cfg.mode === 'start' && 'Ориентир дохода при перепродаже после сдачи дома — 15–20% от вложений.'}
+  </p>
+  <label class="mt-6 block">
+    <span class="flex items-baseline justify-between gap-4 text-[14px] font-semibold text-muted">Сумма инвестиций <output class="text-xl font-extrabold text-ink tabular" data-amount-out></output></span>
+    <input type="range" min={min} max={max} step={step} value={price} class="mt-3 w-full accent-[#b8894d]" data-amount aria-label="Сумма инвестиций, €" />
+  </label>
+  <dl class="mt-6 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
+    <div><dt class="text-[13px] text-muted" data-l1></dt><dd class="text-2xl font-extrabold text-sea tabular" data-v1></dd></div>
+    <div><dt class="text-[13px] text-muted" data-l2></dt><dd class="text-2xl font-extrabold tabular" data-v2></dd></div>
+  </dl>
+  <p class="mt-4 text-[12.5px] leading-snug text-muted">Расчёт ориентировочный и не является офертой. Точные условия — в инвестиционном договоре.</p>
+</section>
+<script>
+  const nf = new Intl.NumberFormat('ru-RU');
+  const eur = (n: number) => `${nf.format(Math.round(n))} €`;
+  for (const el of document.querySelectorAll<HTMLElement>('[data-calc]')) {
+    const cfg = JSON.parse(el.dataset.cfg!);
+    const input = el.querySelector<HTMLInputElement>('[data-amount]')!;
+    const set = (k: string, v: string) => (el.querySelector(`[data-${k}]`)!.textContent = v);
+    const render = () => {
+      const a = Number(input.value);
+      set('amount-out', eur(a));
+      if (cfg.mode === 'rental') {
+        set('l1', 'Доход в год'); set('v1', eur((a * cfg.rate) / 100));
+        set('l2', `За ${cfg.years} г. гарантии`); set('v2', eur((a * cfg.rate * cfg.years) / 100));
+      } else if (cfg.mode === 'partner') {
+        set('l1', 'Прибыль за цикл'); set('v1', eur((a * cfg.rate) / 100));
+        set('l2', 'Капитал по завершении'); set('v2', eur(a * (1 + cfg.rate / 100)));
+      } else {
+        set('l1', 'Доход от перепродажи'); set('v1', `${eur((a * cfg.low) / 100)} – ${eur((a * cfg.high) / 100)}`);
+        set('l2', 'Капитал после продажи'); set('v2', `до ${eur(a * (1 + cfg.high / 100))}`);
+      }
+    };
+    input.addEventListener('input', render);
+    render();
+  }
+</script>
