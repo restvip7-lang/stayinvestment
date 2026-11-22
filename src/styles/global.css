@@ -75,8 +75,10 @@
   .on-dark .lead { color: #e6f3fc; }
 
   /* Кнопки — как на stayproperty.com: скругление 12px, у заливных — стрелка в белом кружке справа */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 0 20px; border-radius: 12px; font-weight: 600; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; text-align: center; line-height: 1.2; cursor: pointer; }
-  .btn:active { transform: translateY(1px); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 0 20px; border-radius: 12px; font-weight: 600; font-size: 15px; transition-property: background-color, color, border-color, transform, box-shadow; transition-duration: 160ms; transition-timing-function: ease; text-align: center; line-height: 1.2; cursor: pointer; }
+  .btn:active { transform: scale(0.97); }
+  .btn > svg { transition: transform 200ms var(--ease-out-quart); }
+  @media (hover: hover) and (pointer: fine) { .btn:hover > svg { transform: translateX(2px); } }
   .btn-primary { background: var(--color-brand-2); color: #fff; }
   .btn-primary:hover { background: var(--color-brand-3); }
   .btn-accent { background: var(--color-accent-2); color: #fff; }
@@ -125,6 +127,42 @@
   .prose-si table { width: 100%; border-collapse: collapse; font-size: 15px; display: block; overflow-x: auto; }
   .prose-si td, .prose-si th { border: 1px solid var(--color-line); padding: 10px 12px; text-align: left; }
   .prose-si blockquote { border-left: 3px solid var(--color-accent); padding: 4px 0 4px 18px; color: var(--color-ink); font-weight: 600; }
+}
+
+/* ---------- Движение (по курсу animations.dev: ease-out для появления, только transform/opacity) ---------- */
+:root {
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@layer components {
+  /* Появление при прокрутке. Класс .js ставится скриптом — без JS контент виден сразу.
+     Двигаем свойствами translate/scale, а не transform: transform остаётся свободным для hover-подъёма (.lift). */
+  .js [data-reveal] { opacity: 0; translate: 0 16px; transition-property: opacity, translate, scale; transition-duration: 600ms; transition-timing-function: var(--ease-out-quart); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js [data-reveal="scale"] { translate: 0 12px; scale: 0.98; }
+  .js [data-reveal].is-in { opacity: 1; translate: 0 0; scale: 1; }
+
+  /* Первый экран: поочерёдное появление при загрузке (fill-mode backwards — после анимации стили свободны) */
+  .js .hero-in { animation: rise 700ms var(--ease-out-quart) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+
+  /* Карточки: подъём только на устройствах с мышью — на тачскрине hover срабатывает от тапа */
+  .lift { transition-property: transform, box-shadow; transition-duration: 250ms; transition-timing-function: var(--ease-out-quart); }
+  @media (hover: hover) and (pointer: fine) { .lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); } }
+
+  /* Тонкая обводка фото — глубина на любом фоне. Позиционирование задаёт сам элемент (relative/absolute). */
+  .img-outline::after { content: ""; position: absolute; inset: 0; border-radius: inherit; outline: 1px solid #2b2f3614; outline-offset: -1px; pointer-events: none; z-index: 1; }
+
+  .blob { animation: drift 14s ease-in-out infinite; }
+}
+@keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+/* Мягкое «дыхание» декоративных пятен фона */
+@keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 24px -16px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal], .js [data-reveal="scale"] { opacity: 1; translate: none; scale: none; transition: none; }
+  .js .hero-in, .blob { animation: none; }
+  .lift, .btn, .btn > svg { transition: none; }
+  .btn:active { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

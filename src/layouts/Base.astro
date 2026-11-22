@@ -50,6 +50,7 @@ const ld: Record<string, unknown>[] = [
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -100,6 +101,33 @@ const ld: Record<string, unknown>[] = [
     </dialog>
 
     <script>
+      // Появление при прокрутке и счётчики цифр. При «уменьшить движение» — сразу финальное состояние.
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const nf = new Intl.NumberFormat('ru-RU');
+      const countUp = (el: HTMLElement) => {
+        const to = Number(el.dataset.count);
+        if (reduce || !Number.isFinite(to)) { el.textContent = nf.format(to); return; }
+        const t0 = performance.now(), dur = 1400;
+        const ease = (t: number) => 1 - Math.pow(1 - t, 4);
+        const tick = (now: number) => {
+          const p = Math.min(1, (now - t0) / dur);
+          el.textContent = nf.format(Math.round(to * ease(p)));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const el = e.target as HTMLElement;
+          el.classList.add('is-in');
+          el.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
+          if (el.dataset.count) countUp(el);
+          io.unobserve(el);
+        }
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-reveal], [data-count]').forEach((el) => io.observe(el));
+
       const dlg = document.getElementById('lead-dialog') as HTMLDialogElement | null;
       document.addEventListener('click', (e) => {
         const open = (e.target as HTMLElement).closest<HTMLElement>('[data-lead-open]');
