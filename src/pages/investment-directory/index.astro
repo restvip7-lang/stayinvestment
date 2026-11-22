@@ -5,7 +5,7 @@ import Catalog from '../../components/Catalog.astro';
 import LeadSection from '../../components/LeadSection.astro';
 import Icon from '../../components/Icon.astro';
 import PackageCompare from '../../components/PackageCompare.astro';
-import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, objectUrl, entryPrice } from '../../lib/catalog';
+import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, objectUrl, entryPrice, packagePhoto, pkgColor } from '../../lib/catalog';
 
 const ld = {
   '@context': 'https://schema.org',
@@ -21,11 +21,11 @@ const ld = {
   crumbs={[{ label: 'Каталог инвестиций' }]}
   jsonLd={[ld]}
 >
-  <PageHead eyebrow="Каталог" title="Каталог инвестиций в недвижимость Турции" lead="Готовые инвестиционные решения в Аланье и Стамбуле — а для каждого клиента мы разрабатываем индивидуальную стратегию. Выберите пакет или отфильтруйте объекты по бюджету и городу.">
-    <div class="mt-8 grid gap-3 sm:grid-cols-3">
+  <PageHead eyebrow="Каталог" image={packagePhoto('rental')} imageAlt="Объект каталога в Аланье" imageNote={`${OBJECTS.length} объектов в Аланье и Стамбуле`} title="Каталог инвестиций в недвижимость Турции" lead="Готовые инвестиционные решения в Аланье и Стамбуле — а для каждого клиента мы разрабатываем индивидуальную стратегию. Выберите пакет или отфильтруйте объекты по бюджету и городу.">
+    <div class="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
       {PACKAGE_ORDER.map((k) => (
-        <a href={`/investment-directory/${k}/`} class="group flex items-center justify-between gap-4 rounded-[18px] border border-line-2 bg-surface/60 px-5 py-4 hover:border-ink">
-          <span><span class="block font-extrabold">«{PACKAGES[k].name}» · {byPackage(k).length}</span><span class="text-[13.5px] text-muted">{PACKAGES[k].tagline}</span></span>
+        <a href={`/investment-directory/${k}/`} class="card lift group flex items-center justify-between gap-4 px-5 py-4">
+          <span><span class="flex items-center gap-2 font-extrabold"><span class="legend-key" style={`background:${pkgColor(k)}`}></span>«{PACKAGES[k].name}» · {byPackage(k).length}</span><span class="text-[13.5px] text-muted">{PACKAGES[k].tagline}</span></span>
           <Icon name="arrow" size={18} class="shrink-0 transition-transform group-hover:translate-x-1" />
         </a>
       ))}
@@ -35,9 +35,9 @@ const ld = {
     <Catalog objects={OBJECTS} />
   </section>
   <section class="container-x pt-16">
-    <h2 class="h-section">Сравнение пакетов</h2>
+    <h2 class="h-section" data-reveal>Сравнение пакетов</h2>
     <p class="lead mt-4 max-w-3xl">Ключевые параметры по объектам каталога. Как считаем доходность и какие есть риски — на странице <a href="/metodika-i-riski/" class="text-sea underline underline-offset-4">«Методика и риски»</a>.</p>
-    <div class="mt-8"><PackageCompare /></div>
+    <div class="mt-8" data-reveal><PackageCompare /></div>
   </section>
   <LeadSection source="catalog" title="Не нашли подходящий объект?" text="Расскажите о бюджете и цели — подберём объекты вне каталога, в том числе коммерческую недвижимость и участки под застройку." />
 </Base>

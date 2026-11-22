@@ -1,7 +1,7 @@
 ---
 /** Общая подсказка для инфографики: любой элемент с data-tip показывает её при наведении и фокусе. Текст — через textContent. */
 ---
-<div class="viz-tip hidden" role="tooltip" id="viz-tip"></div>
+<div class="viz-tip" role="tooltip" id="viz-tip"></div>
 <script>
   const tip = document.getElementById('viz-tip')!;
   let current: HTMLElement | null = null;
@@ -13,12 +13,12 @@
     b.textContent = head;
     tip.append(b);
     for (const line of rest) { tip.append(document.createElement('br'), document.createTextNode(line)); }
-    tip.classList.remove('hidden');
+    tip.classList.add('is-on');
     const r = el.getBoundingClientRect();
     tip.style.left = `${Math.min(window.innerWidth - 12 - tip.offsetWidth / 2, Math.max(12 + tip.offsetWidth / 2, r.left + r.width / 2)) + window.scrollX}px`;
     tip.style.top = `${r.top + window.scrollY}px`;
   };
-  const hide = () => { current = null; tip.classList.add('hidden'); };
+  const hide = () => { current = null; tip.classList.remove('is-on'); };
   document.addEventListener('pointerover', (e) => { const el = (e.target as HTMLElement).closest<HTMLElement>('[data-tip]'); if (el) show(el); else if (current) hide(); });
   document.addEventListener('focusin', (e) => { const el = (e.target as HTMLElement).closest<HTMLElement>('[data-tip]'); if (el) show(el); });
   document.addEventListener('focusout', hide);

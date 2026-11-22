@@ -154,6 +154,35 @@
 
   .blob { animation: drift 14s ease-in-out infinite; }
 }
+/* Модальное окно заявки: появление scale+opacity 200 мс ease-out, закрытие быстрее; фон — синхронно (paired elements) */
+#lead-dialog { opacity: 0; scale: 0.96; transition-property: opacity, scale, overlay, display; transition-duration: 160ms; transition-timing-function: ease-out; transition-behavior: allow-discrete; }
+#lead-dialog[open] { opacity: 1; scale: 1; transition-duration: 200ms; transition-timing-function: var(--ease-out-quart); }
+@starting-style { #lead-dialog[open] { opacity: 0; scale: 0.96; } }
+#lead-dialog::backdrop { background-color: rgb(43 47 54 / 0); backdrop-filter: blur(0); transition-property: background-color, backdrop-filter, overlay, display; transition-duration: 160ms; transition-behavior: allow-discrete; }
+#lead-dialog[open]::backdrop { background-color: rgb(43 47 54 / 0.55); backdrop-filter: blur(4px); transition-duration: 200ms; }
+@starting-style { #lead-dialog[open]::backdrop { background-color: rgb(43 47 54 / 0); backdrop-filter: blur(0); } }
+
+/* Полноэкранная галерея: то же появление, что у модалки */
+.gallery-box { opacity: 0; transition-property: opacity, overlay, display; transition-duration: 160ms; transition-behavior: allow-discrete; }
+.gallery-box[open] { opacity: 1; transition-duration: 220ms; }
+@starting-style { .gallery-box[open] { opacity: 0; } }
+.gallery-box::backdrop { background-color: rgb(20 22 28 / 0.92); }
+
+/* Нижняя панель заявки на карточке объекта (телефон): выезжает, когда основная кнопка ушла за экран */
+.cta-bar { translate: 0 110%; transition: translate 260ms var(--ease-out-quart); }
+.cta-bar[data-on] { translate: 0 0; }
+.wa-fab { transition-property: bottom, scale; transition-duration: 260ms; transition-timing-function: var(--ease-out-quart); }
+.has-cta-bar .wa-fab { bottom: 92px; }
+@media (min-width: 1024px) { .has-cta-bar .wa-fab { bottom: 20px; } }
+
+/* Мобильное меню: выезд сверху вместо мгновенного появления */
+[data-menu] { opacity: 0; translate: 0 -8px; visibility: hidden; transition-property: opacity, translate, visibility; transition-duration: 200ms; transition-timing-function: var(--ease-out-quart); }
+[data-menu][data-open] { opacity: 1; translate: 0 0; visibility: visible; }
+
+/* Подсказки графиков: появление 120 мс; между точками — без мигания (подсказка просто переезжает) */
+.viz-tip { opacity: 0; transition: opacity 120ms ease-out; }
+.viz-tip.is-on { opacity: 1; }
+
 @keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
 /* Мягкое «дыхание» декоративных пятен фона */
 @keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 24px -16px; } }
@@ -161,7 +190,7 @@
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal], .js [data-reveal="scale"] { opacity: 1; translate: none; scale: none; transition: none; }
   .js .hero-in, .blob { animation: none; }
-  .lift, .btn, .btn > svg { transition: none; }
+  .lift, .btn, .btn > svg, #lead-dialog, #lead-dialog::backdrop, [data-menu], .viz-tip, .gallery-box, .cta-bar, .wa-fab { transition: none; }
   .btn:active { transform: none; }
 }
 

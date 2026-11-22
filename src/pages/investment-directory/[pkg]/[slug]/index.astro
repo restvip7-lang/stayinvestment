@@ -1,10 +1,10 @@
 ---
 import Base from '../../../../layouts/Base.astro';
-import Img from '../../../../components/Img.astro';
 import Icon from '../../../../components/Icon.astro';
 import ObjectCard from '../../../../components/ObjectCard.astro';
 import Calculator from '../../../../components/Calculator.astro';
 import LeadForm from '../../../../components/LeadForm.astro';
+import Gallery from '../../../../components/Gallery.astro';
 import PaymentPlan from '../../../../components/PaymentPlan.astro';
 import PositionStrip from '../../../../components/PositionStrip.astro';
 import { PACKAGES, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
@@ -49,46 +49,32 @@ const ld = {
   jsonLd={[ld]}
 >
   <section class="container-x pt-6 md:pt-10">
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="hero-in flex flex-wrap items-center gap-2" style="--i:0">
       <a href={`/investment-directory/${o.package}/`} class="chip bg-sea-soft text-brand-2">Пакет «{info.name}»</a>
       <span class="chip bg-surface text-muted tabular">ID {o.id}</span>
     </div>
-    <h1 class="mt-4 max-w-4xl text-[30px] font-extrabold leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
+    <h1 class="hero-in mt-4 max-w-4xl text-[30px] font-extrabold leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
       <!-- Галерея -->
-      <div class="min-w-0" data-gallery>
-        <div class="relative overflow-hidden rounded-[20px]">
-          <Img src={o.images[0]} alt={o.title} class="aspect-[16/10] w-full" width={1280} height={800} priority sizes="(min-width: 1024px) 60vw, 100vw" />
-          {o.images.length > 1 && <span class="chip absolute bottom-4 right-4 bg-navy/80 text-white tabular" data-counter>1 / {o.images.length}</span>}
-        </div>
-        {o.images.length > 1 && (
-          <div class="mt-3 flex gap-2 overflow-x-auto pb-1">
-            {o.images.slice(0, 16).map((src, i) => (
-              <button type="button" class:list={['h-16 w-24 shrink-0 overflow-hidden rounded-xl ring-2 ring-offset-2 ring-offset-page transition', i === 0 ? 'ring-brand' : 'ring-transparent hover:ring-line-2']} data-thumb={i} data-src={src} aria-label={`Фото ${i + 1}`}>
-                <Img src={src} alt="" class="h-full w-full" width={192} height={128} sizes="96px" />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+      <div class="hero-in min-w-0" style="--i:1"><Gallery images={o.images} title={o.title} /></div>
 
       <!-- Условия -->
-      <aside class="lg:sticky lg:top-36 lg:self-start">
+      <aside class="hero-in lg:sticky lg:top-36 lg:self-start" style="--i:2">
         <div class="card p-6">
           <p class="text-[13px] font-semibold text-muted">{o.package === 'partnerskye' ? 'Сумма входа' : o.package === 'startovye' ? 'Стоимость лота, от' : 'Стоимость, от'}</p>
-          <p class="mt-1 text-[34px] font-extrabold leading-none tabular">{euro(price)}</p>
+          <p class="mt-1 text-[34px] font-extrabold leading-none tabular">{price != null ? <><span data-count={price}>{price.toLocaleString('ru-RU')}</span> €</> : '—'}</p>
           {y && <p class="mt-2 inline-flex items-center gap-1.5 font-bold text-sea"><Icon name="chart" size={18} />{y.label}: {y.value}%</p>}
           <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-5">
             {o.metrics.filter((m) => !/Начальная стоимость|Минимальная стоимость лота|Сумма входа/.test(m.label)).map((m) => (
               <div>
                 <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label)}</dt>
-                <dd class="mt-1 text-[17px] font-extrabold tabular">{formatMetric(m)}</dd>
+                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m)}</dd>
               </div>
             ))}
           </dl>
           <div class="mt-6 grid gap-2">
-            <button type="button" class="btn btn-accent" data-lead-open data-lead-title={`Заявка по объекту ${o.id}`} data-lead-object={o.id} data-lead-source="object-buy">Оставить заявку</button>
+            <button type="button" class="btn btn-accent" data-lead-open data-lead-title={`Заявка по объекту ${o.id}`} data-lead-object={o.id} data-lead-source="object-buy" data-main-cta>Оставить заявку<Icon name="arrow" size={18} /></button>
             <div class="grid grid-cols-2 gap-2">
               <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title="Онлайн-показ объекта" data-lead-object={o.id} data-lead-source="object-online"><Icon name="camera" size={16} />Онлайн-показ</button>
               <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title="Инфо-тур в Аланью" data-lead-object={o.id} data-lead-source="object-tour"><Icon name="globe" size={16} />Инфо-тур</button>
@@ -113,9 +99,9 @@ const ld = {
             ))}
           </dl>
         )}
-        <div class="mt-8 grid gap-6"><PaymentPlan o={o} /><PositionStrip o={o} /></div>
+        <div class="mt-8 grid gap-6"><div data-reveal><PaymentPlan o={o} /></div><div data-reveal><PositionStrip o={o} /></div></div>
         <h2 class="mt-12 text-2xl font-extrabold">Об объекте</h2>
-        <div class="prose-si mt-4" set:html={o.descriptionHtml} />
+        <div class="prose-si mt-4" data-reveal set:html={o.descriptionHtml} />
         {o.infrastructure.length > 0 && (
           <>
             <h2 class="mt-12 text-2xl font-extrabold">Инфраструктура комплекса</h2>
@@ -131,7 +117,7 @@ const ld = {
         )}
       </div>
       <div class="grid min-w-0 content-start gap-6">
-        <Calculator o={o} />
+        <div data-reveal><Calculator o={o} /></div>
         <div class="card p-6">
           <p class="text-lg font-extrabold">Получить презентацию объекта</p>
           <p class="mt-1 text-[14px] text-ink-2">Планировки, прайс, график платежей и расчёт доходности — пришлём в мессенджер.</p>
@@ -148,24 +134,31 @@ const ld = {
           <h2 class="h-section">Похожие предложения</h2>
           <a href={`/investment-directory/${o.package}/`} class="btn btn-ghost">Все объекты пакета <Icon name="arrow" size={18} /></a>
         </div>
-        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{similar.map((s) => <ObjectCard o={s} />)}</div>
+        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{similar.map((s, i) => <ObjectCard o={s} reveal={i} />)}</div>
       </div>
     </section>
   )}
+  <!-- Телефон: панель заявки, когда основная кнопка ушла за экран -->
+  <div class="cta-bar fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 px-4 py-3 shadow-lift backdrop-blur lg:hidden" data-cta-bar aria-hidden="true">
+    <div class="flex items-center gap-3">
+      <div class="min-w-0">
+        <p class="truncate text-[12px] text-muted">{info.name} · {o.id}</p>
+        <p class="text-[17px] font-bold tabular">{euro(price)}</p>
+      </div>
+      <button type="button" class="btn btn-accent btn-sm ml-auto" tabindex="-1" data-lead-open data-lead-title={`Заявка по объекту ${o.id}`} data-lead-object={o.id} data-lead-source="object-bar">Оставить заявку</button>
+    </div>
+  </div>
 </Base>
 <script>
-  for (const g of document.querySelectorAll<HTMLElement>('[data-gallery]')) {
-    const main = g.querySelector<HTMLImageElement>('img')!;
-    const counter = g.querySelector('[data-counter]');
-    const thumbs = [...g.querySelectorAll<HTMLButtonElement>('[data-thumb]')];
-    const total = counter?.textContent?.split('/')[1]?.trim();
-    thumbs.forEach((t) => t.addEventListener('click', () => {
-      const src = t.querySelector('img')?.currentSrc || t.dataset.src!;
-      main.removeAttribute('srcset');
-      main.src = t.querySelector('img')?.getAttribute('src')?.startsWith('/_vercel') ? `/_vercel/image?url=${encodeURIComponent(t.dataset.src!)}&w=1280&q=75` : src;
-      thumbs.forEach((x) => x.classList.replace('ring-brand', 'ring-transparent'));
-      t.classList.replace('ring-transparent', 'ring-brand');
-      if (counter) counter.textContent = `${Number(t.dataset.thumb) + 1} / ${total}`;
-    }));
+  const bar = document.querySelector<HTMLElement>('[data-cta-bar]');
+  const cta = document.querySelector('[data-main-cta]');
+  if (bar && cta) {
+    new IntersectionObserver(([e]) => {
+      const on = !e.isIntersecting && e.boundingClientRect.top < 0;
+      bar.toggleAttribute('data-on', on);
+      bar.setAttribute('aria-hidden', String(!on));
+      bar.querySelector('button')!.tabIndex = on ? 0 : -1;
+      document.body.classList.toggle('has-cta-bar', on);
+    }).observe(cta);
   }
 </script>

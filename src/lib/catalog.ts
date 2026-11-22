@@ -170,3 +170,27 @@ export function packageStats(k: PackageKey) {
 
 export const fmtRange = (r: Range | null, unit = '') => (!r ? '—' : r.min === r.max ? `${nf.format(r.min)}${unit}` : `${nf.format(r.min)}–${nf.format(r.max)}${unit}`);
 export const eurShort = (n: number) => (n >= 1_000_000 ? `${(n / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 2 })} млн €` : `${Math.round(n / 1000).toLocaleString('ru-RU')} тыс. €`);
+
+/** Три ключевые цифры пакета (для карточек и шапок страниц). */
+export function packageFacts(k: PackageKey): { icon: string; label: string; value: string }[] {
+  const st = packageStats(k);
+  const entry = { icon: 'coins', label: 'Вход', value: st.entry ? `от ${eurShort(st.entry.min)}` : '—' };
+  if (k === 'rental') return [
+    { icon: 'chart', label: 'Доходность', value: `${fmtRange(st.rentYield, '%')} в год` },
+    { icon: 'shield', label: 'Гарантия аренды', value: `${fmtRange(st.guaranteeYears)} лет` },
+    entry,
+  ];
+  if (k === 'startovye') return [
+    { icon: 'chart', label: 'Скидка от рынка', value: st.discount ? `до ${st.discount.max}%` : '—' },
+    { icon: 'calendar', label: 'Рассрочка', value: st.installmentMonths ? `до ${st.installmentMonths.max} мес.` : '—' },
+    entry,
+  ];
+  return [
+    { icon: 'chart', label: 'ROI за цикл', value: fmtRange(st.roi, '%') },
+    { icon: 'calendar', label: 'Цикл проекта', value: `${fmtRange(st.paybackMonths)} мес.` },
+    entry,
+  ];
+}
+
+/** Фото пакета — первый объект пакета с полноценной галереей. */
+export const packagePhoto = (k: PackageKey) => byPackage(k).find((o) => o.images.length >= 4)?.images[0] ?? null;

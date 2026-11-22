@@ -8,7 +8,7 @@ import Faq from '../components/Faq.astro';
 import PackageCompare from '../components/PackageCompare.astro';
 import CashflowTimeline from '../components/CashflowTimeline.astro';
 import LeadSection from '../components/LeadSection.astro';
-import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl, packageStats, fmtRange, eurShort } from '../lib/catalog';
+import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl, packageFacts, packagePhoto } from '../lib/catalog';
 import { getNews } from '../lib/news';
 import { STATS, TEAM, yearsOnMarket } from '../lib/site';
 
@@ -22,26 +22,8 @@ const minRent = Math.min(...rentYields);
 const maxRent = Math.max(...rentYields);
 
 const featured = PACKAGE_ORDER.flatMap((p) => byPackage(p).filter((o) => o.images.length >= 4).slice(0, 2));
-// Фото для карточек пакетов — первый объект пакета с галереей.
-const pkgPhoto = (k: (typeof PACKAGE_ORDER)[number]) => byPackage(k).find((o) => o.images.length >= 4)?.images[0] ?? null;
-const pkgFacts = (k: (typeof PACKAGE_ORDER)[number]) => {
-  const st = packageStats(k);
-  if (k === 'rental') return [
-    { icon: 'chart', label: 'Доходность', value: `${fmtRange(st.rentYield, '%')} в год` },
-    { icon: 'shield', label: 'Гарантия аренды', value: `${fmtRange(st.guaranteeYears)} лет` },
-    { icon: 'coins', label: 'Вход', value: st.entry ? `от ${eurShort(st.entry.min)}` : '—' },
-  ];
-  if (k === 'startovye') return [
-    { icon: 'chart', label: 'Скидка от рынка', value: st.discount ? `до ${st.discount.max}%` : '—' },
-    { icon: 'calendar', label: 'Рассрочка', value: st.installmentMonths ? `до ${st.installmentMonths.max} мес.` : '—' },
-    { icon: 'coins', label: 'Вход', value: st.entry ? `от ${eurShort(st.entry.min)}` : '—' },
-  ];
-  return [
-    { icon: 'chart', label: 'ROI за цикл', value: fmtRange(st.roi, '%') },
-    { icon: 'calendar', label: 'Цикл проекта', value: `${fmtRange(st.paybackMonths)} мес.` },
-    { icon: 'coins', label: 'Вход', value: st.entry ? `от ${eurShort(st.entry.min)}` : '—' },
-  ];
-};
+const pkgPhoto = packagePhoto;
+const pkgFacts = packageFacts;
 const heroObjects = [byPackage('rental')[0], byPackage('partnerskye')[0], byPackage('startovye')[0]].filter(Boolean);
 
 const whyTurkey = [

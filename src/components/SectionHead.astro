@@ -1,0 +1,14 @@
+---
+/** Заголовок секции: надзаголовок + H2 + лид, плавно появляется при прокрутке. Слот — действие справа (кнопка). */
+interface Props { eyebrow?: string; title: string; lead?: string; class?: string; as?: 'h2' | 'h3' }
+const { eyebrow, title, lead, class: cls = '', as: Tag = 'h2' } = Astro.props;
+const hasAction = Astro.slots.has('default');
+---
+<div class:list={['flex flex-wrap items-end justify-between gap-6', cls]}>
+  <div class="max-w-3xl" data-reveal>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <Tag class:list={['h-section', eyebrow && 'mt-3']}>{title}</Tag>
+    {lead && <p class="lead mt-4">{lead}</p>}
+  </div>
+  {hasAction && <div data-reveal style="--i:1"><slot /></div>}
+</div>

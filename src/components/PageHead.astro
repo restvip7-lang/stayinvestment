@@ -1,11 +1,29 @@
 ---
-/** Заголовок внутренней страницы. */
-interface Props { eyebrow?: string; title: string; lead?: string }
-const { eyebrow, title, lead } = Astro.props;
+/**
+ * Шапка внутренней страницы: надзаголовок, H1, лид, слот (кнопки/навигация) и необязательное фото справа.
+ * Появляется поочерёдно (.hero-in), на фоне — мягкие пятна бренда (.blob). Всё отключается при prefers-reduced-motion.
+ */
+import Img from './Img.astro';
+interface Props { eyebrow?: string; title: string; lead?: string; image?: string | null; imageAlt?: string; imageNote?: string }
+const { eyebrow, title, lead, image, imageAlt = '', imageNote } = Astro.props;
 ---
-<header class="container-x pb-10 pt-8 md:pb-14 md:pt-12">
-  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-  <h1 class="mt-4 max-w-4xl text-[clamp(28px,8.6vw,34px)] font-extrabold leading-[1.1] hyphens-auto sm:text-[46px] lg:text-[56px]">{title}</h1>
-  {lead && <p class="lead mt-5 max-w-3xl">{lead}</p>}
-  <slot />
+<header class="relative isolate overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="blob absolute -left-40 -top-48 h-[420px] w-[420px] rounded-full bg-brand/10 blur-3xl"></div>
+    <div class="blob absolute -right-32 top-10 h-[360px] w-[360px] rounded-full bg-accent/[.06] blur-3xl [animation-delay:-6s]"></div>
+  </div>
+  <div class:list={['container-x grid grid-cols-1 gap-10 pb-10 pt-8 md:pb-14 md:pt-12', image && 'lg:grid-cols-[1.15fr_1fr] lg:items-center']}>
+    <div class="min-w-0">
+      {eyebrow && <p class="eyebrow hero-in" style="--i:0">{eyebrow}</p>}
+      <h1 class="hero-in mt-4 max-w-4xl text-[clamp(28px,8.6vw,34px)] font-extrabold leading-[1.1] hyphens-auto sm:text-[46px] lg:text-[56px]" style="--i:1">{title}</h1>
+      {lead && <p class="lead hero-in mt-5 max-w-3xl" style="--i:2">{lead}</p>}
+      <div class="hero-in" style="--i:3"><slot /></div>
+    </div>
+    {image && (
+      <figure class="hero-in img-outline relative overflow-hidden rounded-[20px] shadow-card" style="--i:3">
+        <Img src={image} alt={imageAlt} class="aspect-[4/3] w-full" width={960} height={720} priority sizes="(min-width: 1024px) 45vw, 100vw" />
+        {imageNote && <figcaption class="absolute inset-x-3 bottom-3 rounded-[12px] bg-white/95 px-4 py-2.5 text-[13px] font-semibold shadow-card">{imageNote}</figcaption>}
+      </figure>
+    )}
+  </div>
 </header>

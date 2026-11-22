@@ -2,8 +2,8 @@
 import Img from './Img.astro';
 import Icon from './Icon.astro';
 import { PACKAGES, objectUrl, entryPrice, yieldOf, placeOf, euro, type InvestObject } from '../lib/catalog';
-interface Props { o: InvestObject; priority?: boolean }
-const { o, priority = false } = Astro.props;
+interface Props { o: InvestObject; priority?: boolean; /** порядковый номер для очерёдного появления */ reveal?: number }
+const { o, priority = false, reveal } = Astro.props;
 const y = yieldOf(o);
 const place = placeOf(o);
 const price = entryPrice(o);
@@ -11,7 +11,7 @@ const firstPay = o.metrics.find((m) => m.label === '1й платеж')?.value;
 const term = o.metrics.find((m) => /рассрочки|Окупаемость/.test(m.label));
 const guarantee = o.metrics.find((m) => m.label === 'Срок гарантии аренды');
 ---
-<article class="card lift group relative flex flex-col overflow-hidden" data-object data-package={o.package} data-city={place.city} data-price={price ?? ''} data-yield={y?.value ?? ''}>
+<article class="card lift group relative flex flex-col overflow-hidden" data-object data-package={o.package} data-city={place.city} data-price={price ?? ''} data-yield={y?.value ?? ''} data-reveal={reveal != null ? '' : undefined} style={reveal != null ? `--i:${reveal}` : undefined}>
   <div class="img-outline relative aspect-[4/3] overflow-hidden">
     <Img src={o.images[0]} alt={o.title} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={480} priority={priority} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" />
     <div class="absolute left-3 top-3 flex flex-wrap gap-1.5">

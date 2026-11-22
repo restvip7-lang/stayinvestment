@@ -86,11 +86,11 @@ const ld: Record<string, unknown>[] = [
     <Footer />
     <VizTooltip />
 
-    <a href={SITE.whatsapp} target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lift transition-transform hover:scale-105" aria-label="Написать в WhatsApp">
+    <a href={SITE.whatsapp} target="_blank" rel="noopener" class="wa-fab fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lift hover:scale-105 active:scale-95" aria-label="Написать в WhatsApp">
       <Icon name="whatsapp" size={28} stroke={1.6} />
     </a>
 
-    <dialog id="lead-dialog" class="m-auto w-[min(520px,calc(100vw-32px))] rounded-[20px] bg-page p-0 text-ink shadow-lift backdrop:bg-navy/60 backdrop:backdrop-blur-sm">
+    <dialog id="lead-dialog" class="m-auto w-[min(520px,calc(100vw-32px))] rounded-[20px] bg-page p-0 text-ink shadow-lift">
       <div class="relative p-6 sm:p-8">
         <button type="button" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full hover:bg-sand" aria-label="Закрыть" data-lead-close><Icon name="close" /></button>
         <p class="eyebrow">Stay Investment</p>

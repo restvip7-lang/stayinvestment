@@ -41,7 +41,7 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
     <p>Цены и условия — на дату публикации. Наличие и актуальные условия уточняйте у консультанта.</p>
   </div>
   <div class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-grid>
-    {objects.map((o, i) => <ObjectCard o={o} priority={i < 3} />)}
+    {objects.map((o, i) => <ObjectCard o={o} priority={i < 3} reveal={i % 3} />)}
   </div>
   <div class="hidden rounded-[20px] border border-dashed border-line-2 p-10 text-center" data-empty>
     <p class="text-lg font-bold">Под эти условия объектов нет</p>
@@ -55,7 +55,10 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
     const cards = [...grid.querySelectorAll<HTMLElement>('[data-object]')];
     const order = new Map(cards.map((c, i) => [c, i]));
     const get = (n: string) => root.querySelector<HTMLSelectElement>(`[data-filter="${n}"]`)?.value ?? '';
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const apply = () => {
+      // Плавная перестройка: короткое затухание сетки вместо скачка (150 мс, ease-out)
+      if (!reduce) grid.animate([{ opacity: 0.35, translate: '0 6px' }, { opacity: 1, translate: '0 0' }], { duration: 220, easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)' });
       const city = get('city'), budget = Number(get('budget')) || Infinity, sort = get('sort');
       let shown = 0;
       for (const c of cards) {
