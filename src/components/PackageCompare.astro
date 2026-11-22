@@ -72,7 +72,7 @@ const rows: { label: string; hint?: string; cells: Record<PackageKey, string> }[
           <th scope="col" class="sticky left-0 z-10 w-[20%] bg-surface px-5 py-5 text-[12.5px] font-bold uppercase tracking-[.12em] text-muted">Параметр</th>
           {PACKAGE_ORDER.map((k) => (
             <th scope="col" class="px-5 py-5 align-bottom">
-              <span class="flex items-center gap-2"><span class="legend-key" style={`background:${pkgColor(k)}`}></span><a href={`/investment-directory/${k}/`} class="text-[17px] font-extrabold hover:text-accent-2">«{PACKAGES[k].name}»</a></span>
+              <span class="flex items-center gap-2"><span class="legend-key" style={`background:${pkgColor(k)}`}></span><a href={`/investment-directory/${k}/`} class="text-[17px] font-extrabold hover:text-brand-2">«{PACKAGES[k].name}»</a></span>
               <span class="mt-1 block text-[13px] font-medium text-muted">{s[k].count} объектов в каталоге</span>
             </th>
           ))}
@@ -80,7 +80,7 @@ const rows: { label: string; hint?: string; cells: Record<PackageKey, string> }[
       </thead>
       <tbody>
         {rows.map((r) => (
-          <tr class="border-b border-line last:border-0 even:bg-[#faf8f4]">
+          <tr class="border-b border-line last:border-0 even:bg-[#f7f7fd]">
             <th scope="row" class="sticky left-0 z-10 bg-inherit px-5 py-4 align-top font-bold">
               <span class="block">{r.label}</span>
               {r.hint && <span class="mt-0.5 block text-[12px] font-medium leading-snug text-muted">{r.hint}</span>}

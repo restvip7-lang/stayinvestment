@@ -1,42 +1,52 @@
 @import "tailwindcss";
-@import "@fontsource-variable/manrope";
-
 /*
-  Дизайн-токены Stay Investment (свой стиль, не копия stayinvestment/stayproperty):
-  тёмно-синий «банковский» + бронзовый акцент + тёплый песочный фон. Шрифт — Manrope (кириллица, variable).
+  Фирменный стиль Stay Property (по stayproperty.com): шрифт Euclid Circular A (лицензия группы),
+  светлый сиреневато-белый фон, белые карточки с мягкой тенью, синий и красный акценты,
+  кнопки со стрелкой в белом кружке.
+  Синий бренда #0199E4 — для иконок, полос и плашек; для текста и кнопок — более глубокий #0177BF
+  (контраст с белым 4,8:1 против 3,1:1 у #0199E4). Красный кнопок — #DE1117 из палитры бренда (5:1).
 */
+@font-face { font-family: "Euclid Circular A"; font-style: normal; font-weight: 300; font-display: swap; src: url("/fonts/EuclidCircularA-Light.woff2") format("woff2"); }
+@font-face { font-family: "Euclid Circular A"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/EuclidCircularA-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Euclid Circular A"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/EuclidCircularA-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Euclid Circular A"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/EuclidCircularA-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "Euclid Circular A"; font-style: normal; font-weight: 700 900; font-display: swap; src: url("/fonts/EuclidCircularA-Bold.woff2") format("woff2"); }
+
 @theme static {
-  --color-ink: #0c1a2b;
-  --color-ink-2: #3d4a5c;
-  --color-muted: #7d8798;
-  --color-line: #e5e1d8;
-  --color-line-2: #d6d0c4;
-  --color-page: #f6f4ef;
-  --color-sand: #efe9de;
+  --color-ink: #2b2f36;
+  --color-ink-2: #545b6a;
+  --color-muted: #6e7489;      /* фирменный #8a91aa светлее и для мелкого текста не проходит по контрасту */
+  --color-line: #e7e8f3;
+  --color-line-2: #d5d7e6;
+  --color-page: #fafaff;
+  --color-sand: #f2f2fb;       /* фон чередующихся секций и подвала (#f7f7fd у бренда) */
   --color-surface: #ffffff;
-  --color-navy: #0c1a2b;
-  --color-navy-2: #14273d;
-  --color-navy-3: #1d3550;
-  --color-accent: #b8894d;
-  --color-accent-2: #9c723b;
-  --color-accent-soft: #f3e8d6;
-  --color-sea: #0e5e6f;
-  --color-sea-soft: #e2f0f1;
+  --color-navy: #2b2f36;       /* тёмные элементы: плашки на фото, первый взнос на графике */
+  --color-navy-2: #3a3f48;
+  --color-navy-3: #454b56;
+  --color-brand: #0199e4;
+  --color-brand-2: #0177bf;
+  --color-brand-3: #0369b1;
+  --color-accent: #e82e3d;
+  --color-accent-2: #de1117;
+  --color-accent-soft: #fdecee;
+  --color-sea: #0177bf;        /* положительные цифры: доходность, ROI */
+  --color-sea-soft: #e6f4fc;
   --color-ok: #2f7d5b;
 
-  /* Цвета пакетов на графиках. Проверены валидатором dataviz (светлая тема, фон #fff):
-     яркость, насыщенность, различимость при дальтонизме (ΔE ≥ 12.7) и контраст ≥ 3:1. */
-  --color-pkg-rental: #2c64b0;
-  --color-pkg-startovye: #1e9e8e;
-  --color-pkg-partnerskye: #b9772a;
-  --color-flow-out: #8a93a3;
+  /* Цвета пакетов на графиках. Проверены валидатором dataviz (фон #fff): яркость, насыщенность,
+     различимость при дальтонизме (ΔE ≥ 10), различимость в норме (ΔE ≥ 17) и контраст ≥ 3:1. */
+  --color-pkg-rental: #0177bf;
+  --color-pkg-startovye: #16a085;
+  --color-pkg-partnerskye: #e82e3d;
+  --color-flow-out: #8a91aa;
 
-  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+  --font-sans: "Euclid Circular A", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
 
-  --radius-card: 20px;
-  --radius-big: 28px;
-  --shadow-card: 0 1px 2px #0c1a2b0d, 0 8px 24px #0c1a2b0f;
-  --shadow-lift: 0 2px 4px #0c1a2b12, 0 18px 40px #0c1a2b1f;
+  --radius-card: 15px;
+  --radius-big: 20px;
+  --shadow-card: 0 2px 8px #282c4e0a, 5px 11px 40px #282c4e14;
+  --shadow-lift: 0 4px 12px #282c4e12, 5px 16px 56px #282c4e24;
 }
 
 @layer base {
@@ -44,9 +54,9 @@
   html, body { overflow-x: clip; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { background: var(--color-page); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-  ::selection { background: var(--color-accent-soft); }
-  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
-  h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
+  ::selection { background: var(--color-sea-soft); }
+  :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3 { letter-spacing: -0.01em; text-wrap: balance; }
   p { text-wrap: pretty; }
   img { max-width: 100%; }
   .tabular { font-variant-numeric: tabular-nums; }
@@ -56,23 +66,27 @@
   .container-x { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 16px; }
   @media (min-width: 768px) { .container-x { padding-inline: 32px; } }
 
-  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-2); }
-  .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
-  .on-dark .eyebrow { color: #d9b67f; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--color-accent-2); }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: currentColor; border-radius: 50%; }
+  .on-dark .eyebrow { color: #fff; }
 
-  .h-section { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; font-weight: 750; }
+  .h-section { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.15; font-weight: 700; }
   .lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--color-ink-2); }
-  .on-dark .lead { color: #c3ccd8; }
+  .on-dark .lead { color: #e6f3fc; }
 
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; text-align: center; line-height: 1.2; cursor: pointer; }
+  /* Кнопки — как на stayproperty.com: скругление 12px, у заливных — стрелка в белом кружке справа */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 0 20px; border-radius: 12px; font-weight: 600; font-size: 15px; transition: background-color .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s; text-align: center; line-height: 1.2; cursor: pointer; }
   .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--color-navy); color: #fff; }
-  .btn-primary:hover { background: var(--color-navy-3); }
-  .btn-accent { background: var(--color-accent); color: #fff; }
-  .btn-accent:hover { background: var(--color-accent-2); }
-  .btn-ghost { border: 1.5px solid var(--color-line-2); color: var(--color-ink); background: transparent; }
-  .btn-ghost:hover { border-color: var(--color-ink); }
-  .on-dark .btn-ghost { border-color: #ffffff40; color: #fff; }
+  .btn-primary { background: var(--color-brand-2); color: #fff; }
+  .btn-primary:hover { background: var(--color-brand-3); }
+  .btn-accent { background: var(--color-accent-2); color: #fff; }
+  .btn-accent:hover { background: #b80e13; }
+  .btn-primary > svg, .btn-accent > svg { width: 26px; height: 26px; padding: 6px; margin-right: -8px; border-radius: 50%; background: #fff; flex-shrink: 0; }
+  .btn-primary > svg { color: var(--color-brand-2); }
+  .btn-accent > svg { color: var(--color-accent-2); }
+  .btn-ghost { border: 1.5px solid var(--color-line-2); color: var(--color-ink); background: var(--color-surface); }
+  .btn-ghost:hover { border-color: var(--color-brand); color: var(--color-brand-2); }
+  .on-dark .btn-ghost { border-color: #ffffff66; color: #fff; background: transparent; }
   .on-dark .btn-ghost:hover { border-color: #fff; }
   .btn-sm { min-height: 40px; padding: 0 16px; font-size: 14px; }
 
@@ -82,15 +96,15 @@
   .field { display: block; width: 100%; height: 52px; padding: 0 18px; border-radius: 14px; border: 1.5px solid var(--color-line); background: #fff; font-size: 16px; color: var(--color-ink); transition: border-color .2s; }
   .field:focus { outline: none; border-color: var(--color-accent); }
   textarea.field { height: 112px; padding-top: 14px; resize: vertical; }
-  .on-dark .field { background: #ffffff0f; border-color: #ffffff26; color: #fff; }
-  .on-dark .field::placeholder { color: #9aa6b6; }
+  .on-dark .field { background: #fff; border-color: #fff; color: var(--color-ink); }
+  .on-dark .field::placeholder { color: var(--color-muted); }
 
   /* Инфографика */
   .viz-tip { position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); background: var(--color-navy); color: #fff; font-size: 13px; line-height: 1.35; padding: 8px 10px; border-radius: 10px; white-space: nowrap; box-shadow: var(--shadow-lift); }
   .viz-tip b { font-size: 15px; font-weight: 800; }
   .legend-key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; }
 
-  .img-fallback { background: linear-gradient(135deg, var(--color-sand), #e2dccf); }
+  .img-fallback { background: linear-gradient(135deg, var(--color-sand), #e4e5f2); }
 
   /* Текст статей и описаний */
   .prose-si { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); overflow-wrap: break-word; }
@@ -100,11 +114,11 @@
   .prose-si h3 { font-size: 21px; line-height: 1.3; font-weight: 700; color: var(--color-ink); margin-top: 1.5em; }
   .prose-si h4 { font-size: 18px; font-weight: 700; color: var(--color-ink); margin-top: 1.3em; }
   .prose-si strong { color: var(--color-ink); font-weight: 700; }
-  .prose-si a { color: var(--color-sea); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-si a { color: var(--color-brand-2); text-decoration: underline; text-underline-offset: 3px; }
   .prose-si ul, .prose-si ol { padding-left: 1.3em; }
   .prose-si ul { list-style: none; padding-left: 0; }
   .prose-si ul > li { position: relative; padding-left: 26px; }
-  .prose-si ul > li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 8px; height: 8px; border-radius: 2px; background: var(--color-accent); transform: rotate(45deg); }
+  .prose-si ul > li::before { content: ""; position: absolute; left: 4px; top: .65em; width: 8px; height: 8px; border-radius: 50%; background: var(--color-brand); }
   .prose-si ol { list-style: decimal; }
   .prose-si li + li { margin-top: .45em; }
   .prose-si img { border-radius: 16px; margin-block: 1.4em; }

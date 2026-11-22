@@ -93,7 +93,7 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
           <div class="absolute inset-x-0 top-[12px] h-px bg-line"></div>
           {l.bands.map((b) => (
             <span
-              class:list={['absolute top-[32px] flex h-[22px] items-center overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[11.5px] font-semibold text-ink outline-none focus-visible:ring-2 focus-visible:ring-accent', b.kind === 'pay' ? 'bg-[#e3e7ee]' : 'bg-sand']}
+              class:list={['absolute top-[32px] flex h-[22px] items-center overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[11.5px] font-semibold text-ink outline-none focus-visible:ring-2 focus-visible:ring-brand', b.kind === 'pay' ? 'bg-[#e3e7ee]' : 'bg-sand']}
               style={`left:${pos(b.from)}%;width:calc(${pos(b.to) - pos(b.from)}% - 2px)`}
               tabindex="0" data-tip={b.tip}
               aria-label={b.tip.replace('|', ': ')}

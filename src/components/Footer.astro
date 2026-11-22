@@ -4,38 +4,38 @@ import Icon from './Icon.astro';
 import { NAV, SITE, DISCLAIMER } from '../lib/site';
 const year = new Date().getFullYear();
 ---
-<footer class="on-dark bg-navy text-white">
+<footer class="border-t border-line bg-sand text-ink">
   <div class="container-x grid gap-10 py-14 md:grid-cols-[1.3fr_2fr] md:py-20">
     <div>
-      <Logo tone="light" class="h-7" />
-      <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-[#c3ccd8]">Инвестиционное направление группы {SITE.parent}: подбираем и сопровождаем вложения в недвижимость Турции — от квартиры под аренду до доли в девелоперском проекте.</p>
+      <Logo class="h-7" />
+      <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-ink-2">Инвестиционное направление группы {SITE.parent}: подбираем и сопровождаем вложения в недвижимость Турции — от квартиры под аренду до доли в девелоперском проекте.</p>
       <div class="mt-6 grid gap-2 text-[15px]">
-        <a href={SITE.phoneHref} class="inline-flex items-center gap-2 font-bold tabular hover:text-[#d9b67f]"><Icon name="phone" size={18} />{SITE.phone}</a>
-        <a href={SITE.whatsapp} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-[#d9b67f]"><Icon name="whatsapp" size={18} />WhatsApp</a>
-        <a href={SITE.instagram} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-[#d9b67f]"><Icon name="instagram" size={18} />Instagram</a>
-        <span class="inline-flex items-start gap-2 text-[#c3ccd8]"><Icon name="pin" size={18} class="mt-0.5 shrink-0" />{SITE.addressRu}</span>
+        <a href={SITE.phoneHref} class="inline-flex items-center gap-2 font-bold tabular hover:text-brand-2"><Icon name="phone" size={18} />{SITE.phone}</a>
+        <a href={SITE.whatsapp} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-brand-2"><Icon name="whatsapp" size={18} />WhatsApp</a>
+        <a href={SITE.instagram} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-brand-2"><Icon name="instagram" size={18} />Instagram</a>
+        <span class="inline-flex items-start gap-2 text-ink-2"><Icon name="pin" size={18} class="mt-0.5 shrink-0" />{SITE.addressRu}</span>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
       {NAV.filter((n) => n.children).map((n) => (
         <div>
-          <p class="text-[13px] font-bold uppercase tracking-[.14em] text-[#d9b67f]">{n.label}</p>
-          <ul class="mt-4 grid gap-2.5 text-[15px] text-[#c3ccd8]">
-            {n.children!.map((c) => <li><a href={c.href} class="hover:text-white">{c.label}</a></li>)}
+          <p class="text-[16px] font-bold text-ink">{n.label}</p>
+          <ul class="mt-4 grid gap-2.5 text-[15px] text-ink-2">
+            {n.children!.map((c) => <li><a href={c.href} class="hover:text-brand-2">{c.label}</a></li>)}
           </ul>
         </div>
       ))}
       <div>
-        <p class="text-[13px] font-bold uppercase tracking-[.14em] text-[#d9b67f]">Компания</p>
-        <ul class="mt-4 grid gap-2.5 text-[15px] text-[#c3ccd8]">
-          {NAV.filter((n) => !n.children).map((n) => <li><a href={n.href} class="hover:text-white">{n.label}</a></li>)}
-          <li><a href={SITE.parentUrl} target="_blank" rel="noopener" class="hover:text-white">{SITE.parent} ↗</a></li>
+        <p class="text-[16px] font-bold text-ink">Компания</p>
+        <ul class="mt-4 grid gap-2.5 text-[15px] text-ink-2">
+          {NAV.filter((n) => !n.children).map((n) => <li><a href={n.href} class="hover:text-brand-2">{n.label}</a></li>)}
+          <li><a href={SITE.parentUrl} target="_blank" rel="noopener" class="hover:text-brand-2">{SITE.parent} ↗</a></li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="border-t border-white/10">
-    <div class="container-x grid gap-3 py-6 text-[12.5px] leading-relaxed text-[#8794a6] md:grid-cols-[auto_1fr] md:gap-10">
+  <div class="border-t border-line">
+    <div class="container-x grid gap-3 py-6 text-[12.5px] leading-relaxed text-muted md:grid-cols-[auto_1fr] md:gap-10">
       <p>© {year} {SITE.name} — дочерняя компания {SITE.parent}</p>
       <p class="md:text-right">{DISCLAIMER}</p>
     </div>

@@ -34,13 +34,13 @@ const ld = {
       {n.excerpt && n.source === 'api' && <p class="lead mt-5">{n.excerpt}</p>}
     </header>
     {n.image && (
-      <div class="mx-auto mt-8 max-w-5xl overflow-hidden rounded-[28px]">
+      <div class="mx-auto mt-8 max-w-5xl overflow-hidden rounded-[20px]">
         <Img src={n.image} alt={n.title} class="aspect-[16/9] w-full" width={1280} height={720} priority sizes="(min-width: 1024px) 1024px, 100vw" />
       </div>
     )}
     <div class="mx-auto mt-10 grid max-w-6xl gap-12 lg:grid-cols-[1fr_300px]">
       <div class="prose-si min-w-0" set:html={n.html} />
-      <aside class="grid content-start gap-5 lg:sticky lg:top-24 lg:self-start">
+      <aside class="grid content-start gap-5 lg:sticky lg:top-36 lg:self-start">
         <div class="card p-6">
           <p class="text-lg font-extrabold">Нужна консультация?</p>
           <p class="mt-1 text-[14px] text-ink-2">Ответим на вопросы и подберём объекты под ваш бюджет.</p>

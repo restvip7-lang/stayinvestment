@@ -2,7 +2,7 @@
 
 Новый сайт [stayinvestment.com](https://stayinvestment.com): инвестиции в недвижимость Турции, направление группы Stay Property.
 Структура и тексты перенесены со старого сайта на WordPress и отредактированы ([docs/content-audit.md](docs/content-audit.md)),
-дизайн — новый. Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4 + Vercel (SSR + CDN-кэш)**.
+дизайн — в фирменном стиле Stay Property (как stayproperty.com: шрифт Euclid Circular A по лицензии группы, `public/fonts/`; токены — `src/styles/global.css`). Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4 + Vercel (SSR + CDN-кэш)**.
 
 ## Запуск
 

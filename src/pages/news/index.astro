@@ -31,7 +31,7 @@ const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
     {pages > 1 && (
       <nav class="mt-16 flex flex-wrap items-center justify-center gap-2" aria-label="Страницы">
         {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
-          <a href={href(p)} aria-current={p === page ? 'page' : undefined} class:list={['grid h-11 min-w-11 place-items-center rounded-full px-3 font-bold tabular', p === page ? 'bg-navy text-white' : 'border border-line-2 hover:border-ink']}>{p}</a>
+          <a href={href(p)} aria-current={p === page ? 'page' : undefined} class:list={['grid h-11 min-w-11 place-items-center rounded-full px-3 font-bold tabular', p === page ? 'bg-brand-2 text-white' : 'border border-line-2 hover:border-ink']}>{p}</a>
         ))}
       </nav>
     )}

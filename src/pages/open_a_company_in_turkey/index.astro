@@ -24,14 +24,14 @@ const faq = [
   <PageHead eyebrow="Инвесторам" title="Как открыть компанию в Турции: пошаговая инструкция" lead="Формы компаний, документы, регистрация, налоги и новые правила найма — всё, что нужно знать иностранному предпринимателю." />
   <section class="container-x pb-10">
     <div class="grid gap-12 lg:grid-cols-[260px_1fr_300px]">
-      <nav class="hidden lg:sticky lg:top-24 lg:block lg:self-start" aria-label="Содержание">
+      <nav class="hidden lg:sticky lg:top-36 lg:block lg:self-start" aria-label="Содержание">
         <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">Содержание</p>
         <ol class="mt-4 grid gap-2 text-[14.5px]">
-          {toc.map((t) => <li><a href={`#${t.id}`} class="text-ink-2 hover:text-accent-2">{t.label}</a></li>)}
+          {toc.map((t) => <li><a href={`#${t.id}`} class="text-ink-2 hover:text-brand-2">{t.label}</a></li>)}
         </ol>
       </nav>
       <article class="prose-si min-w-0 max-w-3xl" set:html={body} />
-      <aside class="lg:sticky lg:top-24 lg:self-start">
+      <aside class="lg:sticky lg:top-36 lg:self-start">
         <div class="card p-6">
           <p class="text-lg font-extrabold">Поможем открыть бизнес в Турции</p>
           <p class="mt-1 text-[14px] text-ink-2">Регистрация компании, бухгалтер, ВНЖ и разрешение на работу — под ключ.</p>

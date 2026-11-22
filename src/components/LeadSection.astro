@@ -10,21 +10,21 @@ const {
 } = Astro.props;
 ---
 <section class="container-x py-16 md:py-24">
-  <div class="on-dark relative overflow-hidden rounded-[32px] bg-navy px-6 py-10 text-white sm:px-10 md:px-14 md:py-14">
-    <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-accent/20 blur-3xl"></div>
+  <div class="on-dark relative overflow-hidden rounded-[20px] bg-gradient-to-br from-brand-2 to-brand-3 px-6 py-10 text-white sm:px-10 md:px-14 md:py-14">
+    <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/60 blur-3xl"></div>
     <div class="relative grid gap-10 lg:grid-cols-2 lg:items-center">
       <div>
         <p class="eyebrow">Консультация</p>
         <h2 class="h-section mt-3">{title}</h2>
         <p class="lead mt-4 max-w-xl">{text}</p>
-        <ul class="mt-6 grid gap-2 text-[15px] text-[#c3ccd8]">
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="text-[#d9b67f]" />Бесплатно и без обязательств</li>
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="text-[#d9b67f]" />Онлайн или в офисе в Аланье</li>
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="text-[#d9b67f]" />На русском, английском и турецком</li>
+        <ul class="mt-6 grid gap-2 text-[15px] text-white">
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />Бесплатно и без обязательств</li>
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />Онлайн или в офисе в Аланье</li>
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />На русском, английском и турецком</li>
         </ul>
-        <a href={SITE.phoneHref} class="mt-6 inline-flex items-center gap-2 text-lg font-bold tabular hover:text-[#d9b67f]"><Icon name="phone" size={20} />{SITE.phone}</a>
+        <a href={SITE.phoneHref} class="mt-6 inline-flex items-center gap-2 text-lg font-bold tabular hover:underline"><Icon name="phone" size={20} />{SITE.phone}</a>
       </div>
-      <div class="rounded-[24px] bg-white/[.04] p-5 ring-1 ring-white/10 sm:p-7">
+      <div class="rounded-[15px] bg-white/10 p-5 ring-1 ring-white/20 sm:p-7">
         <LeadForm source={source} withComment dark />
       </div>
     </div>

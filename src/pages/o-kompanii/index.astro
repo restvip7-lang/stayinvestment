@@ -26,7 +26,7 @@ const timeline = [
 
   <section class="container-x pb-16">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <Img src="/images/site/about.jpg" alt="Проект Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[28px]" width={1024} height={768} priority sizes="(min-width: 1024px) 50vw, 100vw" />
+      <Img src="/images/site/about.jpg" alt="Проект Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[20px]" width={1024} height={768} priority sizes="(min-width: 1024px) 50vw, 100vw" />
       <div class="prose-si">
         <p>Бренд Stay Property работает на рынке Турции {yearsOnMarket()} лет и сегодня входит в число самых динамично развивающихся девелоперов региона.</p>
         <p>Мы начали в 2018 году с небольшого жилого комплекса в Авсалларе и за несколько лет стали одним из ключевых игроков рынка. До 90% квартир в комплексах, которые мы строим, продаются ещё на этапе строительства — задолго до сдачи домов.</p>
@@ -36,12 +36,12 @@ const timeline = [
     </div>
   </section>
 
-  <section class="on-dark bg-navy text-white">
+  <section class="border-y border-line bg-surface">
     <div class="container-x grid grid-cols-2 gap-y-8 py-12 md:grid-cols-4">
       {STATS.map((s) => (
-        <div class="border-l border-white/15 pl-5">
+        <div class="border-l-2 border-brand pl-5">
           <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]">{s.value.toLocaleString('ru-RU')}{s.suffix}</p>
-          <p class="mt-1 text-[14px] text-[#c3ccd8]">{s.label}</p>
+          <p class="mt-1 text-[14px] text-ink-2">{s.label}</p>
         </div>
       ))}
     </div>
@@ -69,7 +69,7 @@ const timeline = [
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
           {offices.map((o) => (
             <div class="card flex items-start gap-3 p-5">
-              <Icon name="pin" size={20} class="mt-0.5 shrink-0 text-accent" />
+              <Icon name="pin" size={20} class="mt-0.5 shrink-0 text-brand" />
               <div><p class="font-extrabold">{o.country}</p><p class="text-[14px] text-muted">{o.cities}</p></div>
             </div>
           ))}
@@ -89,7 +89,7 @@ const timeline = [
         </div>
       </div>
       <div class="card self-start p-7">
-        <Icon name="coins" size={28} class="text-accent" />
+        <Icon name="coins" size={28} class="text-brand" />
         <h3 class="mt-4 text-xl font-extrabold">Инвестируйте удобно</h3>
         <p class="mt-2 text-[15px] leading-relaxed text-ink-2">Принимаем оплату в удобной для вас форме и валюте. Подберём схему расчётов и график платежей под вашу ситуацию.</p>
         <button type="button" class="btn btn-primary mt-6" data-lead-open data-lead-title="Получить презентацию компании" data-lead-source="about-booklet">Получить презентацию компании</button>

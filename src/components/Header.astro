@@ -5,42 +5,54 @@ import { NAV, SITE } from '../lib/site';
 const path = Astro.url.pathname;
 const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\/$/, '').split('/').slice(0, 2).join('/'));
 ---
-<header class="sticky top-0 z-40 border-b border-line/70 bg-page/85 backdrop-blur-md">
-  <div class="container-x flex h-[72px] items-center gap-6">
-    <Logo class="h-6 md:h-7" />
-    <nav class="ml-4 hidden flex-1 items-center gap-1 lg:flex" aria-label="Основное меню">
-      {NAV.map((item) => (
-        <div class="group relative">
-          <a href={item.href} class:list={['flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-semibold transition-colors hover:text-accent-2', active(item.href) ? 'text-accent-2' : 'text-ink']}>
-            {item.label}
-            {item.children && <Icon name="chevron" size={16} class="opacity-60 transition-transform group-hover:rotate-180" />}
-          </a>
-          {item.children && (
-            <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <div class="card w-[320px] p-2">
-                {item.children.map((c) => (
-                  <a href={c.href} class="block rounded-xl px-4 py-3 hover:bg-page">
-                    <span class="block text-[15px] font-bold text-ink">{c.label}</span>
-                    {c.note && <span class="mt-0.5 block text-[13px] text-muted">{c.note}</span>}
-                  </a>
-                ))}
+<header class="sticky top-0 z-40 shadow-[0_1px_0_var(--color-line)]">
+  <!-- Верхняя строка: логотип, контакты, обратный звонок (как на stayproperty.com) -->
+  <div class="bg-sand">
+    <div class="container-x flex h-[64px] items-center gap-4 lg:h-[68px]">
+      <Logo class="h-6 md:h-7" />
+      <div class="ml-auto flex items-center gap-2 sm:gap-3">
+        <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-1 text-[15px] font-bold tabular hover:text-brand-2 md:flex">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#e30a17" /><circle cx="8.2" cy="10" r="4.6" fill="#fff" /><circle cx="9.4" cy="10" r="3.7" fill="#e30a17" /><path d="m13.6 10 2.9-.95-1.8 2.45V8.5l1.8 2.45z" fill="#fff" /></svg>
+          {SITE.phone}
+        </a>
+        <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" />WhatsApp</a>
+        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title="Обратный звонок" data-lead-source="header">Обратный звонок<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
+        <button type="button" class="grid h-11 w-11 place-items-center rounded-xl border border-line-2 bg-surface lg:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <Icon name="menu" size={22} />
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Нижняя строка: меню + главное действие -->
+  <div class="hidden bg-surface lg:block">
+    <div class="container-x flex h-[60px] items-center justify-center gap-2">
+      <nav class="flex items-center gap-1" aria-label="Основное меню">
+        {NAV.map((item) => (
+          <div class="group relative">
+            <a href={item.href} class:list={['flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium transition-colors hover:text-brand-2', active(item.href) ? 'text-brand-2' : 'text-ink']}>
+              {item.label}
+              {item.children && <Icon name="chevron" size={16} class="opacity-60 transition-transform group-hover:rotate-180" />}
+            </a>
+            {item.children && (
+              <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div class="card w-[320px] p-2">
+                  {item.children.map((c) => (
+                    <a href={c.href} class="block rounded-xl px-4 py-3 hover:bg-page">
+                      <span class="block text-[15px] font-semibold text-ink">{c.label}</span>
+                      {c.note && <span class="mt-0.5 block text-[13px] text-muted">{c.note}</span>}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      ))}
-    </nav>
-    <div class="ml-auto flex items-center gap-2">
-      <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-2 text-[15px] font-bold tabular 2xl:flex"><Icon name="phone" size={18} class="text-accent" />{SITE.phone}</a>
-      <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><Icon name="whatsapp" size={18} />WhatsApp</a>
-      <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title="Заказать звонок" data-lead-source="header">Консультация</button>
-      <button type="button" class="grid h-11 w-11 place-items-center rounded-full border border-line-2 lg:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-        <Icon name="menu" size={22} />
-      </button>
+            )}
+          </div>
+        ))}
+      </nav>
+      <a href="/investment-directory/" class="btn btn-accent btn-sm ml-3">Подобрать инвестицию<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></a>
     </div>
   </div>
   <div id="mobile-menu" class="hidden border-t border-line bg-page lg:hidden" data-menu>
-    <nav class="container-x max-h-[calc(100dvh-72px)] overflow-y-auto py-4" aria-label="Мобильное меню">
+    <nav class="container-x max-h-[calc(100dvh-64px)] overflow-y-auto py-4" aria-label="Мобильное меню">
       {NAV.map((item) => (
         <div class="border-b border-line py-2 last:border-0">
           <a href={item.href} class="block py-2 text-lg font-bold">{item.label}</a>

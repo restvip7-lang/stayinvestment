@@ -63,7 +63,7 @@ const ld: Record<string, unknown>[] = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#0c1a2b" />
+    <meta name="theme-color" content="#fafaff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Новости Stay Investment" href="/news/rss.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
@@ -89,7 +89,7 @@ const ld: Record<string, unknown>[] = [
       <Icon name="whatsapp" size={28} stroke={1.6} />
     </a>
 
-    <dialog id="lead-dialog" class="m-auto w-[min(520px,calc(100vw-32px))] rounded-[28px] bg-page p-0 text-ink shadow-lift backdrop:bg-navy/60 backdrop:backdrop-blur-sm">
+    <dialog id="lead-dialog" class="m-auto w-[min(520px,calc(100vw-32px))] rounded-[20px] bg-page p-0 text-ink shadow-lift backdrop:bg-navy/60 backdrop:backdrop-blur-sm">
       <div class="relative p-6 sm:p-8">
         <button type="button" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full hover:bg-sand" aria-label="Закрыть" data-lead-close><Icon name="close" /></button>
         <p class="eyebrow">Stay Investment</p>
@@ -125,7 +125,7 @@ const ld: Record<string, unknown>[] = [
         const status = form.querySelector<HTMLElement>('[data-lead-status]')!;
         const show = (ok: boolean, text: string) => {
           status.textContent = text;
-          status.className = `rounded-xl px-4 py-3 text-[14px] font-semibold ${ok ? 'bg-sea-soft text-sea' : 'bg-accent-soft text-accent-2'}`;
+          status.className = `rounded-xl px-4 py-3 text-[14px] font-semibold ${ok ? 'bg-sea-soft text-sea' : 'bg-sea-soft text-brand-2'}`;
         };
         if (!form.checkValidity()) { form.reportValidity(); return; }
         const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
