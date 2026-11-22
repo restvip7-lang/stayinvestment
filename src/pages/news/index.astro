@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import NewsCard from '../../components/NewsCard.astro';
+import Img from '../../components/Img.astro';
+import { formatDate } from '../../lib/news';
 import LeadSection from '../../components/LeadSection.astro';
 import { getNews } from '../../lib/news';
 
@@ -22,11 +24,20 @@ const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
   <section class="container-x pb-10">
     {first && page === 1 ? (
       <>
-        <div class="grid gap-10 lg:grid-cols-2"><NewsCard n={first} large />{rest[0] && <NewsCard n={rest[0]} large />}</div>
-        <div class="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{rest.slice(1).map((n) => <NewsCard n={n} />)}</div>
+        <a href={first.url} class="lift group img-outline relative block overflow-hidden rounded-[20px] shadow-card" data-reveal>
+          <Img src={first.image} alt={first.title} class="aspect-[4/5] w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.03] sm:aspect-[21/9]" width={1440} height={620} priority sizes="(min-width: 1280px) 1216px, 100vw" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1d2128]/90 via-[#1d2128]/35 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
+            <span class="chip bg-accent-2 text-white">Свежая новость</span>
+            <p class="mt-4 text-[13px] font-semibold text-white/80"><time datetime={first.date}>{formatDate(first.date)}</time></p>
+            <h2 class="mt-2 max-w-3xl text-[24px] font-bold leading-tight sm:text-[34px]">{first.title}</h2>
+            {first.excerpt && <p class="mt-3 hidden max-w-2xl text-[16px] leading-relaxed text-white/85 sm:line-clamp-2">{first.excerpt}</p>}
+          </div>
+        </a>
+        <div class="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{rest.map((n, i) => <div data-reveal style={`--i:${i % 3}`}><NewsCard n={n} /></div>)}</div>
       </>
     ) : (
-      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{items.map((n) => <NewsCard n={n} />)}</div>
+      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{items.map((n, i) => <div data-reveal style={`--i:${i % 3}`}><NewsCard n={n} /></div>)}</div>
     )}
     {pages > 1 && (
       <nav class="mt-16 flex flex-wrap items-center justify-center gap-2" aria-label="Страницы">

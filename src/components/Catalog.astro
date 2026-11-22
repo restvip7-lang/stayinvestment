@@ -7,6 +7,7 @@ const { objects, current = null } = Astro.props;
 const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
 ---
 <div data-catalog>
+  <h2 class="sr-only">Объекты</h2>
   <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
     <nav class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:px-0" aria-label="Пакеты">
       <a href="/investment-directory/" class:list={['btn btn-sm', current ? 'btn-ghost' : 'btn-primary']}>Все</a>
@@ -76,6 +77,19 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
       root.querySelector('[data-count]')!.textContent = `Найдено объектов: ${shown}`;
       root.querySelector('[data-empty]')!.classList.toggle('hidden', shown > 0);
     };
-    root.querySelectorAll('[data-filter]').forEach((s) => s.addEventListener('change', apply));
+    // Фильтры в адресе страницы: ссылкой с фильтром можно поделиться, «назад» не сбрасывает выбор
+    const params = new URLSearchParams(location.search);
+    let restored = false;
+    root.querySelectorAll<HTMLSelectElement>('[data-filter]').forEach((sel) => {
+      const v = params.get(sel.dataset.filter!);
+      if (v && [...sel.options].some((o) => o.value === v)) { sel.value = v; restored = true; }
+      sel.addEventListener('change', () => {
+        const q = new URLSearchParams(location.search);
+        if (sel.value) q.set(sel.dataset.filter!, sel.value); else q.delete(sel.dataset.filter!);
+        history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`);
+        apply();
+      });
+    });
+    if (restored) apply();
   }
 </script>

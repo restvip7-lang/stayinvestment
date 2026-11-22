@@ -96,11 +96,11 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
               class:list={['absolute top-[32px] flex h-[22px] items-center overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[11.5px] font-semibold text-ink outline-none focus-visible:ring-2 focus-visible:ring-brand', b.kind === 'pay' ? 'bg-[#e3e7ee]' : 'bg-sand']}
               style={`left:${pos(b.from)}%;width:calc(${pos(b.to) - pos(b.from)}% - 2px)`}
               tabindex="0" data-tip={b.tip}
-              aria-label={b.tip.replace('|', ': ')}
+              role="img" aria-label={b.tip.replace('|', ': ')}
             >{fits(b) ? b.label : ''}</span>
           ))}
           {l.events.map((e) => (
-            <span class="absolute top-0 outline-none" style={`left:${pos(e.at)}%;transform:${anchor(e.at)}`} tabindex="0" data-tip={e.tip}>
+            <span class="absolute top-0 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2" style={`left:${pos(e.at)}%;transform:${anchor(e.at)}`} tabindex="0" data-tip={e.tip}>
               <span class:list={[circleAlign(e.at), 'grid h-[24px] w-[24px] place-items-center rounded-full ring-2 ring-surface']} style={`background:${e.kind === 'out' ? 'var(--color-flow-out)' : pkgColor(l.k)}`}>
                 <svg width="12" height="12" aria-hidden="true">{e.kind === 'out' ? <path d="M6 1.5v8M3 6.5l3 3 3-3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" /> : <path d="M6 10.5v-8M3 5.5l3-3 3 3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" />}</svg>
               </span>

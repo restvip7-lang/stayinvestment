@@ -40,8 +40,7 @@ const ld = objects.length
         <dl class="mt-8 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
           {packageFacts(key).map((f) => (
             <div class="card flex items-center gap-3 p-4 sm:block">
-              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sea-soft text-brand-2"><Icon name={f.icon} size={18} /></span>
-              <dt class="text-[13px] text-muted sm:mt-3">{f.label}</dt>
+              <dt class="flex items-center gap-3 text-[13px] text-muted sm:block"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sea-soft text-brand-2 sm:mb-3"><Icon name={f.icon} size={18} /></span>{f.label}</dt>
               <dd class="ml-auto text-[16px] font-bold tabular sm:ml-0 sm:mt-0.5">{f.value}</dd>
             </div>
           ))}

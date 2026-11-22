@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import LeadForm from '../../components/LeadForm.astro';
+import ReadingProgress from '../../components/ReadingProgress.astro';
 import Faq from '../../components/Faq.astro';
 import LeadSection from '../../components/LeadSection.astro';
 import html from '../../content/pages/open-company.html?raw';
@@ -26,11 +27,11 @@ const faq = [
     <div class="grid gap-12 lg:grid-cols-[260px_1fr_300px]">
       <nav class="hidden lg:sticky lg:top-36 lg:block lg:self-start" aria-label="Содержание">
         <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">Содержание</p>
-        <ol class="mt-4 grid gap-2 text-[14.5px]">
-          {toc.map((t) => <li><a href={`#${t.id}`} class="text-ink-2 hover:text-brand-2">{t.label}</a></li>)}
+        <ol class="mt-4 grid gap-1 border-l border-line pl-3 text-[14.5px]">
+          {toc.map((t) => <li><a href={`#${t.id}`} class="-ml-3 block border-l-2 border-transparent py-1 pl-3 text-ink-2 transition-colors duration-200 hover:text-brand-2 aria-[current=true]:border-brand aria-[current=true]:font-semibold aria-[current=true]:text-brand-2" data-toc={t.id}>{t.label}</a></li>)}
         </ol>
       </nav>
-      <article class="prose-si min-w-0 max-w-3xl" set:html={body} />
+      <article class="prose-si min-w-0 max-w-3xl" id="guide" set:html={body} />
       <aside class="lg:sticky lg:top-36 lg:self-start">
         <div class="card p-6">
           <p class="text-lg font-extrabold">Поможем открыть бизнес в Турции</p>
@@ -43,4 +44,15 @@ const faq = [
   </section>
   <Faq items={faq} />
   <LeadSection source="open-company" title="Открываете бизнес в Турции?" text="Подберём форму компании, подготовим документы и пройдём регистрацию вместе с вами. А если нужен офис, отель или помещение под бизнес — подберём и его." />
+  <ReadingProgress target="#guide" />
 </Base>
+<script>
+  // Подсветка текущего раздела в оглавлении
+  const links = new Map([...document.querySelectorAll<HTMLAnchorElement>('[data-toc]')].map((a) => [a.dataset.toc!, a]));
+  const set = (id: string) => links.forEach((a, k) => a.setAttribute('aria-current', String(k === id)));
+  const io = new IntersectionObserver((entries) => {
+    const vis = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (vis) set(vis.target.id);
+  }, { rootMargin: '-140px 0px -60% 0px' });
+  document.querySelectorAll('#guide h2[id]').forEach((h) => io.observe(h));
+</script>

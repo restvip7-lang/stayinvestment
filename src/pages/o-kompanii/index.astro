@@ -22,12 +22,12 @@ const timeline = [
 ];
 ---
 <Base title="О компании Stay Investment — инвестиционное направление Stay Property" description={`Stay Investment — дочерняя компания девелопера Stay Property: ${yearsOnMarket()} лет на рынке Турции, 14+ собственных проектов, 9 офисов в 6 странах. Инвестиции в недвижимость Аланьи и Стамбула.`} crumbs={[{ label: 'О компании' }]}>
-  <PageHead eyebrow="О компании" title="Инвестируем в недвижимость Турции вместе с девелопером" lead="Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами." />
+  <PageHead eyebrow="О компании" image="/images/site/company.jpg" imageAlt="Жилой комплекс Stay Property в Аланье" imageNote="До 90% квартир продаются ещё на этапе строительства" title="Инвестируем в недвижимость Турции вместе с девелопером" lead="Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами." />
 
   <section class="container-x pb-16">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <Img src="/images/site/about.jpg" alt="Проект Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[20px]" width={1024} height={768} priority sizes="(min-width: 1024px) 50vw, 100vw" />
-      <div class="prose-si">
+      <div class="img-outline relative overflow-hidden rounded-[20px]" data-reveal><Img src="/images/site/about.jpg" alt="Проект Stay Property в Аланье" class="aspect-[4/3] w-full" width={1024} height={768} sizes="(min-width: 1024px) 50vw, 100vw" /></div>
+      <div class="prose-si" data-reveal style="--i:1">
         <p>Бренд Stay Property работает на рынке Турции {yearsOnMarket()} лет и сегодня входит в число самых динамично развивающихся девелоперов региона.</p>
         <p>Мы начали в 2018 году с небольшого жилого комплекса в Авсалларе и за несколько лет стали одним из ключевых игроков рынка. До 90% квартир в комплексах, которые мы строим, продаются ещё на этапе строительства — задолго до сдачи домов.</p>
         <p>С самого начала нашей целью было предлагать клиентам самые выгодные условия покупки и лучший сервис. Сегодня мы уверенно можем сказать, что этого добились.</p>
@@ -38,9 +38,9 @@ const timeline = [
 
   <section class="border-y border-line bg-surface">
     <div class="container-x grid grid-cols-2 gap-y-8 py-12 md:grid-cols-4">
-      {STATS.map((s) => (
-        <div class="border-l-2 border-brand pl-5">
-          <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]">{s.value.toLocaleString('ru-RU')}{s.suffix}</p>
+      {STATS.map((s, i) => (
+        <div class="border-l-2 border-brand pl-5" data-reveal style={`--i:${i}`}>
+          <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]"><span data-count={s.value}>{s.value.toLocaleString('ru-RU')}</span>{s.suffix}</p>
           <p class="mt-1 text-[14px] text-ink-2">{s.label}</p>
         </div>
       ))}
@@ -49,12 +49,12 @@ const timeline = [
 
   <section class="container-x py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-2">
-      <div>
+      <div data-reveal>
         <p class="eyebrow">История</p>
         <h2 class="h-section mt-3">От одного комплекса — к международной группе</h2>
-        <ol class="mt-8 grid gap-6 border-l border-line-2 pl-6">
-          {timeline.map((t) => (
-            <li class="relative">
+        <ol class="timeline relative mt-8 grid gap-6 pl-6" data-reveal>
+          {timeline.map((t, i) => (
+            <li class="relative" data-reveal style={`--i:${i + 1}`}>
               <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-accent ring-4 ring-page"></span>
               <p class="font-extrabold text-accent-2">{t.year}</p>
               <p class="mt-1 text-[16px] leading-relaxed text-ink-2">{t.text}</p>
@@ -62,13 +62,13 @@ const timeline = [
           ))}
         </ol>
       </div>
-      <div>
+      <div data-reveal style="--i:1">
         <p class="eyebrow">География</p>
         <h2 class="h-section mt-3">9 офисов в 6 странах</h2>
         <p class="mt-4 text-[16px] leading-relaxed text-ink-2">Каждое представительство оказывает полный спектр услуг компании — от консультации до сделки и управления объектом.</p>
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          {offices.map((o) => (
-            <div class="card flex items-start gap-3 p-5">
+          {offices.map((o, i) => (
+            <div class="card lift flex items-start gap-3 p-5" data-reveal style={`--i:${i % 2}`}>
               <Icon name="pin" size={20} class="mt-0.5 shrink-0 text-brand" />
               <div><p class="font-extrabold">{o.country}</p><p class="text-[14px] text-muted">{o.cities}</p></div>
             </div>
@@ -80,7 +80,7 @@ const timeline = [
 
   <section class="bg-sand/60 py-16 md:py-24">
     <div class="container-x grid gap-12 lg:grid-cols-2">
-      <div>
+      <div data-reveal>
         <p class="eyebrow">Рынок</p>
         <h2 class="h-section mt-3">Почему мы выбрали Турцию</h2>
         <div class="prose-si mt-6">
@@ -88,23 +88,23 @@ const timeline = [
           <p>За последние полтора десятилетия экономика Турции выросла в несколько раз, а страна входит в число ведущих развивающихся экономик мира. Аналитики международных агентств регулярно называют Турцию одним из перспективных рынков для инвесторов.</p>
         </div>
       </div>
-      <div class="card self-start p-7">
+      <div class="card self-start p-7" data-reveal style="--i:1">
         <Icon name="coins" size={28} class="text-brand" />
         <h3 class="mt-4 text-xl font-extrabold">Инвестируйте удобно</h3>
         <p class="mt-2 text-[15px] leading-relaxed text-ink-2">Принимаем оплату в удобной для вас форме и валюте. Подберём схему расчётов и график платежей под вашу ситуацию.</p>
-        <button type="button" class="btn btn-primary mt-6" data-lead-open data-lead-title="Получить презентацию компании" data-lead-source="about-booklet">Получить презентацию компании</button>
+        <button type="button" class="btn btn-primary mt-6" data-lead-open data-lead-title="Получить презентацию компании" data-lead-source="about-booklet">Получить презентацию компании<Icon name="arrow" size={18} /></button>
       </div>
     </div>
   </section>
 
   <section class="container-x py-16 md:py-24">
-    <div class="flex flex-wrap items-end justify-between gap-4">
+    <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
       <h2 class="h-section">Команда</h2>
       <p class="max-w-md text-[15px] text-ink-2">Многолетний опыт на рынке Турции и знание всех юридических тонкостей.</p>
     </div>
     <div class="mt-8 grid gap-5 sm:grid-cols-3">
-      {TEAM.map((t) => (
-        <div class="card overflow-hidden">
+      {TEAM.map((t, i) => (
+        <div class="card lift overflow-hidden" data-reveal style={`--i:${i}`}>
           <Img src={t.photo} alt={t.name} class="aspect-[4/3] w-full object-top" width={600} height={450} sizes="(min-width: 640px) 33vw, 100vw" />
           <div class="flex items-center justify-between gap-3 p-5">
             <div><p class="font-extrabold">{t.name}</p><p class="text-[14px] text-muted">{t.role}</p></div>

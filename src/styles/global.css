@@ -15,7 +15,7 @@
 @theme static {
   --color-ink: #2b2f36;
   --color-ink-2: #545b6a;
-  --color-muted: #6e7489;      /* фирменный #8a91aa светлее и для мелкого текста не проходит по контрасту */
+  --color-muted: #646a7f;      /* фирменный #8a91aa светлее; #646a7f даёт ≥ 4,7:1 на всех фонах сайта (WCAG AA) */
   --color-line: #e7e8f3;
   --color-line-2: #d5d7e6;
   --color-page: #fafaff;
@@ -25,12 +25,12 @@
   --color-navy-2: #3a3f48;
   --color-navy-3: #454b56;
   --color-brand: #0199e4;
-  --color-brand-2: #0177bf;
-  --color-brand-3: #0369b1;
+  --color-brand-2: #016fb3;    /* текст и кнопки: ≥ 4,7:1 на светлых фонах, белый на нём — 5,4:1 */
+  --color-brand-3: #0a5c94;
   --color-accent: #e82e3d;
-  --color-accent-2: #de1117;
+  --color-accent-2: #cc0f15;   /* красный для текста и кнопок: ≥ 5:1 */
   --color-accent-soft: #fdecee;
-  --color-sea: #0177bf;        /* положительные цифры: доходность, ROI */
+  --color-sea: #016fb3;        /* положительные цифры: доходность, ROI */
   --color-sea-soft: #e6f4fc;
   --color-ok: #2f7d5b;
 
@@ -52,7 +52,11 @@
 @layer base {
   /* overflow-x: clip — страховка от бокового сдвига страницы на телефоне; в отличие от hidden не ломает position: sticky */
   html, body { overflow-x: clip; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
+  @media (min-width: 1024px) { html { scroll-padding-top: 148px; } }  /* липкая шапка не перекрывает якоря и фокус */
+  a, button, summary, select, input, textarea, label { touch-action: manipulation; }
+  a, button, summary { -webkit-tap-highlight-color: transparent; }  /* отклик даёт :active у кнопок, системная вспышка не нужна */
+  dialog, [data-menu] nav { overscroll-behavior: contain; }
   body { background: var(--color-page); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   ::selection { background: var(--color-sea-soft); }
   :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; border-radius: 6px; }
@@ -82,7 +86,7 @@
   .btn-primary { background: var(--color-brand-2); color: #fff; }
   .btn-primary:hover { background: var(--color-brand-3); }
   .btn-accent { background: var(--color-accent-2); color: #fff; }
-  .btn-accent:hover { background: #b80e13; }
+  .btn-accent:hover { background: #a90c11; }
   .btn-primary > svg, .btn-accent > svg { width: 26px; height: 26px; padding: 6px; margin-right: -8px; border-radius: 50%; background: #fff; flex-shrink: 0; }
   .btn-primary > svg { color: var(--color-brand-2); }
   .btn-accent > svg { color: var(--color-accent-2); }
@@ -162,6 +166,33 @@
 #lead-dialog[open]::backdrop { background-color: rgb(43 47 54 / 0.55); backdrop-filter: blur(4px); transition-duration: 200ms; }
 @starting-style { #lead-dialog[open]::backdrop { background-color: rgb(43 47 54 / 0); backdrop-filter: blur(0); } }
 
+/* Полосы на графиках «вырастают» от нуля, когда блок появился на экране */
+.bar-grow { transform-origin: left; }
+.js [data-reveal] .bar-grow { scale: 0 1; transition: scale 900ms var(--ease-out-quart); }
+.js [data-reveal].is-in .bar-grow { scale: 1 1; }
+@media (prefers-reduced-motion: reduce) { .js [data-reveal] .bar-grow { scale: 1 1; transition: none; } }
+
+/* Вертикальные столбики растут снизу */
+.bar-grow-y { transform-origin: bottom; }
+.js [data-reveal] .bar-grow-y { scale: 1 0; transition: scale 700ms var(--ease-out-quart); }
+.js [data-reveal].is-in .bar-grow-y { scale: 1 1; }
+/* Индикатор «в эфире» — мягкая пульсация */
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.live-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .js [data-reveal] .bar-grow-y { scale: 1 1; transition: none; } .live-dot { animation: none; } }
+
+/* Раскрытие ответа в FAQ: плавная высота через ::details-content (Chrome 131+), иначе — мгновенно */
+.faq { interpolate-size: allow-keywords; }
+.faq::details-content { block-size: 0; overflow: clip; transition: block-size 260ms var(--ease-out-quart), content-visibility 260ms allow-discrete; }
+.faq[open]::details-content { block-size: auto; }
+@media (prefers-reduced-motion: reduce) { .faq::details-content { transition: none; } }
+
+/* Линия истории «прорисовывается» сверху вниз при появлении */
+.timeline::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 2px; background: var(--color-line-2); transform-origin: top; scale: 1 1; }
+.js .timeline::before { scale: 1 0; transition: scale 1100ms var(--ease-out-quart) 150ms; }
+.js .timeline.is-in::before { scale: 1 1; }
+@media (prefers-reduced-motion: reduce) { .js .timeline::before { scale: 1 1; transition: none; } }
+
 /* Полноэкранная галерея: то же появление, что у модалки */
 .gallery-box { opacity: 0; transition-property: opacity, overlay, display; transition-duration: 160ms; transition-behavior: allow-discrete; }
 .gallery-box[open] { opacity: 1; transition-duration: 220ms; }
@@ -172,7 +203,9 @@
 .cta-bar { translate: 0 110%; transition: translate 260ms var(--ease-out-quart); }
 .cta-bar[data-on] { translate: 0 0; }
 .wa-fab { transition-property: bottom, scale; transition-duration: 260ms; transition-timing-function: var(--ease-out-quart); }
-.has-cta-bar .wa-fab { bottom: 92px; }
+.has-cta-bar .wa-fab { bottom: calc(92px + env(safe-area-inset-bottom)); }
+.wa-fab { margin-bottom: env(safe-area-inset-bottom); }
+.cta-bar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
 @media (min-width: 1024px) { .has-cta-bar .wa-fab { bottom: 20px; } }
 
 /* Мобильное меню: выезд сверху вместо мгновенного появления */

@@ -1,0 +1,27 @@
+---
+/**
+ * Полоса прогресса чтения под шапкой (2px, цвет бренда). Обновляется на requestAnimationFrame, только transform.
+ * target — CSS-селектор статьи; прогресс считается от начала до конца этого блока.
+ */
+interface Props { target: string }
+const { target } = Astro.props;
+---
+<div class="pointer-events-none fixed inset-x-0 top-[64px] z-40 h-[3px] lg:top-[128px]" aria-hidden="true">
+  <div class="h-full origin-left bg-brand" style="transform: scaleX(0)" data-progress={target}></div>
+</div>
+<script>
+  for (const bar of document.querySelectorAll<HTMLElement>('[data-progress]')) {
+    const el = document.querySelector<HTMLElement>(bar.dataset.progress!);
+    if (!el) continue;
+    let ticking = false;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      const total = r.height - window.innerHeight * 0.6;
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+      bar.style.transform = `scaleX(${p})`;
+      ticking = false;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+</script>

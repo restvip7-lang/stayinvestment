@@ -65,6 +65,8 @@ const ld: Record<string, unknown>[] = [
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#fafaff" />
+    <link rel="preload" href="/fonts/EuclidCircularA-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/EuclidCircularA-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Новости Stay Investment" href="/news/rss.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
@@ -105,6 +107,8 @@ const ld: Record<string, unknown>[] = [
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const nf = new Intl.NumberFormat('ru-RU');
       const countUp = (el: HTMLElement) => {
+        if (el.dataset.counted) return;
+        el.dataset.counted = '1';
         const to = Number(el.dataset.count);
         if (reduce || !Number.isFinite(to)) { el.textContent = nf.format(to); return; }
         const t0 = performance.now(), dur = 1400;
@@ -127,6 +131,20 @@ const ld: Record<string, unknown>[] = [
         }
       }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
       document.querySelectorAll('[data-reveal], [data-count]').forEach((el) => io.observe(el));
+      // Страховка от быстрой прокрутки (резкий свайп): всё, что уже выше нижнего края экрана, проявляем принудительно.
+      let sweeping = false;
+      const sweep = () => {
+        sweeping = false;
+        const limit = innerHeight;
+        document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)').forEach((el) => {
+          if (el.getBoundingClientRect().top < limit) {
+            el.classList.add('is-in');
+            el.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
+            io.unobserve(el);
+          }
+        });
+      };
+      addEventListener('scroll', () => { if (!sweeping) { sweeping = true; setTimeout(() => requestAnimationFrame(sweep), 120); } }, { passive: true });
 
       const dlg = document.getElementById('lead-dialog') as HTMLDialogElement | null;
       document.addEventListener('click', (e) => {

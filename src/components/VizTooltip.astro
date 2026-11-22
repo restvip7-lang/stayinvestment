@@ -1,7 +1,8 @@
 ---
 /** Общая подсказка для инфографики: любой элемент с data-tip показывает её при наведении и фокусе. Текст — через textContent. */
 ---
-<div class="viz-tip" role="tooltip" id="viz-tip"></div>
+<!-- Визуальная подсказка; для скринридеров те же данные есть в aria-label и скрытых таблицах -->
+<div class="viz-tip" id="viz-tip" aria-hidden="true"></div>
 <script>
   const tip = document.getElementById('viz-tip')!;
   let current: HTMLElement | null = null;

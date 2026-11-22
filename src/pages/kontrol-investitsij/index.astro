@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import Icon from '../../components/Icon.astro';
+import InvestorCabinetMock from '../../components/InvestorCabinetMock.astro';
 import Faq from '../../components/Faq.astro';
 import LeadSection from '../../components/LeadSection.astro';
 
@@ -21,17 +22,21 @@ const faq = [
 ---
 <Base title="Контроль инвестиций — кабинет инвестора Stay Investment" description="Прозрачный контроль вложений в недвижимость Турции: кабинет инвестора с онлайн-камерой 24/7, ежемесячными фотоотчётами, прайс-листами, динамикой продаж и документами по проекту." crumbs={[{ label: 'Инвесторам' }, { label: 'Контроль инвестиций' }]}>
   <PageHead eyebrow="Инвесторам" title="Контроль инвестиций в реальном времени" lead="После подписания инвестиционного договора вы получаете доступ в личный кабинет инвестора на stayinvestment.com. Там собрано всё, чтобы самостоятельно следить за проектом и возвратом вложений." />
+  <section class="container-x pb-12">
+    <div data-reveal><InvestorCabinetMock /></div>
+  </section>
   <section class="container-x pb-16">
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {features.map((f) => (
-        <div class="card p-7">
+    <h2 class="h-section" data-reveal>Что видно в кабинете</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((f, i) => (
+        <div class="card lift p-7" data-reveal style={`--i:${i % 3}`}>
           <span class="grid h-12 w-12 place-items-center rounded-2xl bg-sea-soft text-sea"><Icon name={f.icon} size={24} /></span>
-          <h2 class="mt-5 text-lg font-extrabold">{f.title}</h2>
+          <h3 class="mt-5 text-lg font-extrabold">{f.title}</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-ink-2">{f.text}</p>
         </div>
       ))}
     </div>
-    <div class="on-dark mt-8 grid gap-6 rounded-[20px] bg-gradient-to-br from-brand-2 to-brand-3 p-8 text-white md:grid-cols-[auto_1fr] md:items-center md:p-10">
+    <div class="on-dark mt-8 grid gap-6 rounded-[20px] bg-gradient-to-br from-brand-2 to-brand-3 p-8 text-white md:grid-cols-[auto_1fr] md:items-center md:p-10" data-reveal>
       <Icon name="key" size={40} class="text-white" />
       <div>
         <p class="text-xl font-extrabold">Независимый контроль, а не только наши отчёты</p>

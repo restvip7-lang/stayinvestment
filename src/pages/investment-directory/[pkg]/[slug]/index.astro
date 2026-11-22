@@ -92,9 +92,9 @@ const ld = {
         {facts.length > 0 && (
           <dl class="card grid overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
             {facts.map((f) => (
-              <div class="-mb-px -mr-px flex gap-3 border-b border-r border-line p-5">
-                <Icon name={f.icon} size={22} class="mt-0.5 shrink-0 text-brand" />
-                <div><dt class="text-[13px] text-muted">{f.label}</dt><dd class="font-bold">{f.value}</dd></div>
+              <div class="-mb-px -mr-px grid grid-cols-[22px_1fr] gap-x-3 border-b border-r border-line p-5">
+                <dt class="contents"><Icon name={f.icon} size={22} class="row-span-2 mt-0.5 text-brand" /><span class="text-[13px] text-muted">{f.label}</span></dt>
+                <dd class="col-start-2 font-bold">{f.value}</dd>
               </div>
             ))}
           </dl>
