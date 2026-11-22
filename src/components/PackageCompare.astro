@@ -36,9 +36,36 @@ const rows: { label: string; hint?: string; cells: Record<PackageKey, string> }[
   { label: 'Профиль риска', cells: { rental: 'Консервативный', startovye: 'Умеренный', partnerskye: 'Выше среднего' } },
 ];
 ---
-<div class="card overflow-hidden">
+<!-- Телефон: одна карточка, пакеты переключаются вкладками — без горизонтальной прокрутки -->
+<div class="card overflow-hidden md:hidden" data-pkg-tabs>
+  <div class="grid grid-cols-3 gap-1 border-b border-line p-1.5" role="tablist" aria-label="Пакет">
+    {PACKAGE_ORDER.map((k, i) => (
+      <button type="button" role="tab" id={`pc-tab-${k}`} aria-controls={`pc-panel-${k}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}
+        class="flex min-h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[13px] font-extrabold text-muted aria-selected:bg-page aria-selected:text-ink" data-tab={k}>
+        <span class="truncate">{PACKAGES[k].name}</span>
+        <span class="h-[3px] w-6 rounded-full" style={`background:${pkgColor(k)}`} aria-hidden="true"></span>
+      </button>
+    ))}
+  </div>
+  {PACKAGE_ORDER.map((k, i) => (
+    <div role="tabpanel" id={`pc-panel-${k}`} aria-labelledby={`pc-tab-${k}`} hidden={i !== 0} data-panel={k}>
+      <p class="px-5 pt-4 text-[13px] text-muted">{s[k].count} объектов в каталоге · <a href={`/investment-directory/${k}/`} class="font-bold text-sea underline underline-offset-2">смотреть</a></p>
+      <dl class="divide-y divide-line px-5 pb-2">
+        {rows.map((r) => (
+          <div class="grid grid-cols-[38%_1fr] gap-3 py-3">
+            <dt class="text-[13px] font-bold leading-snug">{r.label}</dt>
+            <dd class="text-[14px] leading-snug text-ink-2">{r.cells[k]}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  ))}
+</div>
+
+<!-- Планшет и десктоп: таблица -->
+<div class="card hidden overflow-hidden md:block">
   <div class="overflow-x-auto">
-    <table class="w-full min-w-[760px] border-collapse text-left text-[14.5px]">
+    <table class="w-full min-w-[720px] border-collapse text-left text-[14.5px]">
       <caption class="sr-only">Сравнение инвестиционных пакетов Stay Investment</caption>
       <thead>
         <tr class="border-b border-line">
@@ -65,3 +92,23 @@ const rows: { label: string; hint?: string; cells: Record<PackageKey, string> }[
     </table>
   </div>
 </div>
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-pkg-tabs]')) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+    const select = (t: HTMLButtonElement) => {
+      for (const x of tabs) {
+        const on = x === t;
+        x.setAttribute('aria-selected', String(on));
+        x.tabIndex = on ? 0 : -1;
+        root.querySelector<HTMLElement>(`[data-panel="${x.dataset.tab}"]`)!.hidden = !on;
+      }
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+      });
+    });
+  }
+</script>

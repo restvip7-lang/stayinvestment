@@ -40,6 +40,8 @@
 }
 
 @layer base {
+  /* overflow-x: clip — страховка от бокового сдвига страницы на телефоне; в отличие от hidden не ломает position: sticky */
+  html, body { overflow-x: clip; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { background: var(--color-page); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   ::selection { background: var(--color-accent-soft); }
