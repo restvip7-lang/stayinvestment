@@ -14,6 +14,7 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
       {PACKAGE_ORDER.map((k) => (
         <a href={`/investment-directory/${k}/`} class:list={['btn btn-sm', current === k ? 'btn-primary' : 'btn-ghost']}>{PACKAGES[k].name}</a>
       ))}
+      <a href="/investment-directory/biznes-investitsii/" class="btn btn-ghost btn-sm">Инвестиции в бизнес</a>
     </nav>
     <div class="grid grid-cols-2 gap-2 sm:flex">
       {cities.length > 1 && (
