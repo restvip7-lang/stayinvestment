@@ -2,14 +2,14 @@
 
 Новый сайт [stayinvestment.com](https://stayinvestment.com): инвестиции в недвижимость Турции, направление группы Stay Property.
 Структура и тексты перенесены со старого сайта на WordPress и отредактированы ([docs/content-audit.md](docs/content-audit.md)),
-дизайн — в фирменном стиле Stay Property (как stayproperty.com: шрифт Euclid Circular A по лицензии группы, `public/fonts/`; токены — `src/styles/global.css`). Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4 + Vercel (SSR + CDN-кэш)**.
+дизайн — в фирменном стиле Stay Property (как stayproperty.com: шрифт Euclid Circular A по лицензии группы, `public/fonts/`; токены — `src/styles/global.css`). Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4, SSR на Node (свой сервер, Plesk 167.86.66.155)**.
 
 ## Запуск
 
 ```bash
 npm install
 npm run dev        # http://localhost:4321
-npm run build      # сборка под Vercel (.vercel/output)
+npm run build      # сборка (dist/, запуск: node dist/server/entry.mjs)
 npm run check      # проверка типов
 ```
 
@@ -19,15 +19,15 @@ npm run check      # проверка типов
 
 | Ветка | Что это | Выкладка |
 |---|---|---|
-| `main` | боевой сайт | Vercel выкладывает каждый коммит в `main` на прод автоматически |
-| `dev` | общая рабочая ветка | Vercel собирает превью со своим адресом — там проверяем |
-| `feature/…` | отдельная задача (по желанию) | превью, как у `dev` |
+| `main` | боевой сайт | сервер сам забирает каждый новый коммит `main` и выкладывает за 1–2 минуты ([deploy/README.md](deploy/README.md)) |
+| `dev` | общая рабочая ветка | не выкладывается; проверяем локально (`npm run dev`) |
+| `feature/…` | отдельная задача (по желанию) | как `dev` |
 
 Порядок работы:
 
 1. Перед началом — `git checkout dev && git pull`. В `main` напрямую не коммитим.
 2. Коммиты — в `dev` (или в `feature/…` от `dev`, потом слияние в `dev`).
-3. Проверили превью `dev` → Pull request `dev` → `main` → слияние. Это и есть выкладка на прод.
+3. Проверили → Pull request `dev` → `main` → слияние. Это и есть выкладка на прод.
 4. После слияния прод отдаёт номер коммита на `/version.txt`; монитор (platform.stayproperty.com) сверяет его с `main` и пишет в Telegram, если выкладка застряла.
 
 Перед PR: `npm run build` и `npm run check` без ошибок.

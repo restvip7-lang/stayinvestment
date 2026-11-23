@@ -1,22 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import node from '@astrojs/node';
 import tailwindcss from '@tailwindcss/vite';
 
-// SSR на Vercel + кэш страниц на CDN (заголовки в src/middleware.ts): новости из админки
-// подтягиваются без пересборки, не чаще раза в 10 минут; сброс — /api/revalidate.
+// SSR на своём сервере (Node, Plesk 167.86.66.155): новости из админки подтягиваются без пересборки,
+// кэш данных в памяти 10 минут (src/lib/cache.ts); сброс — /api/revalidate.
 export default defineConfig({
   site: 'https://stayinvestment.com',
   output: 'server',
   trailingSlash: 'ignore',
-  adapter: vercel({
-    imageService: false,
-    imagesConfig: {
-      sizes: [320, 640, 960, 1280, 1920],
-      formats: ['image/avif', 'image/webp'],
-      domains: ['cdn-ru.bitrix24.ru', 'stay-property.fra1.cdn.digitaloceanspaces.com', 'eu2.contabostorage.com', 'stayinvestment.com'],
-      minimumCacheTTL: 86400,
-    },
-  }),
+  adapter: node({ mode: 'standalone' }),
+  // внешние фото уменьшает сам сервер (sharp) через /_image — см. src/components/Img.astro
+  image: {
+    domains: ['cdn-ru.bitrix24.ru', 'stay-property.fra1.cdn.digitaloceanspaces.com', 'eu2.contabostorage.com', 'stayinvestment.com'],
+  },
   vite: { plugins: [tailwindcss()] },
 });

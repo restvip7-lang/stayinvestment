@@ -55,7 +55,7 @@ const opt = import.meta.env.PROD;
   const EASE = 'cubic-bezier(0.165, 0.84, 0.44, 1)';
   for (const g of document.querySelectorAll<HTMLElement>('[data-gallery]')) {
     const images: string[] = JSON.parse(g.dataset.images || '[]');
-    const url = (src: string, w: number) => (g.dataset.opt && /^https:/.test(src) ? `/_vercel/image?url=${encodeURIComponent(src)}&w=${w}&q=78` : src);
+    const url = (src: string, w: number) => (g.dataset.opt && /^https:/.test(src) ? `/_image?href=${encodeURIComponent(src)}&w=${w}&q=78&f=webp` : src);
     const stage = g.querySelector<HTMLElement>('[data-stage]')!;
     const main = stage.querySelector<HTMLImageElement>('img')!;
     const counter = g.querySelector('[data-counter]');
