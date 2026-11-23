@@ -31,7 +31,6 @@ GIT_SSH_COMMAND='ssh -i ~/.ssh/stayinvestment_deploy' git clone git@github.com:s
 git -C repo config core.sshCommand 'ssh -i ~/.ssh/stayinvestment_deploy'
 bash repo/deploy/deploy.sh --force
 ( crontab -l 2>/dev/null; echo '* * * * * bash $HOME/stayinvestment-app/repo/deploy/deploy.sh >> $HOME/stayinvestment-app/logs/deploy.log 2>&1' ) | crontab -
-( crontab -l; echo '0 3 * * * curl -s -H "Authorization: Bearer $REVALIDATE_SECRET" https://stayinvestment.com/api/revalidate/ >/dev/null' ) | crontab -
 ```
 
 `deploy.sh` берётся из `repo/` — сам себя обновляет вместе с `main` (со следующего запуска).

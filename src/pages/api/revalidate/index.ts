@@ -5,7 +5,7 @@ export const prerender = false;
 
 /**
  * Сброс кэша данных: админка может дёргать после публикации новости,
- * cron на сервере — раз в сутки (deploy/README.md). Authorization: Bearer <REVALIDATE_SECRET | CRON_SECRET>.
+ * без вызова данные и так обновляются раз в 10 минут (src/lib/cache.ts). Authorization: Bearer <REVALIDATE_SECRET | CRON_SECRET>.
  */
 function authorized(request: Request) {
   const auth = request.headers.get('authorization') ?? '';
