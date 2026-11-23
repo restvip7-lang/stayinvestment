@@ -36,10 +36,10 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
     <span class="flex items-center overflow-hidden whitespace-nowrap rounded-[4px] bg-navy px-2 text-[12px] font-bold text-white transition-[width] duration-200" data-bar-a>Вложения</span>
     <span class="flex items-center justify-end overflow-hidden whitespace-nowrap rounded-[4px] px-2 text-[12px] font-bold text-white transition-[width] duration-200" style={`background:${pkgColor(o.package)}`} data-bar-b></span>
   </div>
-  <dl class="mt-5 grid gap-4 border-t border-line pt-5 sm:grid-cols-3">
-    <div><dt class="text-[13px] text-muted" data-l1></dt><dd class="text-xl font-extrabold tabular" data-v1></dd></div>
-    <div><dt class="text-[13px] text-muted" data-l2></dt><dd class="text-xl font-extrabold tabular" data-v2></dd></div>
-    <div><dt class="text-[13px] text-muted">В пересчёте на год</dt><dd class="text-xl font-extrabold tabular" data-v3></dd></div>
+  <dl class="mt-5 divide-y divide-line border-t border-line">
+    <div class="flex items-baseline justify-between gap-4 py-3"><dt class="text-[14px] leading-snug text-muted" data-l1></dt><dd class="shrink-0 whitespace-nowrap text-right text-[18px] font-extrabold tabular" data-v1></dd></div>
+    <div class="flex items-baseline justify-between gap-4 py-3"><dt class="text-[14px] leading-snug text-muted" data-l2></dt><dd class="shrink-0 whitespace-nowrap text-right text-[18px] font-extrabold tabular" data-v2></dd></div>
+    <div class="flex items-baseline justify-between gap-4 py-3"><dt class="text-[14px] leading-snug text-muted">В пересчёте на год</dt><dd class="shrink-0 whitespace-nowrap text-right text-[18px] font-extrabold tabular text-brand-2" data-v3></dd></div>
   </dl>
   <p class="mt-4 text-[12.5px] leading-snug text-muted">Расчёт ориентировочный и не является офертой: до налогов и расходов на обслуживание. Годовая доходность — сложный процент{cfg.mode === 'start' ? ' при горизонте 24 мес.' : ''}. Как считаем — <a href="/metodika-i-riski/#metodika" class="underline underline-offset-2 hover:text-ink">методика</a>.</p>
 </section>
