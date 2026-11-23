@@ -273,7 +273,7 @@ const faq = [
   <section class="bg-sand/60 py-16 md:py-24">
     <div class="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
       <div class="relative">
-        <Img src="/images/site/company.jpg" alt="Жилой комплекс Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[20px]" width={660} height={495} sizes="(min-width: 1024px) 50vw, 100vw" />
+        <Img src="/images/site/about-complex.jpg" alt="Жилой комплекс Stay Property в Аланье" class="aspect-[4/3] w-full rounded-[20px]" width={660} height={495} sizes="(min-width: 1024px) 50vw, 100vw" />
         <div class="card absolute -bottom-6 right-4 max-w-[260px] p-5 sm:right-8">
           <p class="text-3xl font-extrabold text-sea">до 90%</p>
           <p class="mt-1 text-[14px] text-ink-2">квартир в наших комплексах продаётся ещё на этапе строительства</p>
@@ -295,7 +295,7 @@ const faq = [
       <div class="mt-8 grid gap-5 sm:grid-cols-3">
         {TEAM.map((t, i) => (
           <div class="card lift overflow-hidden" data-reveal style={`--i:${i}`}>
-            <Img src={t.photo} alt={t.name} class="aspect-[4/3] w-full object-top" width={600} height={450} sizes="(min-width: 640px) 33vw, 100vw" />
+            <div class="img-outline relative overflow-hidden"><Img src={t.photo} alt={t.name} class={`aspect-[4/5] w-full ${t.focus}`} width={600} height={750} sizes="(min-width: 640px) 33vw, 100vw" /></div>
             <div class="flex items-center justify-between gap-3 p-5">
               <div>
                 <p class="font-extrabold">{t.name}</p>

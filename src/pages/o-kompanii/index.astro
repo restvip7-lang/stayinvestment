@@ -22,11 +22,11 @@ const timeline = [
 ];
 ---
 <Base title="О компании Stay Investment — инвестиционное направление Stay Property" description={`Stay Investment — дочерняя компания девелопера Stay Property: ${yearsOnMarket()} лет на рынке Турции, 14+ собственных проектов, 9 офисов в 6 странах. Инвестиции в недвижимость Аланьи и Стамбула.`} crumbs={[{ label: 'О компании' }]}>
-  <PageHead eyebrow="О компании" image="/images/site/company.jpg" imageAlt="Жилой комплекс Stay Property в Аланье" imageNote="До 90% квартир продаются ещё на этапе строительства" title="Инвестируем в недвижимость Турции вместе с девелопером" lead="Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами." />
+  <PageHead eyebrow="О компании" image="/images/site/about-hero.jpg" imageAlt="Жилой комплекс Stay Property в Аланье" imageNote="До 90% квартир продаются ещё на этапе строительства" title="Инвестируем в недвижимость Турции вместе с девелопером" lead="Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами." />
 
   <section class="container-x pb-16">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <div class="img-outline relative overflow-hidden rounded-[20px]" data-reveal><Img src="/images/site/about.jpg" alt="Проект Stay Property в Аланье" class="aspect-[4/3] w-full" width={1024} height={768} sizes="(min-width: 1024px) 50vw, 100vw" /></div>
+      <div class="img-outline relative overflow-hidden rounded-[20px]" data-reveal><Img src="/images/site/about-complex.jpg" alt="Жилой комплекс Stay Property в Аланье: бассейн и вид на город" class="aspect-[4/3] w-full" width={1024} height={768} sizes="(min-width: 1024px) 50vw, 100vw" /></div>
       <div class="prose-si" data-reveal style="--i:1">
         <p>Бренд Stay Property работает на рынке Турции {yearsOnMarket()} лет и сегодня входит в число самых динамично развивающихся девелоперов региона.</p>
         <p>Мы начали в 2018 году с небольшого жилого комплекса в Авсалларе и за несколько лет стали одним из ключевых игроков рынка. До 90% квартир в комплексах, которые мы строим, продаются ещё на этапе строительства — задолго до сдачи домов.</p>
@@ -105,7 +105,7 @@ const timeline = [
     <div class="mt-8 grid gap-5 sm:grid-cols-3">
       {TEAM.map((t, i) => (
         <div class="card lift overflow-hidden" data-reveal style={`--i:${i}`}>
-          <Img src={t.photo} alt={t.name} class="aspect-[4/3] w-full object-top" width={600} height={450} sizes="(min-width: 640px) 33vw, 100vw" />
+          <div class="img-outline relative overflow-hidden"><Img src={t.photo} alt={t.name} class={`aspect-[4/5] w-full ${t.focus}`} width={600} height={750} sizes="(min-width: 640px) 33vw, 100vw" /></div>
           <div class="flex items-center justify-between gap-3 p-5">
             <div><p class="font-extrabold">{t.name}</p><p class="text-[14px] text-muted">{t.role}</p></div>
             <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={`Написать ${t.name} в WhatsApp`}><Icon name="whatsapp" size={20} /></a>
