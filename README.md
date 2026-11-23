@@ -55,7 +55,7 @@ npm run check      # проверка типов
 ## Репозитории
 
 - **Разработка:** `restvip7-lang/stayinvestment` — сюда идут все правки (по умолчанию).
-- **Рабочий репозиторий организации:** `stayproperty-org/stayinvestment`, ветка `main` — обновляется **только по команде**:
+- **Рабочий репозиторий организации:** `stayproperty-org/stayinvestment`, ветка **`dev`** (в `main` не отправляем) — обновляется **только по команде**:
   GitHub Actions → «Отправить в рабочий репозиторий» → Run workflow (`.github/workflows/push-to-work-repo.yml`).
   Нужен секрет `ORG_PUSH_TOKEN` (fine-grained токен `staymng-bit`, Contents: Read and write на `stayproperty-org/stayinvestment`).
   Если в рабочем репозитории появились чужие коммиты, отправка останавливается и ничего не перезаписывает.

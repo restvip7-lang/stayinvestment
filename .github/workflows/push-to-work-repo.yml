@@ -1,4 +1,4 @@
-# Отправка кода в рабочий репозиторий организации stayproperty-org/stayinvestment.
+# Отправка кода в рабочий репозиторий организации stayproperty-org/stayinvestment — только в ветку dev.
 # Запускается только вручную (Actions → «Отправить в рабочий репозиторий» → Run workflow)
 # или по команде Claude. Автоматически при пуше НЕ срабатывает.
 #
@@ -11,11 +11,6 @@ name: Отправить в рабочий репозиторий
 
 on:
   workflow_dispatch:
-    inputs:
-      target_branch:
-        description: Ветка в рабочем репозитории
-        required: true
-        default: main
 
 permissions:
   contents: read
@@ -37,7 +32,7 @@ jobs:
       - name: Отправить в stayproperty-org/stayinvestment
         env:
           TOKEN: ${{ secrets.ORG_PUSH_TOKEN }}
-          BRANCH: ${{ inputs.target_branch }}
+          BRANCH: dev   # в рабочий репозиторий отправляем ТОЛЬКО в dev; main не трогаем
         run: |
           set -euo pipefail
           if [ -z "${TOKEN}" ]; then
