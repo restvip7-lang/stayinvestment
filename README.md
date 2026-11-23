@@ -51,3 +51,11 @@ npm run check      # проверка типов
 - [ ] Перенести фото объектов с CDN Битрикс24 к себе (ссылки могут протухнуть)
 - [ ] `STAY_NOINDEX=0` — открыть для индексации
 - [ ] EN / SR версии
+
+## Репозитории
+
+- **Разработка:** `restvip7-lang/stayinvestment` — сюда идут все правки (по умолчанию).
+- **Рабочий репозиторий организации:** `stayproperty-org/stayinvestment`, ветка `main` — обновляется **только по команде**:
+  GitHub Actions → «Отправить в рабочий репозиторий» → Run workflow (`.github/workflows/push-to-work-repo.yml`).
+  Нужен секрет `ORG_PUSH_TOKEN` (fine-grained токен `staymng-bit`, Contents: Read and write на `stayproperty-org/stayinvestment`).
+  Если в рабочем репозитории появились чужие коммиты, отправка останавливается и ничего не перезаписывает.
