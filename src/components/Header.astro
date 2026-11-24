@@ -2,37 +2,22 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { NAV, SITE } from '../lib/site';
-// Направления группы — как в шапке stay.com.tr; Stay Investment — текущий сайт
-const GROUP = [
-  { label: 'STAY PROJECTS', href: 'https://stay.com.tr/ru/turkey/sale/complexes/' },
-  { label: 'STAY PROPERTY', href: 'https://stay.com.tr/ru/turkey/sale/' },
-  { label: 'PRIVE', href: 'https://stay.com.tr/ru/prive/' },
-  { label: 'RENTAL', href: 'https://stay.com.tr/ru/turkey/rent/' },
-  { label: 'INVESTMENT', href: '/', current: true },
-];
 const path = Astro.url.pathname;
 const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\/$/, '').split('/').slice(0, 2).join('/'));
 ---
-<header class="sticky top-0 z-40 border-b border-line bg-page/90 backdrop-blur-md">
-  <!-- Верхняя строка (как на stay.com.tr): знак группы, направления Stay, контакты -->
-  <div>
-    <div class="container-x flex h-[60px] items-center gap-4 lg:h-[64px]">
-      <Logo class="h-[22px] lg:h-[24px]" />
-      <nav class="hidden items-center xl:flex" aria-label="Направления группы Stay">
-        {GROUP.map((g) => (
-          <a href={g.href} aria-current={g.current ? 'true' : undefined} class:list={['flex items-center whitespace-nowrap font-[family-name:var(--font-display)] text-[11px] leading-none tracking-[.04em] transition-colors', g.current ? 'text-ink' : 'text-muted hover:text-ink']}>
-            <span class="mx-4 h-[16px] w-px bg-line-2" aria-hidden="true"></span>{g.label}
-          </a>
-        ))}
-      </nav>
+<header class="sticky top-0 z-40 shadow-[0_1px_0_var(--color-line)]">
+  <!-- Верхняя строка: логотип, контакты, обратный звонок (как на stayproperty.com) -->
+  <div class="bg-sand">
+    <div class="container-x flex h-[64px] items-center gap-4 lg:h-[68px]">
+      <Logo class="h-6 md:h-7" />
       <div class="ml-auto flex items-center gap-2 sm:gap-3">
-        <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-1 text-[15px] font-medium tabular hover:text-brand-2 md:flex" aria-label={`Позвонить: ${SITE.phone}`}>
-          <Icon name="phone" size={18} />
-          <span class="xl:hidden 2xl:inline">{SITE.phone}</span>
+        <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-1 text-[15px] font-bold tabular hover:text-brand-2 md:flex">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#e30a17" /><circle cx="8.2" cy="10" r="4.6" fill="#fff" /><circle cx="9.4" cy="10" r="3.7" fill="#e30a17" /><path d="m13.6 10 2.9-.95-1.8 2.45V8.5l1.8 2.45z" fill="#fff" /></svg>
+          {SITE.phone}
         </a>
-        <a href={SITE.whatsapp} class="hidden h-10 w-10 place-items-center rounded-full border border-line-2 bg-surface transition-colors hover:border-ink sm:grid" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" /></a>
-        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title="Обратный звонок" data-lead-source="header">Обратный звонок</button>
-        <button type="button" class="group/menu relative grid h-11 w-11 place-items-center rounded-full border border-line-2 bg-surface lg:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" />WhatsApp</a>
+        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title="Обратный звонок" data-lead-source="header">Обратный звонок<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
+        <button type="button" class="group/menu relative grid h-11 w-11 place-items-center rounded-xl border border-line-2 bg-surface lg:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
           <!-- Иконки сменяются через opacity+scale+blur (контекстная анимация иконок) -->
           <Icon name="menu" size={22} class="col-start-1 row-start-1 transition-[opacity,scale,filter] duration-200 group-aria-expanded/menu:scale-50 group-aria-expanded/menu:opacity-0 group-aria-expanded/menu:blur-[2px] motion-reduce:transition-none" />
           <Icon name="close" size={22} class="col-start-1 row-start-1 scale-50 opacity-0 blur-[2px] transition-[opacity,scale,filter] duration-200 group-aria-expanded/menu:scale-100 group-aria-expanded/menu:opacity-100 group-aria-expanded/menu:blur-0 motion-reduce:transition-none" />
@@ -41,12 +26,12 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
     </div>
   </div>
   <!-- Нижняя строка: меню + главное действие -->
-  <div class="hidden border-t border-line lg:block">
-    <div class="container-x flex h-[56px] items-center gap-2">
-      <nav class="-ml-3 flex items-center gap-1" aria-label="Основное меню">
+  <div class="hidden bg-surface lg:block">
+    <div class="container-x flex h-[60px] items-center justify-center gap-2">
+      <nav class="flex items-center gap-1" aria-label="Основное меню">
         {NAV.map((item) => (
           <div class="group relative">
-            <a href={item.href} class:list={['flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[15px] transition-colors hover:bg-[#d0d1d74d]', active(item.href) ? 'bg-[#d0d1d74d] text-ink' : 'text-ink-2']}>
+            <a href={item.href} class:list={['flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium transition-colors hover:text-brand-2', active(item.href) ? 'text-brand-2' : 'text-ink']}>
               {item.label}
               {item.children && <Icon name="chevron" size={16} class="opacity-60 transition-transform group-hover:rotate-180" />}
             </a>
@@ -65,7 +50,7 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
           </div>
         ))}
       </nav>
-      <a href="/investment-directory/" class="btn btn-accent btn-sm ml-auto">Подобрать инвестицию<Icon name="arrow" size={16} /></a>
+      <a href="/investment-directory/" class="btn btn-accent btn-sm ml-3">Подобрать инвестицию<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></a>
     </div>
   </div>
   <div id="mobile-menu" class="absolute inset-x-0 top-full border-t border-line bg-page shadow-lift lg:hidden" data-menu>

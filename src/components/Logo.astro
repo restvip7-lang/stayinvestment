@@ -1,15 +1,8 @@
 ---
-/**
- * Логотип: знак группы Stay Property (как на stay.com.tr) + надпись STAY INVESTMENT шрифтом заголовков.
- * Цвет — currentColor: на тёмном фоне передайте tone="light".
- */
+/** Логотип. Пока — растр со старого сайта; когда придёт вектор, заменить на SVG здесь. */
 interface Props { tone?: 'dark' | 'light'; class?: string }
 const { tone = 'dark', class: cls = 'h-7' } = Astro.props;
 ---
-<a href="/" class:list={['inline-flex shrink-0 items-center gap-2.5', tone === 'light' ? 'text-white' : 'text-ink', cls]} aria-label="Stay Investment — на главную">
-  <svg class="h-full w-auto" viewBox="0 0 30 28" fill="none" aria-hidden="true">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.717 12.722l2.54-2.54c3.662 3.639 6.52 6.537 10.181 10.176v7.207h-7.957l5.037-5.037-9.805-9.806h.004zM5.086 27.561v-7.208l7.212 7.208H5.086z" fill="currentColor" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.887 25.063l-9.801-9.8H0L15.262 0 30.53 15.262h-5.09L15.257 5.082l-7.631 7.63 9.805 9.81-2.545 2.541z" fill="currentColor" />
-  </svg>
-  <span class="whitespace-nowrap font-[family-name:var(--font-display)] text-[13px] leading-none tracking-[.02em] sm:text-[14px]">STAY <span class={tone === 'light' ? 'text-lavender' : 'text-brand'}>INVESTMENT</span></span>
+<a href="/" class="inline-flex shrink-0 items-center" aria-label="Stay Investment — на главную">
+  <img src="/images/site/logo-old.png" alt="Stay Investment" width="611" height="100" class:list={['w-auto', cls, tone === 'light' && 'invert brightness-200']} />
 </a>
