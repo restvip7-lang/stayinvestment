@@ -22,8 +22,8 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const OUT = path.join(ROOT, 'public/media');
 const MAP = path.join(ROOT, 'src/content/media-map.json');
 const DIRS = ['src/content/objects', 'src/content/legacy-news'];
-// Ссылки на картинки: Битрикс24 (без расширения) и загрузки WordPress старого сайта.
-const RE = /https?:\/\/(?:cdn-ru\.bitrix24\.ru\/[^"'\s\\<>)]+|(?:www\.)?stayinvestment\.com\/wp-content\/uploads\/[^"'\s\\<>)]+?\.(?:jpe?g|png|gif|webp))/gi;
+// Ссылки на картинки: Битрикс24 (без расширения, в именах бывают пробелы) и загрузки WordPress старого сайта.
+const RE = /https?:\/\/(?:cdn-ru\.bitrix24\.ru\/[^"'\n\\<>)]+|(?:www\.)?stayinvestment\.com\/wp-content\/uploads\/[^"'\s\\<>)]+?\.(?:jpe?g|png|gif|webp))/gi;
 const SIZES = [
   { w: 1600, suffix: '', q: 74 },
   { w: 960, suffix: '-960', q: 72 },
@@ -37,7 +37,7 @@ const idOf = (url) => createHash('sha1').update(url).digest('hex').slice(0, 16);
 async function download(url, tries = 3) {
   for (let i = 1; ; i++) {
     try {
-      const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (media backup)' }, signal: AbortSignal.timeout(60_000) });
+      const res = await fetch(url.replace(/ /g, '%20'), { headers: { 'user-agent': 'Mozilla/5.0 (media backup)' }, signal: AbortSignal.timeout(60_000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return Buffer.from(await res.arrayBuffer());
     } catch (e) {
