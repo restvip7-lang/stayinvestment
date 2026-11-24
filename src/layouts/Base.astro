@@ -64,9 +64,9 @@ const ld: Record<string, unknown>[] = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#fafaff" />
+    <meta name="theme-color" content="#f5f5f5" />
     <link rel="preload" href="/fonts/EuclidCircularA-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/EuclidCircularA-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/unbounded-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Новости Stay Investment" href="/news/rss.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
@@ -96,7 +96,7 @@ const ld: Record<string, unknown>[] = [
       <div class="relative p-6 sm:p-8">
         <button type="button" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full hover:bg-sand" aria-label="Закрыть" data-lead-close><Icon name="close" /></button>
         <p class="eyebrow">Stay Investment</p>
-        <h2 class="mt-3 pr-10 text-2xl font-extrabold" data-lead-dialog-title>Консультация по инвестициям</h2>
+        <h2 class="mt-3 pr-10 text-2xl" data-lead-dialog-title>Консультация по инвестициям</h2>
         <p class="mt-2 text-[15px] text-ink-2">Расскажем об актуальных объектах, рассчитаем доходность под ваш бюджет и ответим на вопросы.</p>
         <div class="mt-6"><LeadForm source="modal" withComment compact /></div>
       </div>

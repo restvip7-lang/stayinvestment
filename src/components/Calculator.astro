@@ -22,7 +22,7 @@ const max = o.package === 'partnerskye' ? price * 2 : price * 5;
 const step = o.package === 'partnerskye' ? 50000 : 5000;
 ---
 <section class="card p-6 md:p-8" data-calc data-cfg={JSON.stringify(cfg)}>
-  <h2 class="text-2xl font-extrabold">Калькулятор доходности</h2>
+  <h2 class="text-2xl">Калькулятор доходности</h2>
   <p class="mt-2 text-[15px] text-ink-2">
     {cfg.mode === 'rental' && `Гарантированный арендный доход ${cfg.rate}% годовых на ${cfg.years} ${yearsWord(cfg.years ?? 0)}.`}
     {cfg.mode === 'partner' && `Прогнозируемый ROI проекта ${cfg.rate}% за ${cfg.months} мес.`}

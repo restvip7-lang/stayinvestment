@@ -53,7 +53,7 @@ const ld = {
       <a href={`/investment-directory/${o.package}/`} class="chip bg-sea-soft text-brand-2">Пакет «{info.name}»</a>
       <span class="chip bg-surface text-muted tabular">ID {o.id}</span>
     </div>
-    <h1 class="hero-in mt-4 max-w-4xl text-[30px] font-extrabold leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
+    <h1 class="hero-in mt-4 max-w-4xl text-[30px] leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
       <!-- Галерея -->
@@ -100,11 +100,11 @@ const ld = {
           </dl>
         )}
         <div class="mt-8 grid gap-6"><div data-reveal><PaymentPlan o={o} /></div><div data-reveal><PositionStrip o={o} /></div></div>
-        <h2 class="mt-12 text-2xl font-extrabold">Об объекте</h2>
+        <h2 class="mt-12 text-2xl">Об объекте</h2>
         <div class="prose-si mt-4" data-reveal set:html={o.descriptionHtml} />
         {o.infrastructure.length > 0 && (
           <>
-            <h2 class="mt-12 text-2xl font-extrabold">Инфраструктура комплекса</h2>
+            <h2 class="mt-12 text-2xl">Инфраструктура комплекса</h2>
             <ul class="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {o.infrastructure.map((i) => <li class="flex items-center gap-3 text-[15px]"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-sea-soft text-sea"><Icon name="check" size={15} stroke={2.2} /></span>{i}</li>)}
             </ul>

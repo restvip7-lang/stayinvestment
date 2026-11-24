@@ -9,7 +9,7 @@ export const SITE = {
   phoneHref: 'tel:+905301782902',
   whatsapp: 'https://wa.me/905301782902',
   address: 'Oba Mah., Mesut Cad., No: 54/A, 07400 Alanya / Antalya, Türkiye',
-  addressRu: 'Турция, Аланья, район Оба, ул. Месут, 54',
+  addressRu: 'Турция, Аланья, район Оба, ул. Месут, 54/A',
   instagram: 'https://www.instagram.com/stayinvestment/',
   /** Год основания бренда Stay Property — от него считаем «лет на рынке». */
   founded: 2018,

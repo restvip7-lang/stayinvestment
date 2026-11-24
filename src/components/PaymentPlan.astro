@@ -15,7 +15,7 @@ const monthly = show ? (price! - firstEur) / months! : 0;
 ---
 {show && (
   <section class="card p-6 md:p-8" aria-labelledby="plan-title">
-    <h2 id="plan-title" class="text-2xl font-extrabold">График платежей</h2>
+    <h2 id="plan-title" class="text-2xl">График платежей</h2>
     <p class="mt-1 text-[15px] text-ink-2">Беспроцентная рассрочка от застройщика. Расчёт — от минимальной стоимости {euro(price)}.</p>
     <div class="mt-6 flex h-[28px] gap-[2px]" role="img" aria-label={`Первый взнос ${first}% — ${euro(firstEur)}; рассрочка ${100 - first!}% — ${euro(price! - firstEur)} на ${months} мес.`}>
       <span class="flex items-center rounded-[4px] bg-navy px-2.5 text-[12.5px] font-bold text-white" style={`width:${first}%`} tabindex="0" data-tip={`${euro(firstEur)}|Первый взнос · ${first}% стоимости`}>{first}%</span>
