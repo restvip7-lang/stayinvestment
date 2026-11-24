@@ -10,6 +10,7 @@
  * Архивные статьи лежат в src/content/legacy-news (npm run import-legacy), их адреса сохранены.
  */
 import { cached } from './cache';
+import { fmtDate, type Lang } from '../i18n';
 import fxContent from '../content/fixtures/content-news.json';
 
 const BASE = ((import.meta.env.STAY_CONTENT_API as string | undefined) || 'https://admin.stayproperty.com').replace(/\/$/, '');
@@ -77,10 +78,10 @@ function isoDate(x: RawContent): string {
   return (x.created_at || x.updated_at || '').replace(' ', 'T');
 }
 
-async function fetchAll(): Promise<RawContent[]> {
+async function fetchAll(lang: Lang): Promise<RawContent[]> {
   const out: RawContent[] = [];
   for (let page = 1; page <= 20; page++) {
-    const r = await fetch(`${BASE}/api/content/news?language=ru&page=${page}&limit=100`, {
+    const r = await fetch(`${BASE}/api/content/news?language=${lang}&page=${page}&limit=100`, {
       headers: { accept: 'application/json' },
       signal: AbortSignal.timeout(8000),
     });
@@ -92,23 +93,23 @@ async function fetchAll(): Promise<RawContent[]> {
   return out;
 }
 
-function fromApi(items: RawContent[]): NewsItem[] {
+function fromApi(items: RawContent[], lang: Lang = 'ru'): NewsItem[] {
   const used = new Set<string>();
   const out: NewsItem[] = [];
   for (const x of items) {
     if (x.enabled === false || x.enabled === 'False') continue;
     const tr = x.translations ?? {};
-    const ru = tr.ru;
-    const title = (ru?.title || x.title || '').trim();
-    if (!title || !/[а-яё]/i.test(title)) continue; // только материалы с русским текстом
+    const ru = tr[lang];
+    const title = (ru?.title || (lang === 'ru' ? x.title : '') || '').trim();
+    if (!title || (lang === 'ru' && !/[а-яё]/i.test(title))) continue; // только материалы с текстом на этом языке
     let slug = slugOf(tr.en?.title || title) || x.id;
     if (used.has(slug)) slug = `${slug}-${x.id.replace(/\W/g, '').slice(-6)}`;
     used.add(slug);
-    const html = ru?.body_html || x.body_html || textToHtml(ru?.body || x.body || '');
+    const html = ru?.body_html || (lang === 'ru' ? x.body_html : '') || textToHtml(ru?.body || (lang === 'ru' ? x.body : '') || '');
     out.push({
       slug,
       title,
-      excerpt: (ru?.excerpt || x.excerpt || '').trim(),
+      excerpt: (ru?.excerpt || (lang === 'ru' ? x.excerpt : '') || '').trim(),
       html,
       image: x.image || null,
       date: isoDate(x),
@@ -129,6 +130,8 @@ interface LegacyNews {
   publishedAt: string | null;
   image: string | null;
   contentHtml: string;
+  /** Переводы со старого сайта (npm run import-legacy-i18n) */
+  i18n?: Partial<Record<Lang, { title: string; seoTitle: string | null; seoDescription: string | null; contentHtml: string }>>;
 }
 const legacyFiles = import.meta.glob<LegacyNews>('../content/legacy-news/*.json', { eager: true, import: 'default' });
 
@@ -137,33 +140,41 @@ function excerptOf(html: string) {
   return t.length > 220 ? t.slice(0, 217).replace(/\s+\S*$/, '') + '…' : t;
 }
 
-const legacy: NewsItem[] = Object.values(legacyFiles).map((n) => ({
-  slug: n.slug,
-  title: n.title,
-  excerpt: n.seoDescription?.replace(/\s*✓.*$/, '') || excerptOf(n.contentHtml),
-  html: n.contentHtml,
-  image: n.image,
-  date: n.publishedAt ?? '',
-  source: 'legacy',
-  seoTitle: n.seoTitle?.replace(/\s+[–-]\s+(Новости|Stay Investment)$/, '') ?? null,
-  seoDescription: n.seoDescription,
-  url: `/news/${n.slug}/`,
-}));
+const legacyItem = (n: LegacyNews, lang: Lang): NewsItem => {
+  const x = lang === 'ru' ? n : { ...n, ...n.i18n?.[lang] };
+  return {
+    slug: n.slug,
+    title: x.title,
+    excerpt: x.seoDescription?.replace(/\s*✓.*$/, '') || excerptOf(x.contentHtml),
+    html: x.contentHtml,
+    image: n.image,
+    date: n.publishedAt ?? '',
+    source: 'legacy',
+    seoTitle: x.seoTitle?.replace(/\s+[–-]\s+(Новости|News|Novosti|Stay Investment)$/, '') ?? null,
+    seoDescription: x.seoDescription,
+    url: `/news/${n.slug}/`,
+  };
+};
+const LEGACY = Object.values(legacyFiles);
+/** Архив на языке: на русском — всё, на других — только переведённые статьи. */
+const legacyFor = (lang: Lang) => LEGACY.filter((n) => lang === 'ru' || n.i18n?.[lang]).map((n) => legacyItem(n, lang));
 
 /** Вся лента: свежие из API + архив, новые сверху, без дублей по адресу. */
-export async function getNews(): Promise<NewsItem[]> {
-  const api = await cached('news-api', async () => fromApi(await fetchAll()), () => fromApi((fxContent as { items: RawContent[] }).items));
+export async function getNews(lang: Lang = 'ru'): Promise<NewsItem[]> {
+  const api = await cached(`news-api-${lang}`, async () => fromApi(await fetchAll(lang), lang), () => fromApi((fxContent as { items: RawContent[] }).items, lang));
   const seen = new Set<string>();
-  return [...api, ...legacy]
+  return [...api, ...legacyFor(lang)]
     .filter((n) => (seen.has(n.slug) ? false : (seen.add(n.slug), true)))
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export async function getNewsItem(slug: string): Promise<NewsItem | null> {
-  return (await getNews()).find((n) => n.slug === slug) ?? null;
+/** Материал по адресу. На английском/сербском статья без перевода отдаётся по-русски (translated: false). */
+export async function getNewsItem(slug: string, lang: Lang = 'ru'): Promise<(NewsItem & { translated: boolean }) | null> {
+  const own = (await getNews(lang)).find((n) => n.slug === slug);
+  if (own) return { ...own, translated: true };
+  if (lang === 'ru') return null;
+  const ru = (await getNews('ru')).find((n) => n.slug === slug);
+  return ru ? { ...ru, translated: false } : null;
 }
 
-export function formatDate(iso: string) {
-  const d = new Date(iso);
-  return Number.isNaN(+d) ? '' : d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-}
+export const formatDate = (iso: string, lang: Lang = 'ru') => fmtDate(lang, iso);

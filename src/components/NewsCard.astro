@@ -1,4 +1,6 @@
 ---
+import { langOf } from '../i18n';
+const lang = langOf(Astro.locals);
 import Img from './Img.astro';
 import { formatDate, type NewsItem } from '../lib/news';
 interface Props { n: NewsItem; large?: boolean }
@@ -8,7 +10,7 @@ const { n, large = false } = Astro.props;
   <div class:list={['img-outline relative overflow-hidden rounded-[20px]', large ? 'aspect-[16/10]' : 'aspect-[16/10]']}>
     <Img src={n.image} alt={n.title} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={800} height={500} sizes={large ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 33vw, 100vw'} />
   </div>
-  <p class="mt-4 text-[13px] font-semibold text-muted"><time datetime={n.date}>{formatDate(n.date)}</time></p>
+  <p class="mt-4 text-[13px] font-semibold text-muted"><time datetime={n.date}>{formatDate(n.date, lang)}</time></p>
   <h3 class:list={['mt-1.5 font-bold leading-snug group-hover:text-brand-2', large ? 'text-2xl' : 'text-[18px]']}>
     <a href={n.url} class="after:absolute after:inset-0">{n.title}</a>
   </h3>

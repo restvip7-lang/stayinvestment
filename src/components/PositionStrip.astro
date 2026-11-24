@@ -11,8 +11,8 @@ const tr = useT(lang);
 const { o } = Astro.props;
 const peers = byPackage(o.package);
 const scales = [
-  { key: 'price', title: o.package === 'partnerskye' ? tr("Сумма входа") : tr("Стоимость входа"), get: (x: InvestObject) => entryPrice(x), fmt: (n: number) => eurShort(n), full: (n: number) => euro(n), log: true },
-  { key: 'yield', title: yieldOf(o)?.label ?? tr("Доходность"), get: (x: InvestObject) => yieldOf(x)?.value ?? null, fmt: (n: number) => `${n}%`, full: (n: number) => `${n}%`, log: false },
+  { key: 'price', title: o.package === 'partnerskye' ? tr("Сумма входа") : tr("Стоимость входа"), get: (x: InvestObject) => entryPrice(x), fmt: (n: number) => eurShort(n, lang), full: (n: number) => euro(n), log: true },
+  { key: 'yield', title: yieldOf(o, lang)?.label ?? tr("Доходность"), get: (x: InvestObject) => yieldOf(x, lang)?.value ?? null, fmt: (n: number) => `${n}%`, full: (n: number) => `${n}%`, log: false },
 ].map((s) => {
   const pts = peers.map((p) => ({ p, v: s.get(p) })).filter((x): x is { p: InvestObject; v: number } => x.v != null);
   const vs = pts.map((x) => x.v);
@@ -35,7 +35,7 @@ const scales = [
 {scales.length > 0 && (
   <section class="card p-6 md:p-8" aria-labelledby="pos-title">
     <h2 id="pos-title" class="text-2xl">{tr("Объект среди других в пакете")}</h2>
-    <p class="mt-1 text-[15px] text-ink-2">{tr("Каждая точка — объект пакета «{name}» ({length}). Этот объект выделен цветом; наведите на точку, чтобы увидеть детали.", { name: PACKAGES[o.package].name, length: peers.length })}</p>
+    <p class="mt-1 text-[15px] text-ink-2">{tr("Каждая точка — объект пакета «{name}» ({length}). Этот объект выделен цветом; наведите на точку, чтобы увидеть детали.", { name: tr(PACKAGES[o.package].name), length: peers.length })}</p>
     <div class="mt-6 grid gap-8">
       {scales.map((s) => (
         <div>

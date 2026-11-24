@@ -16,22 +16,22 @@ const year = new Date().getFullYear();
         <a href={SITE.phoneHref} class="inline-flex items-center gap-2 font-bold tabular hover:text-brand-2"><Icon name="phone" size={18} />{SITE.phone}</a>
         <a href={SITE.whatsapp} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-brand-2"><Icon name="whatsapp" size={18} />WhatsApp</a>
         <a href={SITE.instagram} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-brand-2"><Icon name="instagram" size={18} />Instagram</a>
-        <span class="inline-flex items-start gap-2 text-ink-2"><Icon name="pin" size={18} class="mt-0.5 shrink-0" />{SITE.addressRu}</span>
+        <span class="inline-flex items-start gap-2 text-ink-2"><Icon name="pin" size={18} class="mt-0.5 shrink-0" />{lang === 'ru' ? SITE.addressRu : SITE.address}</span>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
       {NAV.filter((n) => n.children).map((n) => (
         <div>
-          <p class="text-[16px] font-bold text-ink">{n.label}</p>
+          <p class="text-[16px] font-bold text-ink">{tr(n.label)}</p>
           <ul class="mt-4 grid gap-2.5 text-[15px] text-ink-2">
-            {n.children!.map((c) => <li><a href={c.href} class="hover:text-brand-2">{c.label}</a></li>)}
+            {n.children!.map((c) => <li><a href={c.href} class="hover:text-brand-2">{tr(c.label)}</a></li>)}
           </ul>
         </div>
       ))}
       <div>
         <p class="text-[16px] font-bold text-ink">{tr("Компания")}</p>
         <ul class="mt-4 grid gap-2.5 text-[15px] text-ink-2">
-          {NAV.filter((n) => !n.children).map((n) => <li><a href={n.href} class="hover:text-brand-2">{n.label}</a></li>)}
+          {NAV.filter((n) => !n.children).map((n) => <li><a href={n.href} class="hover:text-brand-2">{tr(n.label)}</a></li>)}
           <li><a href={SITE.parentUrl} target="_blank" rel="noopener" class="hover:text-brand-2">{SITE.parent} ↗</a></li>
         </ul>
       </div>
@@ -40,7 +40,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-line">
     <div class="container-x grid gap-3 py-6 text-[12.5px] leading-relaxed text-muted md:grid-cols-[auto_1fr] md:gap-10">
       <p>{tr("© {year} {name} — дочерняя компания {parent}", { year, name: SITE.name, parent: SITE.parent })}</p>
-      <p class="md:text-right">{DISCLAIMER}</p>
+      <p class="md:text-right">{tr(DISCLAIMER)}</p>
     </div>
   </div>
 </footer>

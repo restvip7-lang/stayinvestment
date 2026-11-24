@@ -44,7 +44,7 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
     <div class="flex items-baseline justify-between gap-4 py-3"><dt class="text-[14px] leading-snug text-muted" data-l2></dt><dd class="shrink-0 whitespace-nowrap text-right text-[18px] font-extrabold tabular" data-v2></dd></div>
     <div class="flex items-baseline justify-between gap-4 py-3"><dt class="text-[14px] leading-snug text-muted">{tr("В пересчёте на год")}</dt><dd class="shrink-0 whitespace-nowrap text-right text-[18px] font-extrabold tabular text-brand-2" data-v3></dd></div>
   </dl>
-  <p class="mt-4 text-[12.5px] leading-snug text-muted">Расчёт ориентировочный и не является офертой: до налогов и расходов на обслуживание. Годовая доходность — сложный процент{cfg.mode === 'start' ? tr(" при горизонте 24 мес.") : ''}. Как считаем — <a href="/metodika-i-riski/#metodika" class="underline underline-offset-2 hover:text-ink">{tr("методика")}</a>.</p>
+  <p class="mt-4 text-[12.5px] leading-snug text-muted">{tr("Расчёт ориентировочный и не является офертой: до налогов и расходов на обслуживание. Годовая доходность — сложный процент")}{cfg.mode === 'start' ? tr(" при горизонте 24 мес.") : ''}. {tr("Как считаем —")} <a href="/metodika-i-riski/#metodika" class="underline underline-offset-2 hover:text-ink">{tr("методика")}</a>.</p>
 </section>
 <script>
   const nf = new Intl.NumberFormat('ru-RU');
@@ -65,18 +65,18 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
       const a = Number(input.value);
       set('amount-out', eur(a));
       if (cfg.mode === 'rental') {
-        set('l1', 'Доход в год'); set('v1', eur((a * cfg.rate) / 100));
-        set('l2', `За ${cfg.years} г. гарантии`); set('v2', eur((a * cfg.rate * cfg.years) / 100));
+        set('l1', T('Доход в год')); set('v1', eur((a * cfg.rate) / 100));
+        set('l2', T('За {n} г. гарантии', { n: cfg.years })); set('v2', eur((a * cfg.rate * cfg.years) / 100));
         set('v3', pct(cfg.rate));
         bar(a, (a * cfg.rate * cfg.years) / 100, `+${cfg.rate * cfg.years}%`);
       } else if (cfg.mode === 'partner') {
-        set('l1', 'Прибыль за цикл'); set('v1', eur((a * cfg.rate) / 100));
-        set('l2', 'Капитал по завершении'); set('v2', eur(a * (1 + cfg.rate / 100)));
+        set('l1', T('Прибыль за цикл')); set('v1', eur((a * cfg.rate) / 100));
+        set('l2', T('Капитал по завершении')); set('v2', eur(a * (1 + cfg.rate / 100)));
         set('v3', `≈ ${pct((Math.pow(1 + cfg.rate / 100, 12 / cfg.months) - 1) * 100)}`);
         bar(a, (a * cfg.rate) / 100, `+${cfg.rate}%`);
       } else {
-        set('l1', 'Доход от перепродажи'); set('v1', `${eur((a * cfg.low) / 100)} – ${eur((a * cfg.high) / 100)}`);
-        set('l2', 'Капитал после продажи'); set('v2', `до ${eur(a * (1 + cfg.high / 100))}`);
+        set('l1', T('Доход от перепродажи')); set('v1', `${eur((a * cfg.low) / 100)} – ${eur((a * cfg.high) / 100)}`);
+        set('l2', T('Капитал после продажи')); set('v2', T('до {sum}', { sum: eur(a * (1 + cfg.high / 100)) }));
         const ann = (r: number) => (Math.pow(1 + r / 100, 12 / 24) - 1) * 100;
         set('v3', `≈ ${pct(ann(cfg.low))}–${pct(ann(cfg.high))}`);
         bar(a, (a * cfg.low) / 100, `+${cfg.low}–${cfg.high}%`);

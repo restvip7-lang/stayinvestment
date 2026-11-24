@@ -6,7 +6,8 @@ import LeadForm from '../components/LeadForm.astro';
 import Icon from '../components/Icon.astro';
 import VizTooltip from '../components/VizTooltip.astro';
 import { SITE } from '../lib/site';
-import { langOf, useT } from '../i18n';
+import { langOf, useT, LANGS, LANG_META, localePath } from '../i18n';
+import { clientDict } from '../i18n/client';
 
 interface Crumb { label: string; href?: string }
 interface Props {
@@ -23,7 +24,10 @@ interface Props {
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
 const { title, description, image, crumbs = [], jsonLd = [], noindex = false, type = 'website' } = Astro.props;
-const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const path = Astro.locals.path ?? Astro.url.pathname;
+const canonical = new URL(localePath(lang, path), SITE.url).href;
+// Версии страницы на других языках (для поисковиков и переключателя)
+const alternates = LANGS.map((l) => ({ lang: l, href: new URL(localePath(l, path), SITE.url).href }));
 const fullTitle = title.includes(SITE.name) ? title : `${title} — ${SITE.name}`;
 const ogImage = image ? new URL(image, SITE.url).href : `${SITE.url}/images/site/og.jpg`;
 
@@ -50,10 +54,11 @@ const ld: Record<string, unknown>[] = [
 ];
 ---
 <!doctype html>
-<html lang="ru">
+<html lang={LANG_META[lang].hreflang}>
   <head>
     <meta charset="utf-8" />
     <script is:inline>document.documentElement.classList.add("js")</script>
+    <script is:inline set:html={`window.__I18N__=${JSON.stringify(clientDict(lang))};window.T=function(s,v){var r=(window.__I18N__&&window.__I18N__[s])||s;if(v)for(var k in v)r=r.split("{"+k+"}").join(String(v[k]));return r};`} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -65,7 +70,9 @@ const ld: Record<string, unknown>[] = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:locale" content={LANG_META[lang].og} />
+    {alternates.map((a) => <link rel="alternate" hreflang={LANG_META[a.lang].hreflang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f5f5f5" />
     <link rel="preload" href="/fonts/EuclidCircularA-Regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -75,12 +82,12 @@ const ld: Record<string, unknown>[] = [
     <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
   </head>
   <body class="min-h-dvh">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2">К содержимому</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2">{tr("К содержимому")}</a>
     <Header />
     {crumbs.length > 0 && (
-      <nav class="container-x pt-6 text-[13.5px] text-muted" aria-label="Хлебные крошки">
+      <nav class="container-x pt-6 text-[13.5px] text-muted" aria-label={tr("Хлебные крошки")}>
         <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <li><a href="/" class="hover:text-ink">Главная</a></li>
+          <li><a href="/" class="hover:text-ink">{tr("Главная")}</a></li>
           {crumbs.map((c) => (
             <li class="flex items-center gap-2"><span aria-hidden="true">/</span>{c.href ? <a href={c.href} class="hover:text-ink">{c.label}</a> : <span class="text-ink-2" aria-current="page">{c.label}</span>}</li>
           ))}
@@ -91,16 +98,16 @@ const ld: Record<string, unknown>[] = [
     <Footer />
     <VizTooltip />
 
-    <a href={SITE.whatsapp} target="_blank" rel="noopener" class="wa-fab fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lift hover:scale-105 active:scale-95" aria-label="Написать в WhatsApp">
+    <a href={SITE.whatsapp} target="_blank" rel="noopener" class="wa-fab fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lift hover:scale-105 active:scale-95" aria-label={tr("Написать в WhatsApp")}>
       <Icon name="whatsapp" size={28} stroke={1.6} />
     </a>
 
     <dialog id="lead-dialog" class="m-auto w-[min(520px,calc(100vw-32px))] rounded-[20px] bg-page p-0 text-ink shadow-lift">
       <div class="relative p-6 sm:p-8">
-        <button type="button" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full hover:bg-sand" aria-label="Закрыть" data-lead-close><Icon name="close" /></button>
+        <button type="button" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full hover:bg-sand" aria-label={tr("Закрыть")} data-lead-close><Icon name="close" /></button>
         <p class="eyebrow">Stay Investment</p>
-        <h2 class="mt-3 pr-10 text-2xl" data-lead-dialog-title>Консультация по инвестициям</h2>
-        <p class="mt-2 text-[15px] text-ink-2">Расскажем об актуальных объектах, рассчитаем доходность под ваш бюджет и ответим на вопросы.</p>
+        <h2 class="mt-3 pr-10 text-2xl" data-lead-dialog-title>{tr("Консультация по инвестициям")}</h2>
+        <p class="mt-2 text-[15px] text-ink-2">{tr("Расскажем об актуальных объектах, рассчитаем доходность под ваш бюджет и ответим на вопросы.")}</p>
         <div class="mt-6"><LeadForm source="modal" withComment compact /></div>
       </div>
     </dialog>
@@ -154,7 +161,7 @@ const ld: Record<string, unknown>[] = [
         const open = (e.target as HTMLElement).closest<HTMLElement>('[data-lead-open]');
         if (open && dlg) {
           e.preventDefault();
-          dlg.querySelector('[data-lead-dialog-title]')!.textContent = open.dataset.leadTitle || 'Консультация по инвестициям';
+          dlg.querySelector('[data-lead-dialog-title]')!.textContent = open.dataset.leadTitle || T('Консультация по инвестициям');
           const src = dlg.querySelector<HTMLInputElement>('input[name="source"]')!;
           src.value = `${location.pathname}#${open.dataset.leadSource || 'modal'}`;
           let obj = dlg.querySelector<HTMLInputElement>('input[name="object"]');
@@ -185,9 +192,9 @@ const ld: Record<string, unknown>[] = [
           const r = await fetch('/api/lead/', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
           if (!r.ok) throw new Error(String(r.status));
           form.reset();
-          show(true, 'Спасибо! Заявка принята — консультант свяжется с вами в ближайшее время.');
+          show(true, T('Спасибо! Заявка принята — консультант свяжется с вами в ближайшее время.'));
         } catch {
-          show(false, 'Не получилось отправить заявку. Напишите нам в WhatsApp или позвоните — ответим сразу.');
+          show(false, T('Не получилось отправить заявку. Напишите нам в WhatsApp или позвоните — ответим сразу.'));
         } finally {
           btn.disabled = false;
         }

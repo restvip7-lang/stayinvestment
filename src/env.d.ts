@@ -12,3 +12,5 @@ declare namespace App {
     path: string;
   }
 }
+declare function T(s: string, v?: Record<string, string | number>): string;
+interface Window { __I18N__?: Record<string, string> }

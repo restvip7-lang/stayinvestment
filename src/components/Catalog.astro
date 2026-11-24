@@ -15,7 +15,7 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
     <nav class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:px-0" aria-label={tr("Пакеты")}>
       <a href="/investment-directory/" class:list={['btn btn-sm', current ? 'btn-ghost' : 'btn-primary']}>{tr("Все")}</a>
       {PACKAGE_ORDER.map((k) => (
-        <a href={`/investment-directory/${k}/`} class:list={['btn btn-sm', current === k ? 'btn-primary' : 'btn-ghost']}>{PACKAGES[k].name}</a>
+        <a href={`/investment-directory/${k}/`} class:list={['btn btn-sm', current === k ? 'btn-primary' : 'btn-ghost']}>{tr(PACKAGES[k].name)}</a>
       ))}
       <a href="/investment-directory/biznes-investitsii/" class="btn btn-ghost btn-sm">{tr("Инвестиции в бизнес")}</a>
     </nav>
@@ -23,7 +23,7 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
       {cities.length > 1 && (
         <select class="field !h-10 !rounded-full !py-0 text-[14px] sm:w-44" data-filter="city" aria-label={tr("Город")}>
           <option value="">{tr("Все города")}</option>
-          {cities.map((c) => <option value={c}>{c}</option>)}
+          {cities.map((c) => <option value={c}>{tr(c)}</option>)}
         </select>
       )}
       <select class="field !h-10 !rounded-full !py-0 text-[14px] sm:w-44" data-filter="budget" aria-label={tr("Бюджет")}>
@@ -78,7 +78,7 @@ const cities = CITIES.filter((c) => objects.some((o) => placeOf(o).city === c));
         : sort === 'yield-desc' ? num(b, 'yield') - num(a, 'yield')
         : order.get(a)! - order.get(b)!);
       grid.append(...sorted);
-      root.querySelector('[data-count]')!.textContent = `Найдено объектов: ${shown}`;
+      root.querySelector('[data-count]')!.textContent = T('Найдено объектов: {n}', { n: shown });
       root.querySelector('[data-empty]')!.classList.toggle('hidden', shown > 0);
     };
     // Фильтры в адресе страницы: ссылкой с фильтром можно поделиться, «назад» не сбрасывает выбор

@@ -46,7 +46,7 @@ export function redirectFor(path: string): { to: string; status: 301 | 302 } | n
   const p = path.endsWith('/') ? path : `${path}/`;
   if (MAP[p]) return { to: MAP[p], status: 301 };
   // Старые карточки и статьи на английском/сербском, у которых нет пары на новом сайте, — в раздел.
-  const old = /^\/(en|sr)\/(investment-directory|news-en)\/.+/.exec(p);
-  if (old) return { to: `/${old[1]}/${old[2] === 'news-en' ? 'news' : 'investment-directory'}/`, status: 301 };
+  const old = /^\/(en|sr)\/(investment-directory\/(?!(?:rental|startovye|partnerskye|biznes-investitsii)\/)|news-en\/).+/.exec(p);
+  if (old) return { to: `/${old[1]}/${old[2].startsWith('news-en') ? 'news' : 'investment-directory'}/`, status: 301 };
   return null;
 }

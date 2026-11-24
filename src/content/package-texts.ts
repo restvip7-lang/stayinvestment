@@ -101,3 +101,14 @@ export const BUSINESS_PAGE: SectionText = {
 <h2>Почему с Stay Investment</h2>
 <p>Мы — часть девелоперской группы и видим рынок изнутри: подберём объект, проверим документы, подготовим сделку и, если нужно, возьмём объект в управление. Оставьте заявку — персональный менеджер свяжется с вами и подготовит подборку.</p>`,
 };
+
+import type { Lang } from '../i18n';
+import { PACKAGE_PAGES_EN, BUSINESS_PAGE_EN } from './package-texts.en';
+import { PACKAGE_PAGES_SR, BUSINESS_PAGE_SR } from './package-texts.sr';
+
+/** Текст раздела каталога на нужном языке. */
+export function sectionText(lang: Lang, k: PackageKey | 'business'): SectionText {
+  const pages = { ru: PACKAGE_PAGES, en: PACKAGE_PAGES_EN, sr: PACKAGE_PAGES_SR }[lang];
+  const business = { ru: BUSINESS_PAGE, en: BUSINESS_PAGE_EN, sr: BUSINESS_PAGE_SR }[lang];
+  return k === 'business' ? business : pages[k];
+}

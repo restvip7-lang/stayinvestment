@@ -11,10 +11,10 @@ type Col = PackageKey | 'business';
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
 const s = Object.fromEntries(PACKAGE_ORDER.map((k) => [k, packageStats(k)])) as Record<PackageKey, ReturnType<typeof packageStats>>;
-const entry = (k: PackageKey) => (s[k].entry ? tr("от {min}", { min: eurShort(s[k].entry!.min) }) : '—');
+const entry = (k: PackageKey) => (s[k].entry ? tr("от {min}", { min: eurShort(s[k].entry!.min, lang) }) : '—');
 
 const COLS: { key: Col; name: string; short: string; href: string; color: string; note: string }[] = [
-  ...PACKAGE_ORDER.map((k) => ({ key: k as Col, name: PACKAGES[k].name, short: PACKAGES[k].name, href: `/investment-directory/${k}/`, color: pkgColor(k), note: tr("{count} объектов в каталоге", { count: s[k].count }) })),
+  ...PACKAGE_ORDER.map((k) => ({ key: k as Col, name: tr(PACKAGES[k].name), short: tr(PACKAGES[k].name), href: `/investment-directory/${k}/`, color: pkgColor(k), note: tr("{count} объектов в каталоге", { count: s[k].count }) })),
   { key: 'business', name: tr("Инвестиции в бизнес"), short: tr("Бизнес"), href: '/investment-directory/biznes-investitsii/', color: 'var(--color-ink-2)', note: tr("подбор под запрос") },
 ];
 

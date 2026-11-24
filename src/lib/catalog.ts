@@ -3,6 +3,8 @@
  * npm run import-legacy). Когда объекты переедут в админку/Portfolio, менять только этот файл.
  */
 
+import { t, pick, type Lang } from '../i18n';
+
 export type PackageKey = 'rental' | 'startovye' | 'partnerskye';
 
 export interface Metric { label: string; value: number | null; unit: string | null }
@@ -22,6 +24,21 @@ export interface InvestObject {
   descriptionHtml: string;
   images: string[];
   video: string | null;
+  /** Переводы текстов со старого сайта (npm run import-legacy-i18n) */
+  i18n?: Partial<Record<Lang, Partial<Pick<InvestObject, 'title' | 'location' | 'type' | 'infrastructure' | 'descriptionHtml'>>>>;
+}
+
+/** Объект с текстами на нужном языке (цифры, фото и ID общие). Нет перевода — русский текст. */
+export function localizeObject(o: InvestObject, lang: Lang): InvestObject {
+  if (lang === 'ru') return o;
+  const infra = o.i18n?.[lang]?.infrastructure;
+  return {
+    ...o,
+    title: pick(lang, o, 'title'),
+    type: o.type ? t(lang, o.type) : o.type,
+    infrastructure: infra?.length ? infra : o.infrastructure.map((x) => t(lang, x)),
+    descriptionHtml: pick(lang, o, 'descriptionHtml'),
+  };
 }
 
 export interface PackageInfo {
@@ -89,22 +106,25 @@ const metric = (o: InvestObject, re: RegExp) => o.metrics.find((m) => re.test(m.
 /** Цена входа: стартовая стоимость / мин. лот / сумма входа — в зависимости от пакета. */
 export const entryPrice = (o: InvestObject) => metric(o, /Начальная стоимость|Минимальная стоимость лота|Сумма входа/);
 /** Главный показатель доходности для карточки. */
-export function yieldOf(o: InvestObject): { label: string; value: number } | null {
+export function yieldOf(o: InvestObject, lang: Lang = 'ru'): { label: string; value: number } | null {
   const roi = metric(o, /^ROI$/);
   if (roi != null) return { label: 'ROI', value: roi };
   const y = metric(o, /^Доходность$/);
-  if (y != null) return { label: 'Доходность в год', value: y };
+  if (y != null) return { label: t(lang, 'Доходность в год'), value: y };
   const d = metric(o, /^Скидка$/);
-  if (d != null) return { label: 'Скидка', value: d };
+  if (d != null) return { label: t(lang, 'Скидка'), value: d };
   return null;
 }
 
-/** Город и район: «Алания Конаклы» → { city: 'Алания', district: 'Конаклы' } */
-export function placeOf(o: InvestObject) {
-  const parts = (o.location ?? '').split(/\s+/).filter(Boolean);
-  const city = parts[0] ?? '';
-  const district = parts.slice(1).join(' ').replace(/^Азия\s+/, '') || null;
-  return { city: city === 'Алания' ? 'Аланья' : city, district };
+/** Город и район: «Алания Конаклы» → { city: 'Аланья', district: 'Конаклы' }. lang — для подписи (фильтры всегда по-русски). */
+export function placeOf(o: InvestObject, lang: Lang = 'ru') {
+  const ruParts = (o.location ?? '').split(/\s+/).filter(Boolean);
+  const ruCity = ruParts[0] === 'Алания' ? 'Аланья' : (ruParts[0] ?? '');
+  if (lang === 'ru') return { city: ruCity, district: ruParts.slice(1).join(' ').replace(/^Азия\s+/, '') || null };
+  const parts = (o.i18n?.[lang]?.location ?? '').split(/\s+/).filter(Boolean);
+  const district = parts.slice(1).join(' ').replace(/^(Asia|Azija)\s+/i, '');
+  const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
+  return { city: t(lang, ruCity), district: district ? cap(district) : (ruParts.length > 1 ? t(lang, ruParts.slice(1).join(' ')) : null) };
 }
 
 /** Подписи показателей — в современной формулировке. */
@@ -126,12 +146,12 @@ const LABELS: Record<string, string> = {
   'Окупаемость': 'Срок окупаемости',
   'ROI': 'ROI за цикл проекта',
 };
-export const metricLabel = (l: string) => LABELS[l] ?? l;
+export const metricLabel = (l: string, lang: Lang = 'ru') => t(lang, LABELS[l] ?? l);
 
 const nf = new Intl.NumberFormat('ru-RU');
-export function formatMetric(m: Metric) {
+export function formatMetric(m: Metric, lang: Lang = 'ru') {
   if (m.value == null) return '—';
-  const unit = (m.unit ?? '').replace(/^шт\.?$/, 'шт.').replace(/^мес\.?$/, 'мес.');
+  const unit = t(lang, (m.unit ?? '').replace(/^шт\.?$/, 'шт.').replace(/^мес\.?$/, 'мес.'));
   if (unit === '€') return `${nf.format(m.value)} €`;
   if (unit === '%') return `${nf.format(m.value)}%`;
   return unit ? `${nf.format(m.value)} ${unit}` : nf.format(m.value);
@@ -169,28 +189,37 @@ export function packageStats(k: PackageKey) {
 }
 
 export const fmtRange = (r: Range | null, unit = '') => (!r ? '—' : r.min === r.max ? `${nf.format(r.min)}${unit}` : `${nf.format(r.min)}–${nf.format(r.max)}${unit}`);
-export const eurShort = (n: number) => (n >= 1_000_000 ? `${(n / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 2 })} млн €` : `${Math.round(n / 1000).toLocaleString('ru-RU')} тыс. €`);
+export const eurShort = (n: number, lang: Lang = 'ru') => (n >= 1_000_000
+  ? t(lang, '{n} млн €', { n: (n / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 2 }) })
+  : t(lang, '{n} тыс. €', { n: Math.round(n / 1000).toLocaleString('ru-RU') }));
 
 /** Три ключевые цифры пакета (для карточек и шапок страниц). */
-export function packageFacts(k: PackageKey): { icon: string; label: string; value: string }[] {
+export function packageFacts(k: PackageKey, lang: Lang = 'ru'): { icon: string; label: string; value: string }[] {
   const st = packageStats(k);
-  const entry = { icon: 'coins', label: 'Вход', value: st.entry ? `от ${eurShort(st.entry.min)}` : '—' };
+  const tr = (s: string, v?: Record<string, string | number>) => t(lang, s, v);
+  const entry = { icon: 'coins', label: tr('Вход'), value: st.entry ? tr('от {sum}', { sum: eurShort(st.entry.min, lang) }) : '—' };
   if (k === 'rental') return [
-    { icon: 'chart', label: 'Доходность', value: `${fmtRange(st.rentYield, '%')} в год` },
-    { icon: 'shield', label: 'Гарантия аренды', value: `${fmtRange(st.guaranteeYears)} лет` },
+    { icon: 'chart', label: tr('Доходность'), value: tr('{range} в год', { range: fmtRange(st.rentYield, '%') }) },
+    { icon: 'shield', label: tr('Гарантия аренды'), value: tr('{range} лет', { range: fmtRange(st.guaranteeYears) }) },
     entry,
   ];
   if (k === 'startovye') return [
-    { icon: 'chart', label: 'Скидка от рынка', value: st.discount ? `до ${st.discount.max}%` : '—' },
-    { icon: 'calendar', label: 'Рассрочка', value: st.installmentMonths ? `до ${st.installmentMonths.max} мес.` : '—' },
+    { icon: 'chart', label: tr('Скидка от рынка'), value: st.discount ? tr('до {n}%', { n: st.discount.max }) : '—' },
+    { icon: 'calendar', label: tr('Рассрочка'), value: st.installmentMonths ? tr('до {n} мес.', { n: st.installmentMonths.max }) : '—' },
     entry,
   ];
   return [
-    { icon: 'chart', label: 'ROI за цикл', value: fmtRange(st.roi, '%') },
-    { icon: 'calendar', label: 'Цикл проекта', value: `${fmtRange(st.paybackMonths)} мес.` },
+    { icon: 'chart', label: tr('ROI за цикл'), value: fmtRange(st.roi, '%') },
+    { icon: 'calendar', label: tr('Цикл проекта'), value: tr('{range} мес.', { range: fmtRange(st.paybackMonths) }) },
     entry,
   ];
 }
+
+/** Тексты пакета на нужном языке. */
+export const packageInfo = (k: PackageKey, lang: Lang = 'ru'): PackageInfo => {
+  const p = PACKAGES[k];
+  return lang === 'ru' ? p : { ...p, name: t(lang, p.name), tagline: t(lang, p.tagline), text: t(lang, p.text), seoTitle: t(lang, p.seoTitle), seoDescription: t(lang, p.seoDescription) };
+};
 
 /** Фото пакета — первый объект пакета с полноценной галереей. */
 export const packagePhoto = (k: PackageKey) => byPackage(k).find((o) => o.images.length >= 4)?.images[0] ?? null;

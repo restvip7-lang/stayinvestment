@@ -11,7 +11,7 @@ import { langOf, useT } from '../../i18n';
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
 const PER_PAGE = 12;
-const all = await getNews();
+const all = await getNews(lang);
 const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
 const page = Math.min(pages, Math.max(1, Number(Astro.url.searchParams.get('page')) || 1));
 const items = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
@@ -32,7 +32,7 @@ const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
           <div class="absolute inset-0 bg-gradient-to-t from-[#1d2128]/90 via-[#1d2128]/35 to-transparent"></div>
           <div class="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
             <span class="chip bg-accent-2 text-white">{tr("Свежая новость")}</span>
-            <p class="mt-4 text-[13px] font-semibold text-white/80"><time datetime={first.date}>{formatDate(first.date)}</time></p>
+            <p class="mt-4 text-[13px] font-semibold text-white/80"><time datetime={first.date}>{formatDate(first.date, lang)}</time></p>
             <h2 class="mt-2 max-w-3xl text-[24px] leading-tight sm:text-[34px]">{first.title}</h2>
             {first.excerpt && <p class="mt-3 hidden max-w-2xl text-[16px] leading-relaxed text-white/85 sm:line-clamp-2">{first.excerpt}</p>}
           </div>

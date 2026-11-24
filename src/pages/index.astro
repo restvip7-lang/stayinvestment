@@ -8,26 +8,26 @@ import Faq from '../components/Faq.astro';
 import PackageCompare from '../components/PackageCompare.astro';
 import CashflowTimeline from '../components/CashflowTimeline.astro';
 import LeadSection from '../components/LeadSection.astro';
-import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl, packageFacts, packagePhoto } from '../lib/catalog';
+import { OBJECTS, PACKAGES, localizeObject, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl, packageFacts, packagePhoto } from '../lib/catalog';
 import { getNews } from '../lib/news';
 import { STATS, TEAM, yearsOnMarket } from '../lib/site';
 import { langOf, useT } from '../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
-const news = (await getNews()).slice(0, 3);
+const news = (await getNews(lang)).slice(0, 3);
 
 // Цифры первого экрана — из каталога, чтобы не расходились с объектами.
 const minEntry = Math.min(...OBJECTS.map(entryPrice).filter((x): x is number => x != null));
-const maxRoi = Math.max(...byPackage('partnerskye').map((o) => yieldOf(o)?.value ?? 0));
-const rentYields = byPackage('rental').map((o) => yieldOf(o)?.value ?? 0).filter(Boolean);
+const maxRoi = Math.max(...byPackage('partnerskye').map((o) => yieldOf(o, lang)?.value ?? 0));
+const rentYields = byPackage('rental').map((o) => yieldOf(o, lang)?.value ?? 0).filter(Boolean);
 const minRent = Math.min(...rentYields);
 const maxRent = Math.max(...rentYields);
 
 const featured = PACKAGE_ORDER.flatMap((p) => byPackage(p).filter((o) => o.images.length >= 4).slice(0, 2));
 const pkgPhoto = packagePhoto;
 const pkgFacts = packageFacts;
-const heroObjects = [byPackage('rental')[0], byPackage('partnerskye')[0], byPackage('startovye')[0]].filter(Boolean);
+const heroObjects = [byPackage('rental')[0], byPackage('partnerskye')[0], byPackage('startovye')[0]].filter(Boolean).map((o) => localizeObject(o, lang));
 
 const whyTurkey = [
   { icon: 'chart', title: tr("Крупная экономика"), text: tr("Турция входит в двадцатку крупнейших экономик мира: ВВП — около $1,3 трлн по данным Всемирного банка.") },
@@ -78,7 +78,7 @@ const faq = [
     <div class="container-x grid grid-cols-1 gap-12 pb-16 pt-10 md:pt-16 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pb-24">
       <div class="min-w-0">
         <p class="eyebrow hero-in" style="--i:0">{tr("Девелопер Stay Property · {yearsOnMarket} лет на рынке Турции", { yearsOnMarket: yearsOnMarket() })}</p>
-        <h1 class="hero-in mt-5 text-[clamp(26px,8vw,40px)] leading-[1.08] sm:text-[48px] lg:text-[40px] xl:text-[52px]" style="--i:1">{tr("Инвестиции в&nbsp;недвижимость Турции")}</h1>
+        <h1 class="hero-in mt-5 text-[clamp(26px,8vw,40px)] leading-[1.08] sm:text-[48px] lg:text-[40px] xl:text-[52px]" style="--i:1">{tr("Инвестиции в недвижимость Турции")}</h1>
         <p class="lead hero-in mt-6 max-w-xl" style="--i:2">{tr("Арендный доход с гарантией застройщика, покупка на старте продаж ниже рынка и доли в собственных проектах девелопера — в Аланье и Стамбуле, с контролем вложений онлайн.")}</p>
         <div class="hero-in mt-8 flex flex-wrap gap-3" style="--i:3">
           <a href="/investment-directory/" class="btn btn-primary">{tr("Смотреть объекты")} <Icon name="arrow" size={18} /></a>
@@ -87,13 +87,13 @@ const faq = [
         <a href={objectUrl(heroObjects[0])} class="hero-in img-outline relative mt-8 block overflow-hidden rounded-[20px] lg:hidden" style="--i:4" aria-label={heroObjects[0].title}>
           <Img src={heroObjects[0].images[0]} alt={heroObjects[0].title} class="aspect-[16/10] w-full" width={960} height={600} priority sizes="100vw" />
           <span class="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-[12px] bg-white/95 px-4 py-2.5 shadow-card">
-            <span class="min-w-0 truncate text-[13px] font-semibold">«{PACKAGES[heroObjects[0].package].name}» · {heroObjects[0].id}</span>
-            <span class="shrink-0 text-[14px] font-bold text-sea tabular">{yieldOf(heroObjects[0]) ? tr("{value}% в год", { value: yieldOf(heroObjects[0])!.value }) : euro(entryPrice(heroObjects[0]))}</span>
+            <span class="min-w-0 truncate text-[13px] font-semibold">«{tr(PACKAGES[heroObjects[0].package].name)}» · {heroObjects[0].id}</span>
+            <span class="shrink-0 text-[14px] font-bold text-sea tabular">{yieldOf(heroObjects[0], lang) ? tr("{value}% в год", { value: yieldOf(heroObjects[0], lang)!.value }) : euro(entryPrice(heroObjects[0]))}</span>
           </span>
         </a>
         <dl class="hero-in mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-line pt-6" style="--i:5">
           <div><dt class="text-[13px] text-muted">{tr("Вход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{tr("от {round} тыс. €", { round: Math.round(minEntry / 1000) })}</dd></div>
-          <div><dt class="text-[13px] text-muted">{tr("Арендный доход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{minRent}–{maxRent}%<span class="text-base font-bold text-muted"> / год</span></dd></div>
+          <div><dt class="text-[13px] text-muted">{tr("Арендный доход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{minRent}–{maxRent}%<span class="text-base font-bold text-muted"> / {tr("год")}</span></dd></div>
           <div><dt class="text-[13px] text-muted">{tr("ROI в проектах")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular text-sea sm:text-2xl">{tr("до {maxRoi}%", { maxRoi })}</dd></div>
         </dl>
       </div>
@@ -107,8 +107,8 @@ const faq = [
           ]} style={`--i:${i + 2}`}>
             <Img src={o.images[0]} alt="" class="aspect-[4/3] w-full" width={640} height={480} priority={i === 0} sizes="400px" />
             <div class="flex items-center justify-between gap-3 px-4 py-3">
-              <span class="truncate text-[13px] font-bold">{PACKAGES[o.package].name} · {o.id}</span>
-              <span class="shrink-0 text-[13px] font-extrabold text-sea tabular">{yieldOf(o) ? `${yieldOf(o)!.value}%` : euro(entryPrice(o))}</span>
+              <span class="truncate text-[13px] font-bold">{tr(PACKAGES[o.package].name)} · {o.id}</span>
+              <span class="shrink-0 text-[13px] font-extrabold text-sea tabular">{yieldOf(o, lang) ? `${yieldOf(o, lang)!.value}%` : euro(entryPrice(o))}</span>
             </div>
           </a>
         ))}
@@ -122,7 +122,7 @@ const faq = [
       {STATS.map((s, i) => (
         <div class="border-l-2 border-brand pl-5" data-reveal style={`--i:${i}`}>
           <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]"><span data-count={s.value}>{s.value.toLocaleString('ru-RU')}</span>{s.suffix}</p>
-          <p class="mt-1 text-[14px] text-ink-2">{s.label}</p>
+          <p class="mt-1 text-[14px] text-ink-2">{tr(s.label)}</p>
         </div>
       ))}
     </div>
@@ -144,15 +144,15 @@ const faq = [
         return (
           <a href={`/investment-directory/${k}/`} class="card lift group flex flex-col overflow-hidden" data-reveal style={`--i:${PACKAGE_ORDER.indexOf(k)}`}>
             <div class="img-outline relative aspect-[16/9] overflow-hidden">
-              <Img src={pkgPhoto(k)} alt={tr("Пакет «{name}»", { name: PACKAGES[k].name })} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={360} sizes="(min-width: 768px) 33vw, 100vw" />
+              <Img src={pkgPhoto(k)} alt={tr("Пакет «{name}»", { name: tr(PACKAGES[k].name) })} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={360} sizes="(min-width: 768px) 33vw, 100vw" />
               <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-[12px] bg-white/95 text-brand-2 shadow-card"><Icon name={pkgIcon[k]} size={22} /></span>
               <span class="chip absolute right-4 top-4 bg-white/95 text-ink">{tr("{length} объектов", { length: items.length })}</span>
             </div>
             <div class="flex flex-1 flex-col p-6">
-              <h3 class="text-2xl font-extrabold">«{PACKAGES[k].name}»</h3>
-              <p class="mt-1 font-semibold text-sea">{PACKAGES[k].tagline}</p>
+              <h3 class="text-2xl font-extrabold">«{tr(PACKAGES[k].name)}»</h3>
+              <p class="mt-1 font-semibold text-sea">{tr(PACKAGES[k].tagline)}</p>
               <dl class="mb-6 mt-5 grid gap-3">
-                {pkgFacts(k).map((f) => (
+                {pkgFacts(k, lang).map((f) => (
                   <div class="flex items-center gap-3">
                     <dt class="flex items-center gap-3 text-[14px] text-ink-2"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sea-soft text-brand-2"><Icon name={f.icon} size={18} /></span>{f.label}</dt>
                     <dd class="ml-auto text-[15px] font-bold tabular">{f.value}</dd>
@@ -319,11 +319,11 @@ const faq = [
       <div class="mt-8 grid gap-5 sm:grid-cols-3">
         {TEAM.map((t, i) => (
           <div class="card lift overflow-hidden" data-reveal style={`--i:${i}`}>
-            <div class="img-outline relative overflow-hidden"><Img src={t.photo} alt={t.name} class={`aspect-[4/5] w-full ${t.focus}`} width={600} height={750} sizes="(min-width: 640px) 33vw, 100vw" /></div>
+            <div class="img-outline relative overflow-hidden"><Img src={t.photo} alt={tr(t.name)} class={`aspect-[4/5] w-full ${t.focus}`} width={600} height={750} sizes="(min-width: 640px) 33vw, 100vw" /></div>
             <div class="flex items-center justify-between gap-3 p-5">
               <div>
-                <p class="font-extrabold">{t.name}</p>
-                <p class="text-[14px] text-muted">{t.role}</p>
+                <p class="font-extrabold">{tr(t.name)}</p>
+                <p class="text-[14px] text-muted">{tr(t.role)}</p>
               </div>
               <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={tr("Написать {name} в WhatsApp", { name: t.name })}><Icon name="whatsapp" size={20} /></a>
             </div>

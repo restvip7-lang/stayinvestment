@@ -7,31 +7,32 @@ import LeadForm from '../../../../components/LeadForm.astro';
 import Gallery from '../../../../components/Gallery.astro';
 import PaymentPlan from '../../../../components/PaymentPlan.astro';
 import PositionStrip from '../../../../components/PositionStrip.astro';
-import { PACKAGES, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
+import { PACKAGES, packageInfo, localizeObject, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
 import { SITE } from '../../../../lib/site';
-import { langOf, useT } from '../../../../i18n';
+import { langOf, useT, LANG_META } from '../../../../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
 const { pkg, slug } = Astro.params;
-const o = findObject(pkg!, slug!);
-if (!o) return Astro.rewrite('/404/');
+const found = findObject(pkg!, slug!);
+if (!found) return Astro.rewrite('/404/');
+const o = localizeObject(found, lang);
 
-const info = PACKAGES[o.package];
-const place = placeOf(o);
+const info = packageInfo(o.package, lang);
+const place = placeOf(found, lang);
 const price = entryPrice(o);
-const y = yieldOf(o);
+const y = yieldOf(o, lang);
 const similar = byPackage(o.package).filter((x) => x.id !== o.id).sort((a, b) => Math.abs((entryPrice(a) ?? 0) - (price ?? 0)) - Math.abs((entryPrice(b) ?? 0) - (price ?? 0))).slice(0, 3);
 const facts = [
   place.city && { icon: 'pin', label: tr("Расположение"), value: [place.city, place.district].filter(Boolean).join(', ') },
-  o.seaDistance && { icon: 'wave', label: tr("До моря"), value: o.seaDistance >= 1000 ? tr("{toLocaleString} км", { toLocaleString: (o.seaDistance / 1000).toLocaleString('ru-RU') }) : tr("{seaDistance} м", { seaDistance: o.seaDistance }) },
+  o.seaDistance && { icon: 'wave', label: tr("До моря"), value: o.seaDistance >= 1000 ? tr("{toLocaleString} км", { toLocaleString: (o.seaDistance / 1000).toLocaleString(LANG_META[lang].locale) }) : tr("{seaDistance} м", { seaDistance: o.seaDistance }) },
   o.type && { icon: 'building', label: tr("Тип"), value: o.type.replace(/\s+/g, ', ') },
   o.layouts.length && { icon: 'layers', label: tr("Планировки"), value: o.layouts.join(', ') },
   o.year && { icon: 'calendar', label: tr("Сдача"), value: `${o.year}` },
 ].filter(Boolean) as { icon: string; label: string; value: string }[];
 
 const plain = o.descriptionHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? `${o.package === 'partnerskye' ? tr("Вход") : tr("Цена")} от ${euro(price)}` : ''}${y ? `, ${y.label.toLowerCase()} ${y.value}%` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
+const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? tr(o.package === 'partnerskye' ? 'Вход от {sum}' : 'Цена от {sum}', { sum: euro(price) }) : ''}${y ? `, ${y.label.toLowerCase()} ${y.value}%` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateListing',
@@ -71,8 +72,8 @@ const ld = {
           <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-5">
             {o.metrics.filter((m) => !/Начальная стоимость|Минимальная стоимость лота|Сумма входа/.test(m.label)).map((m) => (
               <div>
-                <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label)}</dt>
-                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m)}</dd>
+                <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label, lang)}</dt>
+                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m, lang).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m, lang)}</dd>
               </div>
             ))}
           </dl>
@@ -82,7 +83,7 @@ const ld = {
               <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title={tr("Онлайн-показ объекта")} data-lead-object={o.id} data-lead-source="object-online"><Icon name="camera" size={16} />{tr("Онлайн-показ")}</button>
               <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title={tr("Инфо-тур в Аланью")} data-lead-object={o.id} data-lead-source="object-tour"><Icon name="globe" size={16} />{tr("Инфо-тур")}</button>
             </div>
-            <a href={`${SITE.whatsapp}?text=${encodeURIComponent(`Здравствуйте! Интересует объект ${o.id}: ${o.title}`)}`} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="whatsapp" size={16} />{tr("Спросить в WhatsApp")}</a>
+            <a href={`${SITE.whatsapp}?text=${encodeURIComponent(tr('Здравствуйте! Интересует объект {id}: {title}', { id: o.id, title: o.title }))}`} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="whatsapp" size={16} />{tr("Спросить в WhatsApp")}</a>
           </div>
         </div>
       </aside>
