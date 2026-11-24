@@ -1,0 +1,45 @@
+# Переносит фото объектов (CDN Битрикс24) и картинки старых статей (stayinvestment.com/wp-content) в репозиторий:
+# public/media/*.webp + замена ссылок в src/content. Работает только в ветке vps.
+# Запускается сам при изменении объектов/скрипта в ветке vps или вручную (Actions → «Перенести картинки к себе»).
+# Коммит делает GITHUB_TOKEN — такой коммит повторно workflow не запускает.
+name: Перенести картинки к себе
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [vps]
+    paths:
+      - 'scripts/localize-media.mjs'
+      - 'src/content/objects/**'
+      - 'src/content/legacy-news/**'
+      - '.github/workflows/localize-media.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: localize-media
+  cancel-in-progress: false
+
+jobs:
+  media:
+    if: github.ref == 'refs/heads/vps'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Скачать и сжать картинки
+        run: node --no-warnings scripts/localize-media.mjs || [ $? -eq 2 ]   # 2 = часть не скачалась, остальное сохраняем
+      - name: Закоммитить
+        run: |
+          git add public/media src/content
+          if git diff --cached --quiet; then echo "Новых картинок нет."; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898699+github-actions[bot]@users.noreply.github.com" \
+            commit -m "Картинки перенесены к себе: public/media ($(git diff --cached --name-only -- public/media | wc -l) файлов)"
+          git push origin HEAD:vps
+          echo "### Перенесено файлов: $(ls public/media | wc -l), размер $(du -sh public/media | cut -f1)" >> "$GITHUB_STEP_SUMMARY"

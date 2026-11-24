@@ -9,7 +9,9 @@
 ```bash
 npm install
 npm run dev        # http://localhost:4321
-npm run build      # сборка под Vercel (.vercel/output)
+npm run build      # сборка: на Vercel — под Vercel, иначе Node.js-сервер (dist/)
+npm start          # запуск собранного сайта на своём сервере (127.0.0.1:4330)
+npm run localize-media  # перенести внешние картинки в public/media
 npm run check      # проверка типов
 ```
 
@@ -42,6 +44,10 @@ npm run check      # проверка типов
 | `/api/lead/` | приём заявок → `LEAD_WEBHOOK_URL` |
 
 Адреса старого сайта сохранены; редиректы — [docs/redirects.md](docs/redirects.md).
+
+## Свой сервер
+
+Ветка `vps`: запуск рядом со старым сайтом на тестовом адресе, где лежат картинки, переезд — [docs/deploy-vps.md](docs/deploy-vps.md).
 
 ## Перед запуском
 

@@ -9,9 +9,13 @@
     "preview": "astro preview",
     "check": "astro check",
     "fixtures": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/fetch-fixtures.mjs",
-    "import-legacy": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/import-legacy.mjs"
+    "import-legacy": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/import-legacy.mjs",
+    "start": "HOST=${HOST:-127.0.0.1} PORT=${PORT:-4330} node ./dist/server/entry.mjs",
+    "build:vercel": "STAY_TARGET=vercel astro build",
+    "localize-media": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/localize-media.mjs"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.14",
     "@astrojs/vercel": "^11.0.22",
     "@tailwindcss/vite": "^4.3.5",
     "@vercel/functions": "^3.11.3",
@@ -21,6 +25,10 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@types/node": "^22.20.5",
+    "sharp": "^0.35.5",
     "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }
