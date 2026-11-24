@@ -39,6 +39,7 @@ npm run check      # проверка типов
 | Тексты разделов каталога | `src/content/package-texts.ts` (+ `.en.ts`, `.sr.ts`) |
 | Инструкция «Как открыть компанию» | `src/content/pages/open-company.html` (+ `.en.html`, `.sr.html`) |
 | Объекты и старые статьи | поле `i18n` в JSON — переводы со старого сайта (`npm run import-legacy-i18n`): объекты — все 48 на en и sr, статьи — 9 на en |
+| Архивные статьи, переведённые нами | 5 актуальных статей на en, 6 на sr — исходники в `src/content/legacy-news-i18n/`, применить: `python3 scripts/apply-archive-translations.py src/content/legacy-news-i18n` (после `npm run import-legacy` — обязательно) |
 | Свежие новости | админка Stay Property отдаёт ru/en/sr сама |
 
 Статьи архива без перевода на английской и сербской версии в ленте не показываются; по прямой ссылке открываются по-русски с пометкой и `noindex`.
