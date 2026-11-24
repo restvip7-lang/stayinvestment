@@ -71,5 +71,32 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/c6d/c6dd31ad1e24493c7af655021a02e3e4/f733bc4007b59b961cc808f59c4fa32d",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/c0d/c0da7343f9ae665c2294052764463a69/43411ecfee943fb4c26c802c12b6d96f"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/complex-with-elegant-architecture-in-a-green-location/",
+      "title": "Complex with elegant architecture in a green location",
+      "location": "Alanya Avsallar",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Avsallar is a rural district 25 km from the center of Alanya, strewn with beautiful greenery at every turn. Asphalt does not dominate the natural environment here, which creates a special feeling of closeness to nature and provincial comfort.</p><p>Land plot 2166 m2, block of 7 floors, 48 apartments. Apartments: 1+1 55 m2 - 36 units, 1+1 loft 70 m2 - 5 units, garden 1+1 55 m2 + 35 m2 - 3 units, 2+1 110 m2 - 3 units, duplexes 2+1 95 m2 - 2 units.</p><p>The complex is located 1.4 km from the sea, close to shops, farmers market and the town center. At the same time, it is surrounded by greenery and is conveniently located near the central part of Avsallar. The building density around is low. The area is in demand among tourists for recreation. High rental potential.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/kompleks-sa-elegantnom-arhitekturom-na-zelenoj-lokaciji/",
+      "title": "Kompleks sa elegantnom arhitekturom na zelenoj lokaciji",
+      "location": "Alanya avsallar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Turski hamam"
+      ],
+      "descriptionHtml": "<p>Avsallar je ruralna oblast udaljena 25 km od centra Alanje, prekrivena prelepim zelenilom na svakom koraku. Asfalt ovde ne dominira nad prirodnim okruženjem, što stvara poseban osećaj bliskosti sa prirodom i provincijskom udobnošću</p><p>Parcela je površine 2166 m2, blok ima 7 spratova, 48 stanova. Stanovi su: 1+1 od 55 m2 - 36 jed., 1+1 loft od 70 m2 - 5 jed., baštenski 1+1 od 55 m2 + 35 m2 - 3 jed., 2+1 od 110 m2 - 3 jed., duplex 2+1 od 95 m2 - 2 jed.</p><p>Kompleks se nalazi na 1,4 km od mora, blizu prodavnica, pijace i centra gradića. U isto vreme je okružen zelenilom i povoljno je smešten nedaleko od centralnog dela Avsallara. Gustoća izgradnje u okolini je niska. Ovo naselje je popularno među turistima za odmor. Visok je potencijal za iznajmljivanje.</p>"
+    }
+  }
 }

@@ -78,5 +78,45 @@
     "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/527/5270d7f239f63e0751b0a8f3cfbcda85/030d7e8e966169ab4c7f67c291c333f4",
     "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/e24/e24074c45c76727e9d98bf816a1c7e33/648b9906a614a4bb30c20591243c65ec"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/hayat-heaven-residence-in-an-area-with-the-best-sandy-beaches-and-pine-forests/",
+      "title": "Hayat Heaven Residence in an Area with the Best Sandy Beaches and Pine Forests",
+      "location": "Alanya Avsallar",
+      "type": "Duplex Apartments",
+      "infrastructure": [
+        "24/7 video surveillance",
+        "Barbecue recreation area",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Green garden - green zone",
+        "Indoor pool",
+        "Outdoor parking",
+        "Outdoor pool",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The completed Hayat Heaven Residence is located in Avsallar, surrounded by pine trees and modern homes.</p><p>The area is located 24 km west of the center of Alanya. It offers full social and tourist infrastructure for seaside and nature vacations, as well as long-term living.</p><p>The residence is just 1.4 km from the famous Incekum beach, known for its fine sand, safe swimming areas, parking, and amenities. It is one of the best beaches on the entire Mediterranean coast.</p><p>From the balconies and windows of the complex, views open up to pine groves and modern buildings, and from the upper floors — to the sea.</p><p>Apartment layouts include 1+1 - 42 units and 2+1 duplex - 7 units. In addition to the outdoor pool in the courtyard, the complex has an indoor pool, and internal facilities for wellness and leisure.</p><p>Thanks to the cozy atmosphere, beautiful beaches, and abundant pine groves, Avsallar is in demand for rentals even in winter.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/hayat-heaven-residence-u-oblasti-sa-najboljim-pe-anim-pla-ama-i-borovim-umama/",
+      "title": "Hayat Heaven Residence u oblasti sa najboljim peščanim plažama i borovim šumama",
+      "location": "Alanya avsallar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Završeni Hayat Heaven Residence se nalazi u Avsallar-u, okružen borovima i modernim kućama.</p><p>Ova oblast se nalazi 24 km zapadno od centra Alanje. Pruža potpunu društvenu i turističku infrastrukturu za odmorište na moru i u prirodi, kao i za dugotrajno stanovanje.</p><p>Rezidencija je udaljena samo 1,4 km od poznate plaže Incekum, koja je poznata po finom pesku, bezbednim mestima za kupanje, parkingu i raznim sadržajima. To je jedna od najboljih plaža na čitavoj mediteranskoj obali.</p><p>Sa balkona i prozora kompleksa pružaju se pogledi na borove šume i moderne zgrade, a sa gornjih spratova — na more.</p><p>Raspored apartmana uključuje 1+1 - 42 jed. i 2+1 dupleksi - 7 jed. Pored spoljašnjeg bazena u dvorištu, kompleks ima i unutrašnji bazen, kao i unutrašnje sadržaje za wellness i rekreaciju.</p><p>Zahvaljujući prijatnoj atmosferi, prelepim plažama i obilju borovih šuma, Avsallar je tražen za iznajmljivanje čak i zimi.</p>"
+    }
+  }
 }

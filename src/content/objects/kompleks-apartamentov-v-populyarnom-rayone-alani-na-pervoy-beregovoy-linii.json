@@ -76,5 +76,35 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/bc4/bc4e3b9b9f10199320e4e034ccb3ead9/b9adfcc4648df1d4dc64cf1285691065",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/a14/a14cf992fc79e6353b0086a564fb284e/6ab576f2d985df82c7766da6d66b911e"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/apartment-complex-in-the-popular-alanya-district-on-the-first-coastline/",
+      "title": "Apartment complex in the popular Alanya district, on the first coastline",
+      "location": "Alanya Mahmutlar",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The first coastline and the most sought-after area of Alanya, the number of such options on the market is limited.</p><p>The complex includes 2 residential blocks, a total of 64 apartments. It is being built on a plot of land with an area of 1,930 m2. The project presents various layouts: 1+1 apartments with a private garden - 9 units, 1+1 single-level apartments - 45 units, 2+1 penthouses - 10 units.</p><p>The infrastructure of the complex will include an outdoor swimming pool, jacuzzi, spa center, Turkish bath, sauna, steam room, jacuzzi, relaxation room, massage rooms, fitness center, cafe, children's playground and game room, outdoor parking, 7/24 security, concierge, security cameras, electric generator.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/kompleks-apartmana-u-popularnom-delu-alanje-na-prvoj-liniji-do-mora/",
+      "title": "Kompleks apartmana u popularnom delu Alanje – na prvoj liniji do mora",
+      "location": "Alanya mahmutlar",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Cafe Restaurant",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Market",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Rimska parna soba",
+        "Turski hamam",
+        "Video nadzor 24/7"
+      ],
+      "descriptionHtml": "<p>Prva linija do mora i najtraženiji deo Alanje, broj takvih opcija na tržištu je ograničen.</p><p>Kompleks uključuje 2 stambena bloka sa ukupno 64 stana. Gradi se na zemljištu površine 1.930 m2. U projektu su zastupljene različite raspodele: stanovi 1+1 sa sopstvenom baštom - 9, jednospratni apartmani 1+1 - 45, penthausi 2+1 - 10.</p><p>U infrastrukturu kompleksa ulazi otvoreni bazen, đakuzi, spa centar, tursko kupatilo, sauna, parna soba, đakuzi, soba za odmor, sobe za masažu, fitnes centar, kafe, dečje igralište i igraonica, otvoreni parking, 24/7 obezbeđenje, konsijerž, sigurnosne kamere, električni generator.</p>"
+    }
+  }
 }

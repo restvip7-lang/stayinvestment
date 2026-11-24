@@ -5,33 +5,36 @@ import Img from '../../components/Img.astro';
 import Icon from '../../components/Icon.astro';
 import LeadSection from '../../components/LeadSection.astro';
 import { STATS, TEAM, yearsOnMarket } from '../../lib/site';
+import { langOf, useT } from '../../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const offices = [
-  { country: 'Турция', cities: 'Аланья, Анталья, Стамбул' },
-  { country: 'Казахстан', cities: 'Алматы, Астана' },
-  { country: 'ОАЭ', cities: 'Дубай' },
-  { country: 'Северный Кипр', cities: 'Гирне' },
-  { country: 'Россия', cities: 'Москва' },
-  { country: 'Украина', cities: 'Киев' },
+  { country: tr("Турция"), cities: tr("Аланья, Анталья, Стамбул") },
+  { country: tr("Казахстан"), cities: tr("Алматы, Астана") },
+  { country: tr("ОАЭ"), cities: tr("Дубай") },
+  { country: tr("Северный Кипр"), cities: tr("Гирне") },
+  { country: tr("Россия"), cities: tr("Москва") },
+  { country: tr("Украина"), cities: tr("Киев") },
 ];
 const timeline = [
-  { year: '2018', text: 'Первый жилой комплекс Stay Property — в Авсалларе.' },
-  { year: 'Рост', text: 'Собственные проекты в Аланье и Стамбуле. До 90% квартир продаются ещё на этапе строительства.' },
-  { year: '2023', text: 'Сеть из 9 офисов в 6 странах.' },
-  { year: 'Сегодня', text: `${yearsOnMarket()} лет на рынке, проекты в Аланье и Стамбуле, кабинет инвестора с онлайн-отчётностью.` },
+  { year: '2018', text: tr("Первый жилой комплекс Stay Property — в Авсалларе.") },
+  { year: tr("Рост"), text: tr("Собственные проекты в Аланье и Стамбуле. До 90% квартир продаются ещё на этапе строительства.") },
+  { year: '2023', text: tr("Сеть из 9 офисов в 6 странах.") },
+  { year: tr("Сегодня"), text: tr("{yearsOnMarket} лет на рынке, проекты в Аланье и Стамбуле, кабинет инвестора с онлайн-отчётностью.", { yearsOnMarket: yearsOnMarket() }) },
 ];
 ---
-<Base title="О компании Stay Investment — инвестиционное направление Stay Property" description={`Stay Investment — дочерняя компания девелопера Stay Property: ${yearsOnMarket()} лет на рынке Турции, 14+ собственных проектов, 9 офисов в 6 странах. Инвестиции в недвижимость Аланьи и Стамбула.`} crumbs={[{ label: 'О компании' }]}>
-  <PageHead eyebrow="О компании" image="/images/site/about-hero.jpg" imageAlt="Жилой комплекс Stay Property в Аланье" imageNote="До 90% квартир продаются ещё на этапе строительства" title="Инвестируем в недвижимость Турции вместе с девелопером" lead="Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами." />
+<Base title={tr("О компании Stay Investment — инвестиционное направление Stay Property")} description={tr("Stay Investment — дочерняя компания девелопера Stay Property: {yearsOnMarket} лет на рынке Турции, 14+ собственных проектов, 9 офисов в 6 странах. Инвестиции в недвижимость Аланьи и Стамбула.", { yearsOnMarket: yearsOnMarket() })} crumbs={[{ label: tr("О компании") }]}>
+  <PageHead eyebrow={tr("О компании")} image="/images/site/about-hero.jpg" imageAlt={tr("Жилой комплекс Stay Property в Аланье")} imageNote={tr("До 90% квартир продаются ещё на этапе строительства")} title={tr("Инвестируем в недвижимость Турции вместе с девелопером")} lead={tr("Stay Investment — дочерняя компания Stay Property, которая специализируется на инвестиционных проектах. Мы открываем инвесторам доступ к проектам группы — на тех же условиях, на которых развиваем их сами.")} />
 
   <section class="container-x pb-16">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <div class="img-outline relative overflow-hidden rounded-[20px]" data-reveal><Img src="/images/site/about-riverside.jpg" alt="Жилой комплекс Exodus Riverside от Stay Property: бассейн и зона отдыха (визуализация)" class="aspect-[4/3] w-full" width={1024} height={768} sizes="(min-width: 1024px) 50vw, 100vw" /></div>
+      <div class="img-outline relative overflow-hidden rounded-[20px]" data-reveal><Img src="/images/site/about-riverside.jpg" alt={tr("Жилой комплекс Exodus Riverside от Stay Property: бассейн и зона отдыха (визуализация)")} class="aspect-[4/3] w-full" width={1024} height={768} sizes="(min-width: 1024px) 50vw, 100vw" /></div>
       <div class="prose-si" data-reveal style="--i:1">
-        <p>Бренд Stay Property работает на рынке Турции {yearsOnMarket()} лет и сегодня входит в число самых динамично развивающихся девелоперов региона.</p>
-        <p>Мы начали в 2018 году с небольшого жилого комплекса в Авсалларе и за несколько лет стали одним из ключевых игроков рынка. До 90% квартир в комплексах, которые мы строим, продаются ещё на этапе строительства — задолго до сдачи домов.</p>
-        <p>С самого начала нашей целью было предлагать клиентам самые выгодные условия покупки и лучший сервис. Сегодня мы уверенно можем сказать, что этого добились.</p>
-        <p class="text-[15px] font-semibold text-ink">Халиль Ибрагим Дайе, CEO Stay Property</p>
+        <p>{tr("Бренд Stay Property работает на рынке Турции {yearsOnMarket} лет и сегодня входит в число самых динамично развивающихся девелоперов региона.", { yearsOnMarket: yearsOnMarket() })}</p>
+        <p>{tr("Мы начали в 2018 году с небольшого жилого комплекса в Авсалларе и за несколько лет стали одним из ключевых игроков рынка. До 90% квартир в комплексах, которые мы строим, продаются ещё на этапе строительства — задолго до сдачи домов.")}</p>
+        <p>{tr("С самого начала нашей целью было предлагать клиентам самые выгодные условия покупки и лучший сервис. Сегодня мы уверенно можем сказать, что этого добились.")}</p>
+        <p class="text-[15px] font-semibold text-ink">{tr("Халиль Ибрагим Дайе, CEO Stay Property")}</p>
       </div>
     </div>
   </section>
@@ -50,8 +53,8 @@ const timeline = [
   <section class="container-x py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-2">
       <div data-reveal>
-        <p class="eyebrow">История</p>
-        <h2 class="h-section mt-3">От одного комплекса — к международной группе</h2>
+        <p class="eyebrow">{tr("История")}</p>
+        <h2 class="h-section mt-3">{tr("От одного комплекса — к международной группе")}</h2>
         <ol class="timeline relative mt-8 grid gap-6 pl-6" data-reveal>
           {timeline.map((t, i) => (
             <li class="relative" data-reveal style={`--i:${i + 1}`}>
@@ -63,9 +66,9 @@ const timeline = [
         </ol>
       </div>
       <div data-reveal style="--i:1">
-        <p class="eyebrow">География</p>
-        <h2 class="h-section mt-3">9 офисов в 6 странах</h2>
-        <p class="mt-4 text-[16px] leading-relaxed text-ink-2">Каждое представительство оказывает полный спектр услуг компании — от консультации до сделки и управления объектом.</p>
+        <p class="eyebrow">{tr("География")}</p>
+        <h2 class="h-section mt-3">{tr("9 офисов в 6 странах")}</h2>
+        <p class="mt-4 text-[16px] leading-relaxed text-ink-2">{tr("Каждое представительство оказывает полный спектр услуг компании — от консультации до сделки и управления объектом.")}</p>
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
           {offices.map((o, i) => (
             <div class="card lift flex items-start gap-3 p-5" data-reveal style={`--i:${i % 2}`}>
@@ -81,26 +84,26 @@ const timeline = [
   <section class="bg-sand/60 py-16 md:py-24">
     <div class="container-x grid gap-12 lg:grid-cols-2">
       <div data-reveal>
-        <p class="eyebrow">Рынок</p>
-        <h2 class="h-section mt-3">Почему мы выбрали Турцию</h2>
+        <p class="eyebrow">{tr("Рынок")}</p>
+        <h2 class="h-section mt-3">{tr("Почему мы выбрали Турцию")}</h2>
         <div class="prose-si mt-6">
-          <p>Всё больше инвесторов обращают внимание на турецкий рынок недвижимости — и это закономерно. Цены здесь по-прежнему ниже, чем в большинстве курортных стран Средиземноморья, а спрос стабильно растёт.</p>
-          <p>За последние полтора десятилетия экономика Турции выросла в несколько раз, а страна входит в число ведущих развивающихся экономик мира. Аналитики международных агентств регулярно называют Турцию одним из перспективных рынков для инвесторов.</p>
+          <p>{tr("Всё больше инвесторов обращают внимание на турецкий рынок недвижимости — и это закономерно. Цены здесь по-прежнему ниже, чем в большинстве курортных стран Средиземноморья, а спрос стабильно растёт.")}</p>
+          <p>{tr("За последние полтора десятилетия экономика Турции выросла в несколько раз, а страна входит в число ведущих развивающихся экономик мира. Аналитики международных агентств регулярно называют Турцию одним из перспективных рынков для инвесторов.")}</p>
         </div>
       </div>
       <div class="card self-start p-7" data-reveal style="--i:1">
         <Icon name="coins" size={28} class="text-brand" />
-        <h3 class="mt-4 text-xl font-extrabold">Инвестируйте удобно</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-ink-2">Принимаем оплату в удобной для вас форме и валюте. Подберём схему расчётов и график платежей под вашу ситуацию.</p>
-        <button type="button" class="btn btn-primary mt-6" data-lead-open data-lead-title="Получить презентацию компании" data-lead-source="about-booklet">Получить презентацию компании<Icon name="arrow" size={18} /></button>
+        <h3 class="mt-4 text-xl font-extrabold">{tr("Инвестируйте удобно")}</h3>
+        <p class="mt-2 text-[15px] leading-relaxed text-ink-2">{tr("Принимаем оплату в удобной для вас форме и валюте. Подберём схему расчётов и график платежей под вашу ситуацию.")}</p>
+        <button type="button" class="btn btn-primary mt-6" data-lead-open data-lead-title={tr("Получить презентацию компании")} data-lead-source="about-booklet">{tr("Получить презентацию компании")}<Icon name="arrow" size={18} /></button>
       </div>
     </div>
   </section>
 
   <section class="container-x py-16 md:py-24">
     <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
-      <h2 class="h-section">Команда</h2>
-      <p class="max-w-md text-[15px] text-ink-2">Многолетний опыт на рынке Турции и знание всех юридических тонкостей.</p>
+      <h2 class="h-section">{tr("Команда")}</h2>
+      <p class="max-w-md text-[15px] text-ink-2">{tr("Многолетний опыт на рынке Турции и знание всех юридических тонкостей.")}</p>
     </div>
     <div class="mt-8 grid gap-5 sm:grid-cols-3">
       {TEAM.map((t, i) => (
@@ -108,12 +111,12 @@ const timeline = [
           <div class="img-outline relative overflow-hidden"><Img src={t.photo} alt={t.name} class={`aspect-[4/5] w-full ${t.focus}`} width={600} height={750} sizes="(min-width: 640px) 33vw, 100vw" /></div>
           <div class="flex items-center justify-between gap-3 p-5">
             <div><p class="font-extrabold">{t.name}</p><p class="text-[14px] text-muted">{t.role}</p></div>
-            <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={`Написать ${t.name} в WhatsApp`}><Icon name="whatsapp" size={20} /></a>
+            <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={tr("Написать {name} в WhatsApp", { name: t.name })}><Icon name="whatsapp" size={20} /></a>
           </div>
         </div>
       ))}
     </div>
   </section>
 
-  <LeadSection source="about" title="Только начинаете путь в инвестициях?" text="С радостью поделимся знаниями и опытом: объясним, как устроены пакеты, какие есть риски и как мы их снижаем, — и поможем выбрать первую инвестицию." />
+  <LeadSection source="about" title={tr("Только начинаете путь в инвестициях?")} text={tr("С радостью поделимся знаниями и опытом: объясним, как устроены пакеты, какие есть риски и как мы их снижаем, — и поможем выбрать первую инвестицию.")} />
 </Base>

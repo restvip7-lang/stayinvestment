@@ -106,5 +106,50 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/1d2/1d2024dd89b8f88e36d3763cfe34f1c5/3f1f255ec0fd13d773e3f6358557c5a9",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/756/756311b84d256c98aa7996bcb874f544/64da9a41f6cb03e4b0935f500eafdfa5"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/a-large-scale-project-with-infrastructure-in-a-district-with-one-of-the-best-beaches-on-the-mediterranean-sea/",
+      "title": "A large-scale project with infrastructure, in a district with one of the best beaches on the Mediterranean Sea",
+      "location": "Alanya Inzhekum",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>A large-scale project with infrastructure, in an area with one of the best beaches on the Mediterranean Sea.</p><p>Large modern projects “mini-towns” are a current and popular format of real estate for rent in Alanya. There will be only a few of them, given the shortage of large land plots for development.</p><p>The complex occupies 1.3 hectares in a picturesque location, surrounded by coniferous trees. Includes <br>twelve blocks, a total of 162 apartments with a ceiling height of 3 m.</p><p>Five-story blocks with a cozy classic facade design. Maximum variety of recreation and wellness areas, swimming pool 2,000 m2.</p><p>Incekum is famous for its beautiful nature and one of the best beaches in the region with fine sand and a gradual change in depth. Families with small children are happy to choose it again. Those who rent apartments here will certainly come back to vacation again.</p><p>The residential complex has the following layouts: 1+1 - 99 units, 2+1 - 49 units, 3+1 - 4 units, 4+1 - 8 units, 5+1 - 2 units. Apartments: 1+1 49 and 50 m2, garden 1+1 58, 61 and 86 m2; penthouses: 2+1, 3+1, 4+1 and 5+1.</p><p>High rental potential.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/obiman-projekat-sa-infrastrukturom-u-jednom-od-najboljih-pla-nih-oblasti-na-sredozemnom-moru/",
+      "title": "Obiman projekat sa infrastrukturom u jednom od najboljih plažnih oblasti na Sredozemnom moru",
+      "location": "Alanya inzhekum",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Akva park",
+        "Bar pored bazena",
+        "Bilijar",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Privatna plaža",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Stoni tenis",
+        "Teren za košarku",
+        "Transfer do plaže",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina",
+        "Đakuzi"
+      ],
+      "descriptionHtml": "<p>Veliki projekat sa infrastrukturom, u jednom od najboljih plažnih područja na Sredozemnom moru.</p><p>Velike moderne projekte \"mini-gradove\" - aktuelni i traženi format nekretnina za iznajmljivanje u Alanji. Biće ih samo nekoliko, s obzirom na nedostatak velikih parcela za izgradnju.</p><p>Kompleks zauzima 1,3 hektara u slikovitom okruženju, okružen borovima. Sastoji se od 12 blokova, ukupno 162 stana sa visinom plafona od 3 metra.</p><p>Petospratni blokovi sa udobnim klasičnim dizajnom fasada. Širok spektar zona za odmor i rekreaciju, bazen površine 2 000 m2.</p><p>Incekum je poznat po prelepom prirodnom okruženju i jednoj od najboljih plaža u regionu sa sitnim peskom i postepenim ulaskom u dubinu. Ovde se rado vraćaju porodice sa malom decom. Oni koji iznajmljuju apartmane ovde sigurno će se ponovo vratiti na odmor.</p><p>U stambenom kompleksu predstavljeni su sledeći rasporedi: 1+1 - 99 jed., 2+1 - 49 jed., 3+1 - 4 jed., 4+1 - 8 jed., 5+1 - 2 jed. Apartmani: 1+1 od 49 i 50 m2, baštenski 1+1 od 58, 61 i 86 m2; penthausi: 2+1, 3+1, 4+1 i 5+1.</p><p>Visok potencijal za iznajmljivanje.</p>"
+    }
+  }
 }

@@ -100,5 +100,51 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/cc5/cc50875fbbd15e84bbb715038c7bcd9e/e6abbb0f7ce5eeba9d45fe514c4fec4b",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/795/7955121daadbde621daf77b07e0affb8/795b160003f20c1761e036074ce5da8a"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/blue-sunlight-2-residence-surrounded-by-modern-developments-near-the-center-of-mahmutlar/",
+      "title": "Blue Sunlight 2 Residence Surrounded by Modern Developments Near the Center of Mahmutlar",
+      "location": "Alanya Mahmutlar",
+      "type": "Duplex Apartments",
+      "infrastructure": [
+        "Gazebo for recreation",
+        "24/7 video surveillance",
+        "Barbecue recreation area",
+        "Cafe/Restaurant",
+        "Children's pool",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Outdoor parking",
+        "Outdoor pool",
+        "Playground",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The Blue Sunlight 2 Residence is located 900 meters from the sea in the part of Mahmutlar where new modern developments are rapidly forming. All social infrastructure is within walking distance. There is a direct road leading to the beaches. The Yekta Mall shopping center is located 800 meters away, and 1.5 km away is the Saturday farmer's market square and the new 7-story Akdeniz Park shopping center.</p><p>The Blue Sunlight 2 plot is surrounded by green landscapes, offering magnificent mountain views. The complex is oriented to the south, toward the sea. The high rental potential is ensured by the combination of a quiet, green location and proximity to the sea.</p><p>Blue Sunlight 2 consists of a single nine-story block with 54 apartments. Each floor has six units: 2+1 penthouses (109.5 m²) - 4 units and 4+1 penthouses (139.5 m²) - 2 units, 1+1 linear apartments (56.5 m²) - 32 units, and 2+1 apartments (68 m²) - 16 units. In this small and cozy residence, there are all the basic recreational areas, including an outdoor pool, Turkish hammam, Finnish sauna, fitness center, and a children's area.</p><p>The initial payment is as low as 20%. The remaining amount can be paid in interest-free installments until the end of construction. The apartments are suitable for obtaining citizenship.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/blue-sunlight-2-residence-moderni-razvoj-u-blizini-centra-mahmutlara/",
+      "title": "Blue Sunlight 2 Residence: Moderni razvoj u blizini centra Mahmutlara",
+      "location": "Alanya mahmutlar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Turski hamam",
+        "Video nadzor 24/7"
+      ],
+      "descriptionHtml": "<p>Blue Sunlight 2 Residence se nalazi 900 metara od mora, u delu Mahmutlara gde se brzo razvijaju novi moderni projekti. Sva društvena infrastruktura je na dohvat ruke. Postoji direktna cesta koja vodi do plaža. Tržni centar Yekta Mall je udaljen 800 metara, dok se subotnji pijac i novi sedmospratni tržni centar Akdeniz Park nalaze na 1,5 km.</p><p>Zemljište Blue Sunlight 2 je okruženo zelenim pejzažima, koji nude veličanstven pogled na planine. Kompleks je orijentisan ka jugu, prema moru. Visok potencijal za izdavanje nekretnina osiguran je kombinacijom mirne, zelene lokacije i blizine mora.</p><p>Blue Sunlight 2 se sastoji od jednog devetospratnog bloka sa 54 apartmana. Na svakom spratu se nalaze po šest jedinica: 2+1 penthause (109,5 m²) - 16 jed., 4+1 penthause (139,5 m²) - 2 jed., 1+1 linijski apartmani (56,5 m²) - 32 jed. i 2+1 apartmani (68 m²) - 16 jed. U ovoj maloj i udobnoj rezidenciji postoje svi osnovni rekreativni sadržaji, uključujući spoljašnji bazen, turski hamam, finsku saunu, fitnes centar i prostor za decu.</p><p>Početna uplata iznosi samo 20%. Preostali iznos može se platiti u ratama bez kamata do kraja gradnje. Apartmani su pogodni za sticanje državljanstva.</p>"
+    }
+  }
 }

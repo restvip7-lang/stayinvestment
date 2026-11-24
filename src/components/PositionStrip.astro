@@ -4,12 +4,15 @@
  * Текущий объект — цвет пакета (emphasis), остальные — серые; точки — ссылки на объекты. Подписаны мин., макс. и текущий.
  */
 import { byPackage, entryPrice, yieldOf, objectUrl, euro, eurShort, pkgColor, PACKAGES, type InvestObject } from '../lib/catalog';
+import { langOf, useT } from '../i18n';
 interface Props { o: InvestObject }
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const { o } = Astro.props;
 const peers = byPackage(o.package);
 const scales = [
-  { key: 'price', title: o.package === 'partnerskye' ? 'Сумма входа' : 'Стоимость входа', get: (x: InvestObject) => entryPrice(x), fmt: (n: number) => eurShort(n), full: (n: number) => euro(n), log: true },
-  { key: 'yield', title: yieldOf(o)?.label ?? 'Доходность', get: (x: InvestObject) => yieldOf(x)?.value ?? null, fmt: (n: number) => `${n}%`, full: (n: number) => `${n}%`, log: false },
+  { key: 'price', title: o.package === 'partnerskye' ? tr("Сумма входа") : tr("Стоимость входа"), get: (x: InvestObject) => entryPrice(x), fmt: (n: number) => eurShort(n), full: (n: number) => euro(n), log: true },
+  { key: 'yield', title: yieldOf(o)?.label ?? tr("Доходность"), get: (x: InvestObject) => yieldOf(x)?.value ?? null, fmt: (n: number) => `${n}%`, full: (n: number) => `${n}%`, log: false },
 ].map((s) => {
   const pts = peers.map((p) => ({ p, v: s.get(p) })).filter((x): x is { p: InvestObject; v: number } => x.v != null);
   const vs = pts.map((x) => x.v);
@@ -22,17 +25,17 @@ const scales = [
   const above = mine == null ? 0 : vs.filter((v) => v > mine).length;
   const equal = mine == null ? 0 : vs.filter((v) => v === mine).length;
   const note = equal > vs.length / 2
-    ? `Как у большинства объектов пакета (${equal} из ${vs.length})`
+    ? tr("Как у большинства объектов пакета ({equal} из {length})", { equal, length: vs.length })
     : s.key === 'price'
-    ? (above === n ? 'Самый доступный вход в пакете' : below === n ? 'Самый крупный вход в пакете' : `Дешевле ${Math.round((above / n) * 100)}% объектов пакета`)
-    : (below === n ? 'Максимум в пакете' : above === n ? 'Минимум в пакете' : `Выше, чем у ${Math.round((below / n) * 100)}% объектов пакета`);
+    ? (above === n ? tr("Самый доступный вход в пакете") : below === n ? tr("Самый крупный вход в пакете") : tr("Дешевле {round}% объектов пакета", { round: Math.round((above / n) * 100) }))
+    : (below === n ? tr("Максимум в пакете") : above === n ? tr("Минимум в пакете") : tr("Выше, чем у {round}% объектов пакета", { round: Math.round((below / n) * 100) }));
   return { ...s, pts, min, max, pos, mine, note, distinct: new Set(vs).size };
 }).filter((s) => s.mine != null && s.distinct > 1);
 ---
 {scales.length > 0 && (
   <section class="card p-6 md:p-8" aria-labelledby="pos-title">
-    <h2 id="pos-title" class="text-2xl">Объект среди других в пакете</h2>
-    <p class="mt-1 text-[15px] text-ink-2">Каждая точка — объект пакета «{PACKAGES[o.package].name}» ({peers.length}). Этот объект выделен цветом; наведите на точку, чтобы увидеть детали.</p>
+    <h2 id="pos-title" class="text-2xl">{tr("Объект среди других в пакете")}</h2>
+    <p class="mt-1 text-[15px] text-ink-2">{tr("Каждая точка — объект пакета «{name}» ({length}). Этот объект выделен цветом; наведите на точку, чтобы увидеть детали.", { name: PACKAGES[o.package].name, length: peers.length })}</p>
     <div class="mt-6 grid gap-8">
       {scales.map((s) => (
         <div>
@@ -47,7 +50,7 @@ const scales = [
                 <span class="h-2.5 w-2.5 rounded-full bg-[#b9bfca] ring-2 ring-surface"></span>
               </a>
             ))}
-            <span class="absolute top-1/2 grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center" style={`left:${s.pos(s.mine!)}%`} tabindex="0" data-tip={`${s.full(s.mine!)}|Этот объект · ${o.id}`}>
+            <span class="absolute top-1/2 grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center" style={`left:${s.pos(s.mine!)}%`} tabindex="0" data-tip={tr("{mine}|Этот объект · {id}", { mine: s.full(s.mine!), id: o.id })}>
               <span class="h-4 w-4 rounded-full ring-[3px] ring-surface" style={`background:${pkgColor(o.package)}`}></span>
             </span>
           </div>
@@ -58,6 +61,6 @@ const scales = [
         </div>
       ))}
     </div>
-    <p class="mt-2 text-[12.5px] text-muted">{scales.some((s) => s.log) ? 'Шкала цены — логарифмическая: равные расстояния означают одинаковую разницу в разах.' : ''}</p>
+    <p class="mt-2 text-[12.5px] text-muted">{scales.some((s) => s.log) ? tr('Шкала цены — логарифмическая: равные расстояния означают одинаковую разницу в разах.') : ''}</p>
   </section>
 )}

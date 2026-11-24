@@ -76,5 +76,36 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/366/366ac633490ab88f077ef67105eef655/885705b34cb00536804b694f9fdfab80",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/411/4115a475f18c5b1c8ec1fe81d30baa0d/f4d7c9940886d921ecc6db21796f72c1"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/famous-project-with-the-best-location-close-to-the-city-center-and-the-sea/",
+      "title": "Famous project with the best location close to the city center and the sea",
+      "location": "Alanya Oba",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>A large premium project in the most convenient and developed part of Alan, the Lower Oba district, just 750 m from the sea. Land plot 21500 m2. 95% of apartments have views of the mountains and pool. The distance between the blocks is 55 m. All apartments have premium square footage. For example, 1+1 – from 71 m2, compared to the average in Alanya 45 m2.</p>\n<p>The price includes: built-in kitchen appliances (hood, oven, stove), smart home technology, heated floors throughout the apartment, video intercom. 278 underground parking spaces with a total area 9200 m2. The landscaped courtyard occupies 15.5000 m2, a varied indoor infrastructure covers an area 975 m2, and a large outdoor swimming pool 490 m2.</p>\n<p>Distances: within walking distance of the hospital, shopping center, MMM Migros, Metro shopping center, colleges, schools, kindergartens, 1.6 km to the Alanium shopping center.</p>\n<p>11 blocks for 202 apartments of different layouts: 1+1, 1+1 on the garden floor – total 80 units; 2+1, 2+1 duplex penthouses, 2+1 garden duplexes – 53 units; 3+1, 3+1 duplexes penthouses, 3+1 garden duplexes – 52 units; 4+1, 4+1 garden duplexes – 18 units.</p>\n<p>Famous project with the best location and thoughtful concept. Great demand for modern real estate is now in this part of the city, but due to the lack of land, projects of this scale will no longer happen here. The complex has no competition in terms of rental potential and has the prospect of a systematic increase in prices for many years to come.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/uveni-projekat-na-najboljoj-lokaciji-blizu-centra-grada-i-mora/",
+      "title": "Čuveni projekat na najboljoj lokaciji blizu centra grada i mora",
+      "location": "Alanya oba",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Turski hamam",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Veliki premijum projekat u najrazvijenijem i najpogodnijem delu Alanje - donjoj Oba, na 750 m od mora. Parcela zemljišta je 21.500 m2. 95% stanova ima pogled na planine i bazen. Rastojanje između blokova je 55 m. Svi stanovi imaju premijum kvadraturu. Na primer, 1+1 stanovi su od 71 m2, u poređenju sa prosečnim kvadratima u Alanji od 45 m2.</p><p>U cenu su uključeni: ugradna kuhinjska oprema (nape, rerna, šporet), pametna kućna tehnologija, podno grejanje u celom stanu, video interfoni. Podzemni parking ima 278 mesta na ukupnoj površini od 9200 m2. Zeleni dvor zauzima 15.500 m2, raznovrsna pokrivena infrastruktura na 975 m2, veliki vanjski bazen na 490 m2.</p><p>U blizini su peške dostupni: bolnica, tržni centri, supermarketi kao što su MMM Migros i Metro, koledži, škole, vrtići, sa udaljenošću od 1,6 km do tržnog centra Alanium.</p><p>Projekat se sastoji od 11 blokova sa ukupno 202 stanova različitih rasporeda: 1+1, 1+1 na prizemlju sa baštom - 80 jed.; 2+1, 2+1 dupleksi penthausi, 2+1 sadovski dupleksi - 53 jed.; 3+1, 3+1 dupleksi penthausi, 3+1 sadovski dupleksi - 52 jed.; 4+1, 4+1 sadovski dupleksi - 18 jed..</p><p>Čuveni projekat sa najboljim položajem i pažljivo osmišljenom konceptom. Postoji velika potražnja za modernom nekretninom u ovom delu grada, ali zbog nedostatka zemljišta, projekata ovog obima više neće biti. Kompleks je bez konkurencije po potencijalu za iznajmljivanje, sa perspektivom postepenog valorizovanja u godinama koje dolaze.</p>"
+    }
+  }
 }

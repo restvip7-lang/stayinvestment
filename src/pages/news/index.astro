@@ -6,7 +6,10 @@ import Img from '../../components/Img.astro';
 import { formatDate } from '../../lib/news';
 import LeadSection from '../../components/LeadSection.astro';
 import { getNews } from '../../lib/news';
+import { langOf, useT } from '../../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const PER_PAGE = 12;
 const all = await getNews();
 const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
@@ -16,11 +19,11 @@ const [first, ...rest] = items;
 const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
 ---
 <Base
-  title={page > 1 ? `Новости рынка недвижимости Турции — страница ${page}` : 'Новости рынка недвижимости Турции'}
-  description="Новости рынка недвижимости Турции: цены и продажи, законы для иностранцев, ВНЖ и гражданство, налоги, аналитика и советы инвесторам от экспертов Stay Investment."
-  crumbs={[{ label: 'Новости' }]}
+  title={page > 1 ? tr("Новости рынка недвижимости Турции — страница {page}", { page }) : tr("Новости рынка недвижимости Турции")}
+  description={tr("Новости рынка недвижимости Турции: цены и продажи, законы для иностранцев, ВНЖ и гражданство, налоги, аналитика и советы инвесторам от экспертов Stay Investment.")}
+  crumbs={[{ label: tr("Новости") }]}
 >
-  <PageHead eyebrow="Новости" title="Рынок недвижимости Турции" lead="Будьте в курсе событий рынка: цены и статистика продаж, изменения в законах для иностранцев, налоги, ВНЖ — и разборы для инвесторов от экспертов Stay Investment." />
+  <PageHead eyebrow={tr("Новости")} title={tr("Рынок недвижимости Турции")} lead={tr("Будьте в курсе событий рынка: цены и статистика продаж, изменения в законах для иностранцев, налоги, ВНЖ — и разборы для инвесторов от экспертов Stay Investment.")} />
   <section class="container-x pb-10">
     {first && page === 1 ? (
       <>
@@ -28,7 +31,7 @@ const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
           <Img src={first.image} alt={first.title} class="aspect-[4/5] w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.03] sm:aspect-[21/9]" width={1440} height={620} priority sizes="(min-width: 1280px) 1216px, 100vw" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#1d2128]/90 via-[#1d2128]/35 to-transparent"></div>
           <div class="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
-            <span class="chip bg-accent-2 text-white">Свежая новость</span>
+            <span class="chip bg-accent-2 text-white">{tr("Свежая новость")}</span>
             <p class="mt-4 text-[13px] font-semibold text-white/80"><time datetime={first.date}>{formatDate(first.date)}</time></p>
             <h2 class="mt-2 max-w-3xl text-[24px] leading-tight sm:text-[34px]">{first.title}</h2>
             {first.excerpt && <p class="mt-3 hidden max-w-2xl text-[16px] leading-relaxed text-white/85 sm:line-clamp-2">{first.excerpt}</p>}
@@ -40,7 +43,7 @@ const href = (p: number) => (p === 1 ? '/news/' : `/news/?page=${p}`);
       <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{items.map((n, i) => <div data-reveal style={`--i:${i % 3}`}><NewsCard n={n} /></div>)}</div>
     )}
     {pages > 1 && (
-      <nav class="mt-16 flex flex-wrap items-center justify-center gap-2" aria-label="Страницы">
+      <nav class="mt-16 flex flex-wrap items-center justify-center gap-2" aria-label={tr("Страницы")}>
         {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
           <a href={href(p)} aria-current={p === page ? 'page' : undefined} class:list={['grid h-11 min-w-11 place-items-center rounded-full px-3 font-bold tabular', p === page ? 'bg-brand-2 text-white' : 'border border-line-2 hover:border-ink']}>{p}</a>
         ))}

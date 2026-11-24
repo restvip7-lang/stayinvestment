@@ -5,7 +5,10 @@
  * доход — стрелки вверх цвета пакета, этапы — подписанные полосы. Подсказки — [data-tip] (VizTooltip.astro).
  */
 import { PACKAGES, PACKAGE_ORDER, byPackage, pkgColor, type PackageKey } from '../lib/catalog';
+import { langOf, useT } from '../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const MAX = 48;
 const median = (xs: (number | null | undefined)[]) => {
   const v = xs.filter((x): x is number => typeof x === 'number').sort((a, b) => a - b);
@@ -26,38 +29,38 @@ const rentIncome = Array.from({ length: r.years }, (_, i) => r.inst + 12 * (i + 
 const lanes: { k: PackageKey; summary: string; bands: Band[]; events: Ev[] }[] = [
   {
     k: 'rental',
-    summary: `Взнос ${r.first}%, рассрочка ${r.inst} мес., затем ${r.yld}% годовых ${r.years} года по гарантии`,
+    summary: tr("Взнос {first}%, рассрочка {inst} мес., затем {yld}% годовых {years} года по гарантии", { first: r.first, inst: r.inst, yld: r.yld, years: r.years }),
     bands: [
-      { from: 0, to: r.inst, kind: 'pay', label: `Рассрочка ${r.inst} мес.`, tip: `Рассрочка|Остаток ${100 - r.first}% стоимости без процентов, ${r.inst} мес.` },
-      { from: r.inst, to: Math.min(MAX, r.inst + 12 * r.years), kind: 'stage', label: `Гарантия аренды ${r.years} года`, tip: `Гарантия аренды|${r.yld}% годовых от застройщика, ${r.years} года после полной оплаты и передачи ключей` },
+      { from: 0, to: r.inst, kind: 'pay', label: tr("Рассрочка {inst} мес.", { inst: r.inst }), tip: tr("Рассрочка|Остаток {first}% стоимости без процентов, {inst} мес.", { first: 100 - r.first, inst: r.inst }) },
+      { from: r.inst, to: Math.min(MAX, r.inst + 12 * r.years), kind: 'stage', label: tr("Гарантия аренды {years} года", { years: r.years }), tip: tr("Гарантия аренды|{yld}% годовых от застройщика, {years} года после полной оплаты и передачи ключей", { yld: r.yld, years: r.years }) },
     ],
     events: [
-      { at: 0, kind: 'out', label: `Взнос ${r.first}%`, tip: `Первый взнос|${r.first}% стоимости при подписании договора` },
-      ...rentIncome.map((t, i) => ({ at: t, kind: 'in' as const, label: `+${r.yld}%`, tip: `+${r.yld}% стоимости|Арендный доход за ${i + 1}-й год гарантии` })),
+      { at: 0, kind: 'out', label: tr("Взнос {first}%", { first: r.first }), tip: tr("Первый взнос|{first}% стоимости при подписании договора", { first: r.first }) },
+      ...rentIncome.map((t, i) => ({ at: t, kind: 'in' as const, label: `+${r.yld}%`, tip: tr("+{yld}% стоимости|Арендный доход за {i1}-й год гарантии", { yld: r.yld, i1: i + 1 }) })),
     ],
   },
   {
     k: 'startovye',
-    summary: `Взнос ${s.first}%, рассрочка ${s.inst} мес., продажа после сдачи дома: ≈ +15–20%`,
+    summary: tr("Взнос {first}%, рассрочка {inst} мес., продажа после сдачи дома: ≈ +15–20%", { first: s.first, inst: s.inst }),
     bands: [
-      { from: 0, to: s.inst, kind: 'pay', label: `Рассрочка ${s.inst} мес.`, tip: `Рассрочка|Остаток ${100 - s.first}% без процентов, ${s.inst} мес.` },
-      { from: s.inst, to: sSale, kind: 'stage', label: 'Сдача дома', tip: 'Завершение строительства|Ввод дома в эксплуатацию (искан) и оформление ТАПУ' },
+      { from: 0, to: s.inst, kind: 'pay', label: tr("Рассрочка {inst} мес.", { inst: s.inst }), tip: tr("Рассрочка|Остаток {first}% без процентов, {inst} мес.", { first: 100 - s.first, inst: s.inst }) },
+      { from: s.inst, to: sSale, kind: 'stage', label: tr("Сдача дома"), tip: tr("Завершение строительства|Ввод дома в эксплуатацию (искан) и оформление ТАПУ") },
     ],
     events: [
-      { at: 0, kind: 'out', label: `Взнос ${s.first}%`, tip: `Первый взнос|${s.first}% стоимости лота` },
-      { at: sSale, kind: 'in', label: '+15–20%', tip: '+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома' },
+      { at: 0, kind: 'out', label: tr("Взнос {first}%", { first: s.first }), tip: tr("Первый взнос|{first}% стоимости лота", { first: s.first }) },
+      { at: sSale, kind: 'in', label: '+15–20%', tip: tr("+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома") },
     ],
   },
   {
     k: 'partnerskye',
-    summary: `Вход единой суммой, цикл ${p.payback} мес., распределение прибыли: ROI ≈ ${p.roi}%`,
+    summary: tr("Вход единой суммой, цикл {payback} мес., распределение прибыли: ROI ≈ {roi}%", { payback: p.payback, roi: p.roi }),
     bands: [
-      { from: 0, to: pBuild, kind: 'stage', label: 'Строительство', tip: 'Строительство|Камера, фотоотчёты и прайсы — в кабинете инвестора' },
-      { from: pBuild, to: p.payback, kind: 'stage', label: 'Продажи', tip: 'Продажи квартир|Начинаются ещё на этапе стройки, завершаются после сдачи' },
+      { from: 0, to: pBuild, kind: 'stage', label: tr("Строительство"), tip: tr("Строительство|Камера, фотоотчёты и прайсы — в кабинете инвестора") },
+      { from: pBuild, to: p.payback, kind: 'stage', label: tr("Продажи"), tip: tr("Продажи квартир|Начинаются ещё на этапе стройки, завершаются после сдачи") },
     ],
     events: [
-      { at: 0, kind: 'out', label: 'Вход 100%', tip: 'Вход в проект|Сумма доли вносится единовременно' },
-      { at: p.payback, kind: 'in', label: `+${p.roi}%`, tip: `ROI ${p.roi}% за цикл|Медиана по проектам каталога; распределение прибыли по итогам продаж` },
+      { at: 0, kind: 'out', label: tr("Вход 100%"), tip: tr("Вход в проект|Сумма доли вносится единовременно") },
+      { at: p.payback, kind: 'in', label: `+${p.roi}%`, tip: tr("ROI {roi}% за цикл|Медиана по проектам каталога; распределение прибыли по итогам продаж", { roi: p.roi }) },
     ],
   },
 ];
@@ -71,14 +74,14 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
 <figure class="card p-5 sm:p-8">
   <figcaption class="flex flex-wrap items-end justify-between gap-4">
     <div>
-      <p class="text-xl font-extrabold">Как движутся деньги: типичный сценарий</p>
-      <p class="mt-1 max-w-2xl text-[14px] text-ink-2">Сроки и ставки — медианы по объектам каталога. График платежей и выплат по конкретному объекту фиксируется в договоре.</p>
+      <p class="text-xl font-extrabold">{tr("Как движутся деньги: типичный сценарий")}</p>
+      <p class="mt-1 max-w-2xl text-[14px] text-ink-2">{tr("Сроки и ставки — медианы по объектам каталога. График платежей и выплат по конкретному объекту фиксируется в договоре.")}</p>
     </div>
     <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-ink-2">
-      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full" style="background:var(--color-flow-out)"><svg width="8" height="8" aria-hidden="true"><path d="M4 .5v6M1.5 4.5 4 7l2.5-2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>Ваши платежи</li>
-      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full bg-ink"><svg width="8" height="8" aria-hidden="true"><path d="M4 7.5v-6M1.5 3.5 4 1l2.5 2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>Доход (цвет пакета)</li>
-      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-[#e3e7ee]"></span>Рассрочка</li>
-      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-sand"></span>Этап</li>
+      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full" style="background:var(--color-flow-out)"><svg width="8" height="8" aria-hidden="true"><path d="M4 .5v6M1.5 4.5 4 7l2.5-2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>{tr("Ваши платежи")}</li>
+      <li class="flex items-center gap-2"><span class="grid h-4 w-4 place-items-center rounded-full bg-ink"><svg width="8" height="8" aria-hidden="true"><path d="M4 7.5v-6M1.5 3.5 4 1l2.5 2.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" /></svg></span>{tr("Доход (цвет пакета)")}</li>
+      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-[#e3e7ee]"></span>{tr("Рассрочка")}</li>
+      <li class="flex items-center gap-2"><span class="inline-block h-3 w-5 rounded-[3px] bg-sand"></span>{tr("Этап")}</li>
     </ul>
   </figcaption>
 
@@ -111,7 +114,7 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
       </div>
     ))}
     <div class="grid md:grid-cols-[210px_1fr] md:gap-6" aria-hidden="true">
-      <span class="hidden text-right text-[11.5px] text-muted md:block">месяцы</span>
+      <span class="hidden text-right text-[11.5px] text-muted md:block">{tr("месяцы")}</span>
       <div class="relative h-5 border-t border-line text-[11.5px] text-muted tabular">
         {ticks.map((t) => <span class="absolute top-1.5" style={`left:${pos(t)}%;transform:${anchor(t)}`}>{t}</span>)}
       </div>
@@ -119,10 +122,10 @@ const ticks = [0, 6, 12, 18, 24, 30, 36, 42, 48];
   </div>
 
   <div class="sr-only"><table>
-    <caption>Типичный сценарий движения денег по пакетам</caption>
-    <thead><tr><th>Пакет</th><th>Месяц</th><th>Событие</th></tr></thead>
+    <caption>{tr("Типичный сценарий движения денег по пакетам")}</caption>
+    <thead><tr><th>{tr("Пакет")}</th><th>{tr("Месяц")}</th><th>{tr("Событие")}</th></tr></thead>
     <tbody>
-      {lanes.flatMap((l) => [...l.events.map((e) => ({ at: e.at, t: e.tip.replace('|', ': ') })), ...l.bands.map((b) => ({ at: b.from, t: `${b.tip.replace('|', ': ')} (до ${b.to} мес.)` }))].sort((a, b) => a.at - b.at).map((e) => <tr><td>{PACKAGES[l.k].name}</td><td>{e.at}</td><td>{e.t}</td></tr>))}
+      {lanes.flatMap((l) => [...l.events.map((e) => ({ at: e.at, t: e.tip.replace('|', ': ') })), ...l.bands.map((b) => ({ at: b.from, t: tr("{replace} (до {to} мес.)", { replace: b.tip.replace('|', ': '), to: b.to }) }))].sort((a, b) => a.at - b.at).map((e) => <tr><td>{PACKAGES[l.k].name}</td><td>{e.at}</td><td>{e.t}</td></tr>))}
     </tbody>
   </table></div>
 </figure>

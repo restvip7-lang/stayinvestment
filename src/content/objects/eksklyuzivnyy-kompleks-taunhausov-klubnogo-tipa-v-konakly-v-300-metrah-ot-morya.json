@@ -69,5 +69,34 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/9f7/9f7118238d4241932869ed6e9faad057/bd7e2f69be2d2794b84d062f82be5770",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/296/296bac21f4407687e2263f2a18acc424/a03868e888e2e3ae31c8661ec8dff136"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/exclusive-complex-of-club-type-townhouses-in-konakli-just-in-300-meters-from-the-sea/",
+      "title": "Exclusive complex of club-type townhouses in Konakli just in 300 meters from the sea",
+      "location": "Alanya Konakli",
+      "type": "Townhouse",
+      "infrastructure": [],
+      "descriptionHtml": "<p>A rare gem among Alanya investment projects.</p><p>An exclusive complex of townhouses in the “from apartment to pool” format. The complex features 36 townhouses with a 2+1 layout.</p><p>View characteristics: from all apartments there is a view of the pool, the territory of the complex and the sea.</p><p>A project with a non-standard concept for an unforgettable vacation.</p><p>A luxurious area with developed infrastructure for living and recreation.</p><p>High rental potential.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/ekskluzivni-kompleks-klupskog-tipa-townhausova-u-konakliju-na-300-metara-od-mora/",
+      "title": "Ekskluzivni kompleks klupskog tipa townhausova u Konakliju, na 300 metara od mora",
+      "location": "Alanya konakli",
+      "type": "Taunhaus",
+      "infrastructure": [
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Retki dragulj među investicionim projektima Alanje.</p><p>Ekskluzivni kompleks townhausova formata „iz apartmana — u bazen“. U kompleksu je predstavljeno 36 kuća u nizu sa rasporedom 2+1.</p><p>Pogled: svi apartmani imaju pogled na bazen, teritoriju kompleksa i more.</p><p>Projekat sa nestandardnim konceptom za nezaboravan odmor.</p><p>Luksuzna oblast sa razvijenoom infrastrukturom za život i odmor.</p><p>Visok potencijal za izdavanje.</p>"
+    }
+  }
 }

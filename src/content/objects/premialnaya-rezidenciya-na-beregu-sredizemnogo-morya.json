@@ -81,5 +81,42 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/6c4/6c4dc56035a96fe81caa73cb6fcbb4f5/64e2ad911bc1eaf442535ab0842022d1",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/fb4/fb473561419a056a9e2363da66a1f119/fed1174b8b6d56b036aa10f91f16caaf"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/partnerskye/premium-residence-on-the-mediterranean-coast/",
+      "title": "Premium residence on the Mediterranean coast",
+      "location": "Alanya Turkler",
+      "type": "Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The residence is located 400 meters from the beach, among luxurious and large-scale complexes and hotels, near the famous Azura World anchor complex, on the banks of the Kargy Mountain River. The land area is 12,000 m².</p>\n<p>The complex includes 120 apartments of various types and layouts:</p>\n<ul>\n<li>Garden duplexes 2+1, 107 and 130 m², with verandas adjacent to the pool – total 30 units;</li>\n<li>1+1, 53.5 m² – 50 units;</li>\n<li>Duplex penthouses 2+1, 104 and 124 m², with panoramic terraces – 40 units.</li>\n</ul>\n<p>External infrastructure: a pool, aquapark, children’s pool, pergola, BBQ, pool bar, walking paths, children’s playground, restaurant, café, tennis/basketball court, parking.</p>\n<p>Internal infrastructure: an indoor pool, fitness center with equipment, vitamin bar, massage rooms, Turkish bath hammam, relaxation room, steam room, private VIP spa, sauna, hobby rooms, game room, music room, children’s room.</p>\n<p>An exclusive, unique project with lagoon pools and a large area. Premium low-rise construction.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/partnerskye/premium-rezidencija-na-obali-sredozemnog-mora/",
+      "title": "Premium rezidencija na obali Sredozemnog mora",
+      "location": "Alanya turkler",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "Akva park",
+        "Bar pored bazena",
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Teniski teren",
+        "Teren za košarku",
+        "Turski hamam",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Rezidencija se nalazi 400 metara od plaže, okružena luksuznim i velikim kompleksima i hotelima, blizu poznatog kompleksa Azura World, na obali reke Kargy Mountain. Površina zemljišta je 12.000 m².</p><p>Kompleks obuhvata 120 apartmana različitih tipova i rasporeda:</p><ul><li>Dvorišni dupleksi 2+1, 107 i 130 m², sa terasama koje se protežu do bazena - 30 jed;</li><li>1+1, 53.5 m² - 50 jed;</li><li>Dupleks penthausi 2+1, 104 i 124 m², sa panoramskim terasama - 40jed.</li></ul><p>Spoljna infrastruktura: bazen, vodeni park, dečiji bazen, pergola, roštilj, bazenski bar, pešačke staze, dečije igralište, restoran, kafić, teniski/košarkaški teren, parking.</p><p>Unutrašnja infrastruktura: zatvoreni bazen, fitnes centar sa opremom, bar sa vitaminima, sobe za masažu, tursko kupatilo (hamam), prostorija za opuštanje, parno kupatilo, privatni VIP spa, sauna, prostorije za hobije, igraonica, muzička soba, dečija soba.</p><p>Ekskluzivan, jedinstveni projekat sa lagunskim bazenima i velikom površinom. Premium gradnja niskih zgrada.</p>"
+    }
+  }
 }

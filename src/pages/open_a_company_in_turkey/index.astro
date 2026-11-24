@@ -6,27 +6,30 @@ import ReadingProgress from '../../components/ReadingProgress.astro';
 import Faq from '../../components/Faq.astro';
 import LeadSection from '../../components/LeadSection.astro';
 import html from '../../content/pages/open-company.html?raw';
+import { langOf, useT } from '../../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const toc = [...html.matchAll(/<h2>(.*?)<\/h2>/g)].map((m, i) => ({ id: `s${i + 1}`, label: m[1].replace(/<[^>]+>/g, '') }));
 let n = 0;
 const body = html.replace(/<h2>/g, () => `<h2 id="s${++n}">`);
 const faq = [
-  { q: 'Может ли иностранец открыть компанию в Турции без турецкого партнёра?', a: 'Да. Закон № 4875 уравнивает права иностранных и турецких предпринимателей: ООО или АО можно открыть со 100% иностранным капиталом, директором тоже может быть иностранец.' },
-  { q: 'Какой минимальный уставный капитал у ООО и АО?', a: 'С 2024 года — 50 000 TL для ООО (limited şirketi) и 250 000 TL для АО (anonim şirketi). Не менее 25% капитала вносится до завершения регистрации.' },
-  { q: 'Нужно ли нанимать пятерых граждан Турции?', a: 'Это классическое условие для разрешения на работу иностранцу. С 1 октября 2024 года от него можно освободиться — например, при инвестициях в бизнес от $100 000.' },
+  { q: tr("Может ли иностранец открыть компанию в Турции без турецкого партнёра?"), a: tr("Да. Закон № 4875 уравнивает права иностранных и турецких предпринимателей: ООО или АО можно открыть со 100% иностранным капиталом, директором тоже может быть иностранец.") },
+  { q: tr("Какой минимальный уставный капитал у ООО и АО?"), a: tr("С 2024 года — 50 000 TL для ООО (limited şirketi) и 250 000 TL для АО (anonim şirketi). Не менее 25% капитала вносится до завершения регистрации.") },
+  { q: tr("Нужно ли нанимать пятерых граждан Турции?"), a: tr("Это классическое условие для разрешения на работу иностранцу. С 1 октября 2024 года от него можно освободиться — например, при инвестициях в бизнес от $100 000.") },
 ];
 ---
 <Base
-  title="Как открыть компанию в Турции иностранцу — пошаговая инструкция"
-  description="Как иностранцу открыть ООО или АО в Турции: ограничения, свободные экономические зоны, документы, регистрация в MERSİS, капитал и налоги, новые правила найма с 2024 года."
+  title={tr("Как открыть компанию в Турции иностранцу — пошаговая инструкция")}
+  description={tr("Как иностранцу открыть ООО или АО в Турции: ограничения, свободные экономические зоны, документы, регистрация в MERSİS, капитал и налоги, новые правила найма с 2024 года.")}
   type="article"
-  crumbs={[{ label: 'Инвесторам', href: '/kontrol-investitsij/' }, { label: 'Как открыть компанию в Турции' }]}
+  crumbs={[{ label: tr("Инвесторам"), href: '/kontrol-investitsij/' }, { label: tr("Как открыть компанию в Турции") }]}
 >
-  <PageHead eyebrow="Инвесторам" title="Как открыть компанию в Турции: пошаговая инструкция" lead="Формы компаний, документы, регистрация, налоги и новые правила найма — всё, что нужно знать иностранному предпринимателю." />
+  <PageHead eyebrow={tr("Инвесторам")} title={tr("Как открыть компанию в Турции: пошаговая инструкция")} lead={tr("Формы компаний, документы, регистрация, налоги и новые правила найма — всё, что нужно знать иностранному предпринимателю.")} />
   <section class="container-x pb-10">
     <div class="grid gap-12 lg:grid-cols-[260px_1fr_300px]">
-      <nav class="hidden lg:sticky lg:top-36 lg:block lg:self-start" aria-label="Содержание">
-        <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">Содержание</p>
+      <nav class="hidden lg:sticky lg:top-36 lg:block lg:self-start" aria-label={tr("Содержание")}>
+        <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">{tr("Содержание")}</p>
         <ol class="mt-4 grid gap-1 border-l border-line pl-3 text-[14.5px]">
           {toc.map((t) => <li><a href={`#${t.id}`} class="-ml-3 block border-l-2 border-transparent py-1 pl-3 text-ink-2 transition-colors duration-200 hover:text-brand-2 aria-[current=true]:border-brand aria-[current=true]:font-semibold aria-[current=true]:text-brand-2" data-toc={t.id}>{t.label}</a></li>)}
         </ol>
@@ -34,16 +37,16 @@ const faq = [
       <article class="prose-si min-w-0 max-w-3xl" id="guide" set:html={body} />
       <aside class="lg:sticky lg:top-36 lg:self-start">
         <div class="card p-6">
-          <p class="text-lg font-extrabold">Поможем открыть бизнес в Турции</p>
-          <p class="mt-1 text-[14px] text-ink-2">Регистрация компании, бухгалтер, ВНЖ и разрешение на работу — под ключ.</p>
-          <div class="mt-4"><LeadForm source="open-company" compact button="Получить консультацию" /></div>
+          <p class="text-lg font-extrabold">{tr("Поможем открыть бизнес в Турции")}</p>
+          <p class="mt-1 text-[14px] text-ink-2">{tr("Регистрация компании, бухгалтер, ВНЖ и разрешение на работу — под ключ.")}</p>
+          <div class="mt-4"><LeadForm source="open-company" compact button={tr("Получить консультацию")} /></div>
         </div>
-        <p class="mt-4 text-[12.5px] leading-snug text-muted">Материал носит справочный характер. Требования к капиталу, налоги и сборы меняются — уточняйте актуальные условия у юриста.</p>
+        <p class="mt-4 text-[12.5px] leading-snug text-muted">{tr("Материал носит справочный характер. Требования к капиталу, налоги и сборы меняются — уточняйте актуальные условия у юриста.")}</p>
       </aside>
     </div>
   </section>
   <Faq items={faq} />
-  <LeadSection source="open-company" title="Открываете бизнес в Турции?" text="Подберём форму компании, подготовим документы и пройдём регистрацию вместе с вами. А если нужен офис, отель или помещение под бизнес — подберём и его." />
+  <LeadSection source="open-company" title={tr("Открываете бизнес в Турции?")} text={tr("Подберём форму компании, подготовим документы и пройдём регистрацию вместе с вами. А если нужен офис, отель или помещение под бизнес — подберём и его.")} />
   <ReadingProgress target="#guide" />
 </Base>
 <script>

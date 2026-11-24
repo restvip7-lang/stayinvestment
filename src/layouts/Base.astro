@@ -6,6 +6,7 @@ import LeadForm from '../components/LeadForm.astro';
 import Icon from '../components/Icon.astro';
 import VizTooltip from '../components/VizTooltip.astro';
 import { SITE } from '../lib/site';
+import { langOf, useT } from '../i18n';
 
 interface Crumb { label: string; href?: string }
 interface Props {
@@ -19,6 +20,8 @@ interface Props {
   noindex?: boolean;
   type?: 'website' | 'article';
 }
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const { title, description, image, crumbs = [], jsonLd = [], noindex = false, type = 'website' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const fullTitle = title.includes(SITE.name) ? title : `${title} — ${SITE.name}`;
@@ -40,7 +43,7 @@ const ld: Record<string, unknown>[] = [
     ? [{
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        itemListElement: [{ label: 'Главная', href: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, ...(c.href ? { item: new URL(c.href, SITE.url).href } : {}) })),
+        itemListElement: [{ label: tr("Главная"), href: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, ...(c.href ? { item: new URL(c.href, SITE.url).href } : {}) })),
       }]
     : []),
   ...jsonLd,
@@ -68,7 +71,7 @@ const ld: Record<string, unknown>[] = [
     <link rel="preload" href="/fonts/EuclidCircularA-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/unbounded-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title="Новости Stay Investment" href="/news/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={tr("Новости Stay Investment")} href="/news/rss.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
   </head>
   <body class="min-h-dvh">

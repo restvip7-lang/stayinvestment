@@ -63,5 +63,37 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/e73/e738f53bbefcc62609c7b47379a2cdd1/b1c962a896b6297f1f48abebdba354d4",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/c9d/c9df59a01bfc7b3c0090f795c6e9da99/ea2094b4ed017773292fc45a824abe25"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/small-prime-garden-residence-near-all-infrastructure/",
+      "title": "Small Prime Garden Residence Near All Infrastructure",
+      "location": "Alanya Oba",
+      "type": "Duplex Apartments",
+      "infrastructure": [
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Outdoor pool",
+        "Playground",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The Prime Garden Residence is located in the Oba district of Alanya, 2 km from the Mediterranean Sea and 4 km from the marina and central promenade. Shops, supermarkets, and restaurants are within walking distance. Alanyum shopping center is 1.5 km away, and Metro and other large hypermarkets are also nearby. A large state hospital is 900 meters away. The best colleges, such as Bahçeşehir and Ted, as well as private and public schools, Waldorf, and the American College Amerikan Kültür, are all nearby. Two universities are within a 10-15 minute drive. It is 37 km to Gazipasa Airport.</p><p>Prime Garden Residence consists of 6 floors and only 24 apartments: 1+1 - 16 units, 2+1 duplex - 6 units, and 3+1 duplexes - 2 units, ranging from 50 to 127 m². The residence also offers all basic resort infrastructure, including a pool, bath, sauna, hammam, gym, and a children's playground. There are views of the mountains, the Mediterranean Sea, Alanya Castle, and gardens.</p><p>Conveniently located in a developed area, the residence is surrounded by new buildings and picturesque nature. The exit to the ring road and the Antalya-Mersin highway is nearby. Proximity to the city center and the sea ensures an increase in property values in the future.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/prime-garden-residence-u-blizini-sve-potrebne-infrastrukture/",
+      "title": "Prime Garden Residence u blizini sve potrebne infrastrukture",
+      "location": "Alanya oba",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Otvoreni bazen",
+        "Turski hamam"
+      ],
+      "descriptionHtml": "<p>Prime Garden Residence se nalazi u četvrti Oba u Alanyi, 2 km od Sredozemnog mora i 4 km od marine i centralne šetališne zone. Prodavnice, supermarketi i restorani su na dohvat ruke. Tržni centar Alanyum udaljen je 1,5 km, dok su Metro i drugi veliki hipermarketi takođe u blizini. Velika državna bolnica nalazi se na 900 metara. Najbolje škole i koledži, kao što su Bahçeşehir, Ted, kao i privatne i javne škole poput Waldorf i Američkog koledža Amerikan Kültür, nalaze se u blizini. Dva univerziteta su na 10-15 minuta vožnje. Udaljenost do Aerodroma Gazipaša je 37 km.</p><p>Prime Garden Residence se sastoji od 6 spratova i samo 24 apartmana: 1+1 - 16 jed., 2+1 - 6 jed. i 3+1 dupleksi - 2 jed., sa površinama od 50 do 127 m². Rezidencija nudi sve osnovne sadržaje za odmor, uključujući bazen, saunu, hamam, teretanu i dečje igralište. Pruža se pogled na planine, Sredozemno more, tvrđavu Alanye i okolne vrtove.</p><p>Zgrada je povoljno smeštena u razvijenom području, okružena novim zgradama i slikovitom prirodom. Izlaz na obilaznicu i autoput Antalija-Mersin je u blizini. Blizina centra grada i mora garantuje rast vrednosti nekretnina u budućnosti.</p>"
+    }
+  }
 }

@@ -89,5 +89,59 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/d57/d57fb17d0c689e1ff214f6a4a9a86608/19ffc88f89742875f54cf7074842ba89",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/9d0/9d09e123e117068ffe2b5527c61cf517/436663d2399b1d3708ec9eb6377c24e2"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/partnerskye/residence-with-high-investment-potential-in-istanbul-modern-kartal-district/",
+      "title": "A Highly Sought-After Format Exodus Panorama Residence in a Comfortable Residential Area of Istanbul",
+      "location": "Kartal",
+      "type": "Garden Duplex Duplex Apartments",
+      "infrastructure": [
+        "24-hour security",
+        "Basketball court",
+        "Billiards",
+        "Cafe/Restaurant",
+        "Cinema",
+        "Conference room",
+        "Covered parking",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Green garden - green zone",
+        "Massage room",
+        "Outdoor pool",
+        "Playground",
+        "Roman steam room",
+        "Turkish hammam",
+        "Volleyball court"
+      ],
+      "descriptionHtml": "<p>The residence is located near a pine forest, making it a desirable home in a bustling metropolis. The comfort-class infrastructure meets the requirements of modern living, shaping a new lifestyle. The apartments offer views of the forest and the Sea of Marmara.</p><p>The residence is situated in the popular residential area of Kartal, which is open for residence permits. Additionally, the apartments in this complex are suitable for citizenship acquisition through investment in Turkey.</p><p>It is 500 m from public transport stops and 1.8 km from Kartal metro. Schools, clinics, shops, and markets are within walking distance. The airport is 5.5 km away, the sea is 4 km, and the marina and port are 4.7 km away.</p><p>The presence of a swimming pool, sports courts, wellness infrastructure, business zones, and a private green area distinguishes Exodus Panorama from other Kartal projects. There are few residential complexes of this format, and demand for both purchasing and renting will remain high.</p><p>The residence offers 3+1 linear apartments, 2+1 and 4+1 penthouses, and loft apartments. The layouts include hallways, separate kitchens, living rooms, bedrooms, multiple bathrooms, and spacious balconies. Investing in such a format is always justified, considering the limited number of comparable options.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/partnerskye/veoma-tra-en-format-exodus-panorama-residence-u-udobnom-stambenom-podru-ju-istanbula/",
+      "title": "Veoma Tražen Format: Exodus Panorama Residence u Udobnom Stambenom Području Istanbula",
+      "location": "kartal",
+      "type": "Sadni duplex Duplex Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bilijar",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Natkriveni parking",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Teren za košarku",
+        "Teren za odbojku",
+        "Turski hamam",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Rezidencija se nalazi u blizini borove šume, što je čini poželjnim domom u užurbanom metropolisu. Infrastruktura komfor klase ispunjava zahteve modernog života, oblikujući novi stil života. Apartmani nude pogled na šumu i Mramorno more. </p><p>Rezidencija je smeštena u popularnom stambenom području Kartal, koje je otvoreno za dobijanje boravišne dozvole. Pored toga, apartmani u ovom kompleksu pogodni su za sticanje državljanstva putem investicije u Tursku.</p><p>Nalazi se na 500 m od stanica javnog prevoza i 1,8 km od metroa Kartal. Škole, klinike, prodavnice i pijace su na pešačkoj udaljenosti. Aerodrom je udaljen 5,5 km, more 4 km, a marina i luka 4,7 km. </p><p>Prisustvo bazena, sportskih terena, wellness infrastrukture, poslovnih zona i privatnog zelenog prostora razlikuje Exodus Panorama od drugih projekata u Kartalu. Malo je stambenih kompleksa ovog formata, te će potražnja za kupovinom i iznajmljivanjem ostati visoka.</p><p>Rezidencija nudi 3+1 linearne apartmane, 2+1 i 4+1 penthouse, kao i loft apartmane. Rasporedi uključuju hodnike, odvojene kuhinje, dnevne sobe, spavaće sobe, više kupatila i prostrane balkone. Investiranje u ovakav format uvek je opravdano, s obzirom na ograničen broj sličnih opcija.</p>"
+    }
+  }
 }

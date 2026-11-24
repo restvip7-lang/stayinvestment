@@ -60,5 +60,31 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/04f/04fc5ff847dd277fe8be00064540b6d5/632dfb343f0d208cc5257b5a8558fc9e",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/ddf/ddf36ec57142befbcc85f0c48d1579ee/bee638468f46fc140e3699b5d003c5ab"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/residence-with-the-best-location-in-developed-city-district/",
+      "title": "Residence with the best location in developed city district",
+      "location": "Alanya Oba",
+      "type": "Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Residence with the best location in a developed area of the city and near the sea.</p>\n<p>Investment advantages:</p>\n<ul>\n<li>Exclusive location.</li>\n<li>The beach is 5 minutes walk.</li>\n<li>All city infrastructure is nearby.</li>\n<li>Boutique format.</li>\n<li>High ROI.</li>\n<li>High demand for rentals, high rental rates.</li>\n<li>Demand for purchase, prospect of rising prices.</li>\n<li>There is a shortage of new housing near the sea.</li>\n<li>There is a shortage of development land close to the beaches.</li>\n</ul>\n<p>Location:</p>\n<ul>\n<li>Lower Oba region in Alanya, Mediterranean Sea.</li>\n<li>The central part of the resort.</li>\n<li>280 m to the beach with the Blue Flag award.</li>\n<li>180 m to Migros.</li>\n<li>700 m to the hospital.</li>\n<li>450 m to the Metro hypermarket.</li>\n</ul>\n<p>Housing stock of the project:</p>\n<ul>\n<li>1+1, 59 – 60 m² – 12 units.</li>\n<li>2+1, 74 m² – 4 units.</li>\n<li>duplex 2+1, 121 – 125 m² – 3 units.</li>\n<li>duplex 3+1, 139 m² – 1 unit.</li>\n</ul>\n<p>The residence has only 20 apartments and 5 floors. The price includes a full package of household appliances: refrigerator, dishwasher, hob, oven, extractor hood, washing machine, air conditioning in each room, water heater. Heated floors in the bathroom.</p>\n<p>Construction: 11/01/2023 – 12/30/2024.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-sa-najboljom-lokacijom-u-razvijenom-delu-grada/",
+      "title": "Rezidencija sa najboljom lokacijom u razvijenom delu grada",
+      "location": "Alanya oba",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Finska sauna",
+        "Fitnes centar",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Đakuzi"
+      ],
+      "descriptionHtml": "<p>Rezidencija sa najboljim položajem u razvijenom delu grada i blizu mora</p><p>Investicione prednosti:</p><ul><li>Ekskluzivna lokacija.</li><li>Plaža na 5 minuta hoda.</li><li>Blizina celokupne gradske infrastrukture.</li><li>Butik format.</li><li>Visok ROI.</li><li>Velika potražnja za najmom, visoke cene najma.</li><li>Potražnja za kupovinom, perspektiva rasta cena.</li><li>Nedostatak novog smeštaja blizu mora.</li><li>Nedostatak zemljišta za izgradnju blizu plaža.</li></ul><p>Lokacija:</p><ul><li>Oblast Donja Oba u Alanji, Sredozemno more.</li><li>Centralni deo odmarališta.</li><li>280 m do plaže sa nagradom „Plava zastava“.</li><li>180 m do Migrosa.</li><li>700 m do bolnice.</li><li>450 m do hipermarketa Metro.</li></ul><p>Stambeni fond projekta:</p><ul><li>1+1, 59 – 60 m² - 12 jed.</li><li>2+1, 74 m² - 4 jed.</li><li>Duplex 2+1, 121 – 125 m² - 3 jed.</li><li>Duplex 3+1, 139 m² - 1 jed.</li></ul><p>U rezidenciji ukupno ima 20 apartmana i 5 spratova. U cenu je uključen kompletan paket kućnih aparata: frižider, mašina za pranje sudova, ploča za kuvanje, rerna, aspirator, mašina za pranje veša, klima uređaj u svakoj sobi, bojler. Podno grejanje u kupatilu.</p><p>Izgradnja: 01.11.2023 – 30.12.2024.</p>"
+    }
+  }
 }

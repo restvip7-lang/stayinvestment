@@ -2,6 +2,9 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { NAV, SITE } from '../lib/site';
+import { langOf, useT } from '../i18n';
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const path = Astro.url.pathname;
 const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\/$/, '').split('/').slice(0, 2).join('/'));
 ---
@@ -15,9 +18,9 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#e30a17" /><circle cx="8.2" cy="10" r="4.6" fill="#fff" /><circle cx="9.4" cy="10" r="3.7" fill="#e30a17" /><path d="m13.6 10 2.9-.95-1.8 2.45V8.5l1.8 2.45z" fill="#fff" /></svg>
           {SITE.phone}
         </a>
-        <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" />WhatsApp</a>
-        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title="Обратный звонок" data-lead-source="header">Обратный звонок<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
-        <button type="button" class="group/menu relative grid h-11 w-11 place-items-center rounded-xl border border-line-2 bg-surface lg:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label={tr("Написать в WhatsApp")}><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" />WhatsApp</a>
+        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title={tr("Обратный звонок")} data-lead-source="header">{tr("Обратный звонок")}<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
+        <button type="button" class="group/menu relative grid h-11 w-11 place-items-center rounded-xl border border-line-2 bg-surface lg:hidden" aria-label={tr("Меню")} aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
           <!-- Иконки сменяются через opacity+scale+blur (контекстная анимация иконок) -->
           <Icon name="menu" size={22} class="col-start-1 row-start-1 transition-[opacity,scale,filter] duration-200 group-aria-expanded/menu:scale-50 group-aria-expanded/menu:opacity-0 group-aria-expanded/menu:blur-[2px] motion-reduce:transition-none" />
           <Icon name="close" size={22} class="col-start-1 row-start-1 scale-50 opacity-0 blur-[2px] transition-[opacity,scale,filter] duration-200 group-aria-expanded/menu:scale-100 group-aria-expanded/menu:opacity-100 group-aria-expanded/menu:blur-0 motion-reduce:transition-none" />
@@ -28,7 +31,7 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
   <!-- Нижняя строка: меню + главное действие -->
   <div class="hidden bg-surface lg:block">
     <div class="container-x flex h-[60px] items-center justify-center gap-2">
-      <nav class="flex items-center gap-1" aria-label="Основное меню">
+      <nav class="flex items-center gap-1" aria-label={tr("Основное меню")}>
         {NAV.map((item) => (
           <div class="group relative">
             <a href={item.href} class:list={['flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium transition-colors hover:text-brand-2', active(item.href) ? 'text-brand-2' : 'text-ink']}>
@@ -50,11 +53,11 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
           </div>
         ))}
       </nav>
-      <a href="/investment-directory/" class="btn btn-accent btn-sm ml-3">Подобрать инвестицию<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></a>
+      <a href="/investment-directory/" class="btn btn-accent btn-sm ml-3">{tr("Подобрать инвестицию")}<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></a>
     </div>
   </div>
   <div id="mobile-menu" class="absolute inset-x-0 top-full border-t border-line bg-page shadow-lift lg:hidden" data-menu>
-    <nav class="container-x max-h-[calc(100dvh-64px)] overflow-y-auto py-4" aria-label="Мобильное меню">
+    <nav class="container-x max-h-[calc(100dvh-64px)] overflow-y-auto py-4" aria-label={tr("Мобильное меню")}>
       {NAV.map((item) => (
         <div class="border-b border-line py-2 last:border-0">
           <a href={item.href} class="block py-2 text-lg font-bold">{item.label}</a>
@@ -67,7 +70,7 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
       ))}
       <div class="mt-4 grid gap-2">
         <a href={SITE.phoneHref} class="btn btn-ghost"><Icon name="phone" size={18} />{SITE.phone}</a>
-        <button type="button" class="btn btn-primary" data-lead-open data-lead-title="Заказать звонок" data-lead-source="mobile-menu">Получить консультацию</button>
+        <button type="button" class="btn btn-primary" data-lead-open data-lead-title={tr("Заказать звонок")} data-lead-source="mobile-menu">{tr("Получить консультацию")}</button>
       </div>
     </nav>
   </div>

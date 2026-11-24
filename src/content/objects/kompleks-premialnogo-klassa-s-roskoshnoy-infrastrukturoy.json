@@ -91,5 +91,47 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/b6b/b6b1095c3c2d0fd875a3f9ed5d4451f3/f8a7c9fd8342f4f4e092b72d03dbecaf",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/1fb/1fb176e47b2702ed38a6248d414ce496/81d34ce93ea49ab27f649aac454ca1c5"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/premium-class-complex-with-luxurious-infrastructure/",
+      "title": "Premium class complex with luxurious infrastructure",
+      "location": "Alanya Demirtash",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The premium class project consists of 4 residential blocks with 324 apartments and a large courtyard area with green areas and swimming pools. The residential complex has the following layouts: 1+1 - 256 units, 2+1 - 32 units, 2+1 penthouses - 28 units, 3+1 penthouses - 8 units. The complex will be located on the banks of a mountain river.</p><p>The infrastructure of the complex corresponds to the level of a hotel 5 *.</p><p>High rental potential.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/kompleks-premium-klase-sa-rasko-nom-infrastrukturom/",
+      "title": "Kompleks premium klase sa raskošnom infrastrukturom",
+      "location": "Alanya demirtash",
+      "type": "Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Akva park",
+        "Bilijar",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Market",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Stoni tenis",
+        "Teniski teren",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Projekat premijum klase sastoji se od 4 stambena bloka sa 324 stana i velikim unutrašnjim dvorištem sa zelenim površinama i bazenima. U stambenom kompleksu predstavljeni su sledeći rasporedi: 1+1 - 256 jedinica, 2+1 - 32 jedinice, 2+1 penthausi - 28 jedinica, 3+1 penthausi - 8 jedinica. Kompleks će biti smešten na obali planinske reke.</p><p>Infrastruktura kompleksa odgovara nivou hotela sa 5 zvezdica.</p><p>Visok potencijal za izdavanje.</p>"
+    }
+  }
 }
