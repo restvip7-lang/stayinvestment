@@ -139,19 +139,21 @@ const faq = [
       <a href="/investment-directory/" class="btn btn-ghost">{tr("Весь каталог")} <Icon name="arrow" size={18} /></a>
     </div>
     <div class="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <!-- Каждая карточка — подсетка из 4 строк (фото, заголовок, цифры, ссылка): строки выровнены во всём ряду -->
       {PACKAGE_ORDER.map((k) => {
         const items = byPackage(k);
         return (
-          <a href={`/investment-directory/${k}/`} class="card lift group flex flex-col overflow-hidden" data-reveal style={`--i:${PACKAGE_ORDER.indexOf(k)}`}>
+          <a href={`/investment-directory/${k}/`} class="card lift group row-span-4 grid grid-rows-subgrid gap-y-0 overflow-hidden" data-reveal style={`--i:${PACKAGE_ORDER.indexOf(k)}`}>
             <div class="img-outline relative aspect-[16/9] overflow-hidden">
               <Img src={pkgPhoto(k)} alt={tr("Пакет «{name}»", { name: tr(PACKAGES[k].name) })} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={360} sizes="(min-width: 768px) 33vw, 100vw" />
               <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-[12px] bg-white/95 text-brand-2 shadow-card"><Icon name={pkgIcon[k]} size={22} /></span>
               <span class="chip absolute right-4 top-4 bg-white/95 text-ink">{tr("{length} объектов", { length: items.length })}</span>
             </div>
-            <div class="flex flex-1 flex-col p-6">
+            <div class="px-6 pt-6">
               <h3 class="text-2xl font-extrabold">«{tr(PACKAGES[k].name)}»</h3>
               <p class="mt-1 font-semibold text-sea">{tr(PACKAGES[k].tagline)}</p>
-              <dl class="mb-6 mt-5 grid gap-3">
+            </div>
+              <dl class="mx-6 mb-6 mt-5 grid content-start gap-3">
                 {pkgFacts(k, lang).map((f) => (
                   <div class="flex items-center gap-3">
                     <dt class="flex items-center gap-3 text-[14px] text-ink-2"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sea-soft text-brand-2"><Icon name={f.icon} size={18} /></span>{f.label}</dt>
@@ -159,21 +161,21 @@ const faq = [
                   </div>
                 ))}
               </dl>
-              <span class="mt-auto inline-flex items-center gap-2 border-t border-line pt-5 font-semibold text-brand-2">{tr("Смотреть объекты пакета")} <Icon name="arrow" size={18} class="transition-transform group-hover:translate-x-1" /></span>
-            </div>
+              <span class="mx-6 mb-6 inline-flex items-center gap-2 self-end border-t border-line pt-5 font-semibold text-brand-2">{tr("Смотреть объекты пакета")} <Icon name="arrow" size={18} class="transition-transform group-hover:translate-x-1" /></span>
           </a>
         );
       })}
-      <a href="/investment-directory/biznes-investitsii/" class="card lift group flex flex-col overflow-hidden" data-reveal style="--i:3">
+      <a href="/investment-directory/biznes-investitsii/" class="card lift group row-span-4 grid grid-rows-subgrid gap-y-0 overflow-hidden" data-reveal style="--i:3">
         <div class="img-outline relative aspect-[16/9] overflow-hidden">
           <Img src="/images/site/about-hero.jpg" alt={tr("Пакет «Инвестиции в бизнес»")} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={360} sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw" />
           <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-[12px] bg-white/95 text-brand-2 shadow-card"><Icon name="briefcase" size={22} /></span>
           <span class="chip absolute right-4 top-4 bg-white/95 text-ink">{tr("Подбор под запрос")}</span>
         </div>
-        <div class="flex flex-1 flex-col p-6">
+        <div class="px-6 pt-6">
           <h3 class="text-2xl font-extrabold">{tr("«Инвестиции в бизнес»")}</h3>
           <p class="mt-1 font-semibold text-sea">{tr("Офисы, магазины, отели и земля")}</p>
-          <dl class="mb-6 mt-5 grid gap-3">
+        </div>
+          <dl class="mx-6 mb-6 mt-5 grid content-start gap-3">
             {[
               { icon: 'building', label: tr("Объекты"), value: tr("Коммерческие") },
               { icon: 'chart', label: tr("Доходность"), value: tr("Расчёт под объект") },
@@ -181,12 +183,11 @@ const faq = [
             ].map((f) => (
               <div class="flex items-center gap-3">
                 <dt class="flex items-center gap-3 text-[14px] text-ink-2"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sea-soft text-brand-2"><Icon name={f.icon} size={18} /></span>{f.label}</dt>
-                <dd class="ml-auto text-right text-[15px] font-bold">{f.value}</dd>
+                <dd class="ml-auto text-right text-[15px] font-bold leading-[1.2]">{f.value}</dd>
               </div>
             ))}
           </dl>
-          <span class="mt-auto inline-flex items-center gap-2 border-t border-line pt-5 font-semibold text-brand-2">{tr("Подробнее о пакете")} <Icon name="arrow" size={18} class="transition-transform group-hover:translate-x-1" /></span>
-        </div>
+          <span class="mx-6 mb-6 inline-flex items-center gap-2 self-end border-t border-line pt-5 font-semibold text-brand-2">{tr("Подробнее о пакете")} <Icon name="arrow" size={18} class="transition-transform group-hover:translate-x-1" /></span>
       </a>
     </div>
 
