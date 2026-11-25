@@ -92,5 +92,41 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/46d/46d4ad0e1a79dd3d83173a630d146eef/759f3ab79953582c9868e13cf517eabe",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/691/6914de903cdfba5ebb3294187706cf29/6889414452b606c9f211dbb992dfbd93"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/first-line-to-the-sea-spectacular-residence-design-luxurious-infrastructure/",
+      "title": "First line to the sea, spectacular residence design, luxurious infrastructure",
+      "location": "Alanya Kestel",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Externally reminiscent of a luxury Turkish hotel or palace, this complex occupies the first line of the sea. New luxury real estate on the very shore is the most profitable investment in the housing stock of the popular resort.</p><p>The complex is from a renowned developer, known in the premium real estate segment for the quality and high level of projects. Bright design with soaring balconies and pronounced horizontal lines.</p><p>The residence is located at the intersection of the Kestel and Mahmutlar districts, where hundreds of restaurants, large supermarkets, and service industries operate all year round.</p><p>The residential complex has the following layouts: 1+1 - 24 units, 2+1 - 36 units, 2+1 duplexes - 4 units, 4+1 duplexes - 10 units. Large squares. Apartments: 1+1 57 – 62 m2 (average in Alanya - 45 m2); 2+1 104 – 113 m2, duplexes 2+1 117 m2; duplexes 4+1 202 – 236 m2.</p><p>The first line is in maximum demand, and the supply of modern real estate near the sea is forever limited by the shortage of land plots. Year-round requests for holiday rentals, availability of an indoor pool.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/prva-linija-do-mora-spektakularan-dizajn-rezidencije-luksuzna-infrastruktura/",
+      "title": "Prva linija do mora, spektakularan dizajn rezidencije, luksuzna infrastruktura",
+      "location": "Alanya kestel",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Bilijar",
+        "Bioskop",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Stoni tenis",
+        "Turski hamam",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Eksterijerom podseća na luksuzni turski hotel ili palatu, ovaj kompleks zauzima prvu liniju do mora. Nova luksuzna nekretnina na samoj obali je najprofitabilnija investicija u stambeni fond popularnog letovališta.</p><p>Kompleks je od renomiranog developera, poznatog u segmentu premijum nekretnina po kvalitetu i visokom nivou projekata. Svetao dizajn sa lebdećim balkonima i naglašenim horizontalnim linijama.</p><p>Rezidencija se nalazi na raskrsnici oblasti Kestel i Mahmutlar, gde stotine restorana, veliki supermarketi i uslužne industrije rade tokom cele godine.</p><p>U stambenom kompleksu predstavljeni su sledeći rasporedi: 1+1 - 24 jed., 2+1 - 36 jed., 2+1 dupleksi - 4 jed., 4+1 dupleksi - 10 jed. Velike kvadrature. Apartmani: 1+1 57 – 62 m² (prosek u Alanji - 45 m²); 2+1 104 – 113 m², dupleksi 2+1 117 m²; dupleksi 4+1 202 – 236 m².</p><p>Prva linija je u maksimalnoj potražnji, a ponuda moderne nekretnine blizu mora je zauvek ograničena nedostatkom zemljišnih parcela. Celogodišnji zahtevi za iznajmljivanje tokom odmora, dostupnost unutrašnjeg bazena.</p>"
+    }
+  }
 }

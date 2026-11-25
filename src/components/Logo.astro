@@ -1,8 +1,11 @@
 ---
+import { langOf, useT } from '../i18n';
 /** Логотип. Пока — растр со старого сайта; когда придёт вектор, заменить на SVG здесь. */
 interface Props { tone?: 'dark' | 'light'; class?: string }
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const { tone = 'dark', class: cls = 'h-7' } = Astro.props;
 ---
-<a href="/" class="inline-flex shrink-0 items-center" aria-label="Stay Investment — на главную">
+<a href="/" class="inline-flex shrink-0 items-center" aria-label={tr("Stay Investment — на главную")}>
   <img src="/images/site/logo-old.png" alt="Stay Investment" width="611" height="100" class:list={['w-auto', cls, tone === 'light' && 'invert brightness-200']} />
 </a>

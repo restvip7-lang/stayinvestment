@@ -81,5 +81,39 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/180/1804f6a507e209f78fc096fdb7915406/8781c63af9cb091cb1e8f93d1eda54b1",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/1b9/1b96ee3c0bc28159bd943c36186ae4d4/7c355a312b45c37111d6a70e789c72d4"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/elegant-premium-complex-with-excellent-infrastructure/",
+      "title": "Elegant premium complex with excellent infrastructure",
+      "location": "Alanya Oba",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>An elegant premium complex of 3 blocks, with a total of 128 apartments. The residential complex features 68 one-bedroom apartments (1+1), 40 two-bedroom linear apartments (2+1), and also garden apartments and duplexes. Additionally, there are 18 three-bedroom apartments (3+1), including duplexes and garden apartments, and 2 four-bedroom duplexes (4+1).<br><br>Located in the upper Oba district, surrounded by modern buildings and orange orchards. The best private schools and colleges, shopping centers, hypermarkets, and a hospital are nearby.<br><br>Infrastructure: 2 outdoor swimming pools, children's pools, indoor pools, playgrounds, barbecue areas, gym, billiards, lobby, cafe, sauna, massage room, parking, transfer to the beach.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/elegantni-kompleks-premijum-klase-sa-sjajnom-infrastrukturom/",
+      "title": "Elegantni kompleks premijum klase sa sjajnom infrastrukturom",
+      "location": "Alanya oba",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Bilijar",
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Transfer do plaže",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina",
+        "Đakuzi"
+      ],
+      "descriptionHtml": "<p>Elegantan premijum kompleks sastoji se od 3 bloka, ukupno 128 stanova. U stambenom kompleksu predstavljeni su stanovi 1+1 u količini od 68 jedinica, 40 stanova sa rasporedom 2+1 - to su linearni stanovi, stanovi sa baštom i dupleksi. Takođe, u kompleksu se nalaze dupleksi i stanovi sa baštom sa rasporedom 3+1 u količini od 18 jedinica, i 2 dupleksa sa rasporedom 4+1.</p><p>Nalazi se u gornjem delu Obe, okružen modernim naseljima i narandžastim voćnjacima. U blizini se nalaze najbolje privatne škole i koledži, tržni centri, hipermarketi, bolnica.</p><p>Infrastruktura obuhvata: 2 otvorena bazena, dečije bazene, zatvorene bazene, dečija igrališta, zone za roštilj, teretanu, bilijar, lobi, kafe, sauna, prostoriju za masažu, parking, prevoz do plaže.</p>"
+    }
+  }
 }

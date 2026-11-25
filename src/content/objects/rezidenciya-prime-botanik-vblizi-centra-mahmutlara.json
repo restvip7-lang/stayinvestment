@@ -65,5 +65,37 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/d7b/d7bd566b4b58216f1f7a6eac5318883c/0e28ae39d99be24fee5f5f82e8f604e4",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/61b/61b7cf09e7e194bc258e6391be5eee82/62c0bef669222b5a16fb35edb4d254d6"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/prime-botanik-residence-near-the-center-of-mahmutlar/",
+      "title": "Prime Botanik Residence Near the Center of Mahmutlar",
+      "location": "Alanya Mahmutlar",
+      "type": "Duplex Apartments",
+      "infrastructure": [
+        "24/7 video surveillance",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Outdoor pool",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The Mahmutlar district of Alanya accounts for 50% of the demand for real estate purchases. It is home to many foreigners, especially from CIS countries. The district attracts with its well-developed infrastructure and comfortable living conditions. Recently, the 7-story Akdeniz Park AVM shopping center opened.</p><p>The Prime Botanik Residence is conveniently located 700 meters from the mall, the city center, and the Saturday market square. This cozy building has only 32 apartments, yet features all the resort-style infrastructure. The apartments have a 1+1 layout with one bedroom and an area of 59.5 m² - 24 units, as well as 2+1 duplex penthouses with two bedrooms and an area of 103.2 m² - 8 units. The plot area is 1,187 m². The building offers an outdoor pool and indoor wellness and recreation infrastructure.</p><p>The Mediterranean Sea is 1.1 km away, accessible via the central Menderes Boulevard, where all buildings have ground-floor shops, restaurants, and services. A large municipal school is located next to the house. This favorable location contributes to the future appreciation of property values.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/prime-botanik-residence-blizu-centra-mahmutlara/",
+      "title": "Prime Botanik Residence blizu centra Mahmutlara",
+      "location": "Alanya mahmutlar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Finska sauna",
+        "Fitnes centar",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Turski hamam",
+        "Video nadzor 24/7"
+      ],
+      "descriptionHtml": "<p>Četvrt Mahmutlar u Alanji čini 50% potražnje za kupovinom nekretnina. Ovo je dom mnogih stranaca, naročito iz zemalja ZND-a. Ova oblast privlači svojim razvijenim infrastrukturom i ugodnim uslovima za život. Nedavno je otvoren sedmospratni tržni centar Akdeniz Park AVM.</p><p>Prime Botanik Residence je povoljno smešten na 700 metara od tržnog centra, centra grada i pijace koja se održava subotom. Ova prijatna zgrada ima samo 32 apartmana, ali poseduje kompletnu infrastrukturu kao u letovalištima. Apartmani su rasporeda 1+1 sa jednom spavaćom sobom i površinom od 59,5 m² - 24 jed., kao i dupleks penthausi 2+1 sa dve spavaće sobe i površinom od 103,2 m² - 8 jed. Površina parcele iznosi 1.187 m². Zgrada nudi otvoreni bazen i zatvorene wellness i rekreativne prostore.</p><p>Sredozemno more je udaljeno 1,1 km, a do njega se dolazi preko centralnog Menderes bulevara, gde se u prizemljima zgrada nalaze prodavnice, restorani i usluge. Pored objekta nalazi se i velika opštinska škola. Ova povoljna lokacija doprinosi budućem rastu vrednosti nekretnina.</p>"
+    }
+  }
 }

@@ -69,5 +69,34 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/151/151d9621690bf0b967de74b61abe5e59/69ca359c4f02bf36199b99b5ccacb1f1",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/dda/ddad98969771ce41b250c57cf2b07431/fc95f6ee4cc7571b929479d4d56118c0"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/exodus-aqua-deluxe-residence-on-a-panoramic-hill-near-the-beach-and-forest/",
+      "title": "Exodus Aqua Deluxe residence on a panoramic hill near the beach and forest",
+      "location": "Alanya Konakli",
+      "type": "Townhouse",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Exodus Aqua Deluxe residence on a panoramic hill near the beach and forest.</p>\n<p>Investment advantages:</p>\n<ul>\n<li>Just 200 meters from the sea, flat sandy beach.</li>\n<li>8 km to the center of Alanya, 10 minutes by car.</li>\n<li>In the immediate vicinity there is a pine grove with a picnic area</li>\n<li>The plot is located on a panoramic hill.</li>\n<li>Lack of multi-storey buildings around</li>\n<li>A rare club format of the complex.</li>\n<li>Premium low-rise construction.</li>\n<li>Most of the territory is occupied by swimming pools.</li>\n<li>Private pool area for each townhouse</li>\n<li>Residence permit and citizenship available upon purchase.</li>\n</ul>\n<p>Location:</p>\n<ul>\n<li>Türkiye, Alanya region: Konakli.</li>\n<li>110 km from Antalya Airport.</li>\n</ul>\n<p> Housing stock of the Exodus Aqua Deluxe project:</p>\n<ul>\n<li>36 duplex townhouses 2+1 with a spacious living room of 29 m2, total area of 91 m2. Between the blocks there are swimming pools adjacent to the balconies of the apartments on the ground floor.</li>\n</ul>\n<p>Construction: 11/01/2022 – 12/31/2024.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-exodus-aqua-deluxe-na-panoramskom-brdu-u-blizini-pla-e-i-ume/",
+      "title": "Rezidencija Exodus Aqua Deluxe na panoramskom brdu u blizini plaže i šume",
+      "location": "Alanya konakli",
+      "type": "Taunhaus",
+      "infrastructure": [
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Rezidencija Exodus Aqua Deluxe na panoramskom brdu u blizini plaže i šume.</p><p>Investicioni benefiti:</p><ul><li>Samo 200 metara od mora, blaga peščana obala.</li><li>8 km do centra Alanje, 10 minuta vožnje autom.</li><li>U neposrednoj blizini borova šuma sa piknik zonom.</li><li>Parcela se nalazi na panoramskom brdu.</li><li>Nema višespratne izgradnje u okolini.</li><li>Retki klupski format kompleksa.</li><li>Premium nisko spratno gradnja.</li><li>Veći deo teritorije zauzimaju bazeni.</li><li>Privatna zona bazena za svaki dupleks.</li><li>Dostupno stalno prebivalište i državljanstvo pri kupovini. </li></ul><p>Lokacija:</p><ul><li>Turska, oblast Alanja: Konakli. </li><li>110 km od aerodroma u Antaliji.</li></ul><p>Stambeni fond projekta Exodus Aqua Deluxe:</p><ul><li>36 dupleks taunhausa 2+1 sa prostranim dnevnim boravkom od 29 m2, ukupne površine 91 m2. Između blokova su bazeni, povezani sa balkonima apartmana na prvom spratu.</li></ul><p>Gradnja: 01.11.2022 – 31.12.2024.</p>"
+    }
+  }
 }

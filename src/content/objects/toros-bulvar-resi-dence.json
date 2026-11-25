@@ -71,5 +71,39 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/ba1/ba115b7cb69b70e7a892396b69e937ef/04cad5271c1d08a422ef6226d1681ad8",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/4d2/4d28b844103ac5cc97c632869f4ad842/d9aeef523578c31339a76fd30c6f3c48"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/apartments-in-the-center-of-the-popular-mahmutlar-district-within-walking-distance-from-the-beaches/",
+      "title": "Apartments in the center of the popular Mahmutlar district, within walking distance from the beaches",
+      "location": "Alanya Mahmutlar",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Advantageous location in the center of Mahmutlar district, the famous and most popular among foreigners in Alanya.</p>\n<p>Distances: 650 m to the beach, 250 m to the Saturday market square and the town center.</p>\n<p>7320 m2 land plot. The complex consists of three blocks, two together and one on the other side of the road. Year-round and varied infrastructure.</p>\n<p>The blocks are 9 floors each, with a total of 209 apartments. Ceiling height 2.85 m, wall thickness 25 cm.</p>\n<p>In the residential complex, the following units are available: 1+1 – 154 units, 2+1 – 43 units, 3+1 – 4 units, 4+1 – 8 units.</p>\n<p>The center of Mahmutlar is the most attractive investment location. More than 50% of the demand for real estate is concentrated in this area. There is no language barrier, a lot of entertainment, restaurants and shops, equipped beaches and a promenade. Walking distance to the center and the sea determines high rates for short-term rentals.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/stanovi-u-centru-popularnog-kvarta-mahmutlar-u-blizini-pla-e-koje-su-na-pesackoj-udaljenosti/",
+      "title": "Stanovi u centru popularnog kvarta Mahmutlar, u blizini plaže koje su na pesackoj udaljenosti",
+      "location": "Alanya mahmutlar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bioskop",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Natkriveni parking",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Povoljna lokacija u centru poznatog i veoma traženog među strancima kvarta Mahmutlar u Alanji.</p><p>Udaljenosti: 650 metara do plaže, 250 metara do trga sa subotnjim pijacom i centra gradića.</p><p>Parcela za gradnju ima 7320 m2. Kompleks se sastoji od tri bloka, dva su zajedno, a jedan je preko puta puta. Cela godina i raznovrsna infrastruktura.</p><p>Blokovi su visoki devet spratova, ukupno 209 stanova. Visina plafona je 2,85 m, debljina zidova je 25 cm.</p><p>U stambenom kompleksu dostupni su sledeći tipovi jedinica: 1+1 - 154 jedinice, 2+1 - 43 jedinice, 3+1 - 4 jedinice, 4+1 - 8 jedinica.</p><p>Centar Mahmutlara je najatraktivnija lokacija za investicije. Više od 50% tražnje za nekretninama koncentrisano je u ovom kvartu. Nema jezičke barijere, puno zabave, restorana i prodavnica, uređene plaže i šetališta. Pešačka udaljenost do centra i mora garantuje visoke stope za kratkoročni najam.</p>"
+    }
+  }
 }

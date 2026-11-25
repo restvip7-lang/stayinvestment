@@ -75,5 +75,59 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/39f/39f65fbe5303d401460862a3057ef97b/f080d2670c203e1821381880c79546a9",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/8a0/8a0c53dcfcc690fd9d1e5e720000621b/4cfac880f6d53b8f06867c3419774b4a"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/premium-class-faralya-residence-in-the-promising-payallar-district/",
+      "title": "Premium-Class Faralya Residence in the Promising Payallar District",
+      "location": "Alanya Payallar",
+      "type": "Duplex Apartments",
+      "infrastructure": [
+        "Cafe/Restaurant",
+        "Cinema",
+        "Conference room",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Indoor pool",
+        "Library",
+        "Market",
+        "Massage room",
+        "Mini Club",
+        "Outdoor pool",
+        "Playground",
+        "Roman steam room",
+        "Transfer to the beach",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The infrastructure of the Faralya Residence is impeccable, creating the feel of an upscale hotel. The complex was built in 2024 in one of the most investment-attractive areas of Alanya — Payallar. In recent years, large-scale municipal projects have been implemented here, such as the recently opened multifunctional promenade. Additionally, a large hospital is under construction, and a new market has opened.</p><p>The sea is 2.2 km away, and a transfer service is provided. The central street is 2 km away, and a magnificent pine forest is 1 km away. It is 58 km to Gazipasa Airport and 110 km to Antalya Airport. Chain supermarkets, grocery stores, shops of various categories, gas stations, ATMs, and pharmacies are all within walking distance.</p><p>The residence occupies an area of 8,700 m² and consists of two blocks with a total of 112 apartments. The layouts include 1+1 - 84 units (60 and 64 m²), 2+1 - 14 units (97 m²), 2+1 penthouses (111–114 m²) - 12 units, and 3+1 units (175 m²) - 2 units. All windows offer excellent views, depending on the apartment’s location — of the sea and pool, the sea, or the mountains.</p><p>The Faralya complex is designed for year-round relaxation and features an indoor winter pool. High quality, a high level of comfort, and the promising location guarantee an increase in property values.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/premium-klase-faralya-residence-u-perspektivnom-okrugu-payallar/",
+      "title": "Premium klase Faralya Residence u perspektivnom okrugu Payallar",
+      "location": "Alanya payallar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Biblioteka",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Market",
+        "Mini klub",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Transfer do plaže",
+        "Turski hamam",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Faralya Residence pruža neuporedivu infrastrukturu, stvarajući ambijent luksuznog hotela. Kompleks je izgrađen 2024. godine u jednoj od najatraktivnijih investicionih zona u Alanyi — Payallar. U poslednjih nekoliko godina, u ovom okrugu su realizovani veliki opštinski projekti, kao što je nedavno otvorena višenamenska šetališna zona. Takođe, u izgradnji je velika bolnica, dok je novi tržni centar već otvoren.</p><p>Udaljenost do mora je 2,2 km, a stanovnicima je na raspolaganju i besplatan transfer. Centralna ulica je udaljena 2 km, a predivna borova šuma 1 km. Udaljenost do Aerodroma Gazipaša je 58 km, a do Aerodroma Antalija 110 km. U neposrednoj blizini nalaze se lanci supermarketa, prodavnice različitih kategorija, benzinske pumpe, bankomati i apoteke.</p><p>Rezidencija se prostire na površini od 8.700 m² i sastoji se od dve zgrade sa ukupno 112 apartmana. U ponudi su stanovi sa različitim rasporedom: 1+1 (60 i 64 m²) - 84 jed., 2+1 (97 m²) - 14 jed., penthausi 2+1 (111–114 m²) - 12 jed. i 3+1 (175 m²) - 2 jed. Svi prozori nude odličan pogled, u zavisnosti od lokacije stana — na more i baz en, na more ili na planine.</p><p>Kompleks Faralya je dizajniran za celogodišnji odmor i poseduje unutrašnji zimski bazen. Visok kvalitet, izuzetna udobnost i perspektivna lokacija garantuju porast vrednosti nekretnina.</p>"
+    }
+  }
 }

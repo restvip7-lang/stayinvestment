@@ -7,28 +7,32 @@ import LeadForm from '../../../../components/LeadForm.astro';
 import Gallery from '../../../../components/Gallery.astro';
 import PaymentPlan from '../../../../components/PaymentPlan.astro';
 import PositionStrip from '../../../../components/PositionStrip.astro';
-import { PACKAGES, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
+import { PACKAGES, packageInfo, localizeObject, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
 import { SITE } from '../../../../lib/site';
+import { langOf, useT, LANG_META } from '../../../../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const { pkg, slug } = Astro.params;
-const o = findObject(pkg!, slug!);
-if (!o) return Astro.rewrite('/404/');
+const found = findObject(pkg!, slug!);
+if (!found) return Astro.rewrite('/404/');
+const o = localizeObject(found, lang);
 
-const info = PACKAGES[o.package];
-const place = placeOf(o);
+const info = packageInfo(o.package, lang);
+const place = placeOf(found, lang);
 const price = entryPrice(o);
-const y = yieldOf(o);
+const y = yieldOf(o, lang);
 const similar = byPackage(o.package).filter((x) => x.id !== o.id).sort((a, b) => Math.abs((entryPrice(a) ?? 0) - (price ?? 0)) - Math.abs((entryPrice(b) ?? 0) - (price ?? 0))).slice(0, 3);
 const facts = [
-  place.city && { icon: 'pin', label: 'Расположение', value: [place.city, place.district].filter(Boolean).join(', ') },
-  o.seaDistance && { icon: 'wave', label: 'До моря', value: o.seaDistance >= 1000 ? `${(o.seaDistance / 1000).toLocaleString('ru-RU')} км` : `${o.seaDistance} м` },
-  o.type && { icon: 'building', label: 'Тип', value: o.type.replace(/\s+/g, ', ') },
-  o.layouts.length && { icon: 'layers', label: 'Планировки', value: o.layouts.join(', ') },
-  o.year && { icon: 'calendar', label: 'Сдача', value: `${o.year}` },
+  place.city && { icon: 'pin', label: tr("Расположение"), value: [place.city, place.district].filter(Boolean).join(', ') },
+  o.seaDistance && { icon: 'wave', label: tr("До моря"), value: o.seaDistance >= 1000 ? tr("{toLocaleString} км", { toLocaleString: (o.seaDistance / 1000).toLocaleString(LANG_META[lang].locale) }) : tr("{seaDistance} м", { seaDistance: o.seaDistance }) },
+  o.type && { icon: 'building', label: tr("Тип"), value: o.type.replace(/\s+/g, ', ') },
+  o.layouts.length && { icon: 'layers', label: tr("Планировки"), value: o.layouts.join(', ') },
+  o.year && { icon: 'calendar', label: tr("Сдача"), value: `${o.year}` },
 ].filter(Boolean) as { icon: string; label: string; value: string }[];
 
 const plain = o.descriptionHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? `${o.package === 'partnerskye' ? 'Вход' : 'Цена'} от ${euro(price)}` : ''}${y ? `, ${y.label.toLowerCase()} ${y.value}%` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
+const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? tr(o.package === 'partnerskye' ? 'Вход от {sum}' : 'Цена от {sum}', { sum: euro(price) }) : ''}${y ? `, ${y.label.toLowerCase()} ${y.value}%` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateListing',
@@ -38,22 +42,22 @@ const ld = {
   description: plain.slice(0, 500),
   identifier: o.id,
   ...(price ? { offers: { '@type': 'Offer', price, priceCurrency: 'EUR', availability: 'https://schema.org/InStock' } } : {}),
-  ...(place.city ? { contentLocation: { '@type': 'Place', name: [place.district, place.city, 'Турция'].filter(Boolean).join(', ') } } : {}),
+  ...(place.city ? { contentLocation: { '@type': 'Place', name: [place.district, place.city, tr("Турция")].filter(Boolean).join(', ') } } : {}),
 };
 ---
 <Base
   title={`${o.title} — ${info.name}, ID ${o.id}`}
   {description}
   image={o.images[0]}
-  crumbs={[{ label: 'Каталог инвестиций', href: '/investment-directory/' }, { label: info.name, href: `/investment-directory/${o.package}/` }, { label: o.id }]}
+  crumbs={[{ label: tr("Каталог инвестиций"), href: '/investment-directory/' }, { label: info.name, href: `/investment-directory/${o.package}/` }, { label: o.id }]}
   jsonLd={[ld]}
 >
   <section class="container-x pt-6 md:pt-10">
     <div class="hero-in flex flex-wrap items-center gap-2" style="--i:0">
-      <a href={`/investment-directory/${o.package}/`} class="chip bg-sea-soft text-brand-2">Пакет «{info.name}»</a>
+      <a href={`/investment-directory/${o.package}/`} class="chip bg-sea-soft text-brand-2">{tr("Пакет «{name}»", { name: info.name })}</a>
       <span class="chip bg-surface text-muted tabular">ID {o.id}</span>
     </div>
-    <h1 class="hero-in mt-4 max-w-4xl text-[30px] font-extrabold leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
+    <h1 class="hero-in mt-4 max-w-4xl text-[30px] leading-[1.1] sm:text-[40px] lg:text-[48px]">{o.title}</h1>
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
       <!-- Галерея -->
@@ -62,24 +66,24 @@ const ld = {
       <!-- Условия -->
       <aside class="hero-in lg:sticky lg:top-36 lg:self-start" style="--i:2">
         <div class="card p-6">
-          <p class="text-[13px] font-semibold text-muted">{o.package === 'partnerskye' ? 'Сумма входа' : o.package === 'startovye' ? 'Стоимость лота, от' : 'Стоимость, от'}</p>
+          <p class="text-[13px] font-semibold text-muted">{o.package === 'partnerskye' ? tr("Сумма входа") : o.package === 'startovye' ? tr("Стоимость лота, от") : tr("Стоимость, от")}</p>
           <p class="mt-1 text-[34px] font-extrabold leading-none tabular">{price != null ? <><span data-count={price}>{price.toLocaleString('ru-RU')}</span> €</> : '—'}</p>
           {y && <p class="mt-2 inline-flex items-center gap-1.5 font-bold text-sea"><Icon name="chart" size={18} />{y.label}: {y.value}%</p>}
           <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-5">
             {o.metrics.filter((m) => !/Начальная стоимость|Минимальная стоимость лота|Сумма входа/.test(m.label)).map((m) => (
               <div>
-                <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label)}</dt>
-                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m)}</dd>
+                <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label, lang)}</dt>
+                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m, lang).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m, lang)}</dd>
               </div>
             ))}
           </dl>
           <div class="mt-6 grid gap-2">
-            <button type="button" class="btn btn-accent" data-lead-open data-lead-title={`Заявка по объекту ${o.id}`} data-lead-object={o.id} data-lead-source="object-buy" data-main-cta>Оставить заявку<Icon name="arrow" size={18} /></button>
+            <button type="button" class="btn btn-accent" data-lead-open data-lead-title={tr("Заявка по объекту {id}", { id: o.id })} data-lead-object={o.id} data-lead-source="object-buy" data-main-cta>{tr("Оставить заявку")}<Icon name="arrow" size={18} /></button>
             <div class="grid grid-cols-2 gap-2">
-              <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title="Онлайн-показ объекта" data-lead-object={o.id} data-lead-source="object-online"><Icon name="camera" size={16} />Онлайн-показ</button>
-              <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title="Инфо-тур в Аланью" data-lead-object={o.id} data-lead-source="object-tour"><Icon name="globe" size={16} />Инфо-тур</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title={tr("Онлайн-показ объекта")} data-lead-object={o.id} data-lead-source="object-online"><Icon name="camera" size={16} />{tr("Онлайн-показ")}</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-lead-open data-lead-title={tr("Инфо-тур в Аланью")} data-lead-object={o.id} data-lead-source="object-tour"><Icon name="globe" size={16} />{tr("Инфо-тур")}</button>
             </div>
-            <a href={`${SITE.whatsapp}?text=${encodeURIComponent(`Здравствуйте! Интересует объект ${o.id}: ${o.title}`)}`} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="whatsapp" size={16} />Спросить в WhatsApp</a>
+            <a href={`${SITE.whatsapp}?text=${encodeURIComponent(tr('Здравствуйте! Интересует объект {id}: {title}', { id: o.id, title: o.title }))}`} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="whatsapp" size={16} />{tr("Спросить в WhatsApp")}</a>
           </div>
         </div>
       </aside>
@@ -100,11 +104,11 @@ const ld = {
           </dl>
         )}
         <div class="mt-8 grid gap-6"><div data-reveal><PaymentPlan o={o} /></div><div data-reveal><PositionStrip o={o} /></div></div>
-        <h2 class="mt-12 text-2xl font-extrabold">Об объекте</h2>
+        <h2 class="mt-12 text-2xl">{tr("Об объекте")}</h2>
         <div class="prose-si mt-4" data-reveal set:html={o.descriptionHtml} />
         {o.infrastructure.length > 0 && (
           <>
-            <h2 class="mt-12 text-2xl font-extrabold">Инфраструктура комплекса</h2>
+            <h2 class="mt-12 text-2xl">{tr("Инфраструктура комплекса")}</h2>
             <ul class="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {o.infrastructure.map((i) => <li class="flex items-center gap-3 text-[15px]"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-sea-soft text-sea"><Icon name="check" size={15} stroke={2.2} /></span>{i}</li>)}
             </ul>
@@ -112,16 +116,16 @@ const ld = {
         )}
         {o.video && (
           <div class="mt-12 aspect-video overflow-hidden rounded-[20px]">
-            <iframe src={`https://www.youtube-nocookie.com/embed/${o.video}`} title={`Видео: ${o.title}`} loading="lazy" allowfullscreen class="h-full w-full"></iframe>
+            <iframe src={`https://www.youtube-nocookie.com/embed/${o.video}`} title={tr("Видео: {title}", { title: o.title })} loading="lazy" allowfullscreen class="h-full w-full"></iframe>
           </div>
         )}
       </div>
       <div class="grid min-w-0 content-start gap-6">
         <div data-reveal><Calculator o={o} /></div>
         <div class="card p-6">
-          <p class="text-lg font-extrabold">Получить презентацию объекта</p>
-          <p class="mt-1 text-[14px] text-ink-2">Планировки, прайс, график платежей и расчёт доходности — пришлём в мессенджер.</p>
-          <div class="mt-4"><LeadForm source="object-presentation" object={o.id} compact button="Получить презентацию" /></div>
+          <p class="text-lg font-extrabold">{tr("Получить презентацию объекта")}</p>
+          <p class="mt-1 text-[14px] text-ink-2">{tr("Планировки, прайс, график платежей и расчёт доходности — пришлём в мессенджер.")}</p>
+          <div class="mt-4"><LeadForm source="object-presentation" object={o.id} compact button={tr("Получить презентацию")} /></div>
         </div>
       </div>
     </div>
@@ -131,8 +135,8 @@ const ld = {
     <section class="bg-sand/60 py-14 md:py-20">
       <div class="container-x">
         <div class="flex flex-wrap items-end justify-between gap-4">
-          <h2 class="h-section">Похожие предложения</h2>
-          <a href={`/investment-directory/${o.package}/`} class="btn btn-ghost">Все объекты пакета <Icon name="arrow" size={18} /></a>
+          <h2 class="h-section">{tr("Похожие предложения")}</h2>
+          <a href={`/investment-directory/${o.package}/`} class="btn btn-ghost">{tr("Все объекты пакета")} <Icon name="arrow" size={18} /></a>
         </div>
         <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{similar.map((s, i) => <ObjectCard o={s} reveal={i} />)}</div>
       </div>
@@ -145,7 +149,7 @@ const ld = {
         <p class="truncate text-[12px] text-muted">{info.name} · {o.id}</p>
         <p class="text-[17px] font-bold tabular">{euro(price)}</p>
       </div>
-      <button type="button" class="btn btn-accent btn-sm ml-auto" tabindex="-1" data-lead-open data-lead-title={`Заявка по объекту ${o.id}`} data-lead-object={o.id} data-lead-source="object-bar">Оставить заявку</button>
+      <button type="button" class="btn btn-accent btn-sm ml-auto" tabindex="-1" data-lead-open data-lead-title={tr("Заявка по объекту {id}", { id: o.id })} data-lead-object={o.id} data-lead-source="object-bar">{tr("Оставить заявку")}</button>
     </div>
   </div>
 </Base>

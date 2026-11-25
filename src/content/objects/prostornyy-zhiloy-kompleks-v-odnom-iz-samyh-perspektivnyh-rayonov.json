@@ -78,5 +78,39 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/0f6/0f6f39229a572314262fd876a9462420/ceac6b1a3c5f5682a6f8496453aee6f9",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/ef5/ef519db31896d16737cb87b65a5305aa/a1eee8e7b2636b02be15421f2673d8c4"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/spacious-residential-complex-in-one-of-the-most-promising-areas/",
+      "title": "Spacious residential complex in one of the most promising areas",
+      "location": "Alanya Payallar",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>A promising area of Payallar with the active development of important social infrastructure, a new modern embankment. Spacious courtyard of the complex and many green areas on the territory. There is a coniferous forest nearby. Beautiful views from the windows.</p>\n<p>Land plot 6800 m², 2 blocks for 94 apartments.</p>\n<p>Layouts: 1+1 – 94 units, 2+1 – 14 units, duplexes 2+1 – 14 units and 3+1 – 2 units, duplexes 2+1 with gardens and private pools – 4 units.</p>\n<p>Distances: 2.5 km to the sea and beach, transfer provided; 2.5 km to the center of Payallar; 12 km to the center of Alanya.</p>\n<p>A comfortable complex in a dynamically developing area with an excellent beach. Major infrastructure projects of the municipality are presented in Payallar; a new modern Alanya will be there soon. The newly opened waterfront serves as a magnet for tourism development and increases the rental potential of the property. The area is also attractive for permanent residence; it is located 15-20 minutes drive from the center.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/prostrani-stambeni-kompleks-u-jednom-od-najperspektivnijih-krajeva/",
+      "title": "Prostrani stambeni kompleks u jednom od najperspektivnijih krajeva",
+      "location": "Alanya payallar",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "Bioskop",
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Rimska parna soba",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Perspektivan kraj Pajalar sa aktivnim razvojem važne društvene infrastrukture, novom modernom obalom. Prostrano dvorište kompleksa i mnogo zelenih površina na teritoriji. Nedaleko je borova šuma, pružajući predivne poglede iz prozora.</p><p>Parcela zemljišta je 6800 m², sa 2 bloka koji imaju 94 stana.</p><p>Rasporedi: 1+1 - 94 jedinice, 2+1 - 14 jedinica, duplexi 2+1 - 14 jedinica i 3+1 - 2 jedinice, duplexi 2+1 sa baštama i privatnim bazenima - 4 jedinice.</p><p>Udaljenosti: 2,5 km do mora i plaže, obezbeđen je transfer; 2,5 km do centra Pajalara; 12 km do centra Alanje.</p><p>Komforan kompleks u dinamično razvijajućem i perspektivnom kraju sa odličnom plažom. U Pajalaru su prisutni veliki infrastrukturni projekti opštine, što će učiniti da ovo postane nova moderna Alanja. Nedavno otvorena obala privlači turizam i povećava potencijal za iznajmljivanje nekretnina. Takođe, kraj je privlačan za stalno stanovanje, nalazi se na 15-20 minuta vožnje od centra.</p>"
+    }
+  }
 }

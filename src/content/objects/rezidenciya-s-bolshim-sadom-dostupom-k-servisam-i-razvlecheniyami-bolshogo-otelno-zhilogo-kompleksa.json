@@ -70,5 +70,31 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/5ff/5ff0249f769004fc57ba704bfbcb11b7/7f28b7742bf21caa19e7e39f54aa8cda",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/935/93542285314babd89b80db7abfba344b/9f29a14e101333c735b9f895fd178786"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/residence-with-a-large-garden-access-to-the-services-and-entertainments-of-a-large-hotel-and-residential-complex/",
+      "title": "Residence with a large garden, access to the services and entertainments of a large hotel and residential complex",
+      "location": "Alanya Kargydzhak",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The complex is located on a panoramic hill. Also gardens will cover terraces down the slope. Mountains and greenery all around. Quiet location without car traffic, with views of the sea and the entire city, with an abundance of green landscapes around.</p><p>The complex is a part of large-scale community of the famous hotel and residential project Gold City in Kargicak, Alanya. Residents will be able to use its extensive infrastructure. This allows to combine a relaxing holiday in a quiet environment and in unity with nature, the activities of one of the most popular complexes in Alanya.</p><p>The sea is 2.1 km away, free shuttle available. 10 – 15 minutes from the busy streets with shops, restaurants and entertainment in the Mahmutlar and Kargicak areas.</p><p>Land plot 7 thou m2, 3 blocks for 51 apartments. The residential complex offers the following layouts: 51 one-bedroom apartments (1+1), 3 duplexes with two bedrooms (2+1), and 6 duplexes with three bedrooms (3+1). </p><p>The splendor of Turkey's nature is revealed to the maximum in this location. High rental potential due to the demand for recreation away from crowds of tourists and noisy environments.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/residencija-s-velikim-vrtom-pristupom-uslugama-i-zabavom-u-sklopu-velikog-hotelsko-stambenog-kompleksa/",
+      "title": "Residencija s velikim vrtom, pristupom uslugama i zabavom u sklopu velikog hotelsko-stambenog kompleksa",
+      "location": "Alanya kargydzhak",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Dečiji bazen",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Konferencijska sala",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj"
+      ],
+      "descriptionHtml": "<p>Rezidencija sa velikim vrtom, pristupom uslugama i zabavnim sadržajima velikog hotelskog i stambenog kompleksa.</p><p>Kompleks se nalazi na panoramskom brdu. Vrtovi će takođe pokrivati terase niz padinu. Planine i zelenilo svuda okolo. Mirna lokacija bez saobraćaja, sa pogledom na more i ceo grad, sa obiljem zelenih pejzaža.</p><p>Kompleks je deo velike zajednice poznatog hotelskog i stambenog projekta Gold City u Kargidžaku, Alanji. Stanari će moći da koriste njegovu obimnu infrastrukturu. Ovo omogućava kombinovanje opuštajućeg odmora u mirnom okruženju i jedinstvu s prirodom sa aktivnostima jednog od najpopularnijih kompleksa u Alanji.</p><p>More je udaljeno 2,1 km, obezbeđen je besplatan prevoz. 10 – 15 minuta od prometnih ulica sa prodavnicama, restoranima i zabavom u oblastima Mahmutlar i Kargidžak.</p><p>Parcela zemljišta je 7.000 m², 3 bloka sa 51 apartmanom. Stambeni kompleks nudi sledeće rasporede: 51 jednosobni stan (1+1), 3 dupleksa sa dve spavaće sobe (2+1) i 6 dupleksa sa tri spavaće sobe (3+1).</p><p>Veličanstvo prirode Turske otkriva se u punoj meri na ovoj lokaciji. Visok potencijal za izdavanje zbog potražnje za odmorom daleko od gužve turista i bučnih sredina.</p>"
+    }
+  }
 }

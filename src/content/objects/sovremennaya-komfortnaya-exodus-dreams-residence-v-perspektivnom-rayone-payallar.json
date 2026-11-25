@@ -89,5 +89,53 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/2a0/2a0e035f20caa623b999820da20e098c/d0e1904e04a5c345e9ddc2a3cd5ff41d",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/af6/af669d9b84786ae1c860362f141db253/016803c84101b4abee077d54fd6e2fc0"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/modern-and-comfortable-exodus-dreams-residence-in-the-promising-payallar-area/",
+      "title": "Modern and Comfortable Exodus Dreams Residence in the Promising Payallar Area",
+      "location": "Alanya Payallar",
+      "type": "Apartments",
+      "infrastructure": [
+        "24/7 video surveillance",
+        "Billiards",
+        "Cafe/Restaurant",
+        "Cinema",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Indoor pool",
+        "Massage room",
+        "Outdoor pool",
+        "Playground",
+        "Roman steam room",
+        "Transfer to the beach",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The new 2024 Exodus Dreams Residence Payallar is located in the Payallar area of Alanya. Recently, a modern multifunctional promenade was opened here, serving as a magnet for the rental business. Additionally, a large hospital is under construction, the market has been updated, and other social infrastructure projects are planned. Payallar is developing, which contributes to rising property prices.</p><p>The area is located 14 km from the center of Alanya. In Payallar itself, there are already schools, medical institutions, markets, supermarkets, and service facilities, so there is no need to travel to the city center. The distance from the complex to the beaches is 1.8 km, and a shuttle service is provided, enhancing the complex's rental appeal.</p><p>The residence includes two 8-story blocks, with resort infrastructure arranged on several levels between them. The complex offers an indoor pool, indoor recreation, and wellness areas. There are a total of 104 apartments with layouts from 1+1, 2+1, and 3+1, ranging from 54 to 172 m². The complex offers 77 garden and linear apartments with a 1+1 layout, 14 apartments with a 2+1 layout, 7 duplexes with a 2+1 layout, and 6 duplexes with a 3+1 layout.</p><p>The Payallar area is attractive for long-term rentals due to municipal investments, the modern equipped promenade, the availability of all basic infrastructure, and proximity to Alanya’s center. The complex itself stands out with its year-round infrastructure, modern social spaces, and comfortable layouts.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/moderan-i-udoban-exodus-dreams-residence-u-perspektivnom-delu-payallar/",
+      "title": "Moderan i udoban Exodus Dreams Residence u perspektivnom delu Payallar",
+      "location": "Alanya payallar",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Bilijar",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Transfer do plaže",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Novi kompleks Exodus Dreams Residence Payallar, planiran za 2024. godinu, nalazi se u oblasti Payallar, Alanja. Nedavno je ovde otvorena moderna višenamenska promenada koja privlači interesovanje za posao izdavanja nekretnina. Pored toga, u izgradnji je velika bolnica, pijaca je obnovljena, a planirani su i drugi projekti socijalne infrastrukture. Payallar se ubrzano razvija, što doprinosi rastu cena nekretnina. </p><p>Ova oblast je udaljena 14 km od centra Alanje. U samom Payallaru već postoje škole, medicinske ustanove, pijace, supermarketi i druge uslužne delatnosti, tako da nema potrebe za odlaskom u centar grada. Udaljenost od kompleksa do plaža je 1,8 km, a obezbeđen je prevoz, što dodatno povećava atraktivnost kompleksa za izdavanje. </p><p>Rezidencija obuhvata dve zgrade od po 8 spratova, sa infrastrukturom u stilu odmarališta, koja je raspoređena na nekoliko nivoa između njih. Kompleks nudi zatvoreni bazen, unutrašnje prostore za odmor i wellness zone. Ukupno ima 104 apartmana sa rasporedima od 1+1, 2+1 i 3+1, sa površinama od 54 do 172 m². Kompleks nudi 77 stanova sa vrtom i linijskih stanova sa rasporedom 1+1, 14 stanova sa rasporedom 2+1, 7 dupleksa sa rasporedom 2+1 i 6 dupleksa sa rasporedom 3+1.</p><p>Oblast Payallar je atraktivna za dugoročno iznajmljivanje zbog opštinskih ulaganja, moderne opremljene promenade, dostupnosti osnovne infrastrukture i blizine centru Alanje. Sam kompleks se izdvaja svojom infrastrukturom pogodnom za boravak tokom cele godine, modernim društvenim prostorima i udobnim rasporedima.</p>"
+    }
+  }
 }

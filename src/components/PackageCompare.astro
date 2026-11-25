@@ -5,49 +5,52 @@
  * Телефон — вкладки, планшет и десктоп — таблица.
  */
 import { PACKAGES, PACKAGE_ORDER, packageStats, fmtRange, eurShort, pkgColor, type PackageKey } from '../lib/catalog';
+import { langOf, useT } from '../i18n';
 
 type Col = PackageKey | 'business';
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const s = Object.fromEntries(PACKAGE_ORDER.map((k) => [k, packageStats(k)])) as Record<PackageKey, ReturnType<typeof packageStats>>;
-const entry = (k: PackageKey) => (s[k].entry ? `от ${eurShort(s[k].entry!.min)}` : '—');
+const entry = (k: PackageKey) => (s[k].entry ? tr("от {min}", { min: eurShort(s[k].entry!.min, lang) }) : '—');
 
 const COLS: { key: Col; name: string; short: string; href: string; color: string; note: string }[] = [
-  ...PACKAGE_ORDER.map((k) => ({ key: k as Col, name: PACKAGES[k].name, short: PACKAGES[k].name, href: `/investment-directory/${k}/`, color: pkgColor(k), note: `${s[k].count} объектов в каталоге` })),
-  { key: 'business', name: 'Инвестиции в бизнес', short: 'Бизнес', href: '/investment-directory/biznes-investitsii/', color: 'var(--color-ink-2)', note: 'подбор под запрос' },
+  ...PACKAGE_ORDER.map((k) => ({ key: k as Col, name: tr(PACKAGES[k].name), short: tr(PACKAGES[k].name), href: `/investment-directory/${k}/`, color: pkgColor(k), note: tr("{count} объектов в каталоге", { count: s[k].count }) })),
+  { key: 'business', name: tr("Инвестиции в бизнес"), short: tr("Бизнес"), href: '/investment-directory/biznes-investitsii/', color: 'var(--color-ink-2)', note: tr("подбор под запрос") },
 ];
 
 const rows: { label: string; hint?: string; cells: Record<Col, string> }[] = [
-  { label: 'Цель', cells: { rental: 'Регулярный арендный доход', startovye: 'Рост капитала к сдаче дома', partnerskye: 'Доход от девелоперского проекта', business: 'Доход от коммерческой недвижимости или бизнеса' } },
-  { label: 'Вход', hint: 'Минимальная сумма по объектам каталога', cells: { rental: entry('rental'), startovye: entry('startovye'), partnerskye: entry('partnerskye'), business: 'По запросу' } },
+  { label: tr("Цель"), cells: { rental: tr("Регулярный арендный доход"), startovye: tr("Рост капитала к сдаче дома"), partnerskye: tr("Доход от девелоперского проекта"), business: tr("Доход от коммерческой недвижимости или бизнеса") } },
+  { label: tr("Вход"), hint: tr("Минимальная сумма по объектам каталога"), cells: { rental: entry('rental'), startovye: entry('startovye'), partnerskye: entry('partnerskye'), business: tr("По запросу") } },
   {
-    label: 'Доходность',
-    hint: 'По условиям объектов в каталоге. Прогноз, не гарантия',
+    label: tr("Доходность"),
+    hint: tr("По условиям объектов в каталоге. Прогноз, не гарантия"),
     cells: {
-      rental: `${fmtRange(s.rental.rentYield, '%')} годовых`,
-      startovye: `≈ 15–20% за цикл${s.startovye.discount ? ` · скидка ${fmtRange(s.startovye.discount, '%')}` : ''}`,
-      partnerskye: `ROI ${fmtRange(s.partnerskye.roi, '%')} за цикл`,
-      business: 'Индивидуальный расчёт под объект',
+      rental: tr("{rentYield} годовых", { rentYield: fmtRange(s.rental.rentYield, '%') }),
+      startovye: tr("≈ 15–20% за цикл") + (s.startovye.discount ? tr(" · скидка {discount}", { discount: fmtRange(s.startovye.discount, '%') }) : ''),
+      partnerskye: tr("ROI {roi} за цикл", { roi: fmtRange(s.partnerskye.roi, '%') }),
+      business: tr("Индивидуальный расчёт под объект"),
     },
   },
   {
-    label: 'Горизонт',
+    label: tr("Горизонт"),
     cells: {
-      rental: `гарантия аренды ${fmtRange(s.rental.guaranteeYears)} лет, дальше — без ограничений`,
-      startovye: 'до сдачи дома, обычно 12–24 мес.',
-      partnerskye: `${fmtRange(s.partnerskye.paybackMonths)} мес.`,
-      business: 'Зависит от объекта',
+      rental: tr("гарантия аренды {guaranteeYears} лет, дальше — без ограничений", { guaranteeYears: fmtRange(s.rental.guaranteeYears) }),
+      startovye: tr("до сдачи дома, обычно 12–24 мес."),
+      partnerskye: tr("{paybackMonths} мес.", { paybackMonths: fmtRange(s.partnerskye.paybackMonths) }),
+      business: tr("Зависит от объекта"),
     },
   },
-  { label: 'Как приходит доход', cells: { rental: 'Ежегодные выплаты от управляющей компании', startovye: 'Разовый — при перепродаже (или аренда)', partnerskye: 'Разовый — распределение прибыли по итогам продаж', business: 'Арендные платежи или прибыль бизнеса' } },
-  { label: 'Рассрочка', cells: { rental: `без процентов: первый взнос от ${s.rental.firstPayment?.min ?? '—'}%, срок до ${s.rental.installmentMonths?.max ?? '—'} мес.`, startovye: `без процентов: первый взнос от ${s.startovye.firstPayment?.min ?? '—'}%, срок до ${s.startovye.installmentMonths?.max ?? '—'} мес.`, partnerskye: 'нет — вход единой суммой', business: 'Зависит от объекта' } },
-  { label: 'Ликвидность', hint: 'Насколько быстро можно выйти из вложения', cells: { rental: 'Высокая: готовая квартира, можно продать', startovye: 'Средняя: до сдачи — переуступка договора, после — обычная продажа', partnerskye: 'Низкая: выход по итогам цикла проекта', business: 'Зависит от объекта и рынка' } },
-  { label: 'Чем владеете', cells: { rental: 'Квартира с ТАПУ на ваше имя', startovye: 'Квартира в строящемся доме, ТАПУ после сдачи', partnerskye: 'Доля в проекте по инвестиционному договору', business: 'Коммерческий объект или доля в бизнесе' } },
-  { label: 'Обеспечение', cells: { rental: 'Право собственности (ТАПУ)', startovye: 'Договор купли-продажи, ТАПУ после сдачи', partnerskye: 'Нотариус, вексель, ипотека или ТАПУ на квартиры', business: 'Право собственности или договор — по сделке' } },
-  { label: 'Профиль риска', cells: { rental: 'Консервативный', startovye: 'Умеренный', partnerskye: 'Выше среднего', business: 'Оценивается по объекту' } },
+  { label: tr("Как приходит доход"), cells: { rental: tr("Ежегодные выплаты от управляющей компании"), startovye: tr("Разовый — при перепродаже (или аренда)"), partnerskye: tr("Разовый — распределение прибыли по итогам продаж"), business: tr("Арендные платежи или прибыль бизнеса") } },
+  { label: tr("Рассрочка"), cells: { rental: tr("без процентов: первый взнос от {min}%, срок до {max} мес.", { min: s.rental.firstPayment?.min ?? '—', max: s.rental.installmentMonths?.max ?? '—' }), startovye: tr("без процентов: первый взнос от {min}%, срок до {max} мес.", { min: s.startovye.firstPayment?.min ?? '—', max: s.startovye.installmentMonths?.max ?? '—' }), partnerskye: tr("нет — вход единой суммой"), business: tr("Зависит от объекта") } },
+  { label: tr("Ликвидность"), hint: tr("Насколько быстро можно выйти из вложения"), cells: { rental: tr("Высокая: готовая квартира, можно продать"), startovye: tr("Средняя: до сдачи — переуступка договора, после — обычная продажа"), partnerskye: tr("Низкая: выход по итогам цикла проекта"), business: tr("Зависит от объекта и рынка") } },
+  { label: tr("Чем владеете"), cells: { rental: tr("Квартира с ТАПУ на ваше имя"), startovye: tr("Квартира в строящемся доме, ТАПУ после сдачи"), partnerskye: tr("Доля в проекте по инвестиционному договору"), business: tr("Коммерческий объект или доля в бизнесе") } },
+  { label: tr("Обеспечение"), cells: { rental: tr("Право собственности (ТАПУ)"), startovye: tr("Договор купли-продажи, ТАПУ после сдачи"), partnerskye: tr("Нотариус, вексель, ипотека или ТАПУ на квартиры"), business: tr("Право собственности или договор — по сделке") } },
+  { label: tr("Профиль риска"), cells: { rental: tr("Консервативный"), startovye: tr("Умеренный"), partnerskye: tr("Выше среднего"), business: tr("Оценивается по объекту") } },
 ];
 ---
 <!-- Телефон: одна карточка, пакеты переключаются вкладками — без горизонтальной прокрутки -->
 <div class="card overflow-hidden md:hidden" data-pkg-tabs>
-  <div class="grid grid-cols-2 gap-1 border-b border-line p-1.5 min-[420px]:grid-cols-4" role="tablist" aria-label="Пакет">
+  <div class="grid grid-cols-2 gap-1 border-b border-line p-1.5 min-[420px]:grid-cols-4" role="tablist" aria-label={tr("Пакет")}>
     {COLS.map(({ key: k, short, color }, i) => (
       <button type="button" role="tab" id={`pc-tab-${k}`} aria-controls={`pc-panel-${k}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}
         class="flex min-h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-0.5 text-[13px] font-extrabold text-muted aria-selected:bg-page aria-selected:text-ink" data-tab={k}>
@@ -58,7 +61,7 @@ const rows: { label: string; hint?: string; cells: Record<Col, string> }[] = [
   </div>
   {COLS.map(({ key: k, name, href, note }, i) => (
     <div role="tabpanel" id={`pc-panel-${k}`} aria-labelledby={`pc-tab-${k}`} hidden={i !== 0} data-panel={k}>
-      <p class="px-5 pt-4 text-[13px] text-muted"><span class="font-bold text-ink">«{name}»</span> · {note} · <a href={href} class="font-bold text-sea underline underline-offset-2">подробнее</a></p>
+      <p class="px-5 pt-4 text-[13px] text-muted"><span class="font-bold text-ink">«{name}»</span> · {note} · <a href={href} class="font-bold text-sea underline underline-offset-2">{tr("подробнее")}</a></p>
       <dl class="divide-y divide-line px-5 pb-2">
         {rows.map((r) => (
           <div class="grid grid-cols-[38%_1fr] gap-3 py-3">
@@ -75,10 +78,10 @@ const rows: { label: string; hint?: string; cells: Record<Col, string> }[] = [
 <div class="card hidden overflow-hidden md:block">
   <div class="overflow-x-auto">
     <table class="w-full min-w-[880px] border-collapse text-left text-[14.5px]">
-      <caption class="sr-only">Сравнение инвестиционных пакетов Stay Investment</caption>
+      <caption class="sr-only">{tr("Сравнение инвестиционных пакетов Stay Investment")}</caption>
       <thead>
         <tr class="border-b border-line">
-          <th scope="col" class="sticky left-0 z-10 w-[16%] bg-surface px-5 py-5 text-[12.5px] font-bold uppercase tracking-[.12em] text-muted">Параметр</th>
+          <th scope="col" class="sticky left-0 z-10 w-[16%] bg-surface px-5 py-5 text-[12.5px] font-bold uppercase tracking-[.12em] text-muted">{tr("Параметр")}</th>
           {COLS.map((c) => (
             <th scope="col" class="px-4 py-5 align-bottom">
               <span class="flex items-start gap-2"><span class="legend-key mt-1.5 shrink-0" style={`background:${c.color}`}></span><a href={c.href} class="text-[16px] font-extrabold leading-tight hover:text-brand-2">«{c.name}»</a></span>

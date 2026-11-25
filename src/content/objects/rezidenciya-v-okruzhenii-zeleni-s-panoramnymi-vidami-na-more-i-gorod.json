@@ -73,5 +73,33 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/bee/bee5f834bd69796c29b7d89bd4d429a4/62aab923e693630487e6301eb4cd4525",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/b68/b6870dec738ac6208cc25faba998e2a9/d285047b32f0dd45603a1416dd948e23"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/residence-surrounded-by-greenery-with-panoramic-sea-views/",
+      "title": "Residence surrounded by greenery with panoramic sea views",
+      "location": "Alanya Kargydzhak",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Green location with magnificent views and clean mountain air. Access to the luxurious infrastructure of the famous Gold City residence in Kargicak for residents. It includes recreation areas, numerous entertainment, restaurants, spa services, and transfer to the beach. The sea and Mahmutlar area are 2.5 km away.</p><p>Along the mountainside there are terraced gardens with gazebos and viewing terraces. Panoramic views of the sea and the city.</p><p>The residence includes 2 blocks with 66 apartments. Apartments: 54 one-bedroom units (1+1), 6 duplexes with two bedrooms (2+1), and 4 duplexes with three bedrooms (3+1).</p><p>The features of the complex that attract tenants are its location away from noisy streets and green areas on the territory. At the same time, the owners have the opportunity to enjoy the infrastructure of a large hotel and residential complex nearby.</p><p>This tandem of a relaxing holiday closer to nature and a large selection of entertainment is the key to high demand for rentals and the formation of a flow of regular guests to the residence.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/rezidencija-okru-ena-zelenilom-sa-panoramskim-pogledom-na-more/",
+      "title": "Rezidencija okružena zelenilom sa panoramskim pogledom na more",
+      "location": "Alanya kargydzhak",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Bilijar",
+        "Električni generator",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Konferencijska sala",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Stoni tenis"
+      ],
+      "descriptionHtml": "<p>Zelena lokacija sa veličanstvenim pogledom i čistim planinskim vazduhom. Stanari imaju pristup luksuznoj infrastrukturi poznate rezidencije Gold City u Kargidžaku. Ova infrastruktura uključuje rekreativne zone, brojne zabavne sadržaje, restorane, spa usluge i transfer do plaže. More i oblast Mahmutlar su udaljeni 2,5 km.</p><p>Duž padine planine nalaze se terasasti vrtovi sa vidikovcima i terasama za uživanje u pogledu. Panoramski pogled na more i grad.</p><p>Rezidencija uključuje 2 bloka sa 66 apartmana. Stanovi: 54 jednosobna jedinice (1+1), 6 dupleksa sa dve spavaće sobe (2+1) i 4 dupleksa sa tri spavaće sobe (3+1).</p><p>Karakteristike kompleksa koje privlače zakupce su njegova lokacija daleko od bučnih ulica i zelene površine na teritoriji. Istovremeno, vlasnici imaju priliku da uživaju u infrastrukturi velikog hotela i stambenog kompleksa u blizini.</p><p>Ova kombinacija opuštajućeg odmora bliže prirodi i velikog izbora zabavnih sadržaja ključ je visoke potražnje za iznajmljivanjem i formiranju toka redovnih gostiju u rezidenciji.</p>"
+    }
+  }
 }

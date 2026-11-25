@@ -90,5 +90,40 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/02a/02a02d1f04fc3177b3bc90f509910801/13b580ae876d58da9db041798fb4001c",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/990/9901a37c82c736a418718e2327944572/b8f97f20ee80492c774d62bbee09c8c5"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/residence-on-a-panoramic-hill-with-magnificent-views/",
+      "title": "Residence on a panoramic hill with magnificent views",
+      "location": "Alanya Kestel",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The proximity to the large university Alanya Alaaddin Keykubat University School of Business provides high potential for long-term rentals. The concept for recreation and the location on a hill with views of a coniferous forest, green mountains and the sea open up good prospects for short-term rentals.</p><p>The project consists of three nine-story blocks, each with 45 apartments. Plot of land 10300 m2. 2.3 km to the sea, transfer from the complex and back. Provided winter indoor pool.</p><p>The residential complex has the following layouts: 1+1 - 91 units, 2+1 - 32 units, 2+1 duplexes - 10 units, 4+1 duplexes - 2 units. Apartments: 1+1, 50 – 54 m2; 2+1, 70 m2; duplexes 2+1 102 m2; duplexes 4+1, 140 m2.</p><p>Prestigious project by a famous developer. Views, panoramic location on a hill, absence of tall buildings around, clean air and a pleasant, calm environment of the area.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/rezidencija-na-panoramskom-brdu-sa-veli-anstvenim-pogledom/",
+      "title": "Rezidencija na panoramskom brdu sa veličanstvenim pogledom",
+      "location": "Alanya kestel",
+      "type": "Duplex Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bioskop",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina",
+        "Đakuzi"
+      ],
+      "descriptionHtml": "<p>Blizina velikog univerziteta Alanya Alaaddin Keykubat School of Business pruža visok potencijal za dugoročno izdavanje. Koncept za rekreaciju i lokacija na brdu sa pogledom na četinarsku šumu, zelene planine i more otvaraju dobre perspektive za kratkoročno izdavanje.</p><p>Projekat se sastoji od tri devetospratna bloka, svaki sa 45 apartmana. Parcela zemljišta je 10.300 m². Udaljenost do mora je 2,3 km, obezbeđen je transfer od kompleksa i nazad. Predviđen je zimski unutrašnji bazen.</p><p>U stambenom kompleksu predstavljeni su sledeći rasporedi: 1+1 - 91 jed., 2+1 - 32 jed., 2+1 dupleksi - 10 jed., 4+1 dupleksi - 2 jed. Apartmani: 1+1, 50 – 54 m²; 2+1, 70 m²; dupleksi 2+1 102 m²; dupleksi 4+1, 140 m².</p><p>Prestižan projekat poznatog developera. Pogledi, panoramska lokacija na brdu, odsustvo visokih zgrada u okolini, čist vazduh i prijatno, mirno okruženje oblasti.</p>"
+    }
+  }
 }

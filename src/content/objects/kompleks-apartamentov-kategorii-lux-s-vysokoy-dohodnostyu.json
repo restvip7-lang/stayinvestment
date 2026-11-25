@@ -80,5 +80,43 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/bd2/bd2c2cc0add26afd5ed2409a84f8be3a/b650d516e89a65639b0dac112a3e95a3",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/f78/f78b31d2286418126a26e471ec2ef55f/c72de095f549f00e51d321cd1418f539"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/lux-apartment-complex-with-high-yield/",
+      "title": "LUX apartment complex with high yield",
+      "location": "Alanya Tosmur",
+      "type": "Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>LUX apartment complex in the popular Tosmur area of Alanya, just 300 m from the sea.</p><p>The residence is being built on a plot of 3500 m2. One block, 99 apartments in total. The residential complex features the following layouts: 56 one-bedroom apartments (1+1), 32 two-bedroom apartments (2+1), 7 two-bedroom penthouses (2+1), and 4 three-bedroom penthouses (3+1).</p><p>On site: outdoor and indoor swimming pools, barbecue area, children's playground, detox bar, restaurant, guest room, sauna, hammam, Roman steam room, fitness room, massage room, library, children's playroom, cinema room.</p><p>Nearby is the historical center of Alanya, large supermarkets, shopping centers, schools, colleges, and a university.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/kompleks-apartmana-kategorije-lux-sa-visokim-prinosom/",
+      "title": "Kompleks apartmana kategorije LUX sa visokim prinosom",
+      "location": "Alanya tosmur",
+      "type": "Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Gostinska soba",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Konsijerž",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Privatna plaža",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Kompleks apartmana kategorije LUX u popularnom delu Tosmur u Alanji, na samo 300 metara od mora.</p><p>Rezidencija se gradi na parceli od 3500 m2. Jedan blok, ukupno 99 apartmana. Stambeni kompleks nudi sledeće rasporede: 56 jednosobnih stanova (1+1), 32 dvosobna stana (2+1), 7 dvosobnih penthausa (2+1) i 4 trosobna penthausa (3+1).</p><p>Na teritoriji se nalaze: otvoreni i zatvoreni bazeni, zona za roštilj, dečje igralište, detoks bar, restoran, gostinjska soba, sauna, hamam, rimska parna soba, fitnes sala, masažni kabinet, biblioteka, dečja igraonica, bioskopska sala.</p><p>U blizini se nalazi istorijski centar Alanje, veliki supermarketi, tržni centri, škole, koledži, univerzitet.</p>"
+    }
+  }
 }

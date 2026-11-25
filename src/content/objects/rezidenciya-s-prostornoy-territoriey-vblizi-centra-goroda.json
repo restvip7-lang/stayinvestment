@@ -79,5 +79,44 @@
     "https://cdn-ru.bitrix24.ru/b19410268/disk/f93/f93546c16aa5198a618126d61efd4af7/8c77d8a80ac7e00e2138a548abe3fff3",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/c00/c00e66829245067f641904207a76a29e/a5244f42fe77d1dc162db730da43d350"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/residence-with-spacious-territory-near-the-city-center/",
+      "title": "Residence with spacious territory near the city center",
+      "location": "Alanya Oba",
+      "type": "Penthouse",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The complex is advantageously located near the center of Alanya, surrounded by modern buildings in the prestigious Oba district. Premium ratio of development and green areas on a plot of 9189 m2.</p>\n<p>Each apartment has maximum windows and daylight, excellent views. The residential blocks are turned towards the Alanya fortress Kale and the sea.</p>\n<p>Distances: center 4 km, hospital 1.5 km, sea 2.5 km, large markets and shopping center 2.5 – 3 km, new circle road 500 m.</p>\n<p>3 blocks of 6 floors each. Total 114 apartments:</p>\n<p>Linear: 1+1, 52 – 55 m2; 2+1, 85 m2; 2+1, 100 m2.</p>\n<p>Two-level: 2+1, 100 – 102 m2; 3+1, 121 m2; 4+1, 184 m2.</p>\n<p>Layouts: 1+1 – 30 units, 2+1 – 12 units, duplexes 3+1 – 2 units, duplexes 4+1 – 3 units.</p>\n<p>Premium year-round infrastructure, including for people with disabilities. Comfortable transport accessibility. A complex with high rental potential and the prospect of increasing value due to its convenient location, premium characteristics and emphasis on quality of life. The area is in demand among Europeans for permanent residence and recreation.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-sa-prostranim-dvori-tem-u-blizini-centra-grada/",
+      "title": "Rezidencija sa prostranim dvorištem u blizini centra grada",
+      "location": "Alanya oba",
+      "type": "Penthaus",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bar pored bazena",
+        "Bilijar",
+        "Dečiji bazen",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Prostor za rekreaciju - roštilj",
+        "Rimska parna soba",
+        "Stoni tenis",
+        "Teren za košarku",
+        "Teren za odbojku",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen",
+        "Zelena bašta - zelena površina"
+      ],
+      "descriptionHtml": "<p>Kompleks je povoljno smešten blizu centra Alanje, okružen modernim naseljem u prestižnom području Oba. Na parceli od 9189 m2 pruža se premium odnos između zgrada i zelenih površina.</p><p>Svaki stan uživa u maksimalnom broju prozora i dnevnog svetla, te nudi izvanredne panoramske poglede prema tvrđavi Kale i moru u Alanji.</p><p>Udaljenosti su: centar grada 4 km, bolnica 1,5 km, more 2,5 km, veliki marketi i tržni centri 2,5 - 3 km, nova obilaznica 500 m.</p><p>Kompleks se sastoji od 3 bloka, svaki sa 6 spratova, ukupno 114 stanova:</p><p>- Linearni: 1+1, 52 - 55 m2; 2+1, 85 m2; 2+1, 100 m2.<br>- Dvokatni: 2+1, 100 - 102 m2; 3+1, 121 m2; 4+1, 184 m2.</p><p>Rasporedi: 1+1 - 30 jedinica, 2+1 - 12 jedinica, duplexi 3+1 - 2 jedinice, duplexi 4+1 - 3 jedinice.</p><p>Ima premijum infrastrukturu koja je dostupna tokom cele godine, uključujući sadržaje prilagođene osobama s ograničenim mogućnostima. Dobra je transportna povezanost. Kompleks ima visok potencijal za iznajmljivanje i rast vrednosti zbog svoje povoljne lokacije, premijum karakteristika i naglaska na kvalitetu života. Ovo područje je popularno među Evropljanima za stalni boravak i odmor.</p>"
+    }
+  }
 }

@@ -93,5 +93,59 @@
     "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/daf/dafd55f77a2f049d2388c3ae35c0c01f/2ddb582a11acd6f750cc3f46aaa54520",
     "https://cdn-ru.bitrix24.ru/b19410268/disk/86d/86dac75995239c3974ecd031b347d853/1c066408a40c48d5b6b896303aec7b20"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/rental/exodus-premium-town-residence-on-the-picturesque-hills-of-the-prestigious-kargicak-area/",
+      "title": "Exodus Premium Town Residence on the Picturesque Hills of the Prestigious Kargicak Area",
+      "location": "Alanya Kargydzhak",
+      "type": "Apartments",
+      "infrastructure": [
+        "24/7 video surveillance",
+        "Cafe/Restaurant",
+        "Cinema",
+        "Conference room",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Indoor pool",
+        "Library",
+        "Market",
+        "Massage room",
+        "Outdoor pool",
+        "Playground",
+        "Roman steam room",
+        "Transfer to the beach",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>A large-scale project on a 3.2-hectare plot designed as a gated community. Privacy, fresh air, and silence surround this prestigious premium complex for comfortable family living. Nearby, there are villas and buildings up to 4 floors. The views include the Mediterranean Sea, green slopes, the city center, and the lights of Alanya's evening fortress.</p><p>Terrace apartments, villas, and flats in this project ensure privacy for your vacation and living. Minimal neighbors, maximum enjoyment of Turkey's stunning nature and mountain landscapes. A quiet paradise away from noise, cars, and tourist flows. The sea is 3 km away, and there is a comfortable shuttle for residents only.</p><p>Kargicak is a prestigious and one of the greenest areas of Alanya. Along the promenade, there are supermarkets, restaurants, a shopping center, pharmacies, ATMs, and transport services. Schools, kindergartens, colleges, lyceums, and universities are within a 10-15 minute drive. In the neighboring Mahmutlar district, there are shopping centers Yekta Mall and Akdeniz Park. It is only 23 km to Gazipasa Airport. High rental potential in a prestigious area.</p><p>The residence offers 78 apartments with a 1+1 layout, 83 duplexes with a 2+1 layout, and 4 duplexes with a 3+1 layout, as well as 16 terrace apartments with a 2+1 layout, 13 villas with a 3+1 layout, and 12 villas with a 4+1 layout. An installment plan is available for 30 months with a down payment starting at 20%.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/rental/exodus-premium-town-residence-na-slikovitim-bre-uljcima-presti-nog-podru-ja-kargicak/",
+      "title": "Exodus Premium Town Residence na slikovitim brežuljcima prestižnog područja Kargicak",
+      "location": "Alanya kargydzhak",
+      "type": "Apartmani",
+      "infrastructure": [
+        "Biblioteka",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Market",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Transfer do plaže",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Veliki projekat na parceli od 3,2 hektara dizajniran kao zatvorena zajednica. Privatnost, svež vazduh i tišina okružuju ovaj prestižni premium kompleks za komforan porodični život. U blizini se nalaze vile i zgrade do 4 sprata. Pogledi obuhvataju Sredozemno more, zelene padine, centar grada i svetla večernje tvrđave Alanje. </p><p>Apartmani sa terasom, vile i stanovi u ovom projektu obezbeđuju privatnost za vaš odmor i boravak. Minimalan broj komšija, maksimalno uživanje u prelepoj prirodi Turske i planinskim pejzažima. Miran raj daleko od buke, automobila i turističkih gužvi. More je udaljeno 3 km, a stanarima je na raspolaganju udoban prevoz. </p><p>Kargicak je prestižno i jedno od najzelenijih područja Alanje. Duž promenade nalaze se supermarketi, restorani, tržni centar, apoteke, bankomati i usluge prevoza. Škole, vrtići, koledži, liceji i univerziteti su na 10-15 minuta vožnje. U susednom distriktu Mahmutlar nalaze se tržni centri Yekta Mall i Akdeniz Park. Aerodrom Gazipaša je udaljen samo 23 km. Visok potencijal za iznajmljivanje u prestižnom području. </p><p>Rezidencija nudi apartmane 1+1 - 78 jed, 2+1 dupleks - 83 jed., 3+1 dupleks - 4 jed., apartmane sa terasom 2+1 - 16 jed., kao i vile 3+1 - 13 jed. i 4+1 - 12 jed. Postoji mogućnost plaćanja na rate u trajanju od 30 meseci, uz avans od 20%.</p>"
+    }
+  }
 }

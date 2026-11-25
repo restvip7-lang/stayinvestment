@@ -82,5 +82,41 @@
     "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/2e7/2e795edffb30727633292c57215e02f1/9679ccb5a92f650b83fcf29e0a6a6775",
     "https://cdn-ru.bitrix24.ru/b19410268/mail/attachment/f8c/f8cb607fba0439e5f19852b5dd180881/83b5009e040969ee7b60362ad7426573"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/exodus-premium-town-residence-in-the-mountains-near-the-sea/",
+      "title": "Exodus Premium Town residence in the mountains near the sea",
+      "location": "Alanya Kargydzhak",
+      "type": "Villa Duplex Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Exodus Premium Town residence in the mountains near the sea.</p>\n<p>Investment advantages:</p>\n<ul>\n<li>Building on one level around, elite area.</li>\n<li>Picturesque landscapes, views of the sea and mountains, clean air.</li>\n<li>A large-scale project on a plot of 3.2 hectares in a closed community format.</li>\n<li>Premium segment.</li>\n<li>Low-rise construction.</li>\n<li>Low building density around.</li>\n<li>Suitable for Turkish citizenship.</li>\n<li>High rental potential</li>\n</ul>\n<p>Location:</p>\n<ul>\n<li>Türkiye, Alanya Kargicak region, Mediterranean Sea.</li>\n<li>2.7 km to the sea, comfortable beaches.</li>\n<li>23 km to Gazipasa Airport.</li>\n</ul>\n<p>Housing stock of the Exodus Premium Town project:</p>\n<ul>\n<li>1+1, from 50 to 55 m2 – 78 units;</li>\n<li>garden duplexes and penthouses 2+1, from 101 to 107 m2 – 83 units;</li>\n<li>duplexes 3+1, 128 m2 – 4 units;</li>\n<li>terrace apartments 2+1, 81 m2 + 145 m2 terrace – 16 units;</li>\n<li>12 detached villas 4+1 with swimming pools, 167 m2;</li>\n<li>13 villas with separate plots 3+1, 123 m2 – 13.</li>\n</ul>\n<p>Construction: 03/01/2023 – 12/30/2025.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-exodus-premium-town-na-brdu-blizu-mora/",
+      "title": "Rezidencija Exodus Premium Town na brdu blizu mora",
+      "location": "Alanya kargydzhak",
+      "type": "Vila Duplex Penthaus Apartmani",
+      "infrastructure": [
+        "Biblioteka",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Market",
+        "Otvoreni bazen",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Transfer do plaže",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Residencija Exodus Premium Town na brdu blizu mora.</p><p>Investicioni benefiti:</p><ul><li>Jedan nivo izgradnje oko, elitno područje.</li><li>Scenoviti pejzaži, pogledi na more i planine, čist vazduh.</li><li>Obiman projekat na parceli od 3,2 hektara u formatu zatvorene zajednice.</li><li>Premium segment.</li><li>Nisko spratno gradnja.</li><li>Niska gustoća izgradnje u okolini.</li><li>Podobno za tursko državljanstvo.</li><li>Visok potencijal za iznajmljivanje.</li></ul><p>Lokacija:</p><ul><li>Turska, područje Alanya Kargicak, Sredozemno more.</li><li>2,7 km do mora, udobne plaže.</li><li>23 km do aerodroma Gazipaša.</li></ul><p>Stambeni fond projekta Exodus Premium Town:</p><ul><li>1+1, od 50 do 55 m2 - 78 jed.;</li><li>baštenski duplex i penthausi 2+1, od 101 do 107 m2 - 83 jed.;</li><li>apartmani 2+1 sa privatnom terasom, 81 m2 + 145 m2 terasa - 16 jed.;</li><li>dupleksi 3+1, 128 m2- 4 jedinice;</li><li>12 zasebnih vila 4+1 sa bazenima, 169 m²; </li><li>13 vila sa zasebnim parcelama 3+1, 123 m².</li></ul><p>Izgradnja: 01.03.2023 – 30.12.2025.</p>"
+    }
+  }
 }
