@@ -121,7 +121,7 @@ const faq = [
     <div class="container-x grid grid-cols-2 gap-y-8 py-10 md:grid-cols-4 md:py-12">
       {STATS.map((s, i) => (
         <div class="border-l-2 border-brand pl-5" data-reveal style={`--i:${i}`}>
-          <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]"><span data-count={s.value}>{s.value.toLocaleString('ru-RU')}</span>{s.suffix}</p>
+          <p class="whitespace-nowrap text-[26px] font-extrabold tabular sm:text-3xl md:text-[40px]"><span data-count={s.value}>{s.value.toLocaleString('ru-RU')}</span>{tr(s.suffix)}</p>
           <p class="mt-1 text-[14px] text-ink-2">{tr(s.label)}</p>
         </div>
       ))}
@@ -325,7 +325,7 @@ const faq = [
                 <p class="font-extrabold">{tr(t.name)}</p>
                 <p class="text-[14px] text-muted">{tr(t.role)}</p>
               </div>
-              <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={tr("Написать {name} в WhatsApp", { name: t.name })}><Icon name="whatsapp" size={20} /></a>
+              <a href={t.whatsapp} target="_blank" rel="noopener" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b] hover:bg-[#25d366]/20" aria-label={tr("Написать {name} в WhatsApp", { name: tr(t.name) })}><Icon name="whatsapp" size={20} /></a>
             </div>
           </div>
         ))}

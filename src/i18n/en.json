@@ -1,8 +1,11 @@
 {
+ "": "",
  " · скидка {discount}": " · discount {discount}",
+ " м²": " m²",
  " при горизонте 24 мес.": " over a 24-month horizon",
  "(1 + ROI) ^ (12 ÷ месяцев) − 1": "(1 + ROI) ^ (12 ÷ months) − 1",
  "(Цена продажи − Цена покупки) ÷ Цена покупки × 100%": "(Sale price − Purchase price) ÷ Purchase price × 100%",
+ "+": "+",
  "+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома": "+15–20% on the amount invested|Expected return on resale after completion",
  "+{yld}% стоимости|Арендный доход за {i1}-й год гарантии": "+{yld}% of the price|Rental income for year {i1} of the guarantee",
  "9 офисов в 6 странах": "9 offices in 6 countries",
