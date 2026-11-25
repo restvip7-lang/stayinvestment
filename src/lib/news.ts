@@ -130,6 +130,8 @@ interface LegacyNews {
   publishedAt: string | null;
   image: string | null;
   contentHtml: string;
+  /** Устаревшая новость (даты, законы, цены прошлых лет): показывается только на русском, переводы скрыты */
+  outdated?: boolean;
   /** Переводы со старого сайта (npm run import-legacy-i18n) */
   i18n?: Partial<Record<Lang, { title: string; seoTitle: string | null; seoDescription: string | null; contentHtml: string }>>;
 }
@@ -156,8 +158,8 @@ const legacyItem = (n: LegacyNews, lang: Lang): NewsItem => {
   };
 };
 const LEGACY = Object.values(legacyFiles);
-/** Архив на языке: на русском — всё, на других — только переведённые статьи. */
-const legacyFor = (lang: Lang) => LEGACY.filter((n) => lang === 'ru' || n.i18n?.[lang]).map((n) => legacyItem(n, lang));
+/** Архив на языке: на русском — всё, на других — только переведённые и не устаревшие статьи. */
+const legacyFor = (lang: Lang) => LEGACY.filter((n) => lang === 'ru' || (n.i18n?.[lang] && !n.outdated)).map((n) => legacyItem(n, lang));
 
 /** Вся лента: свежие из API + архив, новые сверху, без дублей по адресу. */
 export async function getNews(lang: Lang = 'ru'): Promise<NewsItem[]> {
