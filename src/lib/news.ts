@@ -11,6 +11,7 @@
  */
 import { cached } from './cache';
 import { fmtDate, type Lang } from '../i18n';
+import { optimizeHtmlImages } from './img';
 import fxContent from '../content/fixtures/content-news.json';
 
 const BASE = ((import.meta.env.STAY_CONTENT_API as string | undefined) || 'https://admin.stayproperty.com').replace(/\/$/, '');
@@ -127,7 +128,7 @@ function fromApi(items: RawContent[], lang: Lang = 'ru'): NewsItem[] {
       slug,
       title,
       excerpt: (ru?.excerpt || (lang === 'ru' ? x.excerpt : '') || '').trim(),
-      html,
+      html: optimizeHtmlImages(html),
       image: x.image || null,
       date: isoDate(x),
       source: 'api',
@@ -171,7 +172,7 @@ const legacyItem = (n: LegacyNews, lang: Lang): NewsItem => {
     slug: n.slug,
     title: x.title,
     excerpt: description,
-    html,
+    html: optimizeHtmlImages(html),
     image: n.image,
     date: n.publishedAt ?? '',
     source: 'legacy',

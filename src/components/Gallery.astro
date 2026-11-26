@@ -1,20 +1,23 @@
 ---
 /**
  * Галерея объекта: плавная смена фото (crossfade 220 мс), стрелки, свайп, клавиатура (← →),
- * миниатюры и полноэкранный просмотр (dialog). На проде фото идут через оптимизатор Vercel.
+ * миниатюры и полноэкранный просмотр (dialog). Размеры фото — src/lib/img.ts.
  * При prefers-reduced-motion смена без анимации.
  */
 import Img from './Img.astro';
 import Icon from './Icon.astro';
 import { langOf, useT } from '../i18n';
+import { imgUrl } from '../lib/img';
 interface Props { images: string[]; title: string }
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
 const { images, title } = Astro.props;
 const list = images.slice(0, 24);
-const opt = import.meta.env.PROD;
+// Адреса для смены кадра (1280 px) и полноэкранного просмотра (1920 px) считаем на сервере — src/lib/img.ts
+const mid = list.map((s) => imgUrl(s, 1280));
+const full = list.map((s) => imgUrl(s, 1920));
 ---
-<div class="min-w-0" data-gallery data-images={JSON.stringify(list)} data-opt={opt ? '1' : ''}>
+<div class="min-w-0" data-gallery data-images={JSON.stringify(mid)} data-full={JSON.stringify(full)}>
   <div class="group/g img-outline relative overflow-hidden rounded-[20px] bg-sand" data-stage tabindex="0" aria-roledescription={tr("галерея")} aria-label={tr("Фото объекта: {title}", { title })}>
     <Img src={list[0]} alt={title} class="aspect-[16/10] w-full select-none" width={1280} height={800} priority sizes="(min-width: 1024px) 60vw, 100vw" />
     {list.length > 1 && (
@@ -58,7 +61,7 @@ const opt = import.meta.env.PROD;
   const EASE = 'cubic-bezier(0.165, 0.84, 0.44, 1)';
   for (const g of document.querySelectorAll<HTMLElement>('[data-gallery]')) {
     const images: string[] = JSON.parse(g.dataset.images || '[]');
-    const url = (src: string, w: number) => (g.dataset.opt && /^https:/.test(src) ? `/_vercel/image?url=${encodeURIComponent(src)}&w=${w}&q=78` : src);
+    const full: string[] = JSON.parse(g.dataset.full || '[]');
     const stage = g.querySelector<HTMLElement>('[data-stage]')!;
     const main = stage.querySelector<HTMLImageElement>('img')!;
     const counter = g.querySelector('[data-counter]');
@@ -72,7 +75,7 @@ const opt = import.meta.env.PROD;
       if (!images.length) return;
       i = (n + images.length) % images.length;
       const next = new Image();
-      next.src = url(images[i], 1280);
+      next.src = images[i];
       next.alt = main.alt;
       next.className = main.className;
       next.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
@@ -93,7 +96,7 @@ const opt = import.meta.env.PROD;
       if (box.open) showBox();
     };
     const showBox = () => {
-      boxImg.src = url(images[i], 1920);
+      boxImg.src = full[i] ?? images[i];
       if (boxCounter) boxCounter.textContent = `${i + 1} / ${images.length}`;
       if (!reduce) boxImg.animate([{ opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1 }], { duration: 200, easing: EASE });
     };

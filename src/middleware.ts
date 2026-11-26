@@ -4,18 +4,18 @@
  * - языки: /en/… и /sr/… отдают ту же страницу с Astro.locals.lang (src/i18n), внутренние ссылки
  *   в HTML дополняются префиксом языка; /ru/… → 301 на адрес без префикса (так переключатель ведёт на русский);
  * - кэш страниц на CDN Vercel: 10 минут свежие + stale-while-revalidate (как в stay.com.tr),
- *   сброс по тегу через /api/revalidate/;
+ *   сброс по тегу через /api/revalidate/; на своём сервере тот же заголовок CDN-Cache-Control понимает Cloudflare;
  * - пока сайт не открыт (STAY_NOINDEX != 0) — заголовок noindex.
  */
 import { defineMiddleware } from 'astro:middleware';
 import { redirectFor } from './lib/redirects';
 import { splitLang, type Lang } from './i18n';
 
-const STATIC = /^\/(_astro|_vercel|_image|images|media|fonts|favicon|robots\.txt|sitemap|api\/)/;
+const STATIC = /^\/(_astro|_vercel|_image|img\/|images|media|fonts|favicon|robots\.txt|sitemap|api\/)/;
 const redirect = (to: string, status = 301) => new Response(null, { status, headers: { location: to, 'cache-control': 'public, max-age=3600' } });
 
 /** Ссылки, которые не переводятся: файлы, API, уже с префиксом языка. */
-const LOCAL_LINK = /(\s(?:href|action)=")\/(?!\/|en\/|sr\/|ru\/|_astro|_vercel|images\/|media\/|fonts\/|api\/|favicon|robots\.txt|sitemap|news\/rss\.xml)/g;
+const LOCAL_LINK = /(\s(?:href|action)=")\/(?!\/|en\/|sr\/|ru\/|_astro|_vercel|img\/|images\/|media\/|fonts\/|api\/|favicon|robots\.txt|sitemap|news\/rss\.xml)/g;
 
 export const onRequest = defineMiddleware(async (ctx, next) => {
   const url = ctx.url;
@@ -39,10 +39,12 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
   if (ctx.request.method === 'GET' && !path.startsWith('/api/') && res.status < 500 && !res.headers.has('cache-control')) {
     res.headers.set('cache-control', 'public, max-age=0, must-revalidate');
     res.headers.set('cdn-cache-control', 'public, s-maxage=600, stale-while-revalidate=86400, stale-if-error=86400');
-    try {
-      const { addCacheTag } = await import('@vercel/functions');
-      await addCacheTag(['site']);
-    } catch { /* локально тегов нет */ }
+    if (import.meta.env.STAY_TARGET === 'vercel') {
+      try {
+        const { addCacheTag } = await import('@vercel/functions');
+        await addCacheTag(['site']);
+      } catch { /* локально тегов нет */ }
+    }
   }
   if ((import.meta.env.STAY_NOINDEX ?? process.env.STAY_NOINDEX ?? '1') !== '0') res.headers.set('x-robots-tag', 'noindex, nofollow');
 

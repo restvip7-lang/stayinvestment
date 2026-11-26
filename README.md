@@ -9,7 +9,10 @@
 ```bash
 npm install
 npm run dev        # http://localhost:4321
-npm run build      # сборка под Vercel (.vercel/output)
+npm run build      # сборка: на Vercel — под Vercel, иначе Node.js-сервер (dist/)
+npm start          # запуск собранного сайта на своём сервере (127.0.0.1:4330)
+npm run optimize-images # сжать свои картинки из public/images в public/media
+npm run localize-media  # перенести внешние картинки в public/media
 npm run check      # проверка типов
 ```
 
@@ -23,6 +26,8 @@ npm run check      # проверка типов
 | Новости (архив, 26 шт.) | Старый сайт → `src/content/legacy-news/*.json` | `npm run import-legacy` |
 | Снимок новостей на случай сбоя API | `src/content/fixtures/content-news.json` | `npm run fixtures` |
 | Объекты каталога (48 шт.) | **Временное наполнение** со старого сайта → `src/content/objects/*.json`. Для инвестиций будут отдельные объекты (не из admin.stayproperty.com) — тогда меняется только `src/lib/catalog.ts` | `npm run import-legacy` |
+| Все картинки сайта | Лежат у нас: `public/media` — WebP в размерах 240 / 480 / 960 / до 1600 px. Фото объектов и старых статей перенесены с Битрикс24 и старого сайта (`src/content/media-map.json` — откуда каждое), свои картинки из `public/images` сжимаются туда же. Какие размеры есть — `src/content/media-manifest.json`; подстановка — `src/lib/img.ts` | `npm run optimize-images` — после замены или добавления своих картинок; `npm run localize-media` — если в контенте появились внешние ссылки на фото |
+| Картинки новостей из админки | Хранилище Stay Property; сжимаются и кэшируются на нашей стороне: на Vercel — его оптимизатор, на своём сервере — `/img/` с кэшем на диске (`src/pages/img/index.ts`) | сами |
 | Тексты страниц | `src/pages/**`, `src/content/package-texts.ts`, `src/content/pages/*.html` | вручную |
 | Контакты, меню, команда, цифры | `src/lib/site.ts` | вручную |
 
@@ -60,12 +65,15 @@ npm run check      # проверка типов
 
 Адреса старого сайта сохранены; редиректы — [docs/redirects.md](docs/redirects.md).
 
+## Свой сервер
+
+Ветка `vps`: запуск рядом со старым сайтом на тестовом адресе, где лежат картинки, переезд — [docs/deploy-vps.md](docs/deploy-vps.md).
+
 ## Перед запуском
 
 - [ ] Подтвердить факты из [docs/content-audit.md](docs/content-audit.md#1-подтвердить-у-заказчика-до-запуска)
 - [ ] Логотип в SVG → `src/components/Logo.astro`
 - [ ] Куда слать заявки → `LEAD_WEBHOOK_URL`
-- [ ] Перенести фото объектов с CDN Битрикс24 к себе (ссылки могут протухнуть)
 - [ ] `STAY_NOINDEX=0` — открыть для индексации
 
 ## Репозитории

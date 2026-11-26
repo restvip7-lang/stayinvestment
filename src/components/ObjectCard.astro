@@ -18,7 +18,7 @@ const guarantee = o.metrics.find((m) => m.label === "Срок гарантии �
 ---
 <article class="card lift group relative flex flex-col overflow-hidden" data-object data-package={o.package} data-city={place.city} data-price={price ?? ''} data-yield={y?.value ?? ''} data-reveal={reveal != null ? '' : undefined} style={reveal != null ? `--i:${reveal}` : undefined}>
   <div class="img-outline relative aspect-[4/3] overflow-hidden">
-    <Img src={o.images[0]} alt={o.title} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={480} priority={priority} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" />
+    <Img src={o.images[0]} alt={o.title} class="h-full w-full transition-transform duration-700 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-[1.04]" width={640} height={480} priority={priority} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 70vw" />
     <div class="absolute left-3 top-3 flex flex-wrap gap-1.5">
       <span class="chip bg-white/95 text-ink">{tr(PACKAGES[o.package].name)}</span>
       {o.year && <span class="chip bg-navy/80 text-white">{o.year}</span>}
