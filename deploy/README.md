@@ -47,3 +47,39 @@ bash repo/deploy/deploy.sh --force
 ## Переключение домена
 
 Когда сайт на поддомене проверен: Node.js-приложение — на stayinvestment.com, WordPress — бэкап на Synology и удаление с сервера.
+
+## Без администратора: Node.js в домашней папке
+
+Если поставить Node.js 22+ в Plesk некому (на сервере только 20 и 21), всё то же делается под пользователем подписки.
+Отличия от схемы выше: Node.js лежит в домашней папке, сайт работает обычным процессом на `127.0.0.1:4330`
+(`deploy/run.sh`), а поддомен отдаёт его через Apache (`deploy/htaccess-proxy.txt`). Автовыкладка — тот же `deploy.sh`.
+
+Нужно: SSH `/bin/bash` (Plesk → Hosting → SSH access), в Apache включены `proxy` и `proxy_http` (на этом сервере включены).
+
+```bash
+# 1. Node.js 24 в домашнюю папку (≈200 МБ, права root не нужны)
+cd ~ && curl -fsSLO https://nodejs.org/dist/latest-v24.x/SHASUMS256.txt
+F=$(grep -o 'node-v[0-9.]*-linux-x64.tar.xz' SHASUMS256.txt | head -1)
+curl -fsSLO "https://nodejs.org/dist/latest-v24.x/$F" && grep " $F\$" SHASUMS256.txt | sha256sum -c -
+mkdir -p ~/node24 && tar -xJf "$F" -C ~/node24 --strip-components=1 && rm "$F" SHASUMS256.txt && ~/node24/bin/node -v
+
+# 2. Настройки этого сервера (в git не попадают)
+mkdir -p ~/stayinvestment-app/logs
+printf 'STAY_NODE_BIN=%s/node24/bin\nSTAY_RUN=process\nSTAY_PORT=4330\n' "$HOME" > ~/stayinvestment-app/deploy.env
+printf 'STAY_NOINDEX=1\nIMG_CACHE_DIR=%s/stayinvestment-app/img-cache\n' "$HOME" > ~/stayinvestment-app/app.env
+# в app.env позже дописать LEAD_WEBHOOK_URL=… и REVALIDATE_SECRET=…
+
+# 3. Ключ для чтения репозитория, клон и первая сборка — как в разделе выше (ssh-keygen … deploy.sh --force)
+
+# 4. cron: автовыкладка и присмотр за процессом (поднимает после сбоя и перезагрузки сервера)
+( crontab -l 2>/dev/null
+  echo '* * * * * bash $HOME/stayinvestment-app/repo/deploy/deploy.sh >> $HOME/stayinvestment-app/logs/deploy.log 2>&1'
+  echo '* * * * * bash $HOME/stayinvestment-app/current/deploy/run.sh >> $HOME/stayinvestment-app/logs/deploy.log 2>&1'
+) | crontab -
+```
+
+5. Plesk → «Add Subdomain» (например, `new`), DNS — запись A в Cloudflare. В корневую папку поддомена положить
+   `deploy/htaccess-proxy.txt` под именем `.htaccess`; других файлов в ней быть не должно.
+
+Проверка на сервере: `curl -s http://127.0.0.1:4330/version.txt` — номер коммита `main`; `bash ~/stayinvestment-app/current/deploy/run.sh status`.
+Снять всё: убрать две строки из `crontab -e`, `run.sh stop`, удалить `~/stayinvestment-app`, `~/node24` и поддомен. Старый сайт (`httpdocs`) эта схема не трогает.
