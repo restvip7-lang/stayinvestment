@@ -84,7 +84,7 @@ const faq = [
           <a href="/investment-directory/" class="btn btn-primary">{tr("Смотреть объекты")} <Icon name="arrow" size={18} /></a>
           <button type="button" class="btn btn-ghost" data-lead-open data-lead-title={tr("Подобрать стратегию")} data-lead-source="hero">{tr("Подобрать стратегию")}</button>
         </div>
-        <a href={objectUrl(heroObjects[0])} class="hero-in img-outline relative mt-8 block overflow-hidden rounded-[20px] lg:hidden" style="--i:4" aria-label={heroObjects[0].title}>
+        <a href={objectUrl(heroObjects[0])} class="hero-in img-outline relative mt-8 block overflow-hidden rounded-[20px] lg:hidden" style="--i:4">
           <Img src={heroObjects[0].images[0]} alt={heroObjects[0].title} class="aspect-[16/10] w-full" width={960} height={600} priority sizes="100vw" />
           <span class="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-[12px] bg-white/95 px-4 py-2.5 shadow-card">
             <span class="min-w-0 truncate text-[13px] font-semibold">«{tr(PACKAGES[heroObjects[0].package].name)}» · {heroObjects[0].id}</span>

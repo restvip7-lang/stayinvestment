@@ -61,7 +61,7 @@ const rows: { label: string; hint?: string; cells: Record<Col, string> }[] = [
   </div>
   {COLS.map(({ key: k, name, href, note }, i) => (
     <div role="tabpanel" id={`pc-panel-${k}`} aria-labelledby={`pc-tab-${k}`} hidden={i !== 0} data-panel={k}>
-      <p class="px-5 pt-4 text-[13px] text-muted"><span class="font-bold text-ink">«{name}»</span> · {note} · <a href={href} class="font-bold text-sea underline underline-offset-2">{tr("подробнее")}</a></p>
+      <p class="px-5 pt-4 text-[13px] text-muted"><span class="font-bold text-ink">«{name}»</span> · {note} · <a href={href} class="font-bold text-sea underline underline-offset-2">{tr("подробнее о пакете")}</a></p>
       <dl class="divide-y divide-line px-5 pb-2">
         {rows.map((r) => (
           <div class="grid grid-cols-[38%_1fr] gap-3 py-3">

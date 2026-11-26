@@ -68,6 +68,20 @@ export function slugOf(s: string) {
     .replace(/-+$/, '');
 }
 
+/** Сербская кириллица → латиница: сайт на сербском ведём латиницей, а админка иногда отдаёт перевод кириллицей. */
+const SR_LAT: Record<string, string> = {
+  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', ђ: 'đ', е: 'e', ж: 'ž', з: 'z', и: 'i', ј: 'j', к: 'k', л: 'l', љ: 'lj', м: 'm', н: 'n', њ: 'nj', о: 'o', п: 'p',
+  р: 'r', с: 's', т: 't', ћ: 'ć', у: 'u', ф: 'f', х: 'h', ц: 'c', ч: 'č', џ: 'dž', ш: 'š',
+};
+export function srLatin(s: string) {
+  return s.replace(/[\u0400-\u04FF]/g, (ch) => {
+    const low = ch.toLowerCase();
+    const lat = SR_LAT[low];
+    if (lat === undefined) return ch;
+    return ch === low ? lat : lat.charAt(0).toUpperCase() + lat.slice(1);
+  });
+}
+
 const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const textToHtml = (s: string) => s.split(/\n{2,}|\r\n\r\n/).map((p) => `<p>${escapeHtml(p.trim())}</p>`).join('');
 
@@ -99,7 +113,10 @@ function fromApi(items: RawContent[], lang: Lang = 'ru'): NewsItem[] {
   for (const x of items) {
     if (x.enabled === false || x.enabled === 'False') continue;
     const tr = x.translations ?? {};
-    const ru = tr[lang];
+    let ru = tr[lang];
+    // Перевод не сделан: в поле языка лежит турецкий оригинал — на этом языке новость не показываем
+    if (lang !== 'ru' && ru?.title && tr.tr?.title && ru.title.trim() === tr.tr.title.trim()) continue;
+    if (lang === 'sr' && ru) ru = { title: srLatin(ru.title ?? ''), excerpt: srLatin(ru.excerpt ?? ''), body: srLatin(ru.body ?? ''), body_html: srLatin(ru.body_html ?? '') };
     const title = (ru?.title || (lang === 'ru' ? x.title : '') || '').trim();
     if (!title || (lang === 'ru' && !/[а-яё]/i.test(title))) continue; // только материалы с текстом на этом языке
     let slug = slugOf(tr.en?.title || title) || x.id;
@@ -142,18 +159,24 @@ function excerptOf(html: string) {
   return t.length > 220 ? t.slice(0, 217).replace(/\s+\S*$/, '') + '…' : t;
 }
 
+/** Хвост старого сайта: ссылка «Ко всем новостям / Back to News» в конце текста. */
+const stripTail = (html: string) => html.replace(/\s*<a href="[^"]*\/news(?:-en)?\/">\s*[^<]{0,40}<\/a>\s*$/, '');
 const legacyItem = (n: LegacyNews, lang: Lang): NewsItem => {
   const x = lang === 'ru' ? n : { ...n, ...n.i18n?.[lang] };
+  const html = stripTail(x.contentHtml);
+  // SEO-описание старого сайта часто — заголовок + рекламные «✓ …»; если после очистки осталось мало, берём начало статьи
+  const seo = x.seoDescription?.replace(/\s*✓.*$/, '').trim() ?? '';
+  const description = seo.length >= 70 ? seo : excerptOf(html);
   return {
     slug: n.slug,
     title: x.title,
-    excerpt: x.seoDescription?.replace(/\s*✓.*$/, '') || excerptOf(x.contentHtml),
-    html: x.contentHtml,
+    excerpt: description,
+    html,
     image: n.image,
     date: n.publishedAt ?? '',
     source: 'legacy',
     seoTitle: x.seoTitle?.replace(/\s+[–-]\s+(Новости|News|Novosti|Stay Investment)$/, '') ?? null,
-    seoDescription: x.seoDescription,
+    seoDescription: description,
     url: `/news/${n.slug}/`,
   };
 };
