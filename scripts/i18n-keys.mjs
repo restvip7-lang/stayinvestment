@@ -35,6 +35,9 @@ for (const f of readdirSync(ROOT + 'src/content/objects')) {
   if (parts.length > 1) keys.add(parts.slice(1).join(' '));
   for (const lang of ['en', 'sr']) if (!o.i18n?.[lang]?.infrastructure?.length) o.infrastructure.forEach((x) => keys.add(x));
 }
+// Офисы: страны, города, уточнения и подписи фото
+const off = readFileSync(ROOT + 'src/lib/offices.ts', 'utf8');
+for (const m of off.matchAll(/(?:name|city|note|photoAlt): '([^']*[а-яё][^']*)'/gi)) keys.add(m[1]);
 keys.delete(undefined); keys.delete('');
 const arg = process.argv.indexOf('--missing');
 if (arg > 0) {

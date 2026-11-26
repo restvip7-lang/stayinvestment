@@ -43,6 +43,7 @@
   --color-lavender-2: #efedff;
   --color-lime: #abf960;       /* подсветка роста и доходности: только фон под тёмным текстом */
   --color-prive: #bc906e;
+  --color-gold: #d9b792;       /* золото Privé, осветлённое для тёмного фона (контраст с #090714 — 10:1) */
   --color-sea: #5c32cd;        /* положительные цифры: доходность, ROI */
   --color-sea-soft: #efedff;
   --color-ok: #2f7d5b;
