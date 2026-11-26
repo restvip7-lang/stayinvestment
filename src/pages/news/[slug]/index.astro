@@ -8,11 +8,14 @@ import ObjectCard from '../../../components/ObjectCard.astro';
 import { getNews, getNewsItem, formatDate } from '../../../lib/news';
 import { OBJECTS } from '../../../lib/catalog';
 import { SITE } from '../../../lib/site';
+import { langOf, useT } from '../../../i18n';
 
-const n = await getNewsItem(Astro.params.slug!);
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
+const n = await getNewsItem(Astro.params.slug!, lang);
 if (!n) return Astro.rewrite('/404/');
 
-const more = (await getNews()).filter((x) => x.slug !== n.slug).slice(0, 3);
+const more = (await getNews(lang)).filter((x) => x.slug !== n.slug).slice(0, 3);
 const picks = OBJECTS.filter((o) => o.images.length > 3).slice(0, 2);
 const description = (n.seoDescription || n.excerpt || n.title).replace(/\s*✓.*$/, '').slice(0, 170);
 const words = n.html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
@@ -27,12 +30,13 @@ const ld = {
   mainEntityOfPage: `${SITE.url}${n.url}`,
 };
 ---
-<Base title={n.seoTitle || n.title} {description} image={n.image} type="article" crumbs={[{ label: 'Новости', href: '/news/' }, { label: n.title }]} jsonLd={[ld]}>
+<Base title={n.seoTitle || n.title} {description} image={n.image} type="article" noindex={!n.translated} crumbs={[{ label: tr("Новости"), href: '/news/' }, { label: n.title }]} jsonLd={[ld]}>
   <article class="container-x pt-8 md:pt-12">
     <header class="hero-in mx-auto max-w-3xl">
-      <p class="text-[14px] font-semibold text-muted"><time datetime={n.date}>{formatDate(n.date)}</time> · {Math.max(1, Math.round(words / 180))} мин чтения</p>
-      <h1 class="mt-3 text-[clamp(26px,8vw,30px)] font-extrabold leading-[1.15] [overflow-wrap:break-word] hyphens-auto sm:text-[40px]">{n.title}</h1>
+      <p class="text-[14px] font-semibold text-muted"><time datetime={n.date}>{formatDate(n.date, lang)}</time> {tr("· {round} мин чтения", { round: Math.max(1, Math.round(words / 180)) })}</p>
+      <h1 class="mt-3 text-[clamp(26px,8vw,30px)] leading-[1.15] [overflow-wrap:break-word] hyphens-auto sm:text-[40px]">{n.title}</h1>
       {n.excerpt && n.source === 'api' && <p class="lead mt-5">{n.excerpt}</p>}
+      {!n.translated && <p class="mt-5 rounded-xl bg-lavender-2 px-4 py-3 text-[14px] text-ink-2">{tr("Эта статья из архива пока доступна только на русском языке.")}</p>}
     </header>
     {n.image && (
       <div class="hero-in img-outline relative mx-auto mt-8 max-w-5xl overflow-hidden rounded-[20px]" style="--i:1">
@@ -43,9 +47,9 @@ const ld = {
       <div class="prose-si min-w-0" id="article-body" set:html={n.html} />
       <aside class="grid content-start gap-5 lg:sticky lg:top-36 lg:self-start">
         <div class="card p-6">
-          <p class="text-lg font-extrabold">Нужна консультация?</p>
-          <p class="mt-1 text-[14px] text-ink-2">Ответим на вопросы и подберём объекты под ваш бюджет.</p>
-          <div class="mt-4"><LeadForm source="news-article" compact button="Задать вопрос" /></div>
+          <p class="text-lg font-extrabold">{tr("Нужна консультация?")}</p>
+          <p class="mt-1 text-[14px] text-ink-2">{tr("Ответим на вопросы и подберём объекты под ваш бюджет.")}</p>
+          <div class="mt-4"><LeadForm source="news-article" compact button={tr("Задать вопрос")} /></div>
         </div>
         {picks.map((o, i) => <ObjectCard o={o} reveal={i} />)}
       </aside>
@@ -53,7 +57,7 @@ const ld = {
   </article>
   {more.length > 0 && (
     <section class="container-x py-16 md:py-24">
-      <h2 class="h-section">Читайте также</h2>
+      <h2 class="h-section">{tr("Читайте также")}</h2>
       <div class="mt-10 grid gap-8 md:grid-cols-3">{more.map((x, i) => <div data-reveal style={`--i:${i}`}><NewsCard n={x} /></div>)}</div>
     </section>
   )}

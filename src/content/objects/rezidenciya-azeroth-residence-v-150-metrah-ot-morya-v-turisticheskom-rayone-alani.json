@@ -59,16 +59,45 @@
   ],
   "descriptionHtml": "<p>Резиденция Azeroth расположена всего в 150 метрах от моря в популярном туристическом районе Окурджалар. Состоит из 4 блоков по 6 этажей, всего 72 квартиры. В пешей доступности расположены магазины, супермаркеты, пекарня, рестораны и кафе. </p><p>Окурджалар — это район крупных отелей с туристической инфраструктурой. Рядом с резиденцией центр шопинга Alara Grand Bazaar, магазины сувениров, дельфинарий, аквапарк и другие места для отдыха. Возле резиденции вдоль трассы курсирует общественный транспорт в центр Аланьи и другие районы, туристические локации. На берегу есть пункты проката водного транспорта и услуги водного спорта, дайвинг центры.</p><p>В резиденции есть как внешняя, так и внутренняя инфраструктура, включая крытый зимний бассейн. Представлены квартиры планировкой 1+1 (55 и 56 м2), 2+1 (68 м2), дуплексы 2+1 (111-131 м2) и 3+1 (162 м2). </p><p>Резиденция выгодно расположена на второй линии от моря, в пешей доступности от инфраструктуры и транспорта. Это обеспечивает высокий ROI от аренды и перепродажи. Стоимость квартир при такой близости к морю выгодная для инвесторов и существенно ниже, чем в центральной части Аланьи, Махмутларе и других популярных районах.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/f19/f198840a1b39780c39cdc00ce6f0c951/e57e23569fd9ba323af64feae86c2de7",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/df2/df270c0da25051e4033a5aeda8afa102/35a4fa07f34df39cc8d957f8d9cecffa",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/036/03616167692e8282ca1d21e38e0a40d7/46b073b34a33b81b1763f933df9923b9",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/b93/b93f060ff762f84e1874af5e301818f7/17ae7f42bb9062fc5ee2a81536b4f003",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/1b2/1b24b3bdd81a875ae53f9ee0edaa1c02/d5c248b2fbafe464329ee1f82255d708",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/a38/a38403dc44f5043eaa3dfe963833879d/8c373cdae68d97d05d68b75ec810541b",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/63d/63d3eaefcfcfd15ae565ec70f330750c/58664c221743d72c1aad4f6bde71c33a",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/e9c/e9c153f9c707048cd5074cf82997a93a/6493a0c6f756ab9cddaf6a3a78edb12d",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/28f/28f1d3ea507fd084e4c1ef3e600d79e8/2e233771dc53c224febd61b0e82c52bc",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/702/702427e5a8bd90d3e52c4abdc651b6d5/28acbef821f8ec4fb7741a689a9aa9ab"
+    "/media/9d1fd7bff4fb1749.webp",
+    "/media/f37f81cce4675604.webp",
+    "/media/364c91cd4bc3c8c5.webp",
+    "/media/d9b693892a830441.webp",
+    "/media/496f8915441182c1.webp",
+    "/media/a0dfc35ec41c64e2.webp",
+    "/media/3702f900ac933f38.webp",
+    "/media/ffcb7e2ff82b1476.webp",
+    "/media/bf67734dd39f0eda.webp",
+    "/media/5cdace1976278e26.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/partnerskye/azeroth-residence-just-150-meters-from-the-sea-in-the-tourist-area-of-alanya/",
+      "title": "Azeroth Residence Just 150 Meters from the Sea in the Tourist Area of Alanya",
+      "location": "Alanya Okurdzhalar",
+      "type": "Penthouse Apartments",
+      "infrastructure": [
+        "Cinema",
+        "Fitness center",
+        "Game room",
+        "Green garden - green zone",
+        "Indoor pool",
+        "Massage room",
+        "Outdoor parking",
+        "Outdoor pool",
+        "Playground",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>Azeroth Residence is located just 150 meters from the sea in the popular tourist district of Okurcalar. It consists of 4 blocks with 6 floors each, with a total of 72 apartments. Shops, supermarkets, a bakery, restaurants, and cafes are all within walking distance.</p><p>Okurcalar is an area known for its large hotels and tourist infrastructure. Nearby, you'll find the Alara Grand Bazaar shopping center, souvenir shops, a dolphinarium, a water park, and other recreational spots. Public transport runs along the road next to the residence, providing access to the center of Alanya and other districts, as well as tourist locations. On the shore, there are rental services for watercraft and water sports, as well as diving centers.</p><p>The residence offers both external and internal infrastructure, including an indoor winter pool. The available apartment layouts include 1+1 (55 and 56 m²), 2+1 (68 m²), 2+1 duplexes (111-131 m²), and 3+1 duplexes (162 m²).</p><p>The residence is ideally located on the second line from the sea, within walking distance of infrastructure and public transport. This ensures a high ROI from both rental and resale. The price of the apartments, given their proximity to the sea, is attractive for investors and significantly lower than in central Alanya, Mahmutlar, and other popular districts.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/partnerskye/azeroth-residence-samo-150-metara-od-mora-u-turisti-koj-oblasti-alanje/",
+      "title": "Azeroth Residence – Samo 150 Metara od Mora u Turističkoj Oblasti Alanje",
+      "location": "Alanya okurdzhalar",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Azeroth Residence se nalazi samo 150 metara od mora u popularnoj turističkoj oblasti Okurcalar. Sastoji se od 4 bloka sa po 6 spratova, sa ukupno 72 apartmana. Prodavnice, supermarketi, pekare, restorani i kafići su na pešačkoj udaljenosti.</p>\n<p>Okurcalar je poznata oblast sa velikim hotelima i turističkom infrastrukturom. U blizini se nalazi shopping centar Alara Grand Bazaar, suvenirnice, delfinarijum, vodeni park i druga mesta za rekreaciju. Javni prevoz se kreće duž puta pored rezidencije, omogućavajući pristup centru Alanje i drugim oblastima, kao i turističkim lokacijama. Na obali su dostupne usluge iznajmljivanja plovila i vodeni sportovi, kao i centri za ronjenje.</p>\n<p>Rezidencija nudi i eksternu i internu infrastrukturu, uključujući zatvoreni zimski bazen. Dostupni rasporedi apartmana uključuju 1+1 (55 i 56 m²), 2+1 (68 m²), 2+1 dupleks (111-131 m²) i 3+1 dupleks (162 m²).</p>\n<p>Rezidencija je idealno smeštena u drugom redu od mora, na pešačkoj udaljenosti od infrastrukture i javnog prevoza. Ovo obezbeđuje visoku stopu povrata investicije (ROI) kako od izdavanja, tako i od preprodaje. Cene apartmana, s obzirom na njihovu blizinu moru, su atraktivne za investitore i znatno niže nego u centralnoj Alanji, Mahmutlaru i drugim popularnim oblastima.</p>"
+    }
+  }
 }

@@ -5,6 +5,9 @@
 и при новом коммите собирает его в `releases/<коммит>/` и переключает `current` на новую сборку.
 Сборка упала — сайт остаётся на прошлой версии, монитор видит старый номер на `/version.txt` и пишет в Telegram.
 
+Сборка на сервере — обычная `npm run build`: без переменной `VERCEL` Astro собирает Node-приложение (`astro.config.mjs`).
+Тот же код собирается и на Vercel — там тестовая копия сайта.
+
 ```
 ~/stayinvestment-app/
   repo/                 git clone (только для fetch и git archive)
@@ -19,7 +22,13 @@
 2. Подписка stayinvestment.com → «Доступ по SSH»: **/bin/bash** вместо chroot (в chroot нет git, npm, tar, cron).
 3. Поддомен для проверки до переключения, например **new.stayinvestment.com** (DNS — запись A в Cloudflare на 167.86.66.155 с прокси).
 4. Поддомен → Node.js: версия 24, корень приложения `~/stayinvestment-app/current`, файл запуска `dist/server/entry.mjs`,
-   переменные окружения — из `.env.example` (`STAY_CONTENT_API`, `LEAD_WEBHOOK_URL`, `REVALIDATE_SECRET`, `STAY_NOINDEX`).
+   переменные окружения — из `.env.example` (`STAY_CONTENT_API`, `LEAD_WEBHOOK_URL`, `REVALIDATE_SECRET`, `STAY_NOINDEX`),
+   плюс `IMG_CACHE_DIR=/var/www/vhosts/stayinvestment.com/stayinvestment-app/img-cache` (путь к домашней папке подписки уточнить) —
+   иначе кэш сжатых картинок новостей лежит внутри сборки и пропадает с каждой выкладкой.
+5. Поддомен → «Apache и nginx» → дополнительные директивы nginx: правила долгого кэша для `/media`, `/fonts`, `/_astro`
+   из `deploy/nginx-plesk.conf` (только блоки `location` с заголовками; проксирование делает сам Plesk).
+
+Место на диске: одна сборка — около 0,8 ГБ (фото сайта ~140 МБ в двух копиях + зависимости), хранятся 3 последние.
 
 ## Один раз — по SSH под пользователем подписки
 

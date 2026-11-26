@@ -50,15 +50,41 @@
   ],
   "descriptionHtml": "<p>Резиденция с лучшим расположением в развитом районе города и возле моря.</p><p>Инвестиционные преимущества:</p><ul><li>Эксклюзивная локация.</li><li>Пляж в 5 минутах ходьбы.</li><li>Рядом вся городская инфраструктура.</li><li>Бутиковый формат.</li><li>Высокий ROI.</li><li>Высокий спрос на аренду, высокие арендные ставки.</li><li>Спрос на покупку, перспектива роста цен.</li><li>Дефицит нового жилья возле моря.</li><li>Дефицит земель под застройку близко к пляжам.</li></ul><p>Локация:</p><ul><li>Район нижняя Оба в Аланье, Средиземное море.</li><li>Центральной часть курорта.</li><li>280 м до пляжа с наградой “Голубой флаг”. </li><li>180 м до Migros.</li><li>700 м до больницы.</li><li>450 м до гипермаркета Метро.</li></ul><p>Жилой фонд проекта:</p><ul><li>1+1, 59 – 60 м² - 12 единиц.</li><li>2+1, 74 м² - 4 единицы.</li><li>дуплекс 2+1, 121 – 125 м² - 3 единицы.</li><li>дуплекс 3+1, 139 м² - 1 единица.</li></ul><p>В резиденции всего 20 апартаментов и 5 этажей. В стоимость включен полный пакет бытовой техники: холодильник, посудомоечная машина, варочная поверхность, духовка, вытяжка, стиральная машинка, кондиционер в каждой комнате, водонагреватель. Подогрев полов в ванной.</p><p>Строительство: 01.11.2023 – 30.12.2024.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/1ea/1eae2dd857077d2d484686c3941b33f1/5e55ec39c1ba515c3a4d6546b0cbdf08",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/22f/22faca428c83d44da42d63618b55d82f/8b2f55c0376f2a3631bcdf17d6528b5c",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/e2d/e2d2b8ea41fa2c181b194e12f9fb9914/45ba82168a2a1c12b3becd21859274a8",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/e07/e07980298d6ae381b5aa2537cc93a7ec/02eabdb008511ca23766b0db790dc065",
-    "https://cdn-ru.bitrix24.ru/b19410268/crm/1a3/1a3323addafe8fe994377f71adedf373/4.jpg",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/e4b/e4b58597a0104d272c98792dcd028e7b/9bc12a8d872bea0d15a22bfb08c8bc9b",
-    "https://cdn-ru.bitrix24.ru/b19410268/crm/363/3635a75be25cbfb68956e18b23e79a00/15.jpg",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/04f/04fc5ff847dd277fe8be00064540b6d5/632dfb343f0d208cc5257b5a8558fc9e",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/ddf/ddf36ec57142befbcc85f0c48d1579ee/bee638468f46fc140e3699b5d003c5ab"
+    "/media/5faf1c19c679158d.webp",
+    "/media/eb7490d70eb6f605.webp",
+    "/media/52f9fd2dce38dacc.webp",
+    "/media/14066031072c8b9f.webp",
+    "/media/bb3e9d7eeee7bb02.webp",
+    "/media/75025f7da48d4c9a.webp",
+    "/media/c80a14304dd9fc03.webp",
+    "/media/effa47bf80e64d23.webp",
+    "/media/9a9b40b5929d6e63.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/residence-with-the-best-location-in-developed-city-district/",
+      "title": "Residence with the best location in developed city district",
+      "location": "Alanya Oba",
+      "type": "Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Residence with the best location in a developed area of the city and near the sea.</p>\n<p>Investment advantages:</p>\n<ul>\n<li>Exclusive location.</li>\n<li>The beach is 5 minutes walk.</li>\n<li>All city infrastructure is nearby.</li>\n<li>Boutique format.</li>\n<li>High ROI.</li>\n<li>High demand for rentals, high rental rates.</li>\n<li>Demand for purchase, prospect of rising prices.</li>\n<li>There is a shortage of new housing near the sea.</li>\n<li>There is a shortage of development land close to the beaches.</li>\n</ul>\n<p>Location:</p>\n<ul>\n<li>Lower Oba region in Alanya, Mediterranean Sea.</li>\n<li>The central part of the resort.</li>\n<li>280 m to the beach with the Blue Flag award.</li>\n<li>180 m to Migros.</li>\n<li>700 m to the hospital.</li>\n<li>450 m to the Metro hypermarket.</li>\n</ul>\n<p>Housing stock of the project:</p>\n<ul>\n<li>1+1, 59 – 60 m² – 12 units.</li>\n<li>2+1, 74 m² – 4 units.</li>\n<li>duplex 2+1, 121 – 125 m² – 3 units.</li>\n<li>duplex 3+1, 139 m² – 1 unit.</li>\n</ul>\n<p>The residence has only 20 apartments and 5 floors. The price includes a full package of household appliances: refrigerator, dishwasher, hob, oven, extractor hood, washing machine, air conditioning in each room, water heater. Heated floors in the bathroom.</p>\n<p>Construction: 11/01/2023 – 12/30/2024.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-sa-najboljom-lokacijom-u-razvijenom-delu-grada/",
+      "title": "Rezidencija sa najboljom lokacijom u razvijenom delu grada",
+      "location": "Alanya oba",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "Cafe Restaurant",
+        "Dečiji bazen",
+        "Finska sauna",
+        "Fitnes centar",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Đakuzi"
+      ],
+      "descriptionHtml": "<p>Rezidencija sa najboljim položajem u razvijenom delu grada i blizu mora</p><p>Investicione prednosti:</p><ul><li>Ekskluzivna lokacija.</li><li>Plaža na 5 minuta hoda.</li><li>Blizina celokupne gradske infrastrukture.</li><li>Butik format.</li><li>Visok ROI.</li><li>Velika potražnja za najmom, visoke cene najma.</li><li>Potražnja za kupovinom, perspektiva rasta cena.</li><li>Nedostatak novog smeštaja blizu mora.</li><li>Nedostatak zemljišta za izgradnju blizu plaža.</li></ul><p>Lokacija:</p><ul><li>Oblast Donja Oba u Alanji, Sredozemno more.</li><li>Centralni deo odmarališta.</li><li>280 m do plaže sa nagradom „Plava zastava“.</li><li>180 m do Migrosa.</li><li>700 m do bolnice.</li><li>450 m do hipermarketa Metro.</li></ul><p>Stambeni fond projekta:</p><ul><li>1+1, 59 – 60 m² - 12 jed.</li><li>2+1, 74 m² - 4 jed.</li><li>Duplex 2+1, 121 – 125 m² - 3 jed.</li><li>Duplex 3+1, 139 m² - 1 jed.</li></ul><p>U rezidenciji ukupno ima 20 apartmana i 5 spratova. U cenu je uključen kompletan paket kućnih aparata: frižider, mašina za pranje sudova, ploča za kuvanje, rerna, aspirator, mašina za pranje veša, klima uređaj u svakoj sobi, bojler. Podno grejanje u kupatilu.</p><p>Izgradnja: 01.11.2023 – 30.12.2024.</p>"
+    }
+  }
 }

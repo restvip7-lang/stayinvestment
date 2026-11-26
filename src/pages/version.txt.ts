@@ -3,12 +3,14 @@ import { readFileSync } from 'node:fs';
 
 /**
  * Номер выложенного коммита — по нему монитор (platform.stayproperty.com) сверяет прод с веткой main.
- * Файл REVISION в корне приложения пишет выкладка на сервере (deploy/deploy.sh); локально — «dev».
+ * Файл REVISION в корне приложения пишет выкладка на сервере (deploy/deploy.sh); на Vercel номер берётся
+ * из VERCEL_GIT_COMMIT_SHA; локально — «dev».
  */
 export const prerender = false;
 
 function revision(): string {
-  if (process.env.STAY_REVISION) return process.env.STAY_REVISION.trim();
+  const env = process.env.STAY_REVISION || process.env.VERCEL_GIT_COMMIT_SHA;
+  if (env) return env.trim();
   try {
     return readFileSync(new URL('REVISION', `file://${process.cwd()}/`), 'utf8').trim() || 'dev';
   } catch {

@@ -6,38 +6,45 @@ import LeadSection from '../../components/LeadSection.astro';
 import Icon from '../../components/Icon.astro';
 import PackageCompare from '../../components/PackageCompare.astro';
 import { OBJECTS, PACKAGES, PACKAGE_ORDER, byPackage, objectUrl, entryPrice, packagePhoto, pkgColor } from '../../lib/catalog';
+import { langOf, useT } from '../../i18n';
 
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Каталог инвестиций в недвижимость Турции',
+  name: tr("Каталог инвестиций в недвижимость Турции"),
   numberOfItems: OBJECTS.length,
   itemListElement: OBJECTS.map((o, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://stayinvestment.com${objectUrl(o)}`, name: o.title })),
 };
 ---
 <Base
-  title="Каталог инвестиций в недвижимость Турции"
-  description={`${OBJECTS.length} инвестиционных объектов в Аланье и Стамбуле: аренда с гарантией дохода, новостройки ниже рынка, доли в проектах девелопера. Вход от ${Math.round(Math.min(...OBJECTS.map(entryPrice).filter((x): x is number => x != null)) / 1000)} тыс. €.`}
-  crumbs={[{ label: 'Каталог инвестиций' }]}
+  title={tr("Каталог инвестиций в недвижимость Турции")}
+  description={tr("{length} инвестиционных объектов в Аланье и Стамбуле: аренда с гарантией дохода, новостройки ниже рынка, доли в проектах девелопера. Вход от {filter} тыс. €.", { length: OBJECTS.length, filter: Math.round(Math.min(...OBJECTS.map(entryPrice).filter((x): x is number => x != null)) / 1000) })}
+  crumbs={[{ label: tr("Каталог инвестиций") }]}
   jsonLd={[ld]}
 >
-  <PageHead eyebrow="Каталог" image={packagePhoto('rental')} imageAlt="Объект каталога в Аланье" imageNote={`${OBJECTS.length} объектов в Аланье и Стамбуле`} title="Каталог инвестиций в недвижимость Турции" lead="Готовые инвестиционные решения в Аланье и Стамбуле — а для каждого клиента мы разрабатываем индивидуальную стратегию. Выберите пакет или отфильтруйте объекты по бюджету и городу.">
-    <div class="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+  <PageHead eyebrow={tr("Каталог")} image={packagePhoto('rental')} imageAlt={tr("Объект каталога в Аланье")} imageNote={tr("{length} объектов в Аланье и Стамбуле", { length: OBJECTS.length })} title={tr("Каталог инвестиций в недвижимость Турции")} lead={tr("Четыре инвестиционных пакета и готовые решения в Аланье и Стамбуле — а для каждого клиента мы разрабатываем индивидуальную стратегию. Выберите пакет или отфильтруйте объекты по бюджету и городу.")}>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2">
       {PACKAGE_ORDER.map((k) => (
         <a href={`/investment-directory/${k}/`} class="card lift group flex items-center justify-between gap-4 px-5 py-4">
-          <span><span class="flex items-center gap-2 font-extrabold"><span class="legend-key" style={`background:${pkgColor(k)}`}></span>«{PACKAGES[k].name}» · {byPackage(k).length}</span><span class="text-[13.5px] text-muted">{PACKAGES[k].tagline}</span></span>
+          <span><span class="flex items-center gap-2 font-extrabold"><span class="legend-key" style={`background:${pkgColor(k)}`}></span>«{tr(PACKAGES[k].name)}» · {byPackage(k).length}</span><span class="text-[13.5px] text-muted">{tr(PACKAGES[k].tagline)}</span></span>
           <Icon name="arrow" size={18} class="shrink-0 transition-transform group-hover:translate-x-1" />
         </a>
       ))}
+      <a href="/investment-directory/biznes-investitsii/" class="card lift group flex items-center justify-between gap-4 px-5 py-4">
+        <span><span class="flex items-center gap-2 font-extrabold"><span class="legend-key bg-ink-2"></span>{tr("«Инвестиции в бизнес»")}</span><span class="text-[13.5px] text-muted">{tr("Офисы, магазины, отели — подбор под запрос")}</span></span>
+        <Icon name="arrow" size={18} class="shrink-0 transition-transform group-hover:translate-x-1" />
+      </a>
     </div>
   </PageHead>
   <section class="container-x pb-8">
     <Catalog objects={OBJECTS} />
   </section>
   <section class="container-x pt-16">
-    <h2 class="h-section" data-reveal>Сравнение пакетов</h2>
-    <p class="lead mt-4 max-w-3xl">Ключевые параметры по объектам каталога. Как считаем доходность и какие есть риски — на странице <a href="/metodika-i-riski/" class="text-sea underline underline-offset-4">«Методика и риски»</a>.</p>
+    <h2 class="h-section" data-reveal>{tr("Сравнение пакетов")}</h2>
+    <p class="lead mt-4 max-w-3xl">{tr("Ключевые параметры по объектам каталога. Как считаем доходность и какие есть риски — на странице")} <a href="/metodika-i-riski/" class="text-sea underline underline-offset-4">{tr("«Методика и риски»")}</a>.</p>
     <div class="mt-8" data-reveal><PackageCompare /></div>
   </section>
-  <LeadSection source="catalog" title="Не нашли подходящий объект?" text="Расскажите о бюджете и цели — подберём объекты вне каталога, в том числе коммерческую недвижимость и участки под застройку." />
+  <LeadSection source="catalog" title={tr("Не нашли подходящий объект?")} text={tr("Расскажите о бюджете и цели — подберём объекты вне каталога, в том числе коммерческую недвижимость и участки под застройку.")} />
 </Base>

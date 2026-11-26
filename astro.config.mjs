@@ -1,18 +1,35 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
+import vercel from '@astrojs/vercel';
 import node from '@astrojs/node';
 import tailwindcss from '@tailwindcss/vite';
 
-// SSR на своём сервере (Node, Plesk 167.86.66.155): новости из админки подтягиваются без пересборки,
-// кэш данных в памяти 10 минут (src/lib/cache.ts); сброс — /api/revalidate.
+// Куда собираем:
+// - Vercel (там переменная VERCEL=1 выставляется сама) — SSR-функции + CDN-кэш + оптимизатор картинок Vercel;
+// - свой сервер (VPS / Plesk) — обычное Node.js-приложение: `npm run build && npm start` (см. docs/deploy-vps.md).
+// Можно задать явно: STAY_TARGET=vercel | node.
+const target = process.env.STAY_TARGET ?? (process.env.VERCEL ? 'vercel' : 'node');
+
 export default defineConfig({
   site: 'https://stayinvestment.com',
   output: 'server',
   trailingSlash: 'ignore',
-  adapter: node({ mode: 'standalone' }),
-  // внешние фото уменьшает сам сервер (sharp) через /_image — см. src/components/Img.astro
-  image: {
-    domains: ['cdn-ru.bitrix24.ru', 'stay-property.fra1.cdn.digitaloceanspaces.com', 'eu2.contabostorage.com', 'stayinvestment.com'],
+  adapter:
+    target === 'vercel'
+      ? vercel({
+          imageService: false,
+          imagesConfig: {
+            sizes: [320, 640, 960, 1280, 1920],
+            formats: ['image/avif', 'image/webp'],
+            domains: ['cdn-ru.bitrix24.ru', 'stay-property.fra1.cdn.digitaloceanspaces.com', 'eu2.contabostorage.com', 'stayinvestment.com'],
+            minimumCacheTTL: 86400,
+          },
+        })
+      : node({ mode: 'standalone' }),
+  // Картинки не обрабатываются на лету: свои фото заранее сжаты в /media (scripts/localize-media.mjs).
+  image: { service: passthroughImageService() },
+  vite: {
+    plugins: [tailwindcss()],
+    define: { 'import.meta.env.STAY_TARGET': JSON.stringify(target) },
   },
-  vite: { plugins: [tailwindcss()] },
 });

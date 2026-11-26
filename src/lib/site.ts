@@ -8,8 +8,8 @@ export const SITE = {
   phone: '+90 530 178 29 02',
   phoneHref: 'tel:+905301782902',
   whatsapp: 'https://wa.me/905301782902',
-  address: 'Oba Mah., Mesut Cad., No: 54, 07400 Alanya / Antalya, Türkiye',
-  addressRu: 'Турция, Аланья, район Оба, ул. Месут, 54',
+  address: 'Oba Mah., Mesut Cad., No: 54/A, 07400 Alanya / Antalya, Türkiye',
+  addressRu: 'Турция, Аланья, район Оба, ул. Месут, 54/A',
   instagram: 'https://www.instagram.com/stayinvestment/',
   /** Год основания бренда Stay Property — от него считаем «лет на рынке». */
   founded: 2018,
@@ -45,10 +45,11 @@ export const NAV: NavItem[] = [
   { label: 'Контакты', href: '/contacts/' },
 ];
 
+/** Команда. focus — точка кадрирования фото (класс Tailwind object-position), чтобы лицо было в центре карточки 4:5. */
 export const TEAM = [
-  { name: 'Халиль Ибрагим Дайе', role: 'CEO Stay Property', whatsapp: 'https://wa.me/905327643432', photo: '/images/team/halil.jpg' },
-  { name: 'Наталья Лихошапка', role: 'Инвестиционный консультант', whatsapp: 'https://wa.me/905357141506', photo: '/images/team/natalya.jpg' },
-  { name: 'Ульяна Коркмаз', role: 'Руководитель отдела продаж', whatsapp: 'https://wa.me/905391028170', photo: '/images/team/ulyana.jpg' },
+  { name: 'Халиль Ибрагим Дайе', role: 'CEO Stay Property', whatsapp: 'https://wa.me/905327643432', photo: '/images/team/halil.jpg', focus: 'object-top' },
+  { name: 'Наталья Лихошапка', role: 'Инвестиционный консультант', whatsapp: 'https://wa.me/905357141506', photo: '/images/team/natalya.jpg', focus: 'object-top' },
+  { name: 'Ульяна Коркмаз', role: 'Руководитель отдела продаж', whatsapp: 'https://wa.me/905391028170', photo: '/images/team/ulyana.jpg', focus: 'object-top' },
 ];
 
 /** Показатели группы Stay Property (со старого сайта; подтвердить актуальность — docs/content-audit.md). */

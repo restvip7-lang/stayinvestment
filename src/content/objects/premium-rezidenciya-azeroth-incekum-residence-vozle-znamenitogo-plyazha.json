@@ -60,15 +60,55 @@
   ],
   "descriptionHtml": "<p>Резиденция занимает крупный участок земли 4000 м2, при этом состоит из одного блока. Просторная территория общественных зон выделяется комфортным зонированием. В 200 м с двух сторон хвойный лес и сосновые рощи. В ближайшем окружении — современные резиденции и виллы. 950 м от комплекса до пляжа Инжекум с мелким песком и пологим заходом в море. Этот пляж считается одним из лучших на побережье Средиземного моря в Турции и отмечен “Голубым флагом”. Район Авсаллар — один из самых зелёных и уютных в Аланье.</p><p>Планировки квартир продуманы для рационального использования квадратных метров и оптимального расположения мебели и декора относительно светового фронта. 8 этажей, 61 квартира, планировки 1+1, 2+1, а также дуплексы 3+1 и 4+1, с площадями от 65 до 172 м².</p><p>Здание сейсмоустойчивое, износостойкое, имеет влагозащитный фундамент, мраморные и керамические полы. Окна квартир выходят на море, а входная группа здания выполнена в оригинальном дизайне, создающим ощущение дорогого отеля. Современные игровые пространства для детей, зоны отдыха и спорта для взрослых, круглогодичная инфраструктура, включая крытый зимний бассейн с подогревом. Проект премиум-класса с выгодным расположением, просторной территорией и большими площадями квартир.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/7b9/7b993ac74409a0c5d4ecc16417e6de02/1c041b75b1f6c3c42e0005fae051ac90",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/944/944f79fab985f95187b8ff995bf12090/303fdd690fb66cd888e5b7e7a1ebed4d",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/c7e/c7e32218ea43d76bd7182bfe9bf7d38e/74c54ebedb6c4329738ffb578c13b216",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/569/569520eaef7fed105a5c82b03833162b/72e7024b836457985fa33c9ac9245b6d",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/027/027ac84d3fe6ace8c7cdcea4f5b424ea/8912cbeefc13ccb39105f0a0699667da",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/aa6/aa6ebedcbd106e4d9990e75662eb1569/25f249f66938924df030fe2b3e0d356d",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/f65/f65c18672a7b44bcf5c2f2080b6c4dd9/1a79648e7fded37ddcb75c5a2d774363",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/581/581ec4b910f61f7cd01e487986491cf8/d7dc8777418737341d40056500414aca",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/2c4/2c4f22768dc43ba7a643d9fbe325a83b/49ce2093fd8a41f3d77bbad610dd9187"
+    "/media/645d0889dd172b8b.webp",
+    "/media/065ea21215a479f6.webp",
+    "/media/0272e65d2e16c66e.webp",
+    "/media/a78c26461e9def81.webp",
+    "/media/ffa1da52732cb274.webp",
+    "/media/45d18e8c34053864.webp",
+    "/media/cde02fb1759be9d5.webp",
+    "/media/d5f1fcd8c4268f03.webp",
+    "/media/95051c366a2f5944.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/partnerskye/premium-azeroth-incekum-residence-near-the-famous-beach/",
+      "title": "Premium Azeroth Incekum Residence Near the Famous Beach",
+      "location": "Alanya Inzhekum",
+      "type": "Penthouse Apartments",
+      "infrastructure": [
+        "Gazebo for recreation",
+        "Electric generator",
+        "Finnish sauna",
+        "Fitness center",
+        "Game room",
+        "Indoor pool",
+        "Outdoor parking",
+        "Outdoor pool",
+        "Playground",
+        "Turkish hammam"
+      ],
+      "descriptionHtml": "<p>The residence occupies a large plot of land of 4000 m2, and consists of one block. The spacious public area is well-zoned for comfort. Just 200 m away on both sides, there are pine forests and groves. The surrounding area features modern residences and villas. The complex is 950 m from Incekum Beach, which has fine sand and a gentle slope into the sea. This beach is considered one of the best on Turkey's Mediterranean coast and has been awarded the \"Blue Flag\". The Avsallar area is one of the greenest and coziest in Alanya.</p><p>The apartment layouts are thoughtfully designed for efficient use of space and the optimal placement of furniture and décor relative to natural light.<br>The building has 8 floors and 61 apartments with layouts of 1+1, 2+1, as well as 3+1 and 4+1 duplexes, with sizes ranging from 65 to 172 m².</p><p>The structure is earthquake-resistant, wear-resistant, and has a moisture-protected foundation, with marble and ceramic floors. The apartments have sea-facing windows, and the entrance of the building features a unique design that evokes the feel of a luxury hotel. Modern play areas for children, relaxation, and sports zones for adults, along with year-round infrastructure including an indoor heated winter pool. A premium class project with a favorable location, spacious territory and large apartment areas.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/partnerskye/premium-azeroth-incekum-residence-blizu-poznate-pla-e/",
+      "title": "Premium Azeroth Incekum Residence Blizu Poznate Plaže",
+      "location": "Alanya inzhekum",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Igralište",
+        "Igraonica",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Turski hamam",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Rezidencija zauzima veliko zemljište od 4.000 m² i sastoji se od jednog bloka. Prostrani javni prostor je dobro zoniran za maksimalni komfor. Na samo 200 m sa obe strane nalaze se borove šume i gajevi. Okolinu čine moderne rezidencije i vile. Kompleks je udaljen 950 m od plaže Incekum, koja je prekrivena finim peskom i ima blagi nagib prema moru. Ova plaža se smatra jednom od najboljih na turskoj mediteranskoj obali i nosi oznaku „Plava zastava“. Oblast Avsallar je jedna od najzelenijih i najudobnijih u Alanji.</p><p>Rasporedi apartmana su pažljivo osmišljeni za efikasno korišćenje prostora i optimalno postavljanje nameštaja i dekora u odnosu na prirodno svetlo. </p><p>Zgrada ima 8 spratova i 61 apartman, sa rasporedima 1+1, 2+1, kao i dupleksima 3+1 i 4+1, veličine od 65 do 172 m².</p><p>Struktura je otporna na zemljotrese, izdržljiva i ima temelje zaštićene od vlage, sa mermernim i keramičkim podovima. Apartmani imaju prozore okrenute prema moru, a ulaz zgrade je jedinstveno dizajniran, pružajući osećaj luksuznog hotela. Moderni dečiji prostori za igru, zone za relaksaciju i sportske zone za odrasle, kao i infrastruktura koja omogućava celogodišnje korišćenje, uključujući zatvoreni zimski bazen sa grejanjem. Projekat premium klase sa povoljnom lokacijom, prostranim teritorijama i velikim površinama apartmana.</p>"
+    }
+  }
 }

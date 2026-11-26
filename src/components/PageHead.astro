@@ -15,7 +15,7 @@ const { eyebrow, title, lead, image, imageAlt = '', imageNote } = Astro.props;
   <div class:list={['container-x grid grid-cols-1 gap-10 pb-10 pt-8 md:pb-14 md:pt-12', image && 'lg:grid-cols-[1.15fr_1fr] lg:items-center']}>
     <div class="min-w-0">
       {eyebrow && <p class="eyebrow hero-in" style="--i:0">{eyebrow}</p>}
-      <h1 class="hero-in mt-4 max-w-4xl text-[clamp(28px,8.6vw,34px)] font-extrabold leading-[1.1] hyphens-auto sm:text-[46px] lg:text-[56px]" style="--i:1">{title}</h1>
+      <h1 class="hero-in mt-4 max-w-4xl text-[clamp(28px,8.6vw,34px)] leading-[1.1] hyphens-auto sm:text-[46px] lg:text-[56px]" style="--i:1">{title}</h1>
       {lead && <p class="lead hero-in mt-5 max-w-3xl" style="--i:2">{lead}</p>}
       <div class="hero-in" style="--i:3"><slot /></div>
     </div>

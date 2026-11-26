@@ -2,10 +2,13 @@
 import LeadForm from './LeadForm.astro';
 import Icon from './Icon.astro';
 import { SITE } from '../lib/site';
+import { langOf, useT } from '../i18n';
 interface Props { title?: string; text?: string; source: string }
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
 const {
-  title = 'Обсудим вашу инвестиционную стратегию',
-  text = 'Подберём объекты под бюджет и цель — арендный доход, рост капитала или долю в проекте. Покажем расчёт доходности и условия договора до того, как вы примете решение.',
+  title = tr("Обсудим вашу инвестиционную стратегию"),
+  text = tr("Подберём объекты под бюджет и цель — арендный доход, рост капитала или долю в проекте. Покажем расчёт доходности и условия договора до того, как вы примете решение."),
   source,
 } = Astro.props;
 ---
@@ -14,13 +17,13 @@ const {
     <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/60 blur-3xl blob"></div>
     <div class="relative grid gap-10 lg:grid-cols-2 lg:items-center">
       <div>
-        <p class="eyebrow">Консультация</p>
+        <p class="eyebrow">{tr("Консультация")}</p>
         <h2 class="h-section mt-3">{title}</h2>
         <p class="lead mt-4 max-w-xl">{text}</p>
         <ul class="mt-6 grid gap-2 text-[15px] text-white">
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />Бесплатно и без обязательств</li>
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />Онлайн или в офисе в Аланье</li>
-          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />На русском, английском и турецком</li>
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />{tr("Бесплатно и без обязательств")}</li>
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />{tr("Онлайн или в офисе в Аланье")}</li>
+          <li class="flex items-center gap-2"><Icon name="check" size={18} class="shrink-0 text-white" />{tr("На русском, английском и турецком")}</li>
         </ul>
         <a href={SITE.phoneHref} class="mt-6 inline-flex items-center gap-2 text-lg font-bold tabular hover:underline"><Icon name="phone" size={20} />{SITE.phone}</a>
       </div>

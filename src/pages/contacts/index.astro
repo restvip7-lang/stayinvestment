@@ -1,9 +1,38 @@
 ---
+/**
+ * Контакты. Данные офисов — src/lib/offices.ts (со страницы stayproperty.com/contacts/).
+ * Центр страницы — тёмный «атлас офисов»: сверху города с запада на восток с местным временем,
+ * слева страны, справа офисы выбранной страны. По умолчанию открыт главный офис в Аланье.
+ * Адрес выбранного офиса живёт в якоре (#istanbul) — ссылкой на конкретный офис можно поделиться.
+ */
 import Base from '../../layouts/Base.astro';
-import PageHead from '../../components/PageHead.astro';
 import Icon from '../../components/Icon.astro';
+import Img from '../../components/Img.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import { SITE, TEAM } from '../../lib/site';
+import { OFFICE_COUNTRIES, OFFICES, OPEN_OFFICES, OFFICE_LINKS, telHref, dms, type Office } from '../../lib/offices';
+import { langOf, useT } from '../../i18n';
+
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
+
+const first = OFFICE_COUNTRIES[0].offices[0];
+const openCountries = OFFICE_COUNTRIES.filter((c) => c.offices.some((o) => !o.soon));
+// Города с запада на восток — «меридиан» вверху атласа
+const meridian = [...OFFICES].sort((a, b) => (a.lng ?? 0) - (b.lng ?? 0));
+const lon = (v: number) => `${Math.abs(Math.round(v))}° ${v >= 0 ? 'E' : 'W'}`;
+const addr = (o: Office) => (lang !== 'ru' && o.addressIntl ? o.addressIntl : o.address);
+const mapEmbed = (o: Office) => `https://www.google.com/maps?q=${o.lat},${o.lng}&z=15&hl=${lang}&output=embed`;
+const mapLink = (o: Office) => o.mapUrl ?? `https://www.google.com/maps/search/?api=1&query=${o.lat},${o.lng}`;
+const routeLink = (o: Office) => `https://www.google.com/maps/dir/?api=1&destination=${o.lat},${o.lng}`;
+const pad = (n: number) => String(n).padStart(2, '0');
+
+const services = [
+  { title: tr("Консультация и презентация объектов"), text: tr("Расскажем о пакетах, покажем объекты и расчёт доходности под ваш бюджет.") },
+  { title: tr("Договор купли-продажи"), text: tr("Оформим сделку в офисе — с переводчиком и юридическим сопровождением.") },
+  { title: tr("Оплата и рассрочка"), text: tr("Примем оплату сделки или оформим беспроцентную рассрочку от застройщика.") },
+  { title: tr("Послепродажный сервис"), text: tr("В главном офисе в Аланье работают менеджеры по продажам и отдел послепродажного сервиса.") },
+];
 
 const ld = {
   '@context': 'https://schema.org',
@@ -11,46 +40,317 @@ const ld = {
   name: SITE.name,
   url: SITE.url,
   telephone: SITE.phone,
-  address: { '@type': 'PostalAddress', streetAddress: 'Oba Mah., Mesut Cad., No: 54', postalCode: '07400', addressLocality: 'Alanya', addressRegion: 'Antalya', addressCountry: 'TR' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Oba Mah., Mesut Cad., No: 54/A', postalCode: '07400', addressLocality: 'Alanya', addressRegion: 'Antalya', addressCountry: 'TR' },
+  location: OPEN_OFFICES.map((o) => ({
+    '@type': 'Place',
+    name: `Stay Property — ${tr(o.city)}`,
+    address: addr(o),
+    telephone: o.phone,
+    geo: { '@type': 'GeoCoordinates', latitude: o.lat, longitude: o.lng },
+  })),
 };
 ---
-<Base title="Контакты Stay Investment — офис в Аланье" description={`Контакты Stay Investment: ${SITE.phone}, WhatsApp, офис в Аланье — ${SITE.addressRu}. Консультации по инвестициям в недвижимость Турции онлайн и в офисе.`} crumbs={[{ label: 'Контакты' }]} jsonLd={[ld]}>
-  <PageHead eyebrow="Контакты" title="Свяжитесь с нами" lead="Консультируем онлайн и в главном офисе в Аланье. Ответим на русском, английском и турецком." />
-  <section class="container-x pb-16 md:pb-24">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr]">
-      <div class="grid min-w-0 grid-cols-1 content-start gap-5">
-        <div class="card p-7" data-reveal>
-          <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">Главный офис</p>
-          <p class="mt-3 text-xl font-extrabold">Аланья, Турция</p>
-          <p class="mt-1 text-[15px] text-ink-2">{SITE.addressRu}<br /><span class="text-muted">{SITE.address}</span></p>
-          <div class="mt-6 grid gap-3">
-            <a href={SITE.phoneHref} class="flex items-center gap-3 text-lg font-extrabold tabular hover:text-brand-2"><span class="grid h-10 w-10 place-items-center rounded-full bg-sea-soft text-brand-2"><Icon name="phone" size={18} /></span>{SITE.phone}</a>
-            <a href={SITE.whatsapp} target="_blank" rel="noopener" class="flex items-center gap-3 font-bold hover:text-brand-2"><span class="grid h-10 w-10 place-items-center rounded-full bg-[#25d366]/10 text-[#1a9e4b]"><Icon name="whatsapp" size={18} /></span>WhatsApp</a>
-            <a href={SITE.instagram} target="_blank" rel="noopener" class="flex items-center gap-3 font-bold hover:text-brand-2"><span class="grid h-10 w-10 place-items-center rounded-full bg-sand text-ink"><Icon name="instagram" size={18} /></span>@stayinvestment</a>
-          </div>
+<Base
+  title={tr("Контакты Stay Investment — офисы в Аланье, Стамбуле, Москве, Алматы и Дубае")}
+  description={tr("Офисы группы Stay Property: Аланья (главный офис), Стамбул, Конья, Москва, Алматы, Дубай, Северный Кипр. Адреса, телефоны, e-mail и карты. Консультации по инвестициям онлайн и в офисе.")}
+  crumbs={[{ label: tr("Контакты") }]}
+  jsonLd={[ld]}
+>
+  <!-- Первый экран: крупная фраза слева, прямые контакты справа -->
+  <header class="container-x grid grid-cols-1 gap-10 pb-10 pt-8 md:pb-14 md:pt-12 lg:grid-cols-[1.25fr_1fr] lg:items-end">
+    <div class="min-w-0">
+      <p class="eyebrow hero-in" style="--i:0">{tr("Контакты")}</p>
+      <h1 class="hero-in mt-5 text-[clamp(30px,8.6vw,44px)] leading-[1.04] sm:text-[56px] lg:text-[64px] xl:text-[76px]" style="--i:1">{tr("На связи в {c} странах", { c: openCountries.length })}</h1>
+      <p class="lead hero-in mt-6 max-w-xl" style="--i:2">{tr("Консультируем онлайн и в офисах группы Stay Property. Главный офис — в Аланье; отвечаем на русском, английском и турецком.")}</p>
+    </div>
+    <dl class="hero-in divide-y divide-line-2 border-y border-line-2 text-[15px]" style="--i:3">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
+        <dt class="text-muted">{tr("Линия для инвесторов")}</dt>
+        <dd><a href={SITE.phoneHref} class="whitespace-nowrap font-[family-name:var(--font-display)] text-[17px] tabular hover:text-brand-2 sm:text-[22px]">{SITE.phone}</a></dd>
+      </div>
+      <div class="flex items-baseline justify-between gap-6 py-4">
+        <dt class="text-muted">WhatsApp</dt>
+        <dd><a href={SITE.whatsapp} target="_blank" rel="noopener" class="font-semibold underline decoration-line-2 underline-offset-4 hover:decoration-ink">{tr("Написать в WhatsApp")}</a></dd>
+      </div>
+      <div class="flex items-baseline justify-between gap-6 py-4">
+        <dt class="text-muted">E-mail</dt>
+        <dd><a href={`mailto:${first.email}`} class="font-semibold underline decoration-line-2 underline-offset-4 hover:decoration-ink">{first.email}</a></dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- Атлас офисов -->
+  <section class="container-x" aria-labelledby="atlas-title">
+    <div class="atlas on-dark relative isolate overflow-hidden rounded-[28px] bg-ink text-white md:rounded-[44px]" data-atlas data-default={first.id} data-reveal="scale">
+      <div class="atlas-lines pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+      <div class="px-5 pb-6 pt-7 sm:px-8 md:px-12 md:pb-12 md:pt-11">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <h2 id="atlas-title" class="text-[13px] font-semibold uppercase tracking-[.22em] text-gold [font-family:var(--font-sans)]">{tr("Атлас офисов")}</h2>
+          <p class="text-[13.5px] text-white/60">{tr("{n} офисов · {c} стран · Лондон — скоро", { n: OPEN_OFFICES.length, c: openCountries.length })}</p>
         </div>
-        <div class="card p-7" data-reveal style="--i:1">
-          <p class="text-[13px] font-bold uppercase tracking-[.14em] text-muted">Консультанты</p>
-          <ul class="mt-4 divide-y divide-line">
-            {TEAM.map((t) => (
-              <li class="flex items-center justify-between gap-4 py-3">
-                <span><span class="block font-bold">{t.name}</span><span class="text-[14px] text-muted">{t.role}</span></span>
-                <a href={t.whatsapp} target="_blank" rel="noopener" class="btn btn-ghost btn-sm" aria-label={`WhatsApp — ${t.name}`}><Icon name="whatsapp" size={16} />Написать</a>
+
+        <!-- Меридиан: города с запада на восток, над каждым — местное время -->
+        <div class="-mx-5 mt-8 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:px-8 md:mx-0 md:px-0" data-meridian-wrap>
+          <ol class="meridian relative grid min-w-[760px] grid-flow-col auto-cols-fr md:min-w-0">
+            {meridian.map((o) => (
+              <li class="relative">
+                <button type="button" class="meridian-stop group relative flex w-full flex-col items-center gap-3 pb-1 pt-0 text-center outline-offset-4" data-office-go={o.id} aria-pressed={o.id === first.id ? 'true' : 'false'}>
+                  <span class="text-[13px] tabular text-white/60 transition-colors group-aria-pressed:text-white" data-tz={o.tz}>&nbsp;</span>
+                  <span class="meridian-dot" aria-hidden="true"></span>
+                  <span class="block">
+                    <span class="block whitespace-nowrap text-[14px] font-semibold text-white/70 transition-colors group-hover:text-white group-aria-pressed:text-white">{tr(o.city)}</span>
+                    <span class="mt-0.5 block text-[11.5px] tracking-[.08em] text-white/40 tabular">{o.soon ? tr("скоро") : lon(o.lng!)}</span>
+                  </span>
+                </button>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
-      </div>
-      <div class="grid min-w-0 grid-cols-1 content-start gap-5">
-        <div class="img-outline relative overflow-hidden rounded-[20px] bg-sand" data-reveal>
-          <iframe title="Офис Stay Investment на карте" src="https://www.google.com/maps?q=Oba+Mah.+Mesut+Cad.+No:54+Alanya&output=embed" loading="lazy" class="aspect-[16/10] w-full border-0" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="card p-7" data-reveal style="--i:1">
-          <p class="text-xl font-extrabold">Напишите нам</p>
-          <p class="mt-1 text-[15px] text-ink-2">Оставьте контакты и вопрос — консультант перезвонит в течение рабочего дня.</p>
-          <div class="mt-5"><LeadForm source="contacts" withComment button="Отправить" /></div>
+
+        <div class="mt-8 grid grid-cols-1 gap-8 border-t border-white/10 pt-8 lg:mt-10 lg:grid-cols-[280px_1fr] lg:gap-12 lg:pt-10">
+          <!-- Страны -->
+          <nav aria-label={tr("Страны")} class="-mx-5 overflow-x-auto px-5 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:overflow-visible lg:px-0">
+            <ol class="flex gap-2 lg:block lg:space-y-0">
+              {OFFICE_COUNTRIES.map((c, i) => (
+                <li class="shrink-0 lg:border-b lg:border-white/10 lg:first:border-t">
+                  <button type="button" class="country-btn group flex w-full items-baseline gap-3 rounded-full border border-white/15 px-4 py-2.5 text-left outline-offset-4 lg:rounded-none lg:border-0 lg:px-0 lg:py-4" data-country-go={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+                    <span class="hidden w-7 text-[12px] tabular text-gold lg:block" aria-hidden="true">{pad(i + 1)}</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block whitespace-nowrap font-[family-name:var(--font-display)] text-[13px] text-white/60 transition-colors group-hover:text-white group-aria-pressed:text-white lg:whitespace-normal lg:text-[19px] lg:leading-tight">{tr(c.name)}</span>
+                      <span class="mt-1 hidden text-[13px] text-white/45 lg:block">{c.offices.map((o) => tr(o.city)).join(' · ')}</span>
+                    </span>
+                    <span class="hidden text-[12px] tabular text-white/40 lg:block" aria-hidden="true">{c.offices.some((o) => o.soon) ? '—' : c.offices.length}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          <!-- Офисы выбранной страны -->
+          <div class="min-w-0">
+            {OFFICE_COUNTRIES.map((c, ci) => (
+              <div data-country-panel={c.id} hidden={ci !== 0}>
+                {c.offices.length > 1 && (
+                  <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label={tr("Офисы: {country}", { country: tr(c.name) })}>
+                    {c.offices.map((o, oi) => (
+                      <button type="button" class="office-btn rounded-full border border-white/20 px-4 py-2 text-[14px] font-medium text-white/70 outline-offset-4 transition-colors hover:border-white/60 hover:text-white aria-pressed:border-white aria-pressed:bg-white aria-pressed:text-ink" data-office-go={o.id} aria-pressed={ci === 0 && oi === 0 ? 'true' : 'false'}>
+                        {tr(o.city)}{o.hq && <span class="ml-2 text-[11px] uppercase tracking-[.14em] opacity-60">{tr("главный")}</span>}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {c.offices.map((o, oi) => (
+                  <article class="office" id={o.id} data-office-panel={o.id} data-country={c.id} hidden={!(ci === 0 && oi === 0)}>
+                    <div class="grid grid-cols-1 gap-6 xl:grid-cols-[1.05fr_1fr] xl:grid-rows-[auto_1fr] xl:gap-x-10">
+                      <!-- Фото офиса или типографская плашка, если фото нет -->
+                      {o.photo ? (
+                        <figure class="relative self-start overflow-hidden rounded-[20px] md:rounded-[26px] xl:col-start-1 xl:row-start-1">
+                          <Img src={o.photo} alt={tr(o.photoAlt ?? o.city)} class="aspect-[4/3] w-full" width={960} height={720} priority={ci === 0 && oi === 0} sizes="(min-width: 1280px) 460px, (min-width: 1024px) 60vw, 100vw" />
+                          <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3.5 pt-12 text-[12.5px] tabular text-white/90">
+                            <span>{dms(o.lat!, o.lng!)}</span>
+                            {o.opened && <span>{tr("с {year} года", { year: o.opened })}</span>}
+                          </figcaption>
+                        </figure>
+                      ) : (
+                        <div class="plate relative flex aspect-[4/3] flex-col justify-between self-start overflow-hidden rounded-[20px] p-6 md:rounded-[26px] md:p-8 xl:col-start-1 xl:row-start-1" aria-hidden="true">
+                          <span class="text-[12.5px] tabular text-gold">{o.soon ? tr("Скоро открытие") : dms(o.lat!, o.lng!)}</span>
+                          <span class="plate-word font-[family-name:var(--font-display)]" style={`--n:${tr(o.city).length}`}>{tr(o.city)}</span>
+                          <span class="text-[12.5px] tabular text-white/50">{o.opened ? tr("с {year} года", { year: o.opened }) : tr(c.name)}</span>
+                        </div>
+                      )}
+
+                      <div class="min-w-0 xl:col-start-2 xl:row-span-2 xl:row-start-1">
+                        <p class="text-[12px] font-semibold uppercase tracking-[.2em] text-gold">{o.hq ? tr("Главный офис") : o.soon ? tr("Скоро открытие") : tr(c.name)}</p>
+                        <h3 class="mt-3 font-[family-name:var(--font-display)] text-[30px] font-normal leading-[1.05] sm:text-[38px]">{tr(o.city)}{o.note && !o.hq && !o.soon && <span class="ml-3 align-middle font-[family-name:var(--font-sans)] text-[14px] text-white/50">{tr(o.note)}</span>}</h3>
+                        <p class="mt-4 text-[15px] leading-relaxed text-white/70">
+                          {o.soon
+                            ? tr("Готовим к открытию новый офис в Лондоне. Пока консультируем онлайн — позвоните или напишите в главный офис.")
+                            : o.hq
+                              ? tr("Главный офис Stay Property работает с {year} года. Здесь менеджеры по продажам и отдел послепродажного сервиса.", { year: o.opened! })
+                              : tr("Офис Stay Property открыт в {year} году. Консультация, презентация объектов, договор и оплата сделки — на месте.", { year: o.opened! })}
+                        </p>
+                        <dl class="mt-6 divide-y divide-white/10 border-y border-white/10 text-[15px]">
+                          {o.address && (
+                            <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
+                              <dt class="text-white/50">{tr("Адрес")}</dt>
+                              <dd class="leading-snug">{addr(o)}</dd>
+                            </div>
+                          )}
+                          <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
+                            <dt class="text-white/50">{tr("Телефон")}</dt>
+                            <dd><a href={telHref(o.phone)} class="whitespace-nowrap font-semibold tabular hover:text-gold">{o.phone}</a></dd>
+                          </div>
+                          <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
+                            <dt class="text-white/50">E-mail</dt>
+                            <dd class="min-w-0"><a href={`mailto:${o.email}`} class="break-words hover:text-gold">{o.email}</a></dd>
+                          </div>
+                          <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
+                            <dt class="text-white/50">{tr("Сейчас")}</dt>
+                            <dd class="tabular"><span data-tz={o.tz}>—</span> <span class="text-white/50">· {tr("местное время")}</span></dd>
+                          </div>
+                        </dl>
+                        <div class="mt-6 flex flex-wrap gap-2.5">
+                          <a href={telHref(o.phone)} class="btn btn-primary btn-sm"><Icon name="phone" size={16} />{tr("Позвонить")}</a>
+                          <a href={OFFICE_LINKS.whatsapp} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="whatsapp" size={16} />WhatsApp</a>
+                          {!o.soon && <a href={routeLink(o)} target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><Icon name="route" size={16} />{tr("Маршрут")}</a>}
+                        </div>
+                      </div>
+
+                      {!o.soon && (
+                        <div class="flex min-w-0 flex-col xl:col-start-1 xl:row-start-2">
+                          <div class="atlas-map relative h-[260px] overflow-hidden rounded-[20px] bg-white/5 md:h-[320px] md:rounded-[26px] xl:h-auto xl:min-h-[220px] xl:flex-1">
+                            <iframe title={tr("Офис в городе {city} на карте", { city: tr(o.city) })} src={ci === 0 && oi === 0 ? mapEmbed(o) : undefined} data-src={mapEmbed(o)} loading="lazy" class="absolute inset-0 block h-full w-full border-0" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                          </div>
+                          <a href={mapLink(o)} target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 self-start text-[13.5px] text-white/60 underline decoration-white/25 underline-offset-4 hover:text-white">{tr("Открыть в Google Картах")} <span aria-hidden="true">↗</span></a>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Что можно сделать в офисе -->
+  <section class="container-x py-16 md:py-24">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr] lg:gap-12">
+      <h2 class="h-section hyphens-auto [overflow-wrap:anywhere] lg:text-[32px]" data-reveal>{tr("В любом офисе")}</h2>
+      <ol class="grid grid-cols-1 gap-x-10 border-t border-line-2 sm:grid-cols-2">
+        {services.map((s, i) => (
+          <li class="flex gap-5 border-b border-line-2 py-6" data-reveal style={`--i:${i % 2}`}>
+            <span class="w-7 shrink-0 pt-1 text-[12px] tabular text-brand-2" aria-hidden="true">{pad(i + 1)}</span>
+            <div>
+              <h3 class="text-[18px] font-bold leading-snug">{s.title}</h3>
+              <p class="mt-2 text-[15px] leading-relaxed text-ink-2">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Консультанты и форма -->
+  <section class="bg-sand/70 py-16 md:py-24">
+    <div class="container-x grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+      <div class="min-w-0" data-reveal>
+        <h2 class="h-section">{tr("Напишите консультанту")}</h2>
+        <p class="lead mt-4 max-w-md">{tr("Ответим в WhatsApp на вопросы об объектах, договоре и расчёте доходности.")}</p>
+        <ul class="mt-8 divide-y divide-line-2 border-y border-line-2">
+          {TEAM.map((t) => (
+            <li class="flex items-center gap-4 py-4">
+              <span class="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-surface"><Img src={t.photo} alt="" class="h-full w-full object-top" width={112} height={112} sizes="56px" /></span>
+              <span class="min-w-0 flex-1"><span class="block font-bold">{tr(t.name)}</span><span class="text-[14px] text-muted">{tr(t.role)}</span></span>
+              <a href={t.whatsapp} target="_blank" rel="noopener" class="btn btn-ghost btn-sm" aria-label={tr("Написать {name} в WhatsApp", { name: tr(t.name) })}><Icon name="whatsapp" size={16} /><span class="hidden sm:inline">{tr("Написать")}</span></a>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+          <a href={OFFICE_LINKS.telegram} target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold hover:text-brand-2"><Icon name="telegram" size={18} />{tr("Телеграм-канал Stay Property")}</a>
+          <a href={SITE.instagram} target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold hover:text-brand-2"><Icon name="instagram" size={18} />Instagram</a>
+          <a href={OFFICE_LINKS.youtube} target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold hover:text-brand-2"><Icon name="youtube" size={18} />YouTube</a>
+        </div>
+        <p class="mt-3 max-w-md text-[14px] text-muted">{tr("В канале — свежие новости и лучшие предложения недвижимости Турции, Северного Кипра и Дубая.")}</p>
+      </div>
+      <div class="card self-start p-7 md:p-9" data-reveal style="--i:1">
+        <p class="text-2xl font-[family-name:var(--font-display)]">{tr("Напишите нам")}</p>
+        <p class="mt-2 text-[15px] text-ink-2">{tr("Оставьте контакты и вопрос — консультант перезвонит в течение рабочего дня.")}</p>
+        <div class="mt-6"><LeadForm source="contacts" withComment button={tr("Отправить")} /></div>
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  /* Фон атласа: тонкие «меридианы» и мягкое золотое свечение — без фиолетовых градиентов */
+  .atlas-lines {
+    background:
+      radial-gradient(60% 55% at 88% -5%, rgb(188 144 110 / .22), transparent 70%),
+      radial-gradient(45% 40% at 0% 100%, rgb(117 75 233 / .14), transparent 70%),
+      repeating-linear-gradient(90deg, rgb(255 255 255 / .045) 0 1px, transparent 1px 72px);
+  }
+  /* Линия меридиана проходит через точки городов */
+  .meridian::before { content: ""; position: absolute; left: 0; right: 0; top: 37px; height: 1px; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .28) 6%, rgb(255 255 255 / .28) 94%, transparent); }
+  .meridian-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #090714; box-shadow: 0 0 0 1.5px rgb(255 255 255 / .55); transition: background-color .25s, box-shadow .25s, scale .25s; }
+  .meridian-stop:hover .meridian-dot { box-shadow: 0 0 0 1.5px #fff; }
+  .meridian-stop[aria-pressed="true"] .meridian-dot { background: #d9b792; box-shadow: 0 0 0 1.5px #d9b792, 0 0 0 7px rgb(217 183 146 / .18); scale: 1.15; }
+  /* Активная страна: золотая черта слева на десктопе, заливка на телефоне */
+  .country-btn[aria-pressed="true"] { background: #fff; border-color: #fff; }
+  .country-btn[aria-pressed="true"] span { color: #090714; }
+  @media (min-width: 1024px) {
+    .country-btn { position: relative; }
+    .country-btn[aria-pressed="true"] { background: transparent; }
+    .country-btn[aria-pressed="true"] span { color: inherit; }
+    .country-btn::before { content: ""; position: absolute; left: -20px; top: 18px; bottom: 18px; width: 2px; background: #d9b792; scale: 1 0; transition: scale .3s cubic-bezier(.165,.84,.44,1); }
+    .country-btn[aria-pressed="true"]::before { scale: 1 1; }
+  }
+  /* Плашка офиса без фото: контурное название города на фоне дуг */
+  .plate { background: radial-gradient(120% 90% at 100% 100%, rgb(188 144 110 / .28), transparent 60%), repeating-radial-gradient(circle at 100% 100%, rgb(255 255 255 / .07) 0 1px, transparent 1px 46px), #14121f; }
+  /* Слово всегда в одну строку: размер считается от ширины плашки и числа букв (--n), не больше 64 px.
+     Контур рисуем под заливкой (paint-order): у вариативного шрифта контуры букв пересекаются, и без этого видны лишние линии внутри букв. */
+  .plate { container-type: inline-size; }
+  .plate-word { font-size: min(64px, calc(100cqw / (var(--n, 6) * 0.98))); line-height: 1.1; white-space: nowrap; color: #15131f; -webkit-text-stroke: 2px #d9b792; paint-order: stroke fill; letter-spacing: -.01em; }
+  /* Карта в тон тёмной панели; при наведении — обычные цвета */
+  .atlas-map iframe { filter: grayscale(.9) contrast(1.05) brightness(.92); transition: filter .4s; }
+  .atlas-map:hover iframe, .atlas-map:focus-within iframe { filter: none; }
+  /* Смена офиса: мягкое появление */
+  .office:not([hidden]) { animation: office-in .45s cubic-bezier(.165,.84,.44,1); }
+  @keyframes office-in { from { opacity: 0; translate: 0 10px; } }
+  @media (prefers-reduced-motion: reduce) { .office:not([hidden]) { animation: none; } .meridian-dot, .country-btn::before { transition: none; } }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-atlas]');
+  if (root) {
+    const offices = [...root.querySelectorAll<HTMLElement>('[data-office-panel]')];
+    const countries = [...root.querySelectorAll<HTMLElement>('[data-country-panel]')];
+    const press = (sel: string, attr: string, value: string) =>
+      root.querySelectorAll<HTMLElement>(sel).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[attr] === value)));
+
+    const show = (id: string, { hash = true, scroll = false } = {}) => {
+      const panel = offices.find((p) => p.dataset.officePanel === id);
+      if (!panel) return;
+      const country = panel.dataset.country!;
+      offices.forEach((p) => (p.hidden = p !== panel));
+      countries.forEach((p) => (p.hidden = p.dataset.countryPanel !== country));
+      press('[data-office-go]', 'officeGo', id);
+      press('[data-country-go]', 'countryGo', country);
+      // Карту подгружаем только для открытого офиса
+      const map = panel.querySelector<HTMLIFrameElement>('iframe[data-src]');
+      if (map && !map.getAttribute('src')) map.src = map.dataset.src!;
+      // Активный город — в поле зрения на телефоне
+      root.querySelector<HTMLElement>(`.meridian-stop[data-office-go="${id}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      if (hash) history.replaceState(null, '', id === root.dataset.default ? location.pathname + location.search : `#${id}`);
+      if (scroll) root.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    };
+
+    root.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      const office = t.closest<HTMLElement>('[data-office-go]');
+      if (office) return show(office.dataset.officeGo!);
+      const country = t.closest<HTMLElement>('[data-country-go]');
+      if (country) {
+        const firstOffice = offices.find((p) => p.dataset.country === country.dataset.countryGo);
+        if (firstOffice) show(firstOffice.dataset.officePanel!);
+      }
+    });
+
+    // Ссылка на конкретный офис: /contacts/#istanbul
+    const fromHash = () => { const id = location.hash.slice(1); if (id && offices.some((p) => p.dataset.officePanel === id)) show(id, { hash: false, scroll: true }); };
+    fromHash();
+    addEventListener('hashchange', fromHash);
+
+    // Местное время в каждом городе
+    const tick = () => {
+      const now = new Date();
+      document.querySelectorAll<HTMLElement>('[data-tz]').forEach((el) => {
+        try { el.textContent = new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit', timeZone: el.dataset.tz }).format(now); } catch { /* старый браузер без этого пояса */ }
+      });
+    };
+    tick();
+    setInterval(tick, 30_000);
+  }
+</script>

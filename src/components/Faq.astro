@@ -1,7 +1,10 @@
 ---
+import { langOf, useT } from '../i18n';
 /** Вопросы и ответы + разметка FAQPage для поисковиков. */
 interface Props { items: { q: string; a: string }[]; title?: string }
-const { items, title = 'Частые вопросы' } = Astro.props;
+const lang = langOf(Astro.locals);
+const tr = useT(lang);
+const { items, title = tr("Частые вопросы") } = Astro.props;
 const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
 ---
 <section class="container-x py-16 md:py-24">

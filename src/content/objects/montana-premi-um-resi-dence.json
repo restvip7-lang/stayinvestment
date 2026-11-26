@@ -43,8 +43,26 @@
   "infrastructure": [],
   "descriptionHtml": "<p>Проект расположен на возвышенности, в 370 метрах от моря в молодом пятиэтажном районе Кестель. Рядом прогулочная набережная реки Дим Чай. 10 минут до центра города. Рядом растут хвойные деревья. Уютная зеленая локация.</p><p>Резиденция из одного блока на 6 этажей, всего 22 квартиры. Высота потолков 2,85 м, толщина стен 25 см. Планировки: 1+1 - 16 единиц, 2+1 - 2 единицы, 3+1 - 4 единицы.</p><p>Круглогодичная инфраструктура. Небольшая резиденция бутик формата с отличным расположением в тихом и живописном месте. В Кестеле не строят высоток. Это молодой район с престижной современной недвижимостью и красивой набережной. Близость к морю определяет высокие цены на аренду квартир в данном проекте.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/95c/95c77649348d6dedc19fa7ce76059cbd/656706e8f5de62ba6343077b9bf7f5a7",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/34e/34ece2a54ab1c651a3f77dad38c7269c/db4472d4c658864f2365cdb4aa19ce8d"
+    "/media/476df6ae90d7ccb5.webp",
+    "/media/fb2219c45dae5312.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/residence-on-a-panoramic-hill-within-walking-distance-from-the-sea/",
+      "title": "Residence on a panoramic hill within walking distance from the sea",
+      "location": "Alanya Kestel",
+      "type": "Duplex Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>The project is located on a hill, 370 m from the sea in the young five-story Kestel district. Nearby is the promenade of the Dim Chai River. 10 min to the city center. Coniferous trees grow nearby. Cozy green location.</p><p>The residence consists of one block on 6 floors, a total of 22 apartments. Ceiling height 2.85 m, wall thickness 25 cm. Layouts: 1+1 - 16 units, 2+1 - 2 units, 3+1 - 4 units. Layouts: 1+1 - 16 units, 2+1 - 2 units, 3+1 - 4 units</p><p>Year-round infrastructure. A small boutique residence with an excellent location in a quiet and picturesque location. There are no high-rise buildings being built in Kestel. It is a young area with prestigious modern real estate and a beautiful embankment. The proximity to the sea determines the high prices for renting apartments in this project.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/rezidencija-na-panoramskom-brdu-u-pe-a-koj-udaljenosti-od-mora/",
+      "title": "Rezidencija na panoramskom brdu u pešačkoj udaljenosti od mora",
+      "location": "Alanya kestel",
+      "type": "Duplex Apartmani",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Projekat je smešten na uzvišici, na 370 metara od mora u mladom petoetažnom kraju Kestela. U blizini je šetalište pored reke Dim Čaj. Deset minuta do centra grada. U blizini rastu četinari. Udobna zelena lokacija.</p><p>Rezidencija se sastoji od jednog bloka sa šest spratova, ukupno 22 stana. Visina plafona je 2,85 m, debljina zidova 25 cm. Rasporedi: 1+1 - 16 jedinica, 2+1 - 2 jedinice, 3+1 - 4 jedinice.</p><p>Celogodišnja infrastruktura. Mala rezidencija butik formata sa odličnim položajem u mirnom i živopisnom mestu. U Kestelu se ne grade visokogradnje. Ovo je mlad kvart sa prestižnom modernom nekretninom i lepim šetalištem. Blizina mora određuje visoke cene za iznajmljivanje stanova u ovom projektu.</p>"
+    }
+  }
 }

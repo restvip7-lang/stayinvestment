@@ -62,15 +62,53 @@
   ],
   "descriptionHtml": "<p>Яркий современный проект возле исторического центра Аланьи и моря.</p><p>Инвестиционные преимущества:</p><ul><li>190 метров до пляжа.</li><li>Участок на возвышенности, панорамные виды на море, горы и крепость.</li><li>Премиум сегмент в центре Аланьи.</li><li>Недостаток современных комплексов в данной локации.</li><li>Современный дизайн фасада и социальных зон выделяется на общем фоне.</li><li>Недостаток премиум класса в давно застроенной береговой линии.</li><li>Высокий спрос на аренду, высокие арендные ставки.</li><li>Сердце туризма, активный район.</li><li>Рядом супермаркеты, рестораны, магазины. </li></ul><p>Локация:</p><ul><li>Турция, район Аланьи Тосмур, Средиземное море.</li><li>В 5 минутах ходьбы комфортные пляжи с удобным заходом в море, Beach Club с видом на крепость. </li><li>Близко к историческому центру Аланьи и базовым объектам социальной и торговой инфраструктурой. </li></ul><p>Жилой фонд проекта:</p><ul><li>1+1, 55 м2 - 56 единиц.</li><li>2+1, 100 м2 - 32 единицы.</li><li>пентхаусы 2+1, 110 и 120 м2 - 7 единиц.</li><li>пентхаусы 3+1, 196 и 200 м2 - 4 единицы.</li></ul><p>Комплекс строится на участке 3500 м2, всего 99 квартир.</p><p>Строительство: 01.06.2022 – 30.05.2025.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/ca5/ca513c32275721c989739f1f0435579d/b763dbcf03409c89bf1bb4033258b7cc",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/7ea/7eadf8c99915b22fc2cd9313e813f7e6/4a284eea2f7ce39d78f4edc7641a3023",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/92d/92dff78d9638b8452f38e926ab14ed27/0b3ea43cc6cff96088292abdb1ab4f6e",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/ac6/ac649da1047092b90a08036e12f2ec90/7fa15c6599f7a50aa955fa39705e1ce4",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/6e7/6e75529a33b3c5b1fcc42129967ca33c/9b2e7962fe368c04c4b71949258c6b7f",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/67c/67c89c396687cedb71d6c1e387727406/7055062f77c3159aff8b1070afb420bb",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/240/240176e31b071bedea84626d14b7b076/187f355ef1353982dd62716fe9676219",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/bd2/bd2c2cc0add26afd5ed2409a84f8be3a/b650d516e89a65639b0dac112a3e95a3",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/f78/f78b31d2286418126a26e471ec2ef55f/c72de095f549f00e51d321cd1418f539"
+    "/media/e06be550966577c0.webp",
+    "/media/1eb7968bcda93ade.webp",
+    "/media/1a5dc3659b6d2f4d.webp",
+    "/media/b2bfe21380f0cfad.webp",
+    "/media/3be4d5e275e205b3.webp",
+    "/media/670cc9a6447833f9.webp",
+    "/media/0e16952f228a8369.webp",
+    "/media/4ee08c2c8a46e967.webp",
+    "/media/6511c82b601849e2.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/startovye/bright-modern-project-near-the-historical-center-of-alanya-and-the-sea/",
+      "title": "Bright modern project near the historical center of Alanya and the sea",
+      "location": "Alanya Tosmur",
+      "type": "Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Bright modern project near the historical center of Alanya and the sea.</p>\n<p>Investment advantages:</p>\n<ul>\n<li>190 meters to the beach.</li>\n<li>The plot is on a hill, panoramic views of the sea, mountains and fortress.</li>\n<li>Premium segment in the center of Alanya.</li>\n<li>Lack of modern complexes in this location.</li>\n<li>The modern design of the facade and social areas stands out from the general background.</li>\n<li>The disadvantage of a premium class in a long-developed coastline.</li>\n<li>High demand for rentals, high rental rates.</li>\n<li>The heart of tourism, an active area.</li>\n<li>Nearby are supermarkets, restaurants, shops.</li>\n</ul>\n<p>Location:</p>\n<ul>\n<li>Türkiye, Alanya Tosmur region, Mediterranean Sea.</li>\n<li>A 5-minute walk away are comfortable beaches with convenient access to the sea, a Beach Club with a view of the fortress.</li>\n<li>Close to the historical center of Alanya and basic social and commercial infrastructure.</li>\n</ul>\n<p>Housing stock of the project:</p>\n<ul>\n<li>1+1, 55 m2 – 56 units.</li>\n<li>2+1, 100 m2 – 32 units.</li>\n<li>penthouses 2+1, 110 and 120 m2 – 7 units.</li>\n<li>penthouses 3+1, 196 and 200 m2 – 4 units.</li>\n</ul>\n<p>The complex is being built on a plot of 3500 m2, with a total of 99 apartments.</p>\n<p>Construction: 06/01/2022 – 05/30/2025.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/startovye/svetao-moderan-projekat-blizu-istorijskog-centra-alanje-i-mora/",
+      "title": "Svetao moderan projekat blizu istorijskog centra Alanje i mora",
+      "location": "Alanya tosmur",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Bioskop",
+        "Cafe Restaurant",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Gostinska soba",
+        "Igralište",
+        "Igraonica",
+        "Konferencijska sala",
+        "Konsijerž",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Privatna plaža",
+        "Rimska parna soba",
+        "Soba za masažu",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Svetli moderni projekat blizu istorijskog centra Alanje i mora.</p><p>Investicioni benefiti:</p><ul><li>190 metara do plaže.</li><li>Parcela na uzvišenju, panoramski pogledi na more, planine i tvrđavu.</li><li>Premijum segment u centru Alanje.</li><li>Nedostatak savremenih kompleksa na ovoj lokaciji.</li><li>Moderan dizajn fasade i društvenih zona ističe se u odnosu na ostale.</li><li>Nedostatak premijum klase na dugo izgrađenoj obali.</li><li>Visoka potražnja za iznajmljivanjem, visoke cene iznajmljivanja.</li><li>Srce turizma, aktivna zona.</li><li>U blizini su marketi, restorani, prodavnice. </li></ul><p>Lokacija:</p><ul><li>Turska, oblast Alanja Tosmur, Sredozemno more.</li><li>Na 5 minuta hoda udaljeni su udobne plaže s lakoćom pristupa moru, plažni klub s pogledom na tvrđavu.</li><li>Blizu istorijskog centra Alanje i osnovnih objekata socijalne i trgovačke infrastrukture.</li></ul><p>Stambeni fond projekta:</p><ul><li>1+1, 55 m2 - 56 jed.</li><li>2+1, 100 m2 - 32 jed.</li><li>Penthausi 2+1, 110 i 120 m2 - 7 jed.</li><li>Penthausi 3+1, 196 i 200 m2 - 4 jed.</li></ul><p>Kompleks se gradi na parceli od 3500 m2, ukupno 99 stanova.</p><p>Izgradnja: 01.06.2022. - 30.05.2025.</p>"
+    }
+  }
 }

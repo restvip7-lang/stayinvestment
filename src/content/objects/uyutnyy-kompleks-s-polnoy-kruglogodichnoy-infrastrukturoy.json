@@ -59,10 +59,39 @@
   ],
   "descriptionHtml": "<p>Современный бутиковый проект на 27 квартир. Отличается выгодным расположением и обширной круглогодичной инфраструктурой. Занимает земельный участок всего в 300 метрах от пляжей, на пересечении двух районов — Каргыджак и знаменитый Махмутлар. В последнем есть все для отдыха и жизни, начал работу новый торговый центр с бутиками известных брендов, много другой торговой инфраструктуры. </p><p>В жилом комплексе представлены квартиры 1+1 в количестве 12 единиц, 1+1 лофты - 5 единиц, 3 линейные квартиры планировкой 2+1, четыре пентхауса планировкой 2+1. Также в комплексе расположены садовые дуплексы 3+1 - 2 единицы и один пентхаус 3+1.</p><p>Новых проектов в непосредственной близости к морю мало, что гарантирует высокую инвестиционную привлекательность квартир в данном жилом комплексе. Рядом много ресторанов, кафе, супермаркетов, большой фермерский рынок.</p><p>Инфраструктура включает открытый бассейн, крытый зимний бассейн, турецкую баню хаммам, финскую сауну, фитнес-зал, спутниковую систему, камеры безопасности, генератор. Один из лучших и самых востребованных районов Аланьи.</p>",
   "images": [
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/1b7/1b79ccba9e91d7ce2034f24756796ac1/4bb2600263364b8df2778cd6c8ff7e0f",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/2e6/2e6e3afa6c8129df844551db2a10aa2e/52113d9114d7777614d7e6fe73cc205b",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/c87/c87bfbb37dda56fd4a3035b32869d6c0/75a0c0267535186f0a56570bc2d7f230",
-    "https://cdn-ru.bitrix24.ru/b19410268/disk/e47/e47f41990a48b4eadfdc50fab148df71/00b8fa4486e59189e15e7989374fd93b"
+    "/media/46aa001031f60c7c.webp",
+    "/media/1997d8f520c98bf9.webp",
+    "/media/fcd601209750e521.webp",
+    "/media/f0a0d1e5b61670a6.webp"
   ],
-  "video": null
+  "video": null,
+  "i18n": {
+    "en": {
+      "legacyPath": "/en/investment-directory/partnerskye/cozy-complex-with-full-year-round-infrastructure/",
+      "title": "Cozy complex with full year-round infrastructure",
+      "location": "Alanya Kargydzhak",
+      "type": "Penthouse Apartments",
+      "infrastructure": [],
+      "descriptionHtml": "<p>Modern boutique project with 27 apartments. Has advantageous location and extensive year-round infrastructure. The project occupies a land plot just 300 meters from the beaches, at the intersection of two districts, Kargicak and the famous Mahmutlar. The latter has everything for relaxation and living, a new shopping center with boutiques of famous brands has opened, along with a lot of other commercial infrastructure.</p><p>The residential complex features 12 units of 1+1 apartments, 5 units of 1+1 lofts, 3 linear 2+1 apartments, and four 2+1 penthouses. Additionally, there are 2 garden duplexes 3+1 and one 3+1 penthouse in the complex.</p><p>Few new projects are available for sale in close proximity to the sea, which guarantees high investment attractiveness of the apartments in this residential complex. Nearby, there are many restaurants, cafes, supermarkets, and a big farmers market.</p><p>The infrastructure includes an outdoor pool, an indoor winter pool, a Turkish bath (hammam), a Finnish sauna, a fitness room, a satellite system, security cameras, and a generator. One of the best and most sought-after areas of Alanya.</p>"
+    },
+    "sr": {
+      "legacyPath": "/sr/investment-directory/partnerskye/ugodan-kompleks-sa-kompletnom-godi-njom-infrastrukturom/",
+      "title": "Ugodan kompleks sa kompletnom godišnjom infrastrukturom",
+      "location": "Alanya kargydzhak",
+      "type": "Penthaus Apartmani",
+      "infrastructure": [
+        "24-časovno obezbeđenje",
+        "Električni generator",
+        "Finska sauna",
+        "Fitnes centar",
+        "Gazebo za opuštanje",
+        "Otvoreni bazen",
+        "Otvoreni parking",
+        "Turski hamam",
+        "Video nadzor 24/7",
+        "Zatvoreni bazen"
+      ],
+      "descriptionHtml": "<p>Moderan butik projekat sa 27 apartmana. Ima povoljnu lokaciju i obimnu infrastrukturu tokom cele godine. Projekat se nalazi na parceli od samo 300 metara od plaža, na raskrsnici dva kvarta, Kargičak i poznatog Mahmutlara. Mahmutlar nudi sve što je potrebno za odmor i život, otvoren je novi tržni centar sa buticima poznatih brendova, kao i mnoge druge komercijalne objekte.</p><p>Stambeni kompleks sadrži 12 jedinica stanova 1+1, 5 jedinica loftova 1+1, 3 linearna stana 2+1 i četiri penthousa 2+1. Pored toga, u kompleksu se nalaze 2 vrtna duplexa 3+1 i jedan penthouse 3+1.</p><p>Mal broj novih projekata je dostupan za prodaju u neposrednoj blizini mora, što garantuje visoku investicionu atraktivnost apartmana u ovom stambenom kompleksu. U blizini se nalazi mnogo restorana, kafića, supermarketa i velike pijace.</p><p>Infrastruktura obuhvata otvoreni bazen, zatvoreni zimski bazen, tursko kupatilo (hamam), finsku saunu, teretanu, satelitski sistem, sigurnosne kamere i generator. Jedno od najboljih i najtraženijih područja u Alanji.</p>"
+    }
+  }
 }
