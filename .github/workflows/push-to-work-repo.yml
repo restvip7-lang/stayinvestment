@@ -1,4 +1,5 @@
-# Отправка кода в рабочий репозиторий организации stayproperty-org/stayinvestment — только в ветку dev.
+# Отправка кода в рабочий репозиторий организации stayproperty-org/stayinvestment.
+# По умолчанию — в ветку dev. В main — только по отдельной команде владельца (выбрать main при запуске).
 # Запускается только вручную (Actions → «Отправить в рабочий репозиторий» → Run workflow)
 # или по команде Claude. Автоматически при пуше НЕ срабатывает.
 #
@@ -11,6 +12,12 @@ name: Отправить в рабочий репозиторий
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Ветка рабочего репозитория (main — только по отдельной команде)'
+        type: choice
+        options: [dev, main]
+        default: dev
 
 permissions:
   contents: read
@@ -32,14 +39,14 @@ jobs:
       - name: Отправить в stayproperty-org/stayinvestment
         env:
           TOKEN: ${{ secrets.ORG_PUSH_TOKEN }}
-          BRANCH: dev   # в рабочий репозиторий отправляем ТОЛЬКО в dev; main не трогаем
+          BRANCH: ${{ inputs.branch || 'dev' }}   # dev по умолчанию; main — только когда владелец прямо попросил
         run: |
           set -euo pipefail
           if [ -z "${TOKEN}" ]; then
             echo "::error::Нет секрета ORG_PUSH_TOKEN. Добавьте его в Settings → Secrets and variables → Actions."
             exit 1
           fi
-          if ! [[ "${BRANCH}" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+          if [ "${BRANCH}" != "dev" ] && [ "${BRANCH}" != "main" ]; then
             echo "::error::Недопустимое имя ветки: ${BRANCH}"
             exit 1
           fi
