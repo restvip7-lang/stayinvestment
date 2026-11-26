@@ -2,7 +2,7 @@
 
 Новый сайт [stayinvestment.com](https://stayinvestment.com): инвестиции в недвижимость Турции, направление группы Stay Property.
 Структура и тексты перенесены со старого сайта на WordPress и отредактированы ([docs/content-audit.md](docs/content-audit.md)),
-дизайн — в фирменном стиле Stay Property (как stayproperty.com: шрифт Euclid Circular A по лицензии группы, `public/fonts/`; токены — `src/styles/global.css`). Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4 + Vercel (SSR + CDN-кэш)**.
+дизайн — в фирменном стиле Stay Property (как stayproperty.com: шрифт Euclid Circular A по лицензии группы, `public/fonts/`; токены — `src/styles/global.css`). Стек — как у соседнего сайта `stay.com.tr`: **Astro 7 + Tailwind 4, SSR**. Один и тот же код собирается под свой сервер (Node.js, Plesk) и под Vercel (тестовая копия) — площадку выбирает `astro.config.mjs`.
 
 ## Запуск
 
@@ -65,9 +65,26 @@ npm run check      # проверка типов
 
 Адреса старого сайта сохранены; редиректы — [docs/redirects.md](docs/redirects.md).
 
-## Свой сервер
+## Ветки и выкладка
 
-Ветка `vps`: запуск рядом со старым сайтом на тестовом адресе, где лежат картинки, переезд — [docs/deploy-vps.md](docs/deploy-vps.md).
+Рабочий репозиторий — `stayproperty-org/stayinvestment`:
+
+| Ветка | Что это | Выкладка |
+|---|---|---|
+| `main` | боевой сайт | сервер сам забирает каждый новый коммит `main` и выкладывает за 1–2 минуты ([deploy/README.md](deploy/README.md)) |
+| `dev` | общая рабочая ветка | не выкладывается; проверяем локально (`npm run dev`) |
+| `feature/…` | отдельная задача (по желанию) | как `dev` |
+
+Порядок работы:
+
+1. Перед началом — `git checkout dev && git pull`. В `main` напрямую не коммитим.
+2. Коммиты — в `dev` (или в `feature/…` от `dev`, потом слияние в `dev`).
+3. Проверили → Pull request `dev` → `main` → слияние. Это и есть выкладка на прод.
+4. После слияния прод отдаёт номер коммита на `/version.txt`; монитор (platform.stayproperty.com) сверяет его с `main` и пишет в Telegram, если выкладка застряла.
+
+Перед PR: `npm run build` и `npm run check` без ошибок.
+
+Ручная установка без автовыкладки (pm2 + nginx), где лежат картинки, переезд с WordPress — [docs/deploy-vps.md](docs/deploy-vps.md).
 
 ## Перед запуском
 
@@ -78,8 +95,11 @@ npm run check      # проверка типов
 
 ## Репозитории
 
-- **Разработка:** `restvip7-lang/stayinvestment` — сюда идут все правки (по умолчанию).
-- **Рабочий репозиторий организации:** `stayproperty-org/stayinvestment`, ветка **`dev`**, а `main` — только по отдельной команде владельца; обновляется **только по команде**:
-  GitHub Actions → «Отправить в рабочий репозиторий» → Run workflow (`.github/workflows/push-to-work-repo.yml`).
-  Нужен секрет `ORG_PUSH_TOKEN` (fine-grained токен `staymng-bit`, Contents: Read and write на `stayproperty-org/stayinvestment`).
-  Если в рабочем репозитории появились чужие коммиты, отправка останавливается и ничего не перезаписывает.
+- **Рабочий репозиторий организации:** `stayproperty-org/stayinvestment` — ветки `dev` и `main`, см. «Ветки и выкладка».
+- **Черновой:** `restvip7-lang/stayinvestment`, ветка `claude/practical-shannon-z1pifq` — отсюда собирается тестовая копия
+  на Vercel (stayinvestment.vercel.app). В рабочий репозиторий правки отсюда уходят **только по команде владельца**,
+  в `dev`, с компьютера с доступом `staymng-bit`, без перезаписи истории:
+  `git push https://staymng-bit@github.com/stayproperty-org/stayinvestment.git <коммит>:refs/heads/dev`.
+  Если в `dev` появились чужие коммиты, GitHub откажет — сначала их нужно влить в отправляемую версию.
+- То же самое умеет GitHub Actions → «Отправить в рабочий репозиторий» (`.github/workflows/push-to-work-repo.yml`),
+  если задан секрет `ORG_PUSH_TOKEN` (fine-grained токен `staymng-bit`, Contents: Read and write).
