@@ -1,4 +1,6 @@
 # Положить как .htaccess в корневую папку поддомена (в ней больше ничего быть не должно).
 # Apache пересылает все запросы процессу сайта на 127.0.0.1:4330 (deploy/run.sh).
+# DirectoryIndex disabled — иначе для главной Apache сам подставляет /index.html и сайт отвечает 404.
+DirectoryIndex disabled
 RewriteEngine On
 RewriteRule ^(.*)$ http://127.0.0.1:4330/$1 [P,L]
