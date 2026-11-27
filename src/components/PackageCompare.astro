@@ -25,9 +25,9 @@ const rows: { label: string; hint?: string; cells: Record<Col, string> }[] = [
     label: tr("Доходность"),
     hint: tr("По условиям объектов в каталоге. Прогноз, не гарантия"),
     cells: {
-      rental: tr("{rentYield} годовых", { rentYield: fmtRange(s.rental.rentYield, '%') }),
-      startovye: tr("≈ 15–20% за цикл") + (s.startovye.discount ? tr(" · скидка {discount}", { discount: fmtRange(s.startovye.discount, '%') }) : ''),
-      partnerskye: tr("ROI {roi} за цикл", { roi: fmtRange(s.partnerskye.roi, '%') }),
+      rental: tr("{rentYield} годовых", { rentYield: fmtRange(s.rental.rentYield, '%', lang) }),
+      startovye: tr("≈ 15–20% за цикл") + (s.startovye.discount ? tr(" · скидка {discount}", { discount: fmtRange(s.startovye.discount, '%', lang) }) : ''),
+      partnerskye: tr("ROI {roi} за цикл", { roi: fmtRange(s.partnerskye.roi, '%', lang) }),
       business: tr("Индивидуальный расчёт под объект"),
     },
   },

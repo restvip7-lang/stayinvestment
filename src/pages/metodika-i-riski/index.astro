@@ -4,7 +4,7 @@ import PageHead from '../../components/PageHead.astro';
 import Icon from '../../components/Icon.astro';
 import CashflowTimeline from '../../components/CashflowTimeline.astro';
 import LeadSection from '../../components/LeadSection.astro';
-import { langOf, useT } from '../../i18n';
+import { langOf, useT, fmtPct } from '../../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -114,10 +114,10 @@ const ann = (roi: number, months: number) => (Math.pow(1 + roi / 100, 12 / month
         <div class="mt-4 grid gap-4" aria-hidden="true">
           {annRows.map(([r, m]) => (
             <div class="grid grid-cols-[92px_1fr] items-center gap-3">
-              <span class="text-[13px] font-semibold leading-tight text-ink">{r}%<span class="block font-normal text-muted">{tr("за {m} мес.", { m })}</span></span>
+              <span class="text-[13px] font-semibold leading-tight text-ink">{fmtPct(lang, r)}<span class="block font-normal text-muted">{tr("за {m} мес.", { m })}</span></span>
               <div class="grid gap-1.5">
-                <div class="flex items-center gap-2"><span class="bar-grow h-3 rounded-r-[4px] bg-[#a9cfe9]" style={`width:${(r / annMax) * 82}%`} data-tip={tr("{r}%|за цикл {m} мес.", { r, m })}></span><span class="text-[12.5px] text-ink-2 tabular">{r}%</span></div>
-                <div class="flex items-center gap-2"><span class="bar-grow h-3 rounded-r-[4px] bg-brand-2" style={`width:${(ann(r, m) / annMax) * 82}%;transition-delay:120ms`} data-tip={tr("≈ {pct}% в год|при {r}% за {m} мес.", { pct: pct(ann(r, m)), r, m })}></span><span class="text-[12.5px] font-bold text-ink tabular">≈ {pct(ann(r, m))}%</span></div>
+                <div class="flex items-center gap-2"><span class="bar-grow h-3 rounded-r-[4px] bg-[#a9cfe9]" style={`width:${(r / annMax) * 82}%`} data-tip={tr("{r}%|за цикл {m} мес.", { r, m })}></span><span class="text-[12.5px] text-ink-2 tabular">{fmtPct(lang, r)}</span></div>
+                <div class="flex items-center gap-2"><span class="bar-grow h-3 rounded-r-[4px] bg-brand-2" style={`width:${(ann(r, m) / annMax) * 82}%;transition-delay:120ms`} data-tip={tr("≈ {pct}% в год|при {r}% за {m} мес.", { pct: pct(ann(r, m)), r, m })}></span><span class="text-[12.5px] font-bold text-ink tabular">{fmtPct(lang, `≈ ${pct(ann(r, m))}`)}</span></div>
               </div>
             </div>
           ))}
@@ -125,7 +125,7 @@ const ann = (roi: number, months: number) => (Math.pow(1 + roi / 100, 12 / month
         <div class="sr-only"><table>
           <caption>{tr("Примеры пересчёта доходности за цикл в годовую")}</caption>
           <thead><tr><th>{tr("Доходность за цикл")}</th><th>{tr("Срок")}</th><th>{tr("В год")}</th></tr></thead>
-          <tbody>{annRows.map(([r, m]) => <tr><td>{r}%</td><td>{tr("{m} мес.", { m })}</td><td>≈ {pct(ann(r, m))}%</td></tr>)}</tbody>
+          <tbody>{annRows.map(([r, m]) => <tr><td>{fmtPct(lang, r)}</td><td>{tr("{m} мес.", { m })}</td><td>{fmtPct(lang, `≈ ${pct(ann(r, m))}`)}</td></tr>)}</tbody>
         </table></div>
       </figure>
     </div>

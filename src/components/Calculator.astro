@@ -53,7 +53,9 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
     const cfg = JSON.parse(el.dataset.cfg!);
     const input = el.querySelector<HTMLInputElement>('[data-amount]')!;
     const set = (k: string, v: string) => (el.querySelector(`[data-${k}]`)!.textContent = v);
-    const pct = (x: number) => `${x.toLocaleString('ru-RU', { maximumFractionDigits: 1 })}%`;
+    // По-турецки знак процента стоит перед числом: «%7», «+%15»
+    const P = (s: string) => (document.documentElement.lang === 'tr' ? s.replace(/^([+\-−≈\s]*)(.*)$/, '$1%$2') : `${s}%`);
+    const pct = (x: number) => P(x.toLocaleString('ru-RU', { maximumFractionDigits: 1 }));
     const barA = el.querySelector<HTMLElement>('[data-bar-a]')!;
     const barB = el.querySelector<HTMLElement>('[data-bar-b]')!;
     const bar = (a: number, inc: number, label: string) => {
@@ -68,18 +70,18 @@ const step = o.package === 'partnerskye' ? 50000 : 5000;
         set('l1', T('Доход в год')); set('v1', eur((a * cfg.rate) / 100));
         set('l2', T('За {n} г. гарантии', { n: cfg.years })); set('v2', eur((a * cfg.rate * cfg.years) / 100));
         set('v3', pct(cfg.rate));
-        bar(a, (a * cfg.rate * cfg.years) / 100, `+${cfg.rate * cfg.years}%`);
+        bar(a, (a * cfg.rate * cfg.years) / 100, P(`+${cfg.rate * cfg.years}`));
       } else if (cfg.mode === 'partner') {
         set('l1', T('Прибыль за цикл')); set('v1', eur((a * cfg.rate) / 100));
         set('l2', T('Капитал по завершении')); set('v2', eur(a * (1 + cfg.rate / 100)));
         set('v3', `≈ ${pct((Math.pow(1 + cfg.rate / 100, 12 / cfg.months) - 1) * 100)}`);
-        bar(a, (a * cfg.rate) / 100, `+${cfg.rate}%`);
+        bar(a, (a * cfg.rate) / 100, P(`+${cfg.rate}`));
       } else {
         set('l1', T('Доход от перепродажи')); set('v1', `${eur((a * cfg.low) / 100)} – ${eur((a * cfg.high) / 100)}`);
         set('l2', T('Капитал после продажи')); set('v2', T('до {sum}', { sum: eur(a * (1 + cfg.high / 100)) }));
         const ann = (r: number) => (Math.pow(1 + r / 100, 12 / 24) - 1) * 100;
         set('v3', `≈ ${pct(ann(cfg.low))}–${pct(ann(cfg.high))}`);
-        bar(a, (a * cfg.low) / 100, `+${cfg.low}–${cfg.high}%`);
+        bar(a, (a * cfg.low) / 100, P(`+${cfg.low}–${cfg.high}`));
       }
     };
     input.addEventListener('input', render);

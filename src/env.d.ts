@@ -8,7 +8,7 @@ interface ImportMetaEnv {
 }
 declare namespace App {
   interface Locals {
-    /** Язык страницы (src/i18n): ставит middleware по префиксу /en, /sr */
+    /** Язык страницы (src/i18n): ставит middleware по префиксу /en, /sr, /tr */
     lang: import('./i18n').Lang;
     /** Адрес страницы без языкового префикса */
     path: string;

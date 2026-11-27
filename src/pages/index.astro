@@ -11,7 +11,7 @@ import LeadSection from '../components/LeadSection.astro';
 import { OBJECTS, PACKAGES, localizeObject, PACKAGE_ORDER, byPackage, entryPrice, yieldOf, euro, objectUrl, packageFacts, packagePhoto } from '../lib/catalog';
 import { getNews } from '../lib/news';
 import { STATS, TEAM, yearsOnMarket } from '../lib/site';
-import { langOf, useT } from '../i18n';
+import { langOf, useT, fmtPct } from '../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -93,7 +93,7 @@ const faq = [
         </a>
         <dl class="hero-in mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-line pt-6" style="--i:5">
           <div><dt class="text-[13px] text-muted">{tr("Вход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{tr("от {round} тыс. €", { round: Math.round(minEntry / 1000) })}</dd></div>
-          <div><dt class="text-[13px] text-muted">{tr("Арендный доход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{minRent}–{maxRent}%<span class="text-base font-bold text-muted"> / {tr("год")}</span></dd></div>
+          <div><dt class="text-[13px] text-muted">{tr("Арендный доход")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular sm:text-2xl">{fmtPct(lang, `${minRent}–${maxRent}`)}<span class="text-base font-bold text-muted"> / {tr("год")}</span></dd></div>
           <div><dt class="text-[13px] text-muted">{tr("ROI в проектах")}</dt><dd class="mt-1 whitespace-nowrap text-[17px] font-extrabold tabular text-sea sm:text-2xl">{tr("до {maxRoi}%", { maxRoi })}</dd></div>
         </dl>
       </div>
@@ -108,7 +108,7 @@ const faq = [
             <Img src={o.images[0]} alt="" class="aspect-[4/3] w-full" width={640} height={480} priority={i === 0} sizes="400px" />
             <div class="flex items-center justify-between gap-3 px-4 py-3">
               <span class="truncate text-[13px] font-bold">{tr(PACKAGES[o.package].name)} · {o.id}</span>
-              <span class="shrink-0 text-[13px] font-extrabold text-sea tabular">{yieldOf(o, lang) ? `${yieldOf(o, lang)!.value}%` : euro(entryPrice(o))}</span>
+              <span class="shrink-0 text-[13px] font-extrabold text-sea tabular">{yieldOf(o, lang) ? fmtPct(lang, yieldOf(o, lang)!.value) : euro(entryPrice(o))}</span>
             </div>
           </a>
         ))}

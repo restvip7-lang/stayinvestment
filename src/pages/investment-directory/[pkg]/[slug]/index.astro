@@ -9,7 +9,7 @@ import PaymentPlan from '../../../../components/PaymentPlan.astro';
 import PositionStrip from '../../../../components/PositionStrip.astro';
 import { PACKAGES, packageInfo, localizeObject, findObject, byPackage, objectUrl, entryPrice, yieldOf, placeOf, metricLabel, formatMetric, euro } from '../../../../lib/catalog';
 import { SITE } from '../../../../lib/site';
-import { langOf, useT, LANG_META } from '../../../../i18n';
+import { langOf, useT, LANG_META, fmtPct } from '../../../../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -26,13 +26,13 @@ const similar = byPackage(o.package).filter((x) => x.id !== o.id).sort((a, b) =>
 const facts = [
   place.city && { icon: 'pin', label: tr("Расположение"), value: [place.city, place.district].filter(Boolean).join(', ') },
   o.seaDistance && { icon: 'wave', label: tr("До моря"), value: o.seaDistance >= 1000 ? tr("{toLocaleString} км", { toLocaleString: (o.seaDistance / 1000).toLocaleString(LANG_META[lang].locale) }) : tr("{seaDistance} м", { seaDistance: o.seaDistance }) },
-  o.type && { icon: 'building', label: tr("Тип"), value: o.type.replace(/\s+/g, ', ') },
+  o.type && { icon: 'building', label: tr("Тип"), value: o.type.replace('Садовый дуплекс', 'Садовый\u00a0дуплекс').replace(/ +/g, ', ') },
   o.layouts.length && { icon: 'layers', label: tr("Планировки"), value: o.layouts.join(', ') },
   o.year && { icon: 'calendar', label: tr("Сдача"), value: `${o.year}` },
 ].filter(Boolean) as { icon: string; label: string; value: string }[];
 
 const plain = o.descriptionHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? tr(o.package === 'partnerskye' ? 'Вход от {sum}' : 'Цена от {sum}', { sum: euro(price) }) : ''}${y ? `, ${y.label.toLowerCase()} ${y.value}%` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
+const description = `${info.name}, ID ${o.id}: ${o.title}. ${price ? tr(o.package === 'partnerskye' ? 'Вход от {sum}' : 'Цена от {sum}', { sum: euro(price) }) : ''}${y ? `, ${y.label.toLowerCase()} ${fmtPct(lang, y.value)}` : ''}. ${plain}`.slice(0, 160).replace(/\s+\S*$/, '') + '…';
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateListing',
@@ -68,12 +68,12 @@ const ld = {
         <div class="card p-6">
           <p class="text-[13px] font-semibold text-muted">{o.package === 'partnerskye' ? tr("Сумма входа") : o.package === 'startovye' ? tr("Стоимость лота, от") : tr("Стоимость, от")}</p>
           <p class="mt-1 text-[34px] font-extrabold leading-none tabular">{price != null ? <><span data-count={price}>{price.toLocaleString('ru-RU')}</span> €</> : '—'}</p>
-          {y && <p class="mt-2 inline-flex items-center gap-1.5 font-bold text-sea"><Icon name="chart" size={18} />{y.label}: {y.value}%</p>}
+          {y && <p class="mt-2 inline-flex items-center gap-1.5 font-bold text-sea"><Icon name="chart" size={18} />{y.label}: {fmtPct(lang, y.value)}</p>}
           <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-5">
             {o.metrics.filter((m) => !/Начальная стоимость|Минимальная стоимость лота|Сумма входа/.test(m.label)).map((m) => (
               <div>
                 <dt class="text-[12.5px] leading-tight text-muted">{metricLabel(m.label, lang)}</dt>
-                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <><span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m, lang).replace(m.value.toLocaleString('ru-RU'), '')}</> : formatMetric(m, lang)}</dd>
+                <dd class="mt-1 text-[17px] font-extrabold tabular">{m.value != null && Number.isInteger(m.value) ? <>{formatMetric(m, lang).split(m.value.toLocaleString('ru-RU'))[0]}<span data-count={m.value}>{m.value.toLocaleString('ru-RU')}</span>{formatMetric(m, lang).split(m.value.toLocaleString('ru-RU')).slice(1).join(m.value.toLocaleString('ru-RU'))}</> : formatMetric(m, lang)}</dd>
               </div>
             ))}
           </dl>

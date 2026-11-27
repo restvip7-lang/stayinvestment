@@ -4,7 +4,7 @@
  * Сегментированная полоса (одно целое — 100% цены) + три показателя. Для партнёрских проектов не показывается.
  */
 import { entryPrice, euro, type InvestObject } from '../lib/catalog';
-import { langOf, useT } from '../i18n';
+import { langOf, useT, fmtPct } from '../i18n';
 interface Props { o: InvestObject }
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -21,8 +21,8 @@ const monthly = show ? (price! - firstEur) / months! : 0;
     <h2 id="plan-title" class="text-2xl">{tr("График платежей")}</h2>
     <p class="mt-1 text-[15px] text-ink-2">{tr("Беспроцентная рассрочка от застройщика. Расчёт — от минимальной стоимости {euro}.", { euro: euro(price) })}</p>
     <div class="mt-6 flex h-[28px] gap-[2px]" role="img" aria-label={tr("Первый взнос {first}% — {euro}; рассрочка {v2}% — {v3} на {months} мес.", { first, euro: euro(firstEur), v2: 100 - first!, v3: euro(price! - firstEur), months })}>
-      <span class="flex items-center rounded-[4px] bg-navy px-2.5 text-[12.5px] font-bold text-white" style={`width:${first}%`} tabindex="0" data-tip={tr("{euro}|Первый взнос · {first}% стоимости", { euro: euro(firstEur), first })}>{first}%</span>
-      <span class="flex items-center rounded-[4px] bg-[#c9d3e0] px-2.5 text-[12.5px] font-bold text-ink" style={`width:${100 - first!}%`} tabindex="0" data-tip={tr("{euro}|Рассрочка · {v1}% на {months} мес.", { euro: euro(price! - firstEur), v1: 100 - first!, months })}>{100 - first!}%</span>
+      <span class="flex items-center rounded-[4px] bg-navy px-2.5 text-[12.5px] font-bold text-white" style={`width:${first}%`} tabindex="0" data-tip={tr("{euro}|Первый взнос · {first}% стоимости", { euro: euro(firstEur), first })}>{fmtPct(lang, first!)}</span>
+      <span class="flex items-center rounded-[4px] bg-[#c9d3e0] px-2.5 text-[12.5px] font-bold text-ink" style={`width:${100 - first!}%`} tabindex="0" data-tip={tr("{euro}|Рассрочка · {v1}% на {months} мес.", { euro: euro(price! - firstEur), v1: 100 - first!, months })}>{fmtPct(lang, 100 - first!)}</span>
     </div>
     <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-ink-2">
       <li class="flex items-center gap-2"><span class="legend-key bg-navy"></span>{tr("Первый взнос")}</li>

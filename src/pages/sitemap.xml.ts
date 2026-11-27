@@ -6,7 +6,7 @@ import { LANGS, LANG_META, localePath, type Lang } from '../i18n';
 
 const STATIC = ['/', '/o-kompanii/', '/metodika-i-riski/', '/kontrol-investitsij/', '/garantii-i-obespechenie/', '/open_a_company_in_turkey/', '/investment-directory/', '/investment-directory/biznes-investitsii/', '/news/', '/contacts/'];
 
-/** Карта сайта на трёх языках: у каждого адреса — ссылки на версии на других языках (hreflang). */
+/** Карта сайта на всех языках: у каждого адреса — ссылки на версии на других языках (hreflang). */
 export const GET: APIRoute = async () => {
   const pages: { path: string; langs: readonly Lang[]; lastmod?: string }[] = [
     ...STATIC.map((path) => ({ path, langs: LANGS })),

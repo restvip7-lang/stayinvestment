@@ -3,7 +3,7 @@
  * npm run import-legacy). Когда объекты переедут в админку/Portfolio, менять только этот файл.
  */
 
-import { t, pick, type Lang } from '../i18n';
+import { t, pick, fmtPct, type Lang } from '../i18n';
 
 export type PackageKey = 'rental' | 'startovye' | 'partnerskye';
 
@@ -122,7 +122,7 @@ export function placeOf(o: InvestObject, lang: Lang = 'ru') {
   const ruCity = ruParts[0] === 'Алания' ? 'Аланья' : (ruParts[0] ?? '');
   if (lang === 'ru') return { city: ruCity, district: ruParts.slice(1).join(' ').replace(/^Азия\s+/, '') || null };
   const parts = (o.i18n?.[lang]?.location ?? '').split(/\s+/).filter(Boolean);
-  const district = parts.slice(1).join(' ').replace(/^(Asia|Azija)\s+/i, '');
+  const district = parts.slice(1).join(' ').replace(/^(Asia|Azija|Anadolu Yakası)\s+/i, '');
   const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
   return { city: t(lang, ruCity), district: district ? cap(district) : (ruParts.length > 1 ? t(lang, ruParts.slice(1).join(' ')) : null) };
 }
@@ -153,7 +153,7 @@ export function formatMetric(m: Metric, lang: Lang = 'ru') {
   if (m.value == null) return '—';
   const unit = t(lang, (m.unit ?? '').replace(/^шт\.?$/, 'шт.').replace(/^мес\.?$/, 'мес.'));
   if (unit === '€') return `${nf.format(m.value)} €`;
-  if (unit === '%') return `${nf.format(m.value)}%`;
+  if (unit === '%') return fmtPct(lang, nf.format(m.value));
   return unit ? `${nf.format(m.value)} ${unit}` : nf.format(m.value);
 }
 export const euro = (n: number | null) => (n == null ? '—' : `${nf.format(n)} €`);
@@ -188,7 +188,11 @@ export function packageStats(k: PackageKey) {
   };
 }
 
-export const fmtRange = (r: Range | null, unit = '') => (!r ? '—' : r.min === r.max ? `${nf.format(r.min)}${unit}` : `${nf.format(r.min)}–${nf.format(r.max)}${unit}`);
+export const fmtRange = (r: Range | null, unit = '', lang: Lang = 'ru') => {
+  if (!r) return '—';
+  const body = r.min === r.max ? nf.format(r.min) : `${nf.format(r.min)}–${nf.format(r.max)}`;
+  return unit === '%' ? fmtPct(lang, body) : `${body}${unit}`;
+};
 export const eurShort = (n: number, lang: Lang = 'ru') => (n >= 1_000_000
   ? t(lang, '{n} млн €', { n: (n / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 2 }) })
   : t(lang, '{n} тыс. €', { n: Math.round(n / 1000).toLocaleString('ru-RU') }));
@@ -199,7 +203,7 @@ export function packageFacts(k: PackageKey, lang: Lang = 'ru'): { icon: string; 
   const tr = (s: string, v?: Record<string, string | number>) => t(lang, s, v);
   const entry = { icon: 'coins', label: tr('Вход'), value: st.entry ? tr('от {sum}', { sum: eurShort(st.entry.min, lang) }) : '—' };
   if (k === 'rental') return [
-    { icon: 'chart', label: tr('Доходность'), value: tr('{range} в год', { range: fmtRange(st.rentYield, '%') }) },
+    { icon: 'chart', label: tr('Доходность'), value: tr('{range} в год', { range: fmtRange(st.rentYield, '%', lang) }) },
     { icon: 'shield', label: tr('Гарантия аренды'), value: tr('{range} лет', { range: fmtRange(st.guaranteeYears) }) },
     entry,
   ];
@@ -209,7 +213,7 @@ export function packageFacts(k: PackageKey, lang: Lang = 'ru'): { icon: string; 
     entry,
   ];
   return [
-    { icon: 'chart', label: tr('ROI за цикл'), value: fmtRange(st.roi, '%') },
+    { icon: 'chart', label: tr('ROI за цикл'), value: fmtRange(st.roi, '%', lang) },
     { icon: 'calendar', label: tr('Цикл проекта'), value: tr('{range} мес.', { range: fmtRange(st.paybackMonths) }) },
     entry,
   ];

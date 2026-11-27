@@ -8,11 +8,12 @@ import LeadSection from '../../components/LeadSection.astro';
 import htmlRu from '../../content/pages/open-company.html?raw';
 import htmlEn from '../../content/pages/open-company.en.html?raw';
 import htmlSr from '../../content/pages/open-company.sr.html?raw';
+import htmlTr from '../../content/pages/open-company.tr.html?raw';
 import { langOf, useT } from '../../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
-const html = { ru: htmlRu, en: htmlEn, sr: htmlSr }[lang];
+const html = { ru: htmlRu, en: htmlEn, sr: htmlSr, tr: htmlTr }[lang];
 const toc = [...html.matchAll(/<h2>(.*?)<\/h2>/g)].map((m, i) => ({ id: `s${i + 1}`, label: m[1].replace(/<[^>]+>/g, '') }));
 let n = 0;
 const body = html.replace(/<h2>/g, () => `<h2 id="s${++n}">`);

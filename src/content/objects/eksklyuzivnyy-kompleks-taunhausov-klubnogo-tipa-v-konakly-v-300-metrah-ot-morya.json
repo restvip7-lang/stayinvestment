@@ -97,6 +97,14 @@
         "Zelena bašta - zelena površina"
       ],
       "descriptionHtml": "<p>Retki dragulj među investicionim projektima Alanje.</p><p>Ekskluzivni kompleks townhausova formata „iz apartmana — u bazen“. U kompleksu je predstavljeno 36 kuća u nizu sa rasporedom 2+1.</p><p>Pogled: svi apartmani imaju pogled na bazen, teritoriju kompleksa i more.</p><p>Projekat sa nestandardnim konceptom za nezaboravan odmor.</p><p>Luksuzna oblast sa razvijenoom infrastrukturom za život i odmor.</p><p>Visok potencijal za izdavanje.</p>"
+    },
+    "tr": {
+      "title": "Konaklı'da denize 300 metre mesafede, kulüp konseptli seçkin sıra ev projesi",
+      "location": "Alanya Konaklı",
+      "type": "Sıra ev",
+      "descriptionHtml": "<p>Alanya'daki yatırım projeleri arasında <strong>nadir bulunan bir inci</strong>.</p><p>“Daireden doğrudan havuza” konseptiyle tasarlanmış seçkin bir sıra ev projesi. Projede 2+1 planlı 36 sıra ev bulunuyor.</p><p>Manzara: tüm konutlardan havuz, site alanı ve deniz görünüyor.</p><p>Unutulmaz bir tatil için alışılmışın dışında bir konsepte sahip proje.</p><p>Yaşam ve tatil için gelişmiş altyapıya sahip lüks bir bölge.</p><p>Yüksek kira potansiyeli.</p>",
+      "infrastructure": [],
+      "translatedBy": "stayinvestment"
     }
   }
 }

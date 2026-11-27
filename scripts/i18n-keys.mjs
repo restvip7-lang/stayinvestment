@@ -1,5 +1,5 @@
 // Список фраз для перевода: все tr('…'), t(lang, '…'), T('…') в коде + тексты из данных (меню, пакеты, подписи).
-// Запуск: node scripts/i18n-keys.mjs  → печатает, сколько фраз без перевода в en.json / sr.json;
+// Запуск: node scripts/i18n-keys.mjs  → печатает, сколько фраз без перевода в en.json / sr.json / tr.json;
 //         node scripts/i18n-keys.mjs --missing en > missing.json — недостающие фразы.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -33,7 +33,7 @@ for (const f of readdirSync(ROOT + 'src/content/objects')) {
   const parts = (o.location ?? '').split(/\s+/).filter(Boolean);
   keys.add(parts[0] === 'Алания' ? 'Аланья' : parts[0]);
   if (parts.length > 1) keys.add(parts.slice(1).join(' '));
-  for (const lang of ['en', 'sr']) if (!o.i18n?.[lang]?.infrastructure?.length) o.infrastructure.forEach((x) => keys.add(x));
+  for (const lang of ['en', 'sr', 'tr']) if (!o.i18n?.[lang]?.infrastructure?.length) o.infrastructure.forEach((x) => keys.add(x));
 }
 // Офисы: страны, города, уточнения и подписи фото
 const off = readFileSync(ROOT + 'src/lib/offices.ts', 'utf8');
@@ -45,7 +45,7 @@ if (arg > 0) {
   const dict = JSON.parse(readFileSync(ROOT + `src/i18n/${lang}.json`, 'utf8'));
   console.log(JSON.stringify([...keys].filter((k) => !dict[k]), null, 1));
 } else {
-  for (const lang of ['en', 'sr']) {
+  for (const lang of ['en', 'sr', 'tr']) {
     const dict = JSON.parse(readFileSync(ROOT + `src/i18n/${lang}.json`, 'utf8'));
     console.log(`${lang}: фраз ${keys.size}, без перевода ${[...keys].filter((k) => !dict[k]).length}`);
   }

@@ -5,7 +5,7 @@
  * доход — стрелки вверх цвета пакета, этапы — подписанные полосы. Подсказки — [data-tip] (VizTooltip.astro).
  */
 import { PACKAGES, PACKAGE_ORDER, byPackage, pkgColor, type PackageKey } from '../lib/catalog';
-import { langOf, useT } from '../i18n';
+import { langOf, useT, fmtPct } from '../i18n';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -36,7 +36,7 @@ const lanes: { k: PackageKey; summary: string; bands: Band[]; events: Ev[] }[] =
     ],
     events: [
       { at: 0, kind: 'out', label: tr("Взнос {first}%", { first: r.first }), tip: tr("Первый взнос|{first}% стоимости при подписании договора", { first: r.first }) },
-      ...rentIncome.map((t, i) => ({ at: t, kind: 'in' as const, label: `+${r.yld}%`, tip: tr("+{yld}% стоимости|Арендный доход за {i1}-й год гарантии", { yld: r.yld, i1: i + 1 }) })),
+      ...rentIncome.map((t, i) => ({ at: t, kind: 'in' as const, label: fmtPct(lang, `+${r.yld}`), tip: tr("+{yld}% стоимости|Арендный доход за {i1}-й год гарантии", { yld: r.yld, i1: i + 1 }) })),
     ],
   },
   {
@@ -48,7 +48,7 @@ const lanes: { k: PackageKey; summary: string; bands: Band[]; events: Ev[] }[] =
     ],
     events: [
       { at: 0, kind: 'out', label: tr("Взнос {first}%", { first: s.first }), tip: tr("Первый взнос|{first}% стоимости лота", { first: s.first }) },
-      { at: sSale, kind: 'in', label: '+15–20%', tip: tr("+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома") },
+      { at: sSale, kind: 'in', label: fmtPct(lang, '+15–20'), tip: tr("+15–20% к вложенной сумме|Ориентир дохода при перепродаже после сдачи дома") },
     ],
   },
   {
@@ -60,7 +60,7 @@ const lanes: { k: PackageKey; summary: string; bands: Band[]; events: Ev[] }[] =
     ],
     events: [
       { at: 0, kind: 'out', label: tr("Вход 100%"), tip: tr("Вход в проект|Сумма доли вносится единовременно") },
-      { at: p.payback, kind: 'in', label: `+${p.roi}%`, tip: tr("ROI {roi}% за цикл|Медиана по проектам каталога; распределение прибыли по итогам продаж", { roi: p.roi }) },
+      { at: p.payback, kind: 'in', label: fmtPct(lang, `+${p.roi}`), tip: tr("ROI {roi}% за цикл|Медиана по проектам каталога; распределение прибыли по итогам продаж", { roi: p.roi }) },
     ],
   },
 ];

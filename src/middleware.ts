@@ -1,7 +1,7 @@
 /**
  * - редиректы со старых адресов stayinvestment.com (src/lib/redirects.ts), в том числе старых /en/ и /sr/;
  * - единый вид адреса: строчные буквы, слеш на конце;
- * - языки: /en/… и /sr/… отдают ту же страницу с Astro.locals.lang (src/i18n), внутренние ссылки
+ * - языки: /en/…, /sr/… и /tr/… отдают ту же страницу с Astro.locals.lang (src/i18n), внутренние ссылки
  *   в HTML дополняются префиксом языка; /ru/… → 301 на адрес без префикса (так переключатель ведёт на русский);
  * - кэш страниц на CDN Vercel: 10 минут свежие + stale-while-revalidate (как в stay.com.tr),
  *   сброс по тегу через /api/revalidate/; на своём сервере тот же заголовок CDN-Cache-Control понимает Cloudflare;
@@ -15,7 +15,7 @@ const STATIC = /^\/(_astro|_vercel|_image|img\/|images|media|fonts|favicon|robot
 const redirect = (to: string, status = 301) => new Response(null, { status, headers: { location: to, 'cache-control': 'public, max-age=3600' } });
 
 /** Ссылки, которые не переводятся: файлы, API, уже с префиксом языка. */
-const LOCAL_LINK = /(\s(?:href|action)=")\/(?!\/|en\/|sr\/|ru\/|_astro|_vercel|img\/|images\/|media\/|fonts\/|api\/|favicon|robots\.txt|sitemap|news\/rss\.xml)/g;
+const LOCAL_LINK = /(\s(?:href|action)=")\/(?!\/|en\/|sr\/|tr\/|ru\/|_astro|_vercel|img\/|images\/|media\/|fonts\/|api\/|favicon|robots\.txt|sitemap|news\/rss\.xml)/g;
 
 export const onRequest = defineMiddleware(async (ctx, next) => {
   const url = ctx.url;

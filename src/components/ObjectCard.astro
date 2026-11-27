@@ -2,7 +2,7 @@
 import Img from './Img.astro';
 import Icon from './Icon.astro';
 import { PACKAGES, localizeObject, objectUrl, entryPrice, yieldOf, placeOf, euro, type InvestObject } from '../lib/catalog';
-import { langOf, useT, LANG_META } from '../i18n';
+import { langOf, useT, LANG_META, fmtPct } from '../i18n';
 interface Props { o: InvestObject; priority?: boolean; /** порядковый номер для очерёдного появления */ reveal?: number }
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -39,10 +39,10 @@ const guarantee = o.metrics.find((m) => m.label === "Срок гарантии �
       {y && (
         <div>
           <dt class="text-muted">{y.label}</dt>
-          <dd class="text-[17px] font-extrabold tabular text-sea">{y.value}%</dd>
+          <dd class="text-[17px] font-extrabold tabular text-sea">{fmtPct(lang, y.value)}</dd>
         </div>
       )}
-      {firstPay != null && <div><dt class="text-muted">{tr("Первый взнос")}</dt><dd class="font-bold tabular">{firstPay}%</dd></div>}
+      {firstPay != null && <div><dt class="text-muted">{tr("Первый взнос")}</dt><dd class="font-bold tabular">{fmtPct(lang, firstPay)}</dd></div>}
       {guarantee ? <div><dt class="text-muted">{tr("Гарантия аренды")}</dt><dd class="font-bold tabular">{guarantee.value} {tr(guarantee.unit ?? '')}</dd></div>
         : term && <div><dt class="text-muted">{/Окупаемость/.test(term.label) ? tr("Окупаемость") : tr("Рассрочка")}</dt><dd class="font-bold tabular">{tr("{value} мес.", { value: term.value ?? "" })}</dd></div>}
     </dl>

@@ -35,17 +35,18 @@ npm run check      # проверка типов
 
 ## Языки
 
-Русский (основной, без префикса), английский `/en/…` и сербский латиницей `/sr/…` — подробности в [src/i18n/index.ts](src/i18n/index.ts).
+Русский (основной, без префикса), английский `/en/…`, сербский латиницей `/sr/…` и турецкий `/tr/…` — подробности в [src/i18n/index.ts](src/i18n/index.ts).
 
 | Что | Где |
 |---|---|
-| Тексты интерфейса и страниц | `tr('Русская фраза')` в коде → перевод в `src/i18n/en.json`, `src/i18n/sr.json` (ключ — русский текст) |
+| Тексты интерфейса и страниц | `tr('Русская фраза')` в коде → перевод в `src/i18n/en.json`, `src/i18n/sr.json`, `src/i18n/tr.json` (ключ — русский текст) |
 | Проверка, что ничего не забыто | `node scripts/i18n-keys.mjs` — сколько фраз без перевода; `--missing en` — список |
-| Тексты разделов каталога | `src/content/package-texts.ts` (+ `.en.ts`, `.sr.ts`) |
-| Инструкция «Как открыть компанию» | `src/content/pages/open-company.html` (+ `.en.html`, `.sr.html`) |
+| Тексты разделов каталога | `src/content/package-texts.ts` (+ `.en.ts`, `.sr.ts`, `.tr.ts`) |
+| Инструкция «Как открыть компанию» | `src/content/pages/open-company.html` (+ `.en.html`, `.sr.html`, `.tr.html`) |
 | Объекты и старые статьи | поле `i18n` в JSON — переводы со старого сайта (`npm run import-legacy-i18n`): объекты — все 48 на en и sr, статьи — 9 на en |
-| Архивные статьи, переведённые нами | 5 актуальных статей на en, 6 на sr — исходники в `src/content/legacy-news-i18n/`, применить: `python3 scripts/apply-archive-translations.py src/content/legacy-news-i18n` (после `npm run import-legacy` — обязательно) |
-| Свежие новости | админка Stay Property отдаёт ru/en/sr сама |
+| Объекты на турецком | перевод наш (на старом сайте турецкого не было): `src/content/objects-i18n/tr.json`, применить: `python3 scripts/apply-object-translations.py src/content/objects-i18n` (после `npm run import-legacy` — обязательно) |
+| Архивные статьи, переведённые нами | 5 актуальных статей на en, 6 на sr и tr — исходники в `src/content/legacy-news-i18n/`, применить: `python3 scripts/apply-archive-translations.py src/content/legacy-news-i18n` (после `npm run import-legacy` — обязательно) |
+| Свежие новости | админка Stay Property отдаёт ru/en/sr/tr сама |
 
 Статьи архива без перевода и устаревшие (`"outdated": true` в JSON — новости с датами, законы, цены прошлых лет) на английской и сербской версии в ленте не показываются; по прямой ссылке открываются по-русски с пометкой и `noindex`.
 Старые адреса `/en/…` и `/sr/…` перенаправляются на новые (`src/lib/redirects.ts`, `src/content/legacy-redirects-i18n.json`).

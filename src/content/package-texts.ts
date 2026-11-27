@@ -105,10 +105,11 @@ export const BUSINESS_PAGE: SectionText = {
 import type { Lang } from '../i18n';
 import { PACKAGE_PAGES_EN, BUSINESS_PAGE_EN } from './package-texts.en';
 import { PACKAGE_PAGES_SR, BUSINESS_PAGE_SR } from './package-texts.sr';
+import { PACKAGE_PAGES_TR, BUSINESS_PAGE_TR } from './package-texts.tr';
 
 /** Текст раздела каталога на нужном языке. */
 export function sectionText(lang: Lang, k: PackageKey | 'business'): SectionText {
-  const pages = { ru: PACKAGE_PAGES, en: PACKAGE_PAGES_EN, sr: PACKAGE_PAGES_SR }[lang];
-  const business = { ru: BUSINESS_PAGE, en: BUSINESS_PAGE_EN, sr: BUSINESS_PAGE_SR }[lang];
+  const pages = { ru: PACKAGE_PAGES, en: PACKAGE_PAGES_EN, sr: PACKAGE_PAGES_SR, tr: PACKAGE_PAGES_TR }[lang];
+  const business = { ru: BUSINESS_PAGE, en: BUSINESS_PAGE_EN, sr: BUSINESS_PAGE_SR, tr: BUSINESS_PAGE_TR }[lang];
   return k === 'business' ? business : pages[k];
 }

@@ -116,7 +116,7 @@ function fromApi(items: RawContent[], lang: Lang = 'ru'): NewsItem[] {
     const tr = x.translations ?? {};
     let ru = tr[lang];
     // Перевод не сделан: в поле языка лежит турецкий оригинал — на этом языке новость не показываем
-    if (lang !== 'ru' && ru?.title && tr.tr?.title && ru.title.trim() === tr.tr.title.trim()) continue;
+    if (lang !== 'ru' && lang !== 'tr' && ru?.title && tr.tr?.title && ru.title.trim() === tr.tr.title.trim()) continue;
     if (lang === 'sr' && ru) ru = { title: srLatin(ru.title ?? ''), excerpt: srLatin(ru.excerpt ?? ''), body: srLatin(ru.body ?? ''), body_html: srLatin(ru.body_html ?? '') };
     const title = (ru?.title || (lang === 'ru' ? x.title : '') || '').trim();
     if (!title || (lang === 'ru' && !/[а-яё]/i.test(title))) continue; // только материалы с текстом на этом языке

@@ -5,7 +5,7 @@ import { t, localePath, LANG_META } from '../../i18n';
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-/** Лента на языке раздела: /news/rss.xml, /en/news/rss.xml, /sr/news/rss.xml. */
+/** Лента на языке раздела: /news/rss.xml, /en/news/rss.xml, /sr/news/rss.xml, /tr/news/rss.xml. */
 export const GET: APIRoute = async ({ locals }) => {
   const lang = locals.lang ?? 'ru';
   const abs = (p: string) => `${SITE.url}${localePath(lang, p)}`;

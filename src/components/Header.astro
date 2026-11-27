@@ -16,18 +16,30 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
     <div class="container-x flex h-[64px] items-center gap-4 lg:h-[68px]">
       <Logo class="h-6 md:h-7" />
       <div class="ml-auto flex items-center gap-2 sm:gap-3">
-        <nav class="flex items-center rounded-full border border-line-2 bg-surface p-0.5 text-[12.5px] font-semibold" aria-label={tr("Язык сайта")}>
+        <!-- Узкий экран: четыре языка в ряд не помещаются — показываем текущий, остальные в выпадающем списке -->
+        <details class="lang-drop relative min-[480px]:hidden" data-lang-drop>
+          <summary class="flex h-9 cursor-pointer list-none items-center gap-1 rounded-full border border-line-2 bg-surface pl-3 pr-2 text-[12.5px] font-semibold [&::-webkit-details-marker]:hidden" aria-label={tr("Язык сайта")}>
+            {LANG_META[lang].label}<Icon name="chevron" size={14} stroke={2.2} class="lang-drop-chevron transition-transform duration-200" />
+          </summary>
+          <ul class="absolute right-0 top-[calc(100%+6px)] z-50 w-36 rounded-2xl border border-line bg-surface p-1.5 text-[14px] font-semibold shadow-lift">
+            {LANGS.map((l) => (
+              <li><a href={langHref(l)} hreflang={LANG_META[l].hreflang} lang={LANG_META[l].hreflang} aria-current={l === lang ? 'true' : undefined}
+                class:list={['flex items-center justify-between rounded-xl px-3 py-2.5', l === lang ? 'bg-ink text-white' : 'text-ink hover:bg-sand']}>{LANG_META[l].name}<span class="text-[11.5px] opacity-60">{LANG_META[l].label}</span></a></li>
+            ))}
+          </ul>
+        </details>
+        <nav class="hidden items-center rounded-full border border-line-2 bg-surface p-0.5 text-[12.5px] font-semibold min-[480px]:flex" aria-label={tr("Язык сайта")}>
           {LANGS.map((l) => (
             <a href={langHref(l)} hreflang={LANG_META[l].hreflang} lang={LANG_META[l].hreflang} aria-current={l === lang ? 'true' : undefined} title={LANG_META[l].name}
               class:list={['grid h-8 min-w-9 place-items-center rounded-full px-2 transition-colors', l === lang ? 'bg-ink text-white' : 'text-ink-2 hover:text-ink']}>{LANG_META[l].label}</a>
           ))}
         </nav>
-        <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-1 text-[15px] font-bold tabular hover:text-brand-2 md:flex">
+        <a href={SITE.phoneHref} class="hidden items-center gap-2 whitespace-nowrap px-1 text-[15px] font-bold tabular hover:text-brand-2 lg:flex">
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#e30a17" /><circle cx="8.2" cy="10" r="4.6" fill="#fff" /><circle cx="9.4" cy="10" r="3.7" fill="#e30a17" /><path d="m13.6 10 2.9-.95-1.8 2.45V8.5l1.8 2.45z" fill="#fff" /></svg>
           {SITE.phone}
         </a>
         <a href={SITE.whatsapp} class="btn btn-ghost btn-sm hidden sm:inline-flex" target="_blank" rel="noopener" aria-label={tr("Написать в WhatsApp")}><Icon name="whatsapp" size={18} class="text-[#1a9e4b]" />WhatsApp</a>
-        <button type="button" class="btn btn-primary btn-sm hidden md:inline-flex" data-lead-open data-lead-title={tr("Обратный звонок")} data-lead-source="header">{tr("Обратный звонок")}<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
+        <button type="button" class="btn btn-primary btn-sm hidden lg:inline-flex" data-lead-open data-lead-title={tr("Обратный звонок")} data-lead-source="header">{tr("Обратный звонок")}<Icon name="chevron" size={18} stroke={2.2} class="-rotate-90" /></button>
         <button type="button" class="group/menu relative grid h-11 w-11 place-items-center rounded-xl border border-line-2 bg-surface lg:hidden" aria-label={tr("Меню")} aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
           <!-- Иконки сменяются через opacity+scale+blur (контекстная анимация иконок) -->
           <Icon name="menu" size={22} class="col-start-1 row-start-1 transition-[opacity,scale,filter] duration-200 group-aria-expanded/menu:scale-50 group-aria-expanded/menu:opacity-0 group-aria-expanded/menu:blur-[2px] motion-reduce:transition-none" />
@@ -83,7 +95,18 @@ const active = (href: string) => href !== '/' && path.startsWith(href.replace(/\
     </nav>
   </div>
 </header>
+<style>
+  .lang-drop[open] .lang-drop-chevron { rotate: 180deg; }
+</style>
+
 <script>
+  // Список языков на телефоне закрывается по клику мимо и по Esc
+  const langDrop = document.querySelector<HTMLDetailsElement>('[data-lang-drop]');
+  if (langDrop) {
+    document.addEventListener('click', (e) => { if (langDrop.open && !langDrop.contains(e.target as Node)) langDrop.open = false; });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') langDrop.open = false; });
+  }
+
   const btn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const menu = document.querySelector<HTMLElement>('[data-menu]');
   const setOpen = (open: boolean) => {
