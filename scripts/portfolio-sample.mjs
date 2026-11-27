@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Пробная выгрузка инвестиционных объектов из Stay Portfolio API (https://portfolio.stayrepo.com/ws/).
+ * Пробная выгрузка инвестиционных объектов из API «Портфолио» Stay Property (https://adminer.stayproperty.com/ws/;
+ * прежний адрес portfolio.stayrepo.com устарел). Другой адрес можно задать переменной STAY_PORTFOLIO_BASE.
  * Проверяет доступ и кладёт несколько объектов каждого пакета в src/content/fixtures/portfolio-sample.json.
  * Сайт этот файл пока не использует — каталог по-прежнему в src/content/objects (см. README, «Откуда берутся данные»).
  *
@@ -15,7 +16,7 @@
  */
 import { writeFile, mkdir } from 'node:fs/promises';
 
-const BASE = (process.env.STAY_PORTFOLIO_BASE ?? 'https://portfolio.stayrepo.com/ws').replace(/\/$/, '');
+const BASE = (process.env.STAY_PORTFOLIO_BASE ?? 'https://adminer.stayproperty.com/ws').replace(/\/$/, '');
 const PER_PACKAGE = Number(process.argv[2]) || 2;
 const PACKAGES = { 169: 'rental', 170: 'startovye', 171: 'partnerskye', 172: 'biznes-investitsii' };
 const TAX = { type: '1', location: '2', amenities: '3', currency: '4', package: '11', layouts: '15', offer: '16' };
