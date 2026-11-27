@@ -101,5 +101,6 @@ npm run check      # проверка типов
   в `dev`, с компьютера с доступом `staymng-bit`, без перезаписи истории:
   `git push https://staymng-bit@github.com/stayproperty-org/stayinvestment.git <коммит>:refs/heads/dev`.
   Если в `dev` появились чужие коммиты, GitHub откажет — сначала их нужно влить в отправляемую версию.
+  То же самое одним запуском на Windows — `deploy/push-to-work.bat`: забирает свежую версию, отправляет в `dev` и открывает страницу запроса `dev` → `main`.
 - То же самое умеет GitHub Actions → «Отправить в рабочий репозиторий» (`.github/workflows/push-to-work-repo.yml`),
   если задан секрет `ORG_PUSH_TOKEN` (fine-grained токен `staymng-bit`, Contents: Read and write).
