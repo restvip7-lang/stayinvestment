@@ -1,7 +1,7 @@
 ---
 /**
  * Контакты. Данные офисов — src/lib/offices.ts (со страницы stayproperty.com/contacts/).
- * Центр страницы — тёмный «атлас офисов»: сверху города с запада на восток с местным временем,
+ * Центр страницы — светло-фиолетовый «атлас офисов»: сверху города с запада на восток с местным временем,
  * слева страны, справа офисы выбранной страны. По умолчанию открыт главный офис в Аланье.
  * Адрес выбранного офиса живёт в якоре (#istanbul) — ссылкой на конкретный офис можно поделиться.
  */
@@ -12,6 +12,7 @@ import LeadForm from '../../components/LeadForm.astro';
 import { SITE, TEAM } from '../../lib/site';
 import { OFFICE_COUNTRIES, OFFICES, OPEN_OFFICES, OFFICE_LINKS, telHref, dms, type Office } from '../../lib/offices';
 import { langOf, useT } from '../../i18n';
+import { imgUrl } from '../../lib/img';
 
 const lang = langOf(Astro.locals);
 const tr = useT(lang);
@@ -81,12 +82,12 @@ const ld = {
 
   <!-- Атлас офисов -->
   <section class="container-x" aria-labelledby="atlas-title">
-    <div class="atlas on-dark relative isolate overflow-hidden rounded-[28px] bg-ink text-white md:rounded-[44px]" data-atlas data-default={first.id} data-reveal="scale">
+    <div class="atlas relative isolate overflow-hidden rounded-[28px] bg-lavender-2 text-ink md:rounded-[44px]" data-atlas data-default={first.id} data-reveal="scale">
       <div class="atlas-lines pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
       <div class="px-5 pb-6 pt-7 sm:px-8 md:px-12 md:pb-12 md:pt-11">
         <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 id="atlas-title" class="text-[13px] font-semibold uppercase tracking-[.22em] text-gold [font-family:var(--font-sans)]">{tr("Атлас офисов")}</h2>
-          <p class="text-[13.5px] text-white/60">{tr("{n} офисов · {c} стран · Лондон — скоро", { n: OPEN_OFFICES.length, c: openCountries.length })}</p>
+          <h2 id="atlas-title" class="text-[13px] font-semibold uppercase tracking-[.22em] text-brand-2 [font-family:var(--font-sans)]">{tr("Атлас офисов")}</h2>
+          <p class="text-[13.5px] text-ink-2">{tr("{n} офисов · {c} стран · Лондон — скоро", { n: OPEN_OFFICES.length, c: openCountries.length })}</p>
         </div>
 
         <!-- Меридиан: города с запада на восток, над каждым — местное время -->
@@ -95,11 +96,11 @@ const ld = {
             {meridian.map((o) => (
               <li class="relative">
                 <button type="button" class="meridian-stop group relative flex w-full flex-col items-center gap-3 pb-1 pt-0 text-center outline-offset-4" data-office-go={o.id} aria-pressed={o.id === first.id ? 'true' : 'false'}>
-                  <span class="text-[13px] tabular text-white/60 transition-colors group-aria-pressed:text-white" data-tz={o.tz}>&nbsp;</span>
+                  <span class="text-[13px] tabular text-ink-2 transition-colors group-aria-pressed:font-semibold group-aria-pressed:text-ink" data-tz={o.tz}>&nbsp;</span>
                   <span class="meridian-dot" aria-hidden="true"></span>
                   <span class="block">
-                    <span class="block whitespace-nowrap text-[14px] font-semibold text-white/70 transition-colors group-hover:text-white group-aria-pressed:text-white">{tr(o.city)}</span>
-                    <span class="mt-0.5 block text-[11.5px] tracking-[.08em] text-white/40 tabular">{o.soon ? tr("скоро") : lon(o.lng!)}</span>
+                    <span class="block whitespace-nowrap text-[14px] font-semibold text-ink-2 transition-colors group-hover:text-ink group-aria-pressed:text-brand-2">{tr(o.city)}</span>
+                    <span class="mt-0.5 block text-[11.5px] tracking-[.08em] text-muted tabular">{o.soon ? tr("скоро") : lon(o.lng!)}</span>
                   </span>
                 </button>
               </li>
@@ -107,19 +108,19 @@ const ld = {
           </ol>
         </div>
 
-        <div class="mt-8 grid grid-cols-1 gap-8 border-t border-white/10 pt-8 lg:mt-10 lg:grid-cols-[280px_1fr] lg:gap-12 lg:pt-10">
+        <div class="mt-8 grid grid-cols-1 gap-8 border-t border-ink/10 pt-8 lg:mt-10 lg:grid-cols-[280px_1fr] lg:gap-12 lg:pt-10">
           <!-- Страны -->
           <nav aria-label={tr("Страны")} class="-mx-5 overflow-x-auto px-5 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:overflow-visible lg:px-0">
             <ol class="flex gap-2 lg:block lg:space-y-0">
               {OFFICE_COUNTRIES.map((c, i) => (
-                <li class="shrink-0 lg:border-b lg:border-white/10 lg:first:border-t">
-                  <button type="button" class="country-btn group flex w-full items-baseline gap-3 rounded-full border border-white/15 px-4 py-2.5 text-left outline-offset-4 lg:rounded-none lg:border-0 lg:px-0 lg:py-4" data-country-go={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>
-                    <span class="hidden w-7 text-[12px] tabular text-gold lg:block" aria-hidden="true">{pad(i + 1)}</span>
+                <li class="shrink-0 lg:border-b lg:border-ink/10 lg:first:border-t">
+                  <button type="button" class="country-btn group flex w-full items-baseline gap-3 rounded-full border border-ink/15 px-4 py-2.5 text-left outline-offset-4 lg:rounded-none lg:border-0 lg:px-0 lg:py-4" data-country-go={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+                    <span class="hidden w-7 text-[12px] tabular text-brand-2 lg:block" aria-hidden="true">{pad(i + 1)}</span>
                     <span class="min-w-0 flex-1">
-                      <span class="block whitespace-nowrap font-[family-name:var(--font-display)] text-[13px] text-white/60 transition-colors group-hover:text-white group-aria-pressed:text-white lg:whitespace-normal lg:text-[19px] lg:leading-tight">{tr(c.name)}</span>
-                      <span class="mt-1 hidden text-[13px] text-white/45 lg:block">{c.offices.map((o) => tr(o.city)).join(' · ')}</span>
+                      <span class="block whitespace-nowrap font-[family-name:var(--font-display)] text-[13px] text-ink-2 transition-colors group-hover:text-ink group-aria-pressed:text-ink lg:whitespace-normal lg:text-[19px] lg:leading-tight">{tr(c.name)}</span>
+                      <span class="mt-1 hidden text-[13px] text-muted lg:block">{c.offices.map((o) => tr(o.city)).join(' · ')}</span>
                     </span>
-                    <span class="hidden text-[12px] tabular text-white/40 lg:block" aria-hidden="true">{c.offices.some((o) => o.soon) ? '—' : c.offices.length}</span>
+                    <span class="hidden text-[12px] tabular text-muted lg:block" aria-hidden="true">{c.offices.some((o) => o.soon) ? '—' : c.offices.length}</span>
                   </button>
                 </li>
               ))}
@@ -133,7 +134,7 @@ const ld = {
                 {c.offices.length > 1 && (
                   <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label={tr("Офисы: {country}", { country: tr(c.name) })}>
                     {c.offices.map((o, oi) => (
-                      <button type="button" class="office-btn rounded-full border border-white/20 px-4 py-2 text-[14px] font-medium text-white/70 outline-offset-4 transition-colors hover:border-white/60 hover:text-white aria-pressed:border-white aria-pressed:bg-white aria-pressed:text-ink" data-office-go={o.id} aria-pressed={ci === 0 && oi === 0 ? 'true' : 'false'}>
+                      <button type="button" class="office-btn rounded-full border border-ink/20 px-4 py-2 text-[14px] font-medium text-ink-2 outline-offset-4 transition-colors hover:border-ink/60 hover:text-ink aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-white" data-office-go={o.id} aria-pressed={ci === 0 && oi === 0 ? 'true' : 'false'}>
                         {tr(o.city)}{o.hq && <span class="ml-2 text-[11px] uppercase tracking-[.14em] opacity-60">{tr("главный")}</span>}
                       </button>
                     ))}
@@ -145,48 +146,53 @@ const ld = {
                       <!-- Фото офиса или типографская плашка, если фото нет -->
                       {o.photo ? (
                         <figure class="relative self-start overflow-hidden rounded-[20px] md:rounded-[26px] xl:col-start-1 xl:row-start-1">
-                          <Img src={o.photo} alt={tr(o.photoAlt ?? o.city)} class="aspect-[4/3] w-full" width={960} height={720} priority={ci === 0 && oi === 0} sizes="(min-width: 1280px) 460px, (min-width: 1024px) 60vw, 100vw" />
-                          <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3.5 pt-12 text-[12.5px] tabular text-white/90">
+                          <button type="button" class="photo-zoom group/z block w-full cursor-zoom-in" data-photo-zoom={imgUrl(o.photo, 1600)} data-photo-alt={tr(o.photoAlt ?? o.city)} aria-label={tr("Открыть фото на весь экран")}>
+                            <Img src={o.photo} alt={tr(o.photoAlt ?? o.city)} class="aspect-[4/3] w-full transition-[scale] duration-500 ease-[cubic-bezier(.165,.84,.44,1)] group-hover/z:scale-[1.03]" width={960} height={720} priority={ci === 0 && oi === 0} sizes="(min-width: 1280px) 460px, (min-width: 1024px) 60vw, 100vw" />
+                            <span class="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full bg-white/95 text-ink shadow-card transition-[scale] duration-200 group-hover/z:scale-105" aria-hidden="true">
+                              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></svg>
+                            </span>
+                          </button>
+                          <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3.5 pt-12 text-[12.5px] tabular text-white/90">
                             <span>{dms(o.lat!, o.lng!)}</span>
                             {o.opened && <span>{tr("с {year} года", { year: o.opened })}</span>}
                           </figcaption>
                         </figure>
                       ) : (
                         <div class="plate relative flex aspect-[4/3] flex-col justify-between self-start overflow-hidden rounded-[20px] p-6 md:rounded-[26px] md:p-8 xl:col-start-1 xl:row-start-1" aria-hidden="true">
-                          <span class="text-[12.5px] tabular text-gold">{o.soon ? tr("Скоро открытие") : dms(o.lat!, o.lng!)}</span>
+                          <span class="text-[12.5px] tabular text-brand-2">{o.soon ? tr("Скоро открытие") : dms(o.lat!, o.lng!)}</span>
                           <span class="plate-word font-[family-name:var(--font-display)]" style={`--n:${tr(o.city).length}`}>{tr(o.city)}</span>
-                          <span class="text-[12.5px] tabular text-white/50">{o.opened ? tr("с {year} года", { year: o.opened }) : tr(c.name)}</span>
+                          <span class="text-[12.5px] tabular text-muted">{o.opened ? tr("с {year} года", { year: o.opened }) : tr(c.name)}</span>
                         </div>
                       )}
 
                       <div class="min-w-0 xl:col-start-2 xl:row-span-2 xl:row-start-1">
-                        <p class="text-[12px] font-semibold uppercase tracking-[.2em] text-gold">{o.hq ? tr("Главный офис") : o.soon ? tr("Скоро открытие") : tr(c.name)}</p>
-                        <h3 class="mt-3 font-[family-name:var(--font-display)] text-[30px] font-normal leading-[1.05] sm:text-[38px]">{tr(o.city)}{o.note && !o.hq && !o.soon && <span class="ml-3 align-middle font-[family-name:var(--font-sans)] text-[14px] text-white/50">{tr(o.note)}</span>}</h3>
-                        <p class="mt-4 text-[15px] leading-relaxed text-white/70">
+                        <p class="text-[12px] font-semibold uppercase tracking-[.2em] text-brand-2">{o.hq ? tr("Главный офис") : o.soon ? tr("Скоро открытие") : tr(c.name)}</p>
+                        <h3 class="mt-3 font-[family-name:var(--font-display)] text-[30px] font-normal leading-[1.05] sm:text-[38px]">{tr(o.city)}{o.note && !o.hq && !o.soon && <span class="ml-3 align-middle font-[family-name:var(--font-sans)] text-[14px] text-muted">{tr(o.note)}</span>}</h3>
+                        <p class="mt-4 text-[15px] leading-relaxed text-ink-2">
                           {o.soon
                             ? tr("Готовим к открытию новый офис в Лондоне. Пока консультируем онлайн — позвоните или напишите в главный офис.")
                             : o.hq
                               ? tr("Главный офис Stay Property работает с {year} года. Здесь менеджеры по продажам и отдел послепродажного сервиса.", { year: o.opened! })
                               : tr("Офис Stay Property открыт в {year} году. Консультация, презентация объектов, договор и оплата сделки — на месте.", { year: o.opened! })}
                         </p>
-                        <dl class="mt-6 divide-y divide-white/10 border-y border-white/10 text-[15px]">
+                        <dl class="mt-6 divide-y divide-ink/10 border-y border-ink/10 text-[15px]">
                           {o.address && (
                             <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
-                              <dt class="text-white/50">{tr("Адрес")}</dt>
+                              <dt class="text-muted">{tr("Адрес")}</dt>
                               <dd class="leading-snug">{addr(o)}</dd>
                             </div>
                           )}
                           <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
-                            <dt class="text-white/50">{tr("Телефон")}</dt>
-                            <dd><a href={telHref(o.phone)} class="whitespace-nowrap font-semibold tabular hover:text-gold">{o.phone}</a></dd>
+                            <dt class="text-muted">{tr("Телефон")}</dt>
+                            <dd><a href={telHref(o.phone)} class="whitespace-nowrap font-semibold tabular hover:text-brand-2">{o.phone}</a></dd>
                           </div>
                           <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
-                            <dt class="text-white/50">E-mail</dt>
-                            <dd class="min-w-0"><a href={`mailto:${o.email}`} class="break-words hover:text-gold">{o.email}</a></dd>
+                            <dt class="text-muted">E-mail</dt>
+                            <dd class="min-w-0"><a href={`mailto:${o.email}`} class="break-words hover:text-brand-2">{o.email}</a></dd>
                           </div>
                           <div class="grid grid-cols-[92px_1fr] gap-4 py-3.5">
-                            <dt class="text-white/50">{tr("Сейчас")}</dt>
-                            <dd class="tabular"><span data-tz={o.tz}>—</span> <span class="text-white/50">· {tr("местное время")}</span></dd>
+                            <dt class="text-muted">{tr("Сейчас")}</dt>
+                            <dd class="tabular"><span data-tz={o.tz}>—</span> <span class="text-muted">· {tr("местное время")}</span></dd>
                           </div>
                         </dl>
                         <div class="mt-6 flex flex-wrap gap-2.5">
@@ -198,10 +204,10 @@ const ld = {
 
                       {!o.soon && (
                         <div class="flex min-w-0 flex-col xl:col-start-1 xl:row-start-2">
-                          <div class="atlas-map relative h-[260px] overflow-hidden rounded-[20px] bg-white/5 md:h-[320px] md:rounded-[26px] xl:h-auto xl:min-h-[220px] xl:flex-1">
+                          <div class="atlas-map relative h-[260px] overflow-hidden rounded-[20px] bg-white/60 md:h-[320px] md:rounded-[26px] xl:h-auto xl:min-h-[220px] xl:flex-1">
                             <iframe title={tr("Офис в городе {city} на карте", { city: tr(o.city) })} src={ci === 0 && oi === 0 ? mapEmbed(o) : undefined} data-src={mapEmbed(o)} loading="lazy" class="absolute inset-0 block h-full w-full border-0" referrerpolicy="no-referrer-when-downgrade"></iframe>
                           </div>
-                          <a href={mapLink(o)} target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 self-start text-[13.5px] text-white/60 underline decoration-white/25 underline-offset-4 hover:text-white">{tr("Открыть в Google Картах")} <span aria-hidden="true">↗</span></a>
+                          <a href={mapLink(o)} target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 self-start text-[13.5px] text-ink-2 underline decoration-ink/25 underline-offset-4 hover:text-brand-2">{tr("Открыть в Google Картах")} <span aria-hidden="true">↗</span></a>
                         </div>
                       )}
                     </div>
@@ -213,6 +219,13 @@ const ld = {
         </div>
       </div>
     </div>
+    <!-- Фото офиса на весь экран -->
+    <dialog class="gallery-box m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0" data-photo-box aria-label={tr("Фото офиса")}>
+      <div class="relative grid h-full w-full place-items-center p-4 sm:p-10" data-photo-stage>
+        <img alt="" width="1600" height="1200" class="h-auto max-h-full w-auto max-w-full rounded-[12px] object-contain shadow-lift" data-photo-img />
+        <button type="button" class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-card" data-photo-close aria-label={tr("Закрыть")}><Icon name="close" size={22} /></button>
+      </div>
+    </dialog>
   </section>
 
   <!-- Что можно сделать в офисе -->
@@ -265,36 +278,36 @@ const ld = {
 </Base>
 
 <style>
-  /* Фон атласа: тонкие «меридианы» и мягкое золотое свечение — без фиолетовых градиентов */
+  /* Фон атласа: светло-фиолетовая панель в цветах сайта — тонкие «меридианы» и мягкое фирменное свечение */
   .atlas-lines {
     background:
-      radial-gradient(60% 55% at 88% -5%, rgb(188 144 110 / .22), transparent 70%),
-      radial-gradient(45% 40% at 0% 100%, rgb(117 75 233 / .14), transparent 70%),
-      repeating-linear-gradient(90deg, rgb(255 255 255 / .045) 0 1px, transparent 1px 72px);
+      radial-gradient(60% 55% at 88% -5%, rgb(117 75 233 / .2), transparent 70%),
+      radial-gradient(45% 40% at 0% 100%, rgb(216 215 255 / .95), transparent 70%),
+      repeating-linear-gradient(90deg, rgb(92 50 205 / .07) 0 1px, transparent 1px 72px);
   }
   /* Линия меридиана проходит через точки городов */
-  .meridian::before { content: ""; position: absolute; left: 0; right: 0; top: 37px; height: 1px; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .28) 6%, rgb(255 255 255 / .28) 94%, transparent); }
-  .meridian-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #090714; box-shadow: 0 0 0 1.5px rgb(255 255 255 / .55); transition: background-color .25s, box-shadow .25s, scale .25s; }
-  .meridian-stop:hover .meridian-dot { box-shadow: 0 0 0 1.5px #fff; }
-  .meridian-stop[aria-pressed="true"] .meridian-dot { background: #d9b792; box-shadow: 0 0 0 1.5px #d9b792, 0 0 0 7px rgb(217 183 146 / .18); scale: 1.15; }
-  /* Активная страна: золотая черта слева на десктопе, заливка на телефоне */
-  .country-btn[aria-pressed="true"] { background: #fff; border-color: #fff; }
-  .country-btn[aria-pressed="true"] span { color: #090714; }
+  .meridian::before { content: ""; position: absolute; left: 0; right: 0; top: 37px; height: 1px; background: linear-gradient(90deg, transparent, rgb(9 7 20 / .22) 6%, rgb(9 7 20 / .22) 94%, transparent); }
+  .meridian-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1.5px rgb(9 7 20 / .5); transition: background-color .25s, box-shadow .25s, scale .25s; }
+  .meridian-stop:hover .meridian-dot { box-shadow: 0 0 0 1.5px #5c32cd; }
+  .meridian-stop[aria-pressed="true"] .meridian-dot { background: #754be9; box-shadow: 0 0 0 1.5px #754be9, 0 0 0 7px rgb(117 75 233 / .2); scale: 1.15; }
+  /* Активная страна: фиолетовая черта слева на десктопе, тёмная заливка на телефоне */
+  .country-btn[aria-pressed="true"] { background: #090714; border-color: #090714; }
+  .country-btn[aria-pressed="true"] span { color: #fff; }
   @media (min-width: 1024px) {
     .country-btn { position: relative; }
     .country-btn[aria-pressed="true"] { background: transparent; }
     .country-btn[aria-pressed="true"] span { color: inherit; }
-    .country-btn::before { content: ""; position: absolute; left: -20px; top: 18px; bottom: 18px; width: 2px; background: #d9b792; scale: 1 0; transition: scale .3s cubic-bezier(.165,.84,.44,1); }
+    .country-btn::before { content: ""; position: absolute; left: -20px; top: 18px; bottom: 18px; width: 2px; background: #754be9; scale: 1 0; transition: scale .3s cubic-bezier(.165,.84,.44,1); }
     .country-btn[aria-pressed="true"]::before { scale: 1 1; }
   }
   /* Плашка офиса без фото: контурное название города на фоне дуг */
-  .plate { background: radial-gradient(120% 90% at 100% 100%, rgb(188 144 110 / .28), transparent 60%), repeating-radial-gradient(circle at 100% 100%, rgb(255 255 255 / .07) 0 1px, transparent 1px 46px), #14121f; }
+  .plate { background: radial-gradient(120% 90% at 100% 100%, rgb(117 75 233 / .2), transparent 60%), repeating-radial-gradient(circle at 100% 100%, rgb(92 50 205 / .1) 0 1px, transparent 1px 46px), #f8f7ff; box-shadow: inset 0 0 0 1px rgb(92 50 205 / .12); }
   /* Слово всегда в одну строку: размер считается от ширины плашки и числа букв (--n), не больше 64 px.
      Контур рисуем под заливкой (paint-order): у вариативного шрифта контуры букв пересекаются, и без этого видны лишние линии внутри букв. */
   .plate { container-type: inline-size; }
-  .plate-word { font-size: min(64px, calc(100cqw / (var(--n, 6) * 0.98))); line-height: 1.1; white-space: nowrap; color: #15131f; -webkit-text-stroke: 2px #d9b792; paint-order: stroke fill; letter-spacing: -.01em; }
-  /* Карта в тон тёмной панели; при наведении — обычные цвета */
-  .atlas-map iframe { filter: grayscale(.9) contrast(1.05) brightness(.92); transition: filter .4s; }
+  .plate-word { font-size: min(64px, calc(100cqw / (var(--n, 6) * 0.98))); line-height: 1.1; white-space: nowrap; color: #f8f7ff; -webkit-text-stroke: 2px #754be9; paint-order: stroke fill; letter-spacing: -.01em; }
+  /* Карта чуть приглушена, чтобы не спорить с панелью; при наведении — обычные цвета */
+  .atlas-map iframe { filter: grayscale(.45); transition: filter .4s; }
   .atlas-map:hover iframe, .atlas-map:focus-within iframe { filter: none; }
   /* Смена офиса: мягкое появление */
   .office:not([hidden]) { animation: office-in .45s cubic-bezier(.165,.84,.44,1); }
@@ -337,6 +350,20 @@ const ld = {
         if (firstOffice) show(firstOffice.dataset.officePanel!);
       }
     });
+
+    // Фото офиса на весь экран: клик по фото; закрытие — крестик, клик мимо фото или Esc
+    const box = document.querySelector<HTMLDialogElement>('[data-photo-box]');
+    const boxImg = box?.querySelector<HTMLImageElement>('[data-photo-img]');
+    if (box && boxImg) {
+      root.querySelectorAll<HTMLElement>('[data-photo-zoom]').forEach((b) =>
+        b.addEventListener('click', () => {
+          boxImg.src = b.dataset.photoZoom!;
+          boxImg.alt = b.dataset.photoAlt ?? '';
+          box.showModal();
+        }),
+      );
+      box.addEventListener('click', (e) => { if (e.target !== boxImg) box.close(); });
+    }
 
     // Ссылка на конкретный офис: /contacts/#istanbul
     const fromHash = () => { const id = location.hash.slice(1); if (id && offices.some((p) => p.dataset.officePanel === id)) show(id, { hash: false, scroll: true }); };
