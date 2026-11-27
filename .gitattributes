@@ -1,1 +1,2 @@
-*.bat text eol=crlf
+# .bat хранится как есть, с переводами строк Windows (CRLF): иначе cmd не находит метки
+*.bat -text
