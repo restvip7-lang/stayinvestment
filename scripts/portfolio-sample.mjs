@@ -9,7 +9,8 @@
  *         npm run portfolio-sample -- 5       — по 5
  * Нужны переменные окружения (в git не хранятся): STAY_USERNAME, STAY_PASSWORD, STAY_TOKEN.
  *
- * Как устроен API: вход POST /login/auth (сессия в cookie) + заголовок Authorization: Bearer <токен>;
+ * Как устроен API: вход POST /login/auth с заголовком Authorization: Bearer <ключ клиента> и полями формы
+ * username, password → в ответе result.token (сессия на 7 дней); дальше все запросы — Authorization: Bearer <token>;
  * список — POST /objects/query с фильтром по таксономии; объект целиком — GET /objects/get/{ID}.
  * Инвестиционные объекты помечены таксономией package_type (id 11): 169 Рантье, 170 Стартовый,
  * 171 Партнерский, 172 Инвестиции в бизнес.
@@ -22,21 +23,15 @@ const PACKAGES = { 169: 'rental', 170: 'startovye', 171: 'partnerskye', 172: 'bi
 const TAX = { type: '1', location: '2', amenities: '3', currency: '4', package: '11', layouts: '15', offer: '16' };
 const LANGS = ['ru', 'en', 'sr', 'tr'];
 
-const jar = new Map();
+let session = ''; // токен сессии из /login/auth; до входа в заголовке — ключ клиента (STAY_TOKEN)
 const headers = (extra = {}) => ({
   accept: 'application/json',
-  ...(process.env.STAY_TOKEN ? { authorization: `Bearer ${process.env.STAY_TOKEN}` } : {}),
-  ...(jar.size ? { cookie: [...jar].map(([k, v]) => `${k}=${v}`).join('; ') } : {}),
+  ...(session || process.env.STAY_TOKEN ? { authorization: `Bearer ${session || process.env.STAY_TOKEN}` } : {}),
   ...extra,
 });
 
 async function call(path, init = {}) {
   const res = await fetch(BASE + path, { ...init, headers: headers(init.headers), signal: AbortSignal.timeout(30_000) });
-  for (const c of res.headers.getSetCookie?.() ?? []) {
-    const [pair] = c.split(';');
-    const i = pair.indexOf('=');
-    if (i > 0) jar.set(pair.slice(0, i).trim(), pair.slice(i + 1).trim());
-  }
   const text = await res.text();
   let data;
   try { data = JSON.parse(text); } catch { throw new Error(`${path}: ответ не JSON (HTTP ${res.status})`); }
@@ -49,8 +44,10 @@ if (!username || !password) {
   console.error('Не заданы STAY_USERNAME / STAY_PASSWORD — доступ к Portfolio API не проверить.');
   process.exit(1);
 }
-await call('/login/auth', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ username, password }) });
-console.log('Вход в Portfolio API: OK');
+const auth = await call('/login/auth', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ username, password }).toString() });
+if (!auth?.token) throw new Error('Вход принят, но токен сессии не выдан');
+session = auth.token;
+console.log(`Вход в API «Портфолио»: OK, сессия до ${auth.expires}`);
 
 const query = (termId, perPage) =>
   call('/objects/query', {
