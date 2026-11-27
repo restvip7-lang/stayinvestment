@@ -24,6 +24,8 @@ export interface Office {
   /** Фото офиса из public/images/offices */
   photo?: string;
   photoAlt?: string;
+  /** Фото города, а не самого офиса (источники — docs/photo-credits.md) */
+  cityPhoto?: boolean;
   /** Ссылка на точку в Google Картах (если нет — строится по координатам) */
   mapUrl?: string;
 }
@@ -93,6 +95,7 @@ export const OFFICE_COUNTRIES: OfficeCountry[] = [
         address: 'ОАЭ, Дубай, Бизнес-Бэй, Bayswater Tower, офис 1311',
         addressIntl: 'Bayswater Tower, office 1311, Business Bay, Dubai, UAE',
         phone: '+971 55 591 29 76', email: MAIN_EMAIL, lat: 25.229762, lng: 55.289311, tz: 'Asia/Dubai',
+        photo: '/images/offices/dubai.jpg', photoAlt: 'Небоскрёбы Бизнес-Бэй и Бурдж-Халифа в Дубае', cityPhoto: true,
       },
     ],
   },
@@ -104,6 +107,7 @@ export const OFFICE_COUNTRIES: OfficeCountry[] = [
         id: 'cyprus', city: 'Гирне', note: 'Чаталкёй', opened: 2023,
         address: 'Beşparmaklar Caddesi, Mazlum Plaza No: 44, ofis 4 — Çatalköy / Kuzey Kıbrıs',
         phone: MAIN_PHONE, email: MAIN_EMAIL, lat: 35.315875, lng: 33.404182, tz: 'Asia/Famagusta',
+        photo: '/images/offices/cyprus.jpg', photoAlt: 'Старая гавань Гирне, Северный Кипр', cityPhoto: true,
       },
     ],
   },
@@ -111,7 +115,10 @@ export const OFFICE_COUNTRIES: OfficeCountry[] = [
     id: 'uk',
     name: 'Великобритания',
     offices: [
-      { id: 'london', city: 'Лондон', note: 'Скоро открытие', soon: true, phone: MAIN_PHONE, email: MAIN_EMAIL, lat: 51.5074, lng: -0.1278, tz: 'Europe/London' },
+      {
+        id: 'london', city: 'Лондон', note: 'Скоро открытие', soon: true, phone: MAIN_PHONE, email: MAIN_EMAIL, lat: 51.5074, lng: -0.1278, tz: 'Europe/London',
+        photo: '/images/offices/london.jpg', photoAlt: 'Тауэрский мост на рассвете, Лондон', cityPhoto: true,
+      },
     ],
   },
 ];

@@ -153,8 +153,8 @@ const ld = {
                             </span>
                           </button>
                           <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3.5 pt-12 text-[12.5px] tabular text-white/90">
-                            <span>{dms(o.lat!, o.lng!)}</span>
-                            {o.opened && <span>{tr("с {year} года", { year: o.opened })}</span>}
+                            <span>{o.soon ? tr("Скоро открытие") : dms(o.lat!, o.lng!)}</span>
+                            <span>{o.opened ? tr("с {year} года", { year: o.opened }) : tr(c.name)}</span>
                           </figcaption>
                         </figure>
                       ) : (
