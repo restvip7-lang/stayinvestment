@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "fixtures": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/fetch-fixtures.mjs",
+    "portfolio-sample": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/portfolio-sample.mjs",
     "import-legacy": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/import-legacy.mjs",
     "import-legacy-i18n": "NODE_USE_ENV_PROXY=1 node --no-warnings scripts/import-legacy-i18n.mjs",
     "start": "HOST=${HOST:-127.0.0.1} PORT=${PORT:-4330} node ./dist/server/entry.mjs",

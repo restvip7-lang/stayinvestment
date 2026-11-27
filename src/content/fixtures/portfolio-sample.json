@@ -1,0 +1,1219 @@
+{
+  "fetchedAt": "2026-11-27T12:08:52.157Z",
+  "totals": {
+    "rental": 21,
+    "startovye": 22,
+    "partnerskye": 5,
+    "biznes-investitsii": 2
+  },
+  "objects": [
+    {
+      "id": "RP019",
+      "portfolioId": 3383,
+      "slug": "rezidentsiya-blue-sunlight-2-v-okruzhenii-sovremennyih-novostroek-ryadom-s-tsentrom-mahmutlara",
+      "package": "rental",
+      "title": {
+        "ru": "Резиденция Blue Sunlight 2 в окружении современных новостроек рядом с центром Махмутлара",
+        "en": "Blue Sunlight 2 Residence Surrounded by Modern Developments Near the Center of Mahmutlar",
+        "sr": "Blue Sunlight 2 Residence: Moderni razvoj u blizini centra Mahmutlara",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Резиденция Blue Sunlight 2 расположена в 900 м от моря в той части Махмутлара, где быстро формируются кварталы современных новостроек. Вся социальная инфраструктура в пешей доступности.</p><p>К пляжам ведет прямая дорога. В 800 м находится торговый центр Yekta Mall.&nbsp; В 1,5 км расположена площадь субботнего фермерского рынка, новый 7-ми этажный торговый центр Akdeniz Park.&nbsp;<br>&nbsp;<br>Участок Blue Sunlight 2 окружен зелеными ландшафтами. Открываются великолепные виды на горы.&nbsp;&nbsp;<br>Комплекс ориентирован окнами на юг, в сторону моря. Высокий арендный потенциал обеспечивает сочетание тихой зеленой локации и близости к морю.<br>&nbsp;<br>Резиденция Blue Sunlight 2 состоит из одного девятиэтажного блока на 54 квартиры. На каждом этаже по 6 квартир: пентхаусы 2+1 (109,5 м²) - 4 единицы и 4+1 (139,5 м²) - 2 единицы; линейные квартиры 1+1 (56,5 м²) - 32 единицы и 2+1 (68 м²) - 16 единиц.</p><p>В небольшой и уютной резиденции Blue Sunlight 2 есть все базовые зоны отдыха, включая открытый бассейн, турецкий хамам, финскую сауну, фитнес-центр, детскую зону.&nbsp;<br>&nbsp;<br>Первоначальный взнос всего от 20%. Остальная сумма выплачивается в рассрочку без % до конца стройки. Квартиры подходят под получение гражданства.&nbsp;</p>",
+        "en": "<p>The Blue Sunlight 2 Residence is located 900 meters from the sea in the part of Mahmutlar where new modern developments are rapidly forming. All social infrastructure is within walking distance. There is a direct road leading to the beaches. The Yekta Mall shopping center is located 800 meters away, and 1.5 km away is the Saturday farmer's market square and the new 7-story Akdeniz Park shopping center.</p><p>The Blue Sunlight 2 plot is surrounded by green landscapes, offering magnificent mountain views. The complex is oriented to the south, toward the sea. The high rental potential is ensured by the combination of a quiet, green location and proximity to the sea.</p><p>Blue Sunlight 2 consists of a single nine-story block with 54 apartments. Each floor has six units: 2+1 penthouses (109.5 m²) - 4 units and 4+1 penthouses (139.5 m²) - 2 units, 1+1 linear apartments (56.5 m²) - 32 units, and 2+1 apartments (68 m²) - 16 units. In this small and cozy residence, there are all the basic recreational areas, including an outdoor pool, Turkish hammam, Finnish sauna, fitness center, and a children's area.</p><p>The initial payment is as low as 20%. The remaining amount can be paid in interest-free installments until the end of construction. The apartments are suitable for obtaining citizenship.</p>",
+        "sr": "<p>Blue Sunlight 2 Residence se nalazi 900 metara od mora, u delu Mahmutlara gde se brzo razvijaju novi moderni projekti. Sva društvena infrastruktura je na dohvat ruke. Postoji direktna cesta koja vodi do plaža. Tržni centar Yekta Mall je udaljen 800 metara, dok se subotnji pijac i novi sedmospratni tržni centar Akdeniz Park nalaze na 1,5 km.</p><p>Zemljište Blue Sunlight 2 je okruženo zelenim pejzažima, koji nude veličanstven pogled na planine. Kompleks je orijentisan ka jugu, prema moru. Visok potencijal za izdavanje nekretnina osiguran je kombinacijom mirne, zelene lokacije i blizine mora.</p><p>Blue Sunlight 2 se sastoji od jednog devetospratnog bloka sa 54 apartmana. Na svakom spratu se nalaze po šest jedinica: 2+1 penthause (109,5 m²) - 16 jed., 4+1 penthause (139,5 m²) - 2 jed., 1+1 linijski apartmani (56,5 m²) - 32 jed. i 2+1 apartmani (68 m²) - 16 jed. U ovoj maloj i udobnoj rezidenciji postoje svi osnovni rekreativni sadržaji, uključujući spoljašnji bazen, turski hamam, finsku saunu, fitnes centar i prostor za decu.</p><p>Početna uplata iznosi samo 20%. Preostali iznos može se platiti u ratama bez kamata do kraja gradnje. Apartmani su pogodni za sticanje državljanstva.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Махмутлар"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "Mahmutlar"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "Махмутлар"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "Mahmutlar"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (инв)",
+          "Дуплекс (инв)"
+        ],
+        "en": [
+          "Apartments (inv)",
+          "Duplex (inv)"
+        ],
+        "sr": [
+          "Apartmani (инв)",
+          "Dupleksi (инв)"
+        ],
+        "tr": [
+          "Daire (yatırım)",
+          "Dubleks (yatırım)"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1",
+        "4+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Беседка для отдыха",
+          "Видеонаблюдение 24/7",
+          "Игровая площадка",
+          "Зона отдыха - барбекю",
+          "Игровая комната",
+          "Кафе-ресторан",
+          "Открытая парковка",
+          "Открытый бассейн",
+          "Турецкий хаммам",
+          "Финская сауна",
+          "Фитнес-центр",
+          "Электрический генератор"
+        ],
+        "en": [
+          "Gazebo For Relaxation",
+          "Video surveillance 24/7",
+          "Playground",
+          "Children's swimming pool",
+          "Recreation Area - BBQ",
+          "Game Room",
+          "Cafe Restaurant",
+          "Open Parking",
+          "Open Pool",
+          "Turkish Hammam",
+          "Finnish Sauna",
+          "Fitness Center",
+          "Electric Generator"
+        ],
+        "sr": [
+          "Видиковац за опуштање",
+          "Видео надзор 24/7",
+          "Игралиљте",
+          "Рекреациона зона - роштиљ",
+          "Соба за игру",
+          "Кафе Ресторан",
+          "Отворено паркиралиште",
+          "Отворени базен",
+          "турски хамам",
+          "Финска сауна",
+          "Фитнес центар",
+          "Електрични генератор"
+        ],
+        "tr": [
+          "Gazebo For Relaxation-TR",
+          "Video surveillance 24/7-TR",
+          "Playground-TR",
+          "Recreation Area - BBQ-TR",
+          "Game Room-TR",
+          "Cafe Restaurant-TR",
+          "Open Parking-TR",
+          "Open Pool-TR",
+          "Turkish Hammam-TR",
+          "Finnish Sauna-TR",
+          "Fitness Center-TR",
+          "Electric Generator-TR"
+        ]
+      },
+      "seaDistance": 950,
+      "yearBuilt": null,
+      "price": null,
+      "currency": null,
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/70cb0770000f0bb154d2ad9988ee342e.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/32fc50494bc632263cea7336d40cbb60.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/abca05fd20ea5a777ab1c8a1e6617de9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/e189b50794039df093bc77cb4974b270.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/a6a1ca7470ff11b345d3a772082b736b.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/680a22afdad93bcb65fb8916e43f71f7.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/9a7851a4bee18d25ab81f05aabc5aa34.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/f5c9ba3082b53ac92ddb5c14533c884c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/b844bb11ac8198f81dfa0de597def75c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/2391b233a3850a01b4fa3959c77a5053.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/20a0804115c7b3ce6e6e2ff6550e7c62.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/609101b46a11ec01c082ad5f9309ef53.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/8c8dbe09d6f2f29e61e360a4f314720b.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/504e48d2f601afdc5a7f08be2d748c2c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/8409a29b18662e733d953e83f7110e04.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/45126ae07a33abbe5492e03e1c894e88.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/44508f0ac38b7417c2afa2e04b9bb856.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/f9b86a70b5f14d9dcdfaf11f3054ebd3.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/adf8c013d9744f2acacdfff11bb8522f.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/15ba876880c07d333f0a505dcce67027.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/a070b2883e988599f428ad79895ed94d.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/aa92bf441c09d08a97db88601cf5a7b0.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/173a1448d65fe280fb61932cee37b11c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/0b8d5f2122f0f4335184d6d159ef2c53.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/6b8d3926de8aa5a232d72a3187febaf6.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/673eb5bd9925050ed88f5c607d85b6d9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/9d382971d42a06265f1065ddc2ca7936.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/8b4c1b0904a276359dbb012b520f84aa.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/2c6f9ec4d0b7a8d35300d2feef2812d1.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/b526bd8f0a15b38920d7b316293e5798.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/e6abbb0f7ce5eeba9d45fe514c4fec4b.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3383/large/795b160003f20c1761e036074ce5da8a.jpg"
+      ],
+      "updated": "2024-11-13 11:46:41"
+    },
+    {
+      "id": "RP021",
+      "portfolioId": 3385,
+      "slug": "rezidentsiya-hayat-heaven-v-rayone-s-luchshimi-peschanyimi-plyazhami-i-hvoynyimi-lesami",
+      "package": "rental",
+      "title": {
+        "ru": "Резиденция Hayat Heaven в районе с лучшими песчаными пляжами и хвойными лесами",
+        "en": "Hayat Heaven Residence in an Area with the Best Sandy Beaches and Pine Forests",
+        "sr": "Hayat Heaven Residence u oblasti sa najboljim peščanim plažama i borovim šumama",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Готовый жилой комплекс Hayat Heaven Residence расположен в Авсалларе, в окружении хвойных деревьев и современных домов.</p><p>Район находится в 24 км на западе от центра Аланьи. Здесь есть вся социальная и туристическая инфраструктура для отдыха у моря и на природе, длительного проживания.&nbsp;</p><p>1,4 км до знаменитого пляжа Инжекум с мелким песком, безопасным заходом в море, парковкой и удобствами. Это один из лучших пляжей на всем побережье Средиземного моря.&nbsp;</p><p>С балконов и окон комплекса открываются виды на сосновые рощи и современную застройку, а с верхних этажей — на море.&nbsp;</p><p>Планировки квартир 1+1 - 42 единицы и 2+1 дуплексы - 7 единиц. Кроме бассейна во дворе, в комплексе есть крытый бассейн, внутренняя инфраструктура для оздоровления и отдыха.</p><p>За счет уютной атмосферы, великолепных пляжей и большого количества хвойных рощ, Авсаллар пользуется спросом для аренды даже в зимнее время.&nbsp;&nbsp;</p>",
+        "en": "<p>The completed Hayat Heaven Residence is located in Avsallar, surrounded by pine trees and modern homes.</p><p>The area is located 24 km west of the center of Alanya. It offers full social and tourist infrastructure for seaside and nature vacations, as well as long-term living.</p><p>The residence is just 1.4 km from the famous Incekum beach, known for its fine sand, safe swimming areas, parking, and amenities. It is one of the best beaches on the entire Mediterranean coast.</p><p>From the balconies and windows of the complex, views open up to pine groves and modern buildings, and from the upper floors — to the sea.</p><p>Apartment layouts include 1+1 - 42 units and 2+1 duplex - 7 units. In addition to the outdoor pool in the courtyard, the complex has an indoor pool, and internal facilities for wellness and leisure.</p><p>Thanks to the cozy atmosphere, beautiful beaches, and abundant pine groves, Avsallar is in demand for rentals even in winter.</p>",
+        "sr": "<p>Završeni Hayat Heaven Residence se nalazi u Avsallar-u, okružen borovima i modernim kućama.</p><p>Ova oblast se nalazi 24 km zapadno od centra Alanje. Pruža potpunu društvenu i turističku infrastrukturu za odmorište na moru i u prirodi, kao i za dugotrajno stanovanje.</p><p>Rezidencija je udaljena samo 1,4 km od poznate plaže Incekum, koja je poznata po finom pesku, bezbednim mestima za kupanje, parkingu i raznim sadržajima. To je jedna od najboljih plaža na čitavoj mediteranskoj obali.</p><p>Sa balkona i prozora kompleksa pružaju se pogledi na borove šume i moderne zgrade, a sa gornjih spratova — na more.</p><p>Raspored apartmana uključuje 1+1 - 42 jed. i 2+1 dupleksi - 7 jed. Pored spoljašnjeg bazena u dvorištu, kompleks ima i unutrašnji bazen, kao i unutrašnje sadržaje za wellness i rekreaciju.</p><p>Zahvaljujući prijatnoj atmosferi, prelepim plažama i obilju borovih šuma, Avsallar je tražen za iznajmljivanje čak i zimi.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Авсаллар"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "Avsallar"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "Авсаллар"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "Avsallar"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (инв)",
+          "Дуплекс (инв)"
+        ],
+        "en": [
+          "Apartments (inv)",
+          "Duplex (inv)"
+        ],
+        "sr": [
+          "Apartmani (инв)",
+          "Dupleksi (инв)"
+        ],
+        "tr": [
+          "Daire (yatırım)",
+          "Dubleks (yatırım)"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Видеонаблюдение 24/7",
+          "Крытый бассейн",
+          "Зеленая зона",
+          "Зона отдыха - барбекю",
+          "Открытая парковка",
+          "Открытый бассейн",
+          "Турецкий хаммам",
+          "Финская сауна",
+          "Фитнес-центр",
+          "Электрический генератор"
+        ],
+        "en": [
+          "Video surveillance 24/7",
+          "Indoor pool",
+          "Green Area",
+          "Recreation Area - BBQ",
+          "Open Parking",
+          "Open Pool",
+          "Turkish Hammam",
+          "Finnish Sauna",
+          "Fitness Center",
+          "Electric Generator"
+        ],
+        "sr": [
+          "Видео надзор 24/7",
+          "Затворени базен",
+          "Греен Ареа",
+          "Рекреациона зона - роштиљ",
+          "Отворено паркиралиште",
+          "Отворени базен",
+          "турски хамам",
+          "Финска сауна",
+          "Фитнес центар",
+          "Електрични генератор"
+        ],
+        "tr": [
+          "Video surveillance 24/7-TR",
+          "Indoor pool-TR",
+          "Green Area-TR",
+          "Recreation Area - BBQ-TR",
+          "Open Parking-TR",
+          "Open Pool-TR",
+          "Turkish Hammam-TR",
+          "Finnish Sauna-TR",
+          "Fitness Center-TR",
+          "Electric Generator-TR"
+        ]
+      },
+      "seaDistance": 1500,
+      "yearBuilt": null,
+      "price": null,
+      "currency": null,
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/d0096ec6c83575373e3a21d129ff8fef.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/cd90b07cfa60b4043f9f38b0f6e1e1f6.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/799bad5a3b514f096e69bbc4a7896cd9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/fe5df232cafa4c4e0f1a0294418e5660.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/8cda81fc7ad906927144235dda5fdf15.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/30e62fddc14c05988b44e7c02788e187.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/ae566253288191ce5d879e51dae1d8c3.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/9414a8f5b810972c3c9a0e2860c07532.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/edab7ba7e203cd7576d1200465194ea8.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/db3a17f7bcac837ecc1fe2bc630a5473.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/64b8299d1597b8a5c7b9cb9c88642f6c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/e89666feb714ab9c3946f28f00c5d8c4.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/030d7e8e966169ab4c7f67c291c333f4.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3385/large/648b9906a614a4bb30c20591243c65ec.jpg"
+      ],
+      "updated": "2024-09-24 14:20:19"
+    },
+    {
+      "id": "DP023",
+      "portfolioId": 3387,
+      "slug": "rezidentsiya-premium-klassa-faralya-v-perspektivnom-rayone-payallar",
+      "package": "startovye",
+      "title": {
+        "ru": "Резиденция премиум класса Faralya в перспективном районе Паяллар",
+        "en": "Premium-Class Faralya Residence in the Promising Payallar District",
+        "sr": "Premium klase  Faralya Residence u perspektivnom okrugu Payallar",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Инфраструктура резиденции Faralya выполнена безупречно и создает ощущение дорогого отеля. Комплекс построен в 2024 году в одном из самых инвестиционно привлекательных районов Аланьи — Паялларе.В последние годы здесь реализуются масштабные муниципальные проекты, такие как уже открытая мультифункциональная набережная. Также строится большая больница, открылся новый рынок.&nbsp;</p><p>До моря 2,2 км, предусмотрен трансфер. 2 км до центральной улицы. 1 км до великолепного хвойного леса.&nbsp;</p><p>58 км от аэропорта Газипаши, 110 км от аэропорта Антальи. В пешей доступности сетевые супермаркеты, продуктовые магазины, магазины разных групп товаров, заправки, банкоматы, аптеки.&nbsp;</p><p>Резиденция занимает 8700 м2, Всего 112 квартир, 2 блока. Планировки 1+1 (60 и 64 м2) - 84 единицы, 2+1 (97 м2) - 14 единиц, пентхаусы 2+1 (111—114 м2) - 12 единиц и 3+1 (175 м2) - 2 единицы.&nbsp; Все окна с отличным видом, в зависимости от расположения квартиры —&nbsp; на море и бассейн, на море или на горы.</p><p>В комплексе Faralya инфраструктура предназначена для отдыха круглый год, есть крытый зимний бассейн. Качество и высокий уровень комфорта, а также перспективный район расположения — залог прироста стоимости.</p>",
+        "en": "<p>The infrastructure of the Faralya Residence is impeccable, creating the feel of an upscale hotel. The complex was built in 2024 in one of the most investment-attractive areas of Alanya — Payallar. In recent years, large-scale municipal projects have been implemented here, such as the recently opened multifunctional promenade. Additionally, a large hospital is under construction, and a new market has opened.</p><p>The sea is 2.2 km away, and a transfer service is provided. The central street is 2 km away, and a magnificent pine forest is 1 km away. It is 58 km to Gazipasa Airport and 110 km to Antalya Airport. Chain supermarkets, grocery stores, shops of various categories, gas stations, ATMs, and pharmacies are all within walking distance.</p><p>The residence occupies an area of 8,700 m² and consists of two blocks with a total of 112 apartments. The layouts include 1+1 &nbsp;- 84 units (60 and 64 m²), 2+1 &nbsp;- 14 units (97 m²), 2+1 penthouses (111–114 m²) - 12 units, and 3+1 units (175 m²) - 2 units. All windows offer excellent views, depending on the apartment’s location — of the sea and pool, the sea, or the mountains.</p><p>The Faralya complex is designed for year-round relaxation and features an indoor winter pool. High quality, a high level of comfort, and the promising location guarantee an increase in property values.</p>",
+        "sr": "<p>Faralya Residence&nbsp; pruža neuporedivu infrastrukturu, stvarajući ambijent luksuznog hotela. Kompleks je izgrađen 2024. godine u jednoj od najatraktivnijih investicionih zona u Alanyi — Payallar. U poslednjih nekoliko godina, u ovom okrugu su realizovani veliki opštinski projekti, kao što je nedavno otvorena višenamenska šetališna zona. Takođe, u izgradnji je velika bolnica, dok je novi tržni centar već otvoren.</p><p>Udaljenost do mora je 2,2 km, a stanovnicima je na raspolaganju i besplatan transfer. Centralna ulica je udaljena 2 km, a predivna borova šuma 1 km. Udaljenost do Aerodroma Gazipaša je 58 km, a do Aerodroma Antalija&nbsp; 110 km. U neposrednoj blizini nalaze se lanci supermarketa, prodavnice različitih kategorija, benzinske pumpe, bankomati i apoteke.</p><p>Rezidencija se prostire na površini od 8.700 m² i sastoji se od dve zgrade sa ukupno 112 apartmana. U ponudi su stanovi sa različitim rasporedom: 1+1 (60 i 64 m²) - 84 jed., 2+1 (97 m²) - 14 jed., penthausi 2+1 (111–114 m²) - 12 jed. i&nbsp; 3+1&nbsp; (175 m²) - 2 jed. Svi prozori nude odličan pogled, u zavisnosti od lokacije stana — na more i baz en, na more ili na planine.</p><p>Kompleks&nbsp; Faralya&nbsp; je dizajniran za celogodišnji odmor i poseduje unutrašnji zimski bazen. Visok kvalitet, izuzetna udobnost i perspektivna lokacija garantuju porast vrednosti nekretnina.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Паяллар"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "Payallar"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "Билтен"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "Payallar"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (инв)",
+          "Дуплекс (инв)"
+        ],
+        "en": [
+          "Apartments (inv)",
+          "Duplex (inv)"
+        ],
+        "sr": [
+          "Apartmani (инв)",
+          "Dupleksi (инв)"
+        ],
+        "tr": [
+          "Daire (yatırım)",
+          "Dubleks (yatırım)"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1",
+        "3+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Библиотека",
+          "Игровая площадка",
+          "Крытый бассейн",
+          "Игровая комната",
+          "Кафе-ресторан",
+          "Кинотеатр",
+          "Конференц-зал",
+          "Рынок",
+          "Массажный кабинет",
+          "Мини-клуб",
+          "Открытый бассейн",
+          "Римская парная",
+          "Трансфер на пляж",
+          "Турецкий хаммам",
+          "Финская сауна",
+          "Фитнес-центр",
+          "Электрический генератор"
+        ],
+        "en": [
+          "Library",
+          "Playground",
+          "Indoor pool",
+          "Game Room",
+          "Cafe Restaurant",
+          "Cinema",
+          "Conference Hall",
+          "Market",
+          "Massage Room",
+          "Mini club",
+          "Open Pool",
+          "Roman Steam Room",
+          "Transfer to the beach",
+          "Turkish Hammam",
+          "Finnish Sauna",
+          "Fitness Center",
+          "Electric Generator"
+        ],
+        "sr": [
+          "Библиотека",
+          "Игралиљте",
+          "Затворени базен",
+          "Соба за игру",
+          "Кафе Ресторан",
+          "Биоскоп",
+          "Конференцијска сала",
+          "Тржишту",
+          "Соба за масажу",
+          "Мини клуб",
+          "Отворени базен",
+          "Римска парна соба",
+          "Трансфер до плаже",
+          "турски хамам",
+          "Финска сауна",
+          "Фитнес центар",
+          "Електрични генератор"
+        ],
+        "tr": [
+          "Library-TR",
+          "Playground-TR",
+          "Indoor pool-TR",
+          "Game Room-TR",
+          "Cafe Restaurant-TR",
+          "Cinema-TR",
+          "Conference Hall-TR",
+          "Market-TR",
+          "Massage Room-TR",
+          "Mini club-TR",
+          "Open Pool-TR",
+          "Roman Steam Room-TR",
+          "Transfer to the beach-TR",
+          "Turkish Hammam-TR",
+          "Finnish Sauna-TR",
+          "Fitness Center-TR",
+          "Electric Generator-TR"
+        ]
+      },
+      "seaDistance": 2300,
+      "yearBuilt": null,
+      "price": null,
+      "currency": null,
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/24.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/1.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/2.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/3.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/36d43cda30b605eea0e5eeb911da9b87.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/57ae430f77000cd161016aad4db1dcbb.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/7.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/11.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/12.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/5cb6b64f7758c63904f299646cf33212.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/f080d2670c203e1821381880c79546a9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3387/large/4cfac880f6d53b8f06867c3419774b4a.jpg"
+      ],
+      "updated": "2024-09-27 12:20:59"
+    },
+    {
+      "id": "DP024",
+      "portfolioId": 2975,
+      "slug": "rezidentsiya-hayat-heaven-vozle-odnogo-iz-luchshih-plyazhey-sredizemnomorya",
+      "package": "startovye",
+      "title": {
+        "ru": "Резиденция Hayat Heaven возле одного из лучших пляжей Средиземноморья",
+        "en": "Hayat Heaven Residence Near One of the Best Beaches on the Mediterranean",
+        "sr": "Hayat Heaven Residence pored jedne od najboljih plaža na Mediteranu",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Жилой комплекс Hayat Heaven Residence отличается уникальным расположением — в окружении хвойных рощ. Район Авсаллар известен уютной атмосферой и лучшими пляжами с приятным песком и пологим заходом в море.</p><p>Авсаллар находится в 24 км на западе от центра Аланьи. Здесь есть вся социальная инфраструктура, включая несколько школ, поликлинику, большой фермерский рынок, сетевые супермаркеты и объекты сферы услуг.&nbsp;</p><p>Расстояние от комплекса до пляжа Инжекум 1,4 км. Это одно из лучших мест для отдыха с детьми у моря.&nbsp;</p><p>С балконов и окон комплекса открываются виды на сосны и современные дома. Плотность застройки вокруг невысокая.</p><p>Планировки квартир 1+1 - 42 единицы и дуплексы 2+1 - 7 единиц. Кроме бассейна во дворе, в комплексе есть крытый бассейн, внутренняя инфраструктура для оздоровления и отдыха.</p><p>За счет уютной атмосферы, великолепных пляжей и большого количества хвойных рощ, недвижимость в Авсалларе пользуется спросом, при этом стоимость ниже, чем в центральных районах Аланьи. Квартиры в Авсалларе приносят высокие доходы от аренды.</p>",
+        "en": "<p>The Hayat Heaven Residence is uniquely located, surrounded by pine groves. The Avsallar area is known for its cozy atmosphere and the best beaches, with pleasant sand and gentle entry into the sea.</p><p>Avsallar is located 24 km west of the center of Alanya. It has all the social infrastructure, including several schools, a clinic, a large farmer’s market, chain supermarkets, and various service facilities.</p><p>The distance from the complex to Incekum Beach is 1.4 km, making it one of the best places for family vacations by the sea.</p><p>The balconies and windows of the complex offer views of pine trees and modern homes. The surrounding area has a low construction density.</p><p>Apartment layouts include 1+1 - 42 units and 2+1 duplex - 7 units. In addition to the courtyard pool, the complex also offers an indoor pool and internal wellness and leisure facilities.</p><p>Due to its cozy atmosphere, magnificent beaches, and numerous pine groves, real estate in Avsallar is in high demand. Moreover, property prices here are lower than in the central districts of Alanya. Apartments in Avsallar generate high rental income.</p>",
+        "sr": "<p>Hayat Heaven Residence se nalazi na jedinstvenoj lokaciji, okružen borovim šumama. Okrug &nbsp;Avsallar &nbsp;poznat je po prijatnoj atmosferi i najlepšim plažama sa finim peskom i blagim ulazom u more.</p><p>Avsallar se nalazi 24 km zapadno od centra Alanje. Ovaj kraj poseduje svu potrebnu društvenu infrastrukturu, uključujući nekoliko škola, kliniku, veliki pijac, lance supermarketa i različite uslužne objekte.</p><p>Udaljenost od kompleksa do plaže Incekum iznosi 1,4 km, što ga čini jednim od najboljih mesta za porodični odmor pored mora.</p><p>Balkoni i prozori kompleksa pružaju pogled na borove šume i moderne stambene objekte. Okolina ima nisku gustinu izgrađenosti, što doprinosi osećaju mira i privatnosti.</p><p>Raspored stanova uključuje jedinice 1+1 - 42 jed. i 2+1 dupleksi - 7 jed. Pored dvorišnog bazena, kompleks nudi i unutrašnji bazen, kao i velnes i sadržaje za rekreaciju.</p><p>Zahvaljujući prijatnoj atmosferi, prelepim plažama i brojnim borovim šumama, nekretnine u Avsallaru su veoma tražene. Pored toga, cene nekretnina ovde su niže u poređenju sa centralnim delovima Alanje, a apartmani u Avsallaru donose visok prihod od izdavanja.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Авсаллар"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "Avsallar"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "Авсаллар"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "Avsallar"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Пентхаус"
+        ],
+        "en": [
+          "Penthouse"
+        ],
+        "sr": [
+          "Пентхаус"
+        ],
+        "tr": [
+          "Penthouse"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Видеонаблюдение 24/7",
+          "Игровая площадка",
+          "Крытый бассейн",
+          "Игровая комната",
+          "Кафе-ресторан",
+          "Мини-клуб",
+          "Открытый бассейн",
+          "Римская парная",
+          "Турецкий хаммам",
+          "Финская сауна",
+          "Фитнес-центр",
+          "Электрический генератор"
+        ],
+        "en": [
+          "Video surveillance 24/7",
+          "Playground",
+          "Indoor pool",
+          "Game Room",
+          "Cafe Restaurant",
+          "Mini club",
+          "Open Pool",
+          "Roman Steam Room",
+          "Turkish Hammam",
+          "Finnish Sauna",
+          "Fitness Center",
+          "Electric Generator"
+        ],
+        "sr": [
+          "Видео надзор 24/7",
+          "Игралиљте",
+          "Затворени базен",
+          "Соба за игру",
+          "Кафе Ресторан",
+          "Мини клуб",
+          "Отворени базен",
+          "Римска парна соба",
+          "турски хамам",
+          "Финска сауна",
+          "Фитнес центар",
+          "Електрични генератор"
+        ],
+        "tr": [
+          "Video surveillance 24/7-TR",
+          "Playground-TR",
+          "Indoor pool-TR",
+          "Game Room-TR",
+          "Cafe Restaurant-TR",
+          "Mini club-TR",
+          "Open Pool-TR",
+          "Roman Steam Room-TR",
+          "Turkish Hammam-TR",
+          "Finnish Sauna-TR",
+          "Fitness Center-TR",
+          "Electric Generator-TR"
+        ]
+      },
+      "seaDistance": 1500,
+      "yearBuilt": null,
+      "price": null,
+      "currency": "EUR",
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/85b6f89b41cae26786ac72365fff771b.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/f3ccdd27d2000e3f9255a7e3e2c48800.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/799bad5a3b514f096e69bbc4a7896cd9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/d0096ec6c83575373e3a21d129ff8fef.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/fe5df232cafa4c4e0f1a0294418e5660.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/8cda81fc7ad906927144235dda5fdf15.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/30e62fddc14c05988b44e7c02788e187.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/db3a17f7bcac837ecc1fe2bc630a5473.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/64b8299d1597b8a5c7b9cb9c88642f6c.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/e89666feb714ab9c3946f28f00c5d8c4.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/030d7e8e966169ab4c7f67c291c333f4.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/2975/large/648b9906a614a4bb30c20591243c65ec.jpg"
+      ],
+      "updated": "2024-09-26 10:36:35"
+    },
+    {
+      "id": "PP004",
+      "portfolioId": 3391,
+      "slug": "premium-rezidentsiya-azeroth-incekum-residence-vozle-znamenitogo-plyazha",
+      "package": "partnerskye",
+      "title": {
+        "ru": "Премиум резиденция Azeroth Incekum Residence возле знаменитого пляжа",
+        "en": "Premium Azeroth Incekum Residence Near the Famous Beach",
+        "sr": "Premium Azeroth Incekum Residence Blizu Poznate Plaže",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Резиденция занимает крупный участок земли 4000 м2, при этом состоит из одного блока. Просторная территория общественных зон выделяется комфортным зонированием. В 200 м с двух сторон хвойный лес и сосновые рощи. В ближайшем окружении — современные резиденции и виллы. 950 м от комплекса до пляжа Инжекум с мелким песком и пологим заходом в море. Этот пляж считается одним из лучших на побережье Средиземного моря в Турции и отмечен “Голубым флагом”. Район Авсаллар — один из самых зелёных и уютных в Аланье.</p><p>Планировки квартир продуманы для рационального использования квадратных метров и оптимального расположения мебели и декора относительно светового фронта. 8 этажей, 61 квартира, планировки 1+1, 2+1, а также дуплексы 3+1 и 4+1, с площадями от 65 до 172 м².</p><p>Здание сейсмоустойчивое, износостойкое, имеет влагозащитный фундамент, мраморные и керамические полы. Окна квартир выходят на море, а входная группа здания выполнена в оригинальном дизайне, создающим ощущение дорогого отеля. Современные игровые пространства для детей, зоны отдыха и спорта для взрослых, круглогодичная инфраструктура, включая крытый зимний бассейн с подогревом. Проект премиум-класса с выгодным расположением, просторной территорией и большими площадями квартир.</p>",
+        "en": "<p>The residence occupies a large plot of land of 4000 m2, and consists of one block. The spacious public area is well-zoned for comfort. Just 200 m away on both sides, there are pine forests and groves. The surrounding area features modern residences and villas. The complex is 950 m from Incekum Beach, which has fine sand and a gentle slope into the sea. This beach is considered one of the best on Turkey's Mediterranean coast and has been awarded the \"Blue Flag\". The Avsallar area is one of the greenest and coziest in Alanya.</p><p>The apartment layouts are thoughtfully designed for efficient use of space and the optimal placement of furniture and décor relative to natural light.<br>The building has 8 floors and 61 apartments with layouts of 1+1, 2+1, as well as 3+1 and 4+1 duplexes, with sizes ranging from 65 to 172 m².</p><p>The structure is earthquake-resistant, wear-resistant, and has a moisture-protected foundation, with marble and ceramic floors. The apartments have sea-facing windows, and the entrance of the building features a unique design that evokes the feel of a luxury hotel. Modern play areas for children, relaxation, and sports zones for adults, along with year-round infrastructure including an indoor heated winter pool. A premium class project with a favorable location, spacious territory and large apartment areas.</p>",
+        "sr": "<p>Rezidencija zauzima veliko zemljište od 4.000 m² i sastoji se od jednog bloka. Prostrani javni prostor je dobro zoniran za maksimalni komfor. Na samo 200 m sa obe strane nalaze se borove šume i gajevi. Okolinu čine moderne rezidencije i vile. Kompleks je udaljen 950 m od plaže Incekum, koja je prekrivena finim peskom i ima blagi nagib prema moru. Ova plaža se smatra jednom od najboljih na turskoj mediteranskoj obali i nosi oznaku „Plava zastava“. Oblast Avsallar je jedna od najzelenijih i najudobnijih u Alanji.</p><p>Rasporedi apartmana su pažljivo osmišljeni za efikasno korišćenje prostora i optimalno postavljanje nameštaja i dekora u odnosu na prirodno svetlo.&nbsp;&nbsp;</p><p>Zgrada ima 8 spratova i 61 apartman, sa rasporedima 1+1, 2+1, kao i dupleksima 3+1 i 4+1, veličine od 65 do 172 m².</p><p>Struktura je otporna na zemljotrese, izdržljiva i ima temelje zaštićene od vlage, sa mermernim i keramičkim podovima. Apartmani imaju prozore okrenute prema moru, a ulaz zgrade je jedinstveno dizajniran, pružajući osećaj luksuznog hotela. Moderni dečiji prostori za igru, zone za relaksaciju i sportske zone za odrasle, kao i infrastruktura koja omogućava celogodišnje korišćenje, uključujući zatvoreni zimski bazen sa grejanjem. Projekat premium klase sa povoljnom lokacijom, prostranim teritorijama i velikim površinama apartmana.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Инджекум"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "İncekum"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "ОМИЉЕНО"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "İncekum"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (инв)",
+          "Пентхаус"
+        ],
+        "en": [
+          "Apartments (inv)",
+          "Penthouse"
+        ],
+        "sr": [
+          "Apartmani (инв)",
+          "Пентхаус"
+        ],
+        "tr": [
+          "Daire (yatırım)",
+          "Penthouse"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1",
+        "3+1",
+        "4+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Беседка для отдыха",
+          "Игровая площадка",
+          "Крытый бассейн",
+          "Игровая комната",
+          "Открытая парковка",
+          "Открытый бассейн",
+          "Турецкий хаммам",
+          "Финская сауна",
+          "Фитнес-центр",
+          "Электрический генератор"
+        ],
+        "en": [
+          "Gazebo For Relaxation",
+          "Playground",
+          "Indoor pool",
+          "Game Room",
+          "Open Parking",
+          "Open Pool",
+          "Turkish Hammam",
+          "Finnish Sauna",
+          "Fitness Center",
+          "Electric Generator"
+        ],
+        "sr": [
+          "Видиковац за опуштање",
+          "Игралиљте",
+          "Затворени базен",
+          "Соба за игру",
+          "Отворено паркиралиште",
+          "Отворени базен",
+          "турски хамам",
+          "Финска сауна",
+          "Фитнес центар",
+          "Електрични генератор"
+        ],
+        "tr": [
+          "Gazebo For Relaxation-TR",
+          "Playground-TR",
+          "Indoor pool-TR",
+          "Game Room-TR",
+          "Open Parking-TR",
+          "Open Pool-TR",
+          "Turkish Hammam-TR",
+          "Finnish Sauna-TR",
+          "Fitness Center-TR",
+          "Electric Generator-TR"
+        ]
+      },
+      "seaDistance": 1400,
+      "yearBuilt": null,
+      "price": null,
+      "currency": null,
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/1c041b75b1f6c3c42e0005fae051ac90.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/303fdd690fb66cd888e5b7e7a1ebed4d.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/74c54ebedb6c4329738ffb578c13b216.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/72e7024b836457985fa33c9ac9245b6d.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/8912cbeefc13ccb39105f0a0699667da.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/25f249f66938924df030fe2b3e0d356d.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/1a79648e7fded37ddcb75c5a2d774363.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/d7dc8777418737341d40056500414aca.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/49ce2093fd8a41f3d77bbad610dd9187.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3391/large/72e7024b836457985fa33c9ac9245b6d.jpg"
+      ],
+      "updated": "2024-10-03 11:42:28"
+    },
+    {
+      "id": "PP005",
+      "portfolioId": 3392,
+      "slug": "rezidentsiya-azeroth-residence-v-150-metrah-ot-morya-v-turisticheskom-rayone-alani",
+      "package": "partnerskye",
+      "title": {
+        "ru": "Резиденция Azeroth Residence в 150 метрах от моря в туристическом районе Аланьи",
+        "en": "Azeroth Residence Just 150 Meters from the Sea in the Tourist Area of Alanya",
+        "sr": "Azeroth Residence - Samo 150 Metara od Mora u Turističkoj Oblasti Alanje",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": "<p>Резиденция Azeroth расположена всего в 150 метрах от моря в популярном туристическом районе Окурджалар. Состоит из 4 блоков по 6 этажей, всего 72 квартиры. В пешей доступности расположены магазины, супермаркеты, пекарня, рестораны и кафе.&nbsp;</p><p>Окурджалар — это район крупных отелей с туристической инфраструктурой. Рядом с резиденцией центр шоппинга Alara Grand Bazaar, магазины сувениров, дельфинарий, аквапарк и другие места для отдыха. Возле резиденции вдоль трассы курсирует<strong>&nbsp;</strong>общественный транспорт в центр Аланьи и другие районы, туристические локации. На берегу есть пункты проката водного транспорта и услуги водного спорта, дайвинг центры.</p><p>В резиденции есть как внешняя, так и внутренняя инфраструктура, включая крытый зимний бассейн. Представлены квартиры планировкой 1+1 (55 и 56 м2), 2+1 (68 м2), дуплексы 2+1 (111-131 м2) и 3+1 (162 м2).&nbsp;</p><p>Резиденция выгодно расположена на второй линии от моря, в пешей доступности от инфраструктуры и транспорта. Это обеспечивает высокий ROI от аренды и перепродажи. Стоимость квартир при такой близости к морю выгодная для инвесторов и существенно ниже, чем в центральной части Аланьи, Махмутларе и других популярных районах.</p>",
+        "en": "<p>Azeroth Residence is located just 150 meters from the sea in the popular tourist district of Okurcalar. It consists of 4 blocks with 6 floors each, with a total of 72 apartments. Shops, supermarkets, a bakery, restaurants, and cafes are all within walking distance.</p><p>Okurcalar is an area known for its large hotels and tourist infrastructure. Nearby, you'll find the Alara Grand Bazaar shopping center, souvenir shops, a dolphinarium, a water park, and other recreational spots. Public transport runs along the road next to the residence, providing access to the center of Alanya and other districts, as well as tourist locations. On the shore, there are rental services for watercraft and water sports, as well as diving centers.</p><p>The residence offers both external and internal infrastructure, including an indoor winter pool. The available apartment layouts include 1+1 (55 and 56 m²), 2+1 (68 m²), 2+1 duplexes (111-131 m²), and 3+1 duplexes (162 m²).</p><p>The residence is ideally located on the second line from the sea, within walking distance of infrastructure and public transport. This ensures a high ROI from both rental and resale. The price of the apartments, given their proximity to the sea, is attractive for investors and significantly lower than in central Alanya, Mahmutlar, and other popular districts.</p>",
+        "sr": "<p>Azeroth Residence se nalazi samo 150 metara od mora u popularnoj turističkoj oblasti Okurcalar. Sastoji se od 4 bloka sa po 6 spratova, sa ukupno 72 apartmana. Prodavnice, supermarketi, pekare, restorani i kafići su na pešačkoj udaljenosti.</p><p>Okurcalar je poznata oblast sa velikim hotelima i turističkom infrastrukturom. U blizini se nalazi shopping centar Alara Grand Bazaar, suvenirnice, delfinarijum,&nbsp; vodeni park i druga mesta za rekreaciju. Javni prevoz se kreće duž puta pored rezidencije, omogućavajući pristup centru Alanje i drugim oblastima, kao i turističkim lokacijama. Na obali su dostupne usluge iznajmljivanja plovila i vodeni sportovi, kao i centri za ronjenje.</p><p>Rezidencija nudi i eksternu i internu infrastrukturu, uključujući zatvoreni zimski bazen. Dostupni rasporedi apartmana uključuju 1+1 (55 i 56 m²), 2+1 (68 m²), 2+1 dupleks (111-131 m²) i 3+1 dupleks (162 m²).</p><p>Rezidencija je idealno smeštena u drugom redu od mora, na pešačkoj udaljenosti od infrastrukture i javnog prevoza. Ovo obezbeđuje visoku stopu povrata investicije (ROI) kako od izdavanja, tako i od preprodaje. Cene apartmana, s obzirom na njihovu blizinu moru, su atraktivne za investitore i znatno niže nego u centralnoj Alanji, Mahmutlaru i drugim popularnim oblastima.</p>",
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "Турция",
+          "Аланья",
+          "Окурджалар"
+        ],
+        "en": [
+          "Turkey",
+          "Alanya",
+          "Okurcalar"
+        ],
+        "sr": [
+          "Турска",
+          "Аланиа",
+          "ОМИЉЕНО"
+        ],
+        "tr": [
+          "Türkiye",
+          "Alanya",
+          "Okurcalar"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (инв)",
+          "Пентхаус"
+        ],
+        "en": [
+          "Apartments (inv)",
+          "Penthouse"
+        ],
+        "sr": [
+          "Apartmani (инв)",
+          "Пентхаус"
+        ],
+        "tr": [
+          "Daire (yatırım)",
+          "Penthouse"
+        ]
+      },
+      "layouts": [
+        "1+1",
+        "2+1",
+        "3+1"
+      ],
+      "amenities": {
+        "ru": [
+          "Игровая площадка",
+          "Крытый бассейн",
+          "Зеленая зона",
+          "Игровая комната",
+          "Кинотеатр",
+          "Массажный кабинет",
+          "Открытая парковка",
+          "Открытый бассейн",
+          "Турецкий хаммам",
+          "Фитнес-центр"
+        ],
+        "en": [
+          "Playground",
+          "Indoor pool",
+          "Green Area",
+          "Game Room",
+          "Cinema",
+          "Massage Room",
+          "Open Parking",
+          "Open Pool",
+          "Turkish Hammam",
+          "Fitness Center"
+        ],
+        "sr": [
+          "Игралиљте",
+          "Затворени базен",
+          "Греен Ареа",
+          "Соба за игру",
+          "Биоскоп",
+          "Соба за масажу",
+          "Отворено паркиралиште",
+          "Отворени базен",
+          "турски хамам",
+          "Фитнес центар"
+        ],
+        "tr": [
+          "Playground-TR",
+          "Indoor pool-TR",
+          "Green Area-TR",
+          "Game Room-TR",
+          "Cinema-TR",
+          "Massage Room-TR",
+          "Open Parking-TR",
+          "Open Pool-TR",
+          "Turkish Hammam-TR",
+          "Fitness Center-TR"
+        ]
+      },
+      "seaDistance": 50,
+      "yearBuilt": null,
+      "price": null,
+      "currency": null,
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/e57e23569fd9ba323af64feae86c2de7.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/35a4fa07f34df39cc8d957f8d9cecffa.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/46b073b34a33b81b1763f933df9923b9.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/17ae7f42bb9062fc5ee2a81536b4f003.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/d5c248b2fbafe464329ee1f82255d708.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/8c373cdae68d97d05d68b75ec810541b.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/58664c221743d72c1aad4f6bde71c33a.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/6493a0c6f756ab9cddaf6a3a78edb12d.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/2e233771dc53c224febd61b0e82c52bc.jpg",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3392/large/28acbef821f8ec4fb7741a689a9aa9ab.jpg"
+      ],
+      "updated": "2024-10-03 09:13:13"
+    },
+    {
+      "id": "DBP 131",
+      "portfolioId": 3528,
+      "slug": "sea-side-by-prestige",
+      "package": "biznes-investitsii",
+      "title": {
+        "ru": null,
+        "en": "Sea Side by Prestige",
+        "sr": "Си Сайд от Престиж",
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": null,
+        "en": "<p>Наслаждайтесь непревзойденным островным образом жизни в городе в Seaside от Prestige One, новом жилом комплексе на Dubai Islands. Seaside от Prestige One предлагает эксклюзивное жилье, где сочетаются роскошь городской жизни и спокойная атмосфера острова.</p><p>С тонким вкусом оформленные резиденции оснащены окнами от пола до потолка и просторными балконами, которые приглашают морской пейзаж в каждый дом. Архитектура комплекса выполнена в современном стиле с чистыми линиями и ступенчатой структурой, обеспечивающей уединение и подчеркивающей панорамные виды.</p>",
+        "sr": null,
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "ОАЭ",
+          "Дубай",
+          "Dubai Islands"
+        ],
+        "en": [
+          "UAE",
+          "Dubai",
+          "Dubai Islands"
+        ],
+        "sr": [
+          "УАЕ",
+          "Дубай-SR",
+          "Dubai Islands"
+        ],
+        "tr": [
+          "UAE-TR",
+          "Dubai",
+          "Dubai Islands"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (AE)",
+          "Апартаменты (инв)"
+        ],
+        "en": [
+          "Apartment (AE)",
+          "Apartments (inv)"
+        ],
+        "sr": [
+          "Стан (AE)",
+          "Apartmani (инв)"
+        ],
+        "tr": [
+          "Daire (AE)",
+          "Daire (yatırım)"
+        ]
+      },
+      "layouts": [],
+      "amenities": {
+        "ru": [
+          "Бар у бассейна",
+          "Крытый бассейн",
+          "Зеленая зона",
+          "Зона отдыха - барбекю",
+          "Фитнес/Fitness",
+          "Площадка для йоги/Yoga area",
+          "Частный бассейн/Private pool",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool",
+          "Infinity бассейн/Infinity pool",
+          "Джакузи/Jacuzzi",
+          "Зона барбекю/BBQ area",
+          "Сауна и парная комната/Sauna and steam room",
+          "Паркинг/Parking",
+          "Дорожка для пробежек/Jogging track",
+          "Мини гольф/Mini golf",
+          "Кинотеатр под открытым небом/Open air cinema",
+          "Клубная комната/Club room",
+          "Детская игровая зона"
+        ],
+        "en": [
+          "Pool Bar",
+          "Indoor pool",
+          "Green Area",
+          "Recreation Area - BBQ",
+          "Фитнес/Fitness-EN",
+          "Площадка для йоги/Yoga area-EN",
+          "Частный бассейн/Private pool-EN",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-EN",
+          "Infinity бассейн/Infinity pool-EN",
+          "Джакузи/Jacuzzi-EN",
+          "Зона барбекю/BBQ area-EN",
+          "Сауна и парная комната/Sauna and steam room-EN",
+          "Паркинг/Parking-EN",
+          "Дорожка для пробежек/Jogging track-EN",
+          "Мини гольф/Mini golf-EN",
+          "Кинотеатр под открытым небом/Open air cinema-EN",
+          "Клубная комната/Club room-EN",
+          "Children's play area"
+        ],
+        "sr": [
+          "Базен Бар",
+          "Затворени базен",
+          "Греен Ареа",
+          "Рекреациона зона - роштиљ",
+          "Фитнес/Fitness-SR",
+          "Площадка для йоги/Yoga area-SR",
+          "Частный бассейн/Private pool-SR",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-SR",
+          "Infinity бассейн/Infinity pool-SR",
+          "Джакузи/Jacuzzi-SR",
+          "Зона барбекю/BBQ area-SR",
+          "Сауна и парная комната/Sauna and steam room-SR",
+          "Паркинг/Parking-SR",
+          "Дорожка для пробежек/Jogging track-SR",
+          "Мини гольф/Mini golf-SR",
+          "Кинотеатр под открытым небом/Open air cinema-SR",
+          "Клубная комната/Club room-SR",
+          "Детская игровая зона/Children's play area-SR"
+        ],
+        "tr": [
+          "Pool Bar-TR",
+          "Indoor pool-TR",
+          "Green Area-TR",
+          "Recreation Area - BBQ-TR",
+          "Фитнес/Fitness-TR",
+          "Площадка для йоги/Yoga area-TR",
+          "Частный бассейн/Private pool-TR",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-TR",
+          "Infinity бассейн/Infinity pool-TR",
+          "Джакузи/Jacuzzi-TR",
+          "Зона барбекю/BBQ area-TR",
+          "Сауна и парная комната/Sauna and steam room-TR",
+          "Паркинг/Parking-TR",
+          "Дорожка для пробежек/Jogging track-TR",
+          "Мини гольф/Mini golf-TR",
+          "Кинотеатр под открытым небом/Open air cinema-TR",
+          "Клубная комната/Club room-TR",
+          "Детская игровая зона/Children's play area-TR"
+        ]
+      },
+      "seaDistance": 500,
+      "yearBuilt": 2026,
+      "price": 2550000,
+      "currency": "AED",
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/7e9f64fe081f0d6e13a54a6d85b6e7ac.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/d0dff67f3a3719e68ce1edb395716582.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/9e7a85dd25b6a8856ffc803323061b6e.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/b06917e64f06e7cf7b78e9b2480f6769.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/be02f33696beefef878cb8a579fc127c.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/fd7a903960b31c2d67a1e3503453c568.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/338db39dd1c041a2efb8514bd5891d92.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/233c20dba0351a3f71d838e8c0bf641a.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/9062736f1754b37793faccd6af23047c.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/3a225597d56bb95ed440708e72b140ff.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/93c08184e3e7f392042c6ec1584488c1.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/e2255c1b90260e37058a529f2776aebd.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/b9494449947047d2e7e8346d5b36f34a.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/4bff047cac063d8a6201558ff9013361.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3528/large/acee0b007217595d454e5bad9313d9d8.png"
+      ],
+      "updated": "2024-08-15 13:14:12"
+    },
+    {
+      "id": "DBP130",
+      "portfolioId": 3527,
+      "slug": "ocean-pearl-by-samana",
+      "package": "biznes-investitsii",
+      "title": {
+        "ru": null,
+        "en": "Ocean Pearl by Samana",
+        "sr": null,
+        "tr": null
+      },
+      "descriptionHtml": {
+        "ru": null,
+        "en": "<p>ЗАВОРАЖИВАЮЩАЯ ЖИЗНЬ НА БЕРЕГУ&nbsp;</p><p>Просыпайтесь под симфонию приливов и отливов с золотистыми оттенками рассвета, рисующими новое начало каждого дня.&nbsp;</p><p>Жизнь в SAMANA Ocean Pearl — это сочетание роскоши и природы, где лазурные воды и пышные пейзажи создают непревзойденную атмосферу безмятежности и элегантности. Испытайте величественные моменты жизни, которые раскрываются каждый день с совершенством. Это место, которое оживляет вашу душу и обогащает ваш жизненный опыт.</p>",
+        "sr": null,
+        "tr": null
+      },
+      "location": {
+        "ru": [
+          "ОАЭ",
+          "Дубай",
+          "Dubai Islands"
+        ],
+        "en": [
+          "UAE",
+          "Dubai",
+          "Dubai Islands"
+        ],
+        "sr": [
+          "УАЕ",
+          "Дубай-SR",
+          "Dubai Islands"
+        ],
+        "tr": [
+          "UAE-TR",
+          "Dubai",
+          "Dubai Islands"
+        ]
+      },
+      "type": {
+        "ru": [
+          "Апартаменты (AE)",
+          "Апартаменты (инв)"
+        ],
+        "en": [
+          "Apartment (AE)",
+          "Apartments (inv)"
+        ],
+        "sr": [
+          "Стан (AE)",
+          "Apartmani (инв)"
+        ],
+        "tr": [
+          "Daire (AE)",
+          "Daire (yatırım)"
+        ]
+      },
+      "layouts": [],
+      "amenities": {
+        "ru": [
+          "Бар у бассейна",
+          "Волейбольная площадка",
+          "Игровая площадка",
+          "Джакузи",
+          "Доктор",
+          "Крытый бассейн",
+          "Зеленая зона",
+          "Зона отдыха - барбекю",
+          "Игровая комната",
+          "Фитнес/Fitness",
+          "Площадка для йоги/Yoga area",
+          "Частный бассейн/Private pool",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool",
+          "Infinity бассейн/Infinity pool",
+          "Джакузи/Jacuzzi",
+          "Зона барбекю/BBQ area",
+          "Сауна и парная комната/Sauna and steam room",
+          "Паркинг/Parking",
+          "Дорожка для пробежек/Jogging track",
+          "Мини гольф/Mini golf",
+          "Кинотеатр под открытым небом/Open air cinema",
+          "Клубная комната/Club room",
+          "Детская игровая зона"
+        ],
+        "en": [
+          "Pool Bar",
+          "Volleyball Court",
+          "Playground",
+          "Children's swimming pool",
+          "Jacuzzi",
+          "Doctor",
+          "Indoor pool",
+          "Green Area",
+          "Recreation Area - BBQ",
+          "Game Room",
+          "Фитнес/Fitness-EN",
+          "Площадка для йоги/Yoga area-EN",
+          "Частный бассейн/Private pool-EN",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-EN",
+          "Infinity бассейн/Infinity pool-EN",
+          "Джакузи/Jacuzzi-EN",
+          "Зона барбекю/BBQ area-EN",
+          "Сауна и парная комната/Sauna and steam room-EN",
+          "Паркинг/Parking-EN",
+          "Дорожка для пробежек/Jogging track-EN",
+          "Мини гольф/Mini golf-EN",
+          "Кинотеатр под открытым небом/Open air cinema-EN",
+          "Клубная комната/Club room-EN",
+          "Children's play area"
+        ],
+        "sr": [
+          "Базен Бар",
+          "Одбојкашки терен",
+          "Игралиљте",
+          "Ракузи",
+          "Доктор",
+          "Затворени базен",
+          "Греен Ареа",
+          "Рекреациона зона - роштиљ",
+          "Соба за игру",
+          "Фитнес/Fitness-SR",
+          "Площадка для йоги/Yoga area-SR",
+          "Частный бассейн/Private pool-SR",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-SR",
+          "Infinity бассейн/Infinity pool-SR",
+          "Джакузи/Jacuzzi-SR",
+          "Зона барбекю/BBQ area-SR",
+          "Сауна и парная комната/Sauna and steam room-SR",
+          "Паркинг/Parking-SR",
+          "Дорожка для пробежек/Jogging track-SR",
+          "Мини гольф/Mini golf-SR",
+          "Кинотеатр под открытым небом/Open air cinema-SR",
+          "Клубная комната/Club room-SR",
+          "Детская игровая зона/Children's play area-SR"
+        ],
+        "tr": [
+          "Pool Bar-TR",
+          "Volleyball Court-TR",
+          "Playground-TR",
+          "Jacuzzi-TR",
+          "Doctor-TR",
+          "Indoor pool-TR",
+          "Green Area-TR",
+          "Recreation Area - BBQ-TR",
+          "Game Room-TR",
+          "Фитнес/Fitness-TR",
+          "Площадка для йоги/Yoga area-TR",
+          "Частный бассейн/Private pool-TR",
+          "Терраса для отдыха у бассейна/Lounge terrace by the pool-TR",
+          "Infinity бассейн/Infinity pool-TR",
+          "Джакузи/Jacuzzi-TR",
+          "Зона барбекю/BBQ area-TR",
+          "Сауна и парная комната/Sauna and steam room-TR",
+          "Паркинг/Parking-TR",
+          "Дорожка для пробежек/Jogging track-TR",
+          "Мини гольф/Mini golf-TR",
+          "Кинотеатр под открытым небом/Open air cinema-TR",
+          "Клубная комната/Club room-TR",
+          "Детская игровая зона/Children's play area-TR"
+        ]
+      },
+      "seaDistance": 1000,
+      "yearBuilt": 2026,
+      "price": 2096000,
+      "currency": "AED",
+      "discountRate": null,
+      "images": [
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/56bffa35cc8ea3e146029e234a932ec2.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/5e0628b7092c332b7beaae9a50c4aa1d.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/924fc1eb40102b9d12de62b58df38eb9.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/f431f7b0e0633b32e91ced59b38bafee.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/21c8230f98680ca04bae5226049aed7a.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/da43a746484c2e545be28e5227ef296d.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/ec63a2bbb1cf35bee2739de089d97506.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/48a5fda05b795647087e33b61c2883ce.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/86c6ed924e73da5abdbcf673e4119890.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/d703308f3e6afee76ebf6e87eb18911e.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/c4ed7a8b5b1c344389dda5605d37cb72.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/bf0264d23f0669d761d8b718204a5b43.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/06c544419f10a80b445b1d0236f063ac.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/84d9fa48e3c21f8cb14b053b73e9228c.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/b1e1ed660c795280ca640a699924490e.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/b72afcac4c1d124036328f711fa879f2.png",
+        "https://portfolio.stayrepo.com/lbi-content/uploads/media/3527/large/e5f8583873cda30436b9cd87aa2a872a.png"
+      ],
+      "updated": "2024-08-15 07:40:29"
+    }
+  ]
+}
